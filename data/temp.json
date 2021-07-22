@@ -1,0 +1,47 @@
+[
+  [
+    "Profile",
+    [
+      {
+        "label": "Full Name",
+        "value": "Saikat Dey",
+        "info": "Your full name",
+        "type": "string",
+        "required": true,
+        "db_field": "name"
+      },
+      { "Father's Name": "Jahar Dey" },
+      { "Mother's Name": "Mausumi Dey" },
+      {
+        "Permanent Address (Full Postal Address)": "501, Dum Dum Park, Flat No.: 1(A), Kolkata - 700055"
+      },
+      { "Local Address": "Dont know" },
+      { "Official Email of IEM domain": "saikat@iemcal.com" },
+      { "Blood Group": "AB+" },
+      { "Personal Email": "jahar2dey@gmail.com" },
+      { "Mobile Number(for SMS)": "9432430127" },
+      { "Landline umber.": "25907111" },
+      { "Date of Birth": "20/12/2001(use date oobject)" },
+      { "Gender": "Male" },
+      { "Deparment": "C.S.E." },
+      { "Designation": "H.O.D." },
+      { "Date of Joining(at the Organisation)": "01/11/2020" },
+      { "Religion": "Hinduisim" },
+      { "Caste": "General" },
+      { "PAN": "9536 3540 5645" },
+      { "Bank Name(with Branch) [Salary] ": "State Bank of India(Bangur Branch)" },
+      { "Salary Account": "" },
+      { "IFSC": "AI5454ADS2" },
+      { "PF-Account Number": "6A65 A5S6 6S6G" },
+      { "Passport Number": "E6652AS62D" },
+      { "Driving License": "EGAK22568F62F6" },
+      { "Location (in Campus)": "Management Campus" }
+    ]
+  ],
+  ["Education", []],
+  ["Conferences", []],
+  ["Publications", []],
+  ["Experience", []],
+  ["Seminars", []],
+  ["Projects", []]
+]

@@ -1,0 +1,39 @@
+.Profile__detail_items {
+  width: 100%;
+  height: auto;
+  padding: 2rem 1rem;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Profile__field_label {
+  padding: 0.1rem 0.2rem 0.05rem 0.2rem;
+  text-align: left;
+  font-size: 1.25rem;
+  font-weight: 400;
+
+  color: rgb(4, 1, 172);
+}
+
+.Profile__field_value {
+  padding: 0.05rem 0.2rem 0.1rem 0.2rem;
+  text-align: left;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.Profile__edit_icon {
+  display: inline-block;
+  padding-left: 0.5rem;
+  width: 1.75rem;
+  height: 1.75rem;
+
+  cursor: pointer;
+}
+
+.Profile__input_general {
+}
