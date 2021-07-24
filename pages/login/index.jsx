@@ -89,6 +89,7 @@ function Login() {
                   />
                   <button disabled={isSubmitting}>Log In</button> */}
                   <TextField
+                    id="ID"
                     variant="filled"
                     label="EmployeeID"
                     name="employeeID"
@@ -99,6 +100,7 @@ function Login() {
                     value={values.employeeID}
                   ></TextField>
                   <TextField
+                    id="password"
                     variant="filled"
                     label="Password"
                     name="password"

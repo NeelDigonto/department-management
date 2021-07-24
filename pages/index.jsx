@@ -39,12 +39,10 @@ export default function Home() {
   switch (selectedSidebarOption) {
     case "Profile": {
       DetailsPanelNode = <Profile />;
-      /*       router.push("/profile"); */
       break;
     }
     case "Publications": {
       DetailsPanelNode = <Publications />;
-      /*      router.push("/publication"); */
       break;
     }
     default:
