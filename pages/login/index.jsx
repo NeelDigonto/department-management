@@ -10,7 +10,7 @@ import { UserContext, useUserContext } from "../../contexts/UserContext.jsx";
 import { signIn } from "next-auth/client";
 import { useRouter } from "next/router";
 
-import { TextField } from "@material-ui/core";
+import { TextField, Button } from "@material-ui/core";
 
 function Login() {
   const { user, setUser } = useUserContext();
@@ -67,7 +67,7 @@ function Login() {
                 isSubmitting,
               }) => (
                 <Form>
-                  <InputNumber
+                  {/*                   <InputNumber
                     id="ID"
                     label="ID"
                     name="employeeID"
@@ -87,14 +87,34 @@ function Login() {
                     autoComplete={autoCompleteTypes.currentPassword}
                     isVisible={true}
                   />
-
-                  <button type="submit" disabled={isSubmitting}>
+                  <button disabled={isSubmitting}>Log In</button> */}
+                  <TextField
+                    variant="filled"
+                    label="EmployeeID"
+                    name="employeeID"
+                    placeholder="12020002002XXX"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    autoComplete={true}
+                    value={values.employeeID}
+                  ></TextField>
+                  <TextField
+                    variant="filled"
+                    label="Password"
+                    name="password"
+                    placeholder="password"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    autoComplete={true}
+                    value={values.password}
+                  ></TextField>
+                  <Button type="submit" color="primary" disabled={isSubmitting}>
                     Log In
-                  </button>
+                  </Button>
                   <br />
-                  <TextField id="standard-basic" label="Standard" />
+                  {/*                   <TextField id="standard-basic" label="Standard" />
                   <TextField id="filled-basic" label="Filled" variant="filled" />
-                  <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+                  <TextField id="outlined-basic" label="Outlined" variant="outlined" /> */}
                 </Form>
               )}
             </Formik>
