@@ -1,5 +1,6 @@
 import { Fragment, useState, useEffect, useMemo } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { signIn, signOut, useSession, getSession } from "next-auth/client";
 
 import { useUserContext } from "../contexts/UserContext.jsx";
@@ -16,6 +17,7 @@ export default function Home() {
   const [session, loading] = useSession();
   const { user, setUser } = useUserContext();
   const [selectedSidebarOption, setSelectedSidebarOption] = useState(sidebarOptions[0]);
+  const router = useRouter();
 
   const sidebarItemsNode = sidebarOptions.map((element) => (
     <li
@@ -37,11 +39,12 @@ export default function Home() {
   switch (selectedSidebarOption) {
     case "Profile": {
       DetailsPanelNode = <Profile />;
+      /*       router.push("/profile"); */
       break;
     }
     case "Publications": {
-      console.log("triggered");
       DetailsPanelNode = <Publications />;
+      /*      router.push("/publication"); */
       break;
     }
     default:
@@ -78,4 +81,21 @@ export default function Home() {
       </DefaultContainer>
     </Fragment>
   );
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession({ req: context.req });
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { session },
+  };
 }

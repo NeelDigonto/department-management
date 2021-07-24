@@ -260,7 +260,7 @@ const schema = {
           type: "string",
           input_type: "text",
           required: true,
-          db_field: "name_of_auh",
+          db_field: "name_of_auth",
         },
         {
           label: "Published on",

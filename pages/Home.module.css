@@ -40,6 +40,8 @@
 .Home__details_flex_item {
   order: 3;
   flex: 80 1 0;
+
+  overflow: auto;
 }
 
 .Home__ul {

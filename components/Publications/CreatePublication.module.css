@@ -4,9 +4,15 @@
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 3rem;
 
+  margin-top: 3rem;
+
   cursor: pointer;
 
   font-size: 2rem;
   font-style: italic;
   font-weight: 500;
+}
+
+.Publication__root_div:hover {
+  background-color: bisque;
 }
