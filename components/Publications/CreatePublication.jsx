@@ -4,7 +4,7 @@ import { useUserContext } from "../../contexts/UserContext";
 
 const emptyPublicationDataBP = {
   sl_no: 0,
-  name_of_auh: "",
+  name_of_auth: "",
   yop: "",
   title: "",
   journal_name: "",
@@ -13,7 +13,7 @@ const emptyPublicationDataBP = {
   vol_issue_no: "",
   issn_isbn: "",
   indexing: "",
-  inv_paper: "",
+  inv_paper: false,
   prof_inv_file: null,
   studs_involved: "",
   attachments: [],

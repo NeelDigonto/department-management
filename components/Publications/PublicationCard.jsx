@@ -13,12 +13,14 @@ const PublicationCard = ({ sl_no, content, right_upper_btn, right_lower_btn, chi
           <button
             className={styles.InfoField__right_upper_button}
             onClick={right_upper_btn.handleClick}
+            type={right_upper_btn.type}
           >
             <span>{right_upper_btn.label}</span>
           </button>
           <button
             className={styles.InfoField__right_lower_button}
             onClick={right_lower_btn.handleClick}
+            type={right_lower_btn.type}
           >
             <span>{right_lower_btn.label}</span>
           </button>
