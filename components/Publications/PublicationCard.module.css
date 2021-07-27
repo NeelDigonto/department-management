@@ -42,10 +42,6 @@
 .PublicationCard__main_info {
   flex: 1 1 auto;
   padding: 1rem 2rem;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto;
 }
 
 .PublicationCard__edit_button_group {
@@ -62,13 +58,35 @@
   flex: 0 0 auto;
   align-self: stretch;
 
+  font-size: 1.5rem;
   display: flex;
   flex-wrap: nowrap;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
 }
 
-.PublicationCard__edit_button_group:hover {
+.InfoField__right_upper_button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  flex: 1 0 0;
+}
+
+.InfoField__right_upper_button:hover {
+  background-color: bisque;
+  color: black;
+  transition: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.InfoField__right_lower_button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  flex: 1 0 0;
+}
+
+.InfoField__right_lower_button:hover {
   background-color: bisque;
   color: black;
   transition: cubic-bezier(0.215, 0.61, 0.355, 1);

@@ -15,7 +15,7 @@ const Profile = ({}) => {
       {!!user ? (
         <Fragment>
           {user["Publications"].map((element, index) => (
-            <APublication element={element} key={index} index={index} />
+            <APublication element={element} key={index} />
           ))}
           <CreatePublication />
         </Fragment>
