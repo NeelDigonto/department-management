@@ -127,6 +127,7 @@ const AdminGetData = () => {
 
     const workbook = getStandardWorkBook();
     const worksheet = workbook.addWorksheet("Publications");
+    const rowHeight = 30;
 
     const setupHeaders = () => {
       let ws_columns_hot = [
@@ -166,6 +167,7 @@ const AdminGetData = () => {
     const setupDataRows = () => {
       const employeeID_iter_cell = new Cell("A", 3); //A3
       let rowsConsumedByPrevUsers = 0;
+      let rowsConsumedByAllUsers = 0;
 
       for (let userNo = 0; userNo < collectionData.length; ++userNo) {
         const employeeID_cell = worksheet.getCell(employeeID_iter_cell.getString());
@@ -184,11 +186,17 @@ const AdminGetData = () => {
             const colId = String.fromCharCode(colCode);
             const cell = worksheet.getCell(`${colId}${3 + rowsConsumedByPrevUsers + pubNo}`);
             cell.value = collectionData[userNo]["Publications"][pubNo][item.db_field];
+            cell.alignment = { horizontal: "center", vertical: "middle", wrapText: true };
           });
         }
 
         rowsConsumedByPrevUsers = collectionData[userNo]["Publications"].length;
+        rowsConsumedByAllUsers += rowsConsumedByPrevUsers;
         employeeID_iter_cell.row += rowsConsumedByPrevUsers;
+      }
+
+      for (let currentRow = 3; currentRow < 3 + rowsConsumedByAllUsers; ++currentRow) {
+        worksheet.getRow(currentRow).height = rowHeight;
       }
     };
 
