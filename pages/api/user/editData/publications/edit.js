@@ -18,7 +18,6 @@ export default async function handler(req, res) {
   for (let [key, value] of Object.entries(updateObject)) {
     updateQuerry[`Publications.$.${key}`] = value;
   }
-  console.log(updateQuerry);
 
   const updateResult = await usersCollection.updateOne(
     {
