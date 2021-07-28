@@ -12,7 +12,7 @@ const sidebarOptions = [
 
 const schema = {
   employeeID: "",
-  isDataLoaded: false,
+  hashedPassword: "",
   Profile: [
     {
       label: "Full Name",
