@@ -27,10 +27,21 @@ const AdminGetData = () => {
 
     const worksheet = workbook.addWorksheet("My Sheet");
 
-    worksheet.columns = [
+    let ws_columns_hot = [
       { header: "ID's", key: "id", width: 12 },
-      { header: "Profile", key: "profile", width: 20 },
+      { header: "Profile", key: "profile", width: schema["Profile"][0].excel_col_width },
+      { header: "", key: "", width: 30 },
     ];
+
+    for (let i = 1; i < schema["Profile"].length; ++i) {
+      ws_columns_hot.push({
+        /*         header: "",
+        key: `${i}`, */
+        width: schema["Profile"][i].excel_col_width,
+      });
+    }
+
+    worksheet.columns = ws_columns_hot;
 
     worksheet.mergeCells("B1:Y1");
     worksheet.mergeCells("A1:A2");
@@ -38,10 +49,22 @@ const AdminGetData = () => {
     worksheet.getCell("A1").alignment = { horizontal: "center" };
     worksheet.getCell("B1").alignment = { horizontal: "center" };
 
-    const rowStart = 3;
+    let colStart = "B";
     schema["Profile"].forEach((item, index) => {
-      worksheet.getCell(`B${rowStart + index}`).value = item.excel_field_name;
-      console.log(rowStart + index);
+      const colCode = colStart.charCodeAt(0) + index;
+      const colId = String.fromCharCode(colCode);
+      const cell = worksheet.getCell(`${colId}2`);
+      cell.value = item.excel_field_name;
+    });
+
+    worksheet.getCell("A3").value = collectionData[1]["employeeID"];
+
+    colStart = "B";
+    schema["Profile"].forEach((item, index) => {
+      const colCode = colStart.charCodeAt(0) + index;
+      const colId = String.fromCharCode(colCode);
+      const cell = worksheet.getCell(`${colId}3`);
+      cell.value = collectionData[1]["Profile"][item.db_field];
     });
 
     /*     worksheet.addRow({ id: 1, name: "John Doe", dob: new Date(1970, 1, 1) });
