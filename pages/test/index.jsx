@@ -3,14 +3,50 @@ import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import { schema } from "../../data/schema";
 
+function TypeOf(obj) {
+  return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+}
+
+class Cell {
+  static convertColumnToNumber(column_str) {
+    if (column_str.length === 1) {
+      return column_str.charCodeAt(0) - 65 + 1; //starts from 1
+    } else if (column_str.length === 2 && column_str.charCodeAt(0) === "A") {
+      return column_str.charCodeAt(1) - 65 + 1 + 26; //starts from 1
+    } else {
+      return undefined;
+    }
+  }
+  static convertNumberToColumn(column_num) {
+    if (column_num >= 1 && column_num <= 26) {
+      return String.fromCharCode(column_num - 1 + 65); //starts from 1
+    } else if (column_num >= 27 && column_num <= 52) {
+      return "A" + String.fromCharCode(column_num - 26 - 1 + 65); //starts from 1
+    } else {
+      return undefined;
+    }
+  }
+
+  constructor(_column, _row) {
+    this.row = TypeOf(_row) === "number" ? _row : undefined;
+    this.column =
+      TypeOf(_column) === "number"
+        ? _column
+        : TypeOf(_column) === "string"
+        ? Cell.convertColumnToNumber(_column)
+        : undefined;
+  }
+  getString() {
+    return `${Cell.convertNumberToColumn(this.column)}${this.row}`;
+  }
+}
+
 const AdminGetData = () => {
   const getCollectionData = async () => {
     return fetch("/api/admin/getUserCollection").then((response) => response.json());
   };
 
-  const ProfileSaver = async () => {
-    const collectionData = await getCollectionData();
-
+  const getStandardWorkBook = () => {
     const workbook = new ExcelJS.Workbook();
 
     workbook.creator = "Saikat Dey";
@@ -20,128 +56,152 @@ const AdminGetData = () => {
     workbook.lastPrinted = new Date();
 
     workbook.calcProperties.fullCalcOnLoad = true;
+    return workbook;
+  };
 
-    const worksheet = workbook.addWorksheet("My Sheet");
+  const ProfileSaver = async () => {
+    const collectionData = await getCollectionData();
 
-    let ws_columns_hot = [
-      { header: "ID's", key: "id", width: 12 },
-      { header: "Profile", key: "profile", width: schema["Profile"][0].excel_col_width },
-    ];
+    const workbook = getStandardWorkBook();
+    const worksheet = workbook.addWorksheet("Profiles");
 
-    for (let i = 1; i < schema["Profile"].length; ++i) {
-      ws_columns_hot.push({
-        /*         header: "",
-        key: `${i}`, */
-        width: schema["Profile"][i].excel_col_width,
+    const setupHeaders = () => {
+      let ws_columns_hot = [
+        { header: "ID's", key: "id", width: collectionData[0]["employeeID"].length + 3 },
+        { header: "Profile", key: "profile", width: schema["Profile"][0].excel_col_width },
+      ];
+      for (let i = 1; i < schema["Profile"].length; ++i) {
+        ws_columns_hot.push({
+          width: schema["Profile"][i].excel_col_width,
+        });
+      }
+      worksheet.columns = ws_columns_hot;
+      worksheet.mergeCells("A1:A2");
+
+      const mergeUptoCell = new Cell("B", 1);
+      mergeUptoCell.column += schema["Profile"].length - 1;
+      worksheet.mergeCells(`B1:${mergeUptoCell.getString()}`);
+
+      worksheet.getCell("A1").alignment = { horizontal: "center", vertical: "middle" };
+      worksheet.getCell("B1").alignment = { horizontal: "center", vertical: "middle" };
+
+      const iter_cell = new Cell("B", 2);
+      schema["Profile"].forEach((item, index) => {
+        const cell = worksheet.getCell(iter_cell.getString());
+        iter_cell.column += 1;
+        cell.value = item.excel_field_name;
+        cell.alignment = { horizontal: "center", vertical: "middle" };
       });
-    }
+    };
 
-    worksheet.columns = ws_columns_hot;
+    const setupDataRows = () => {
+      const employeeID_cell = new Cell("A", 3); //A3
+      for (let userNo = 0; userNo < collectionData.length; ++userNo) {
+        worksheet.getCell(employeeID_cell.getString()).value = collectionData[userNo]["employeeID"];
 
-    //generailze this later
-    worksheet.mergeCells("B1:Y1");
-    worksheet.mergeCells("A1:A2");
+        const employeeField_cell = new Cell("B", 3 + userNo);
+        schema["Profile"].forEach((item, index) => {
+          const cell = worksheet.getCell(employeeField_cell.getString());
+          employeeField_cell.column += 1;
+          cell.value = collectionData[userNo]["Profile"][item.db_field];
+        });
 
-    worksheet.getCell("A1").alignment = { horizontal: "center" };
-    worksheet.getCell("B1").alignment = { horizontal: "center" };
+        employeeID_cell.row += 1;
+      }
+    };
 
-    let colStart = "B";
-    schema["Profile"].forEach((item, index) => {
-      const colCode = colStart.charCodeAt(0) + index;
-      const colId = String.fromCharCode(colCode);
-      const cell = worksheet.getCell(`${colId}2`);
-      cell.value = item.excel_field_name;
-    });
+    const saveAsFile = async () => {
+      await workbook.xlsx.writeBuffer().then((data) => {
+        const blob = new Blob([data], { type: "application/octet-stream" });
+        saveAs(blob, "Profiles.xlsx");
+      });
+    };
 
-    worksheet.getCell("A3").value = collectionData[0]["employeeID"];
-
-    colStart = "B";
-    schema["Profile"].forEach((item, index) => {
-      const colCode = colStart.charCodeAt(0) + index;
-      const colId = String.fromCharCode(colCode);
-      const cell = worksheet.getCell(`${colId}3`);
-      cell.value = collectionData[0]["Profile"][item.db_field];
-    });
-
-    /*     worksheet.addRow({ id: 1, name: "John Doe", dob: new Date(1970, 1, 1) });
-    worksheet.addRow({ id: 2, name: "Jane Doe", dob: new Date(1965, 1, 7) }); */
-
-    await workbook.xlsx.writeBuffer().then((data) => {
-      const blob = new Blob([data], { type: "application/octet-stream" });
-      saveAs(blob, "Profiles.xlsx");
-    });
+    setupHeaders();
+    setupDataRows();
+    await saveAsFile();
   };
 
   const PublicationsSaver = async () => {
     const collectionData = await getCollectionData();
 
-    const workbook = new ExcelJS.Workbook();
+    const workbook = getStandardWorkBook();
+    const worksheet = workbook.addWorksheet("Publications");
 
-    workbook.creator = "Saikat Dey";
-    workbook.lastModifiedBy = "Nobody";
-    workbook.created = new Date();
-    workbook.modified = new Date();
-    workbook.lastPrinted = new Date();
+    const setupHeaders = () => {
+      let ws_columns_hot = [
+        { header: "ID's", key: "id", width: 12 },
+        {
+          header: "Publications",
+          key: "publications",
+          width: schema["Publications"]["fields"][0].excel_col_width,
+        },
+      ];
 
-    workbook.calcProperties.fullCalcOnLoad = true;
+      for (let i = 1; i < schema["Publications"]["fields"].length; ++i) {
+        ws_columns_hot.push({
+          width: schema["Publications"]["fields"][i].excel_col_width,
+        });
+      }
+      worksheet.columns = ws_columns_hot;
 
-    const worksheet = workbook.addWorksheet("My Sheet");
+      const mergeUptoCell = new Cell("B", 1);
+      mergeUptoCell.column += schema["Publications"]["fields"].length - 1;
 
-    let ws_columns_hot = [
-      { header: "ID's", key: "id", width: 12 },
-      {
-        header: "Publications",
-        key: "publications",
-        width: schema["Publications"]["fields"][0].excel_col_width,
-      },
-    ];
+      worksheet.mergeCells(`B1:${mergeUptoCell.getString()}`);
+      worksheet.mergeCells("A1:A2");
 
-    for (let i = 1; i < schema["Publications"]["fields"].length; ++i) {
-      ws_columns_hot.push({
-        width: schema["Publications"]["fields"][i].excel_col_width,
-      });
-    }
+      worksheet.getCell("A1").alignment = { horizontal: "center", vertical: "middle" };
+      worksheet.getCell("B1").alignment = { horizontal: "center", vertical: "middle" };
 
-    worksheet.columns = ws_columns_hot;
-
-    let __code = "B".charCodeAt(0) + schema["Publications"]["fields"].length;
-    let __char = String.fromCharCode(__code);
-
-    worksheet.mergeCells(`B1:${__char}1`);
-    worksheet.mergeCells("A1:A2");
-
-    worksheet.getCell("A1").alignment = { horizontal: "center" };
-    worksheet.getCell("B1").alignment = { horizontal: "center" };
-
-    let colStart = "B";
-    let rowStart = 3;
-    schema["Publications"]["fields"].forEach((item, index) => {
-      const colCode = colStart.charCodeAt(0) + index;
-      const colId = String.fromCharCode(colCode);
-      const cell = worksheet.getCell(`${colId}2`);
-      cell.value = item.excel_field_name;
-    });
-
-    worksheet.getCell("A3").value = collectionData[0]["employeeID"];
-
-    for (let i = 0; i < collectionData[0]["Publications"].length; ++i) {
-      colStart = "B";
+      const iter_cell = new Cell("B", 2);
       schema["Publications"]["fields"].forEach((item, index) => {
-        const colCode = colStart.charCodeAt(0) + index;
-        const colId = String.fromCharCode(colCode);
-        const cell = worksheet.getCell(`${colId}${rowStart + i}`);
-        cell.value = collectionData[0]["Publications"][i][item.db_field];
+        const cell = worksheet.getCell(iter_cell.getString());
+        iter_cell.column += 1;
+        cell.value = item.excel_field_name;
+        cell.alignment = { horizontal: "center", vertical: "middle" };
       });
-    }
-    worksheet.mergeCells(`A3:A${3 + collectionData[0]["Publications"].length - 1}`);
+    };
 
-    /*     worksheet.addRow({ id: 1, name: "John Doe", dob: new Date(1970, 1, 1) });
-    worksheet.addRow({ id: 2, name: "Jane Doe", dob: new Date(1965, 1, 7) }); */
+    const setupDataRows = () => {
+      const employeeID_iter_cell = new Cell("A", 3); //A3
+      let rowsConsumedByPrevUsers = 0;
 
-    await workbook.xlsx.writeBuffer().then((data) => {
-      const blob = new Blob([data], { type: "application/octet-stream" });
-      saveAs(blob, "Publications.xlsx");
-    });
+      for (let userNo = 0; userNo < collectionData.length; ++userNo) {
+        const employeeID_cell = worksheet.getCell(employeeID_iter_cell.getString());
+        employeeID_cell.value = collectionData[userNo]["employeeID"];
+        employeeID_cell.alignment = { horizontal: "center", vertical: "middle" };
+        worksheet.mergeCells(
+          `A${3 + rowsConsumedByPrevUsers}:A${
+            3 + rowsConsumedByPrevUsers + collectionData[userNo]["Publications"].length - 1
+          }`
+        );
+
+        for (let pubNo = 0; pubNo < collectionData[userNo]["Publications"].length; ++pubNo) {
+          let colStart = "B";
+          schema["Publications"]["fields"].forEach((item, index) => {
+            const colCode = colStart.charCodeAt(0) + index;
+            const colId = String.fromCharCode(colCode);
+            const cell = worksheet.getCell(`${colId}${3 + rowsConsumedByPrevUsers + pubNo}`);
+            cell.value = collectionData[userNo]["Publications"][pubNo][item.db_field];
+          });
+        }
+
+        rowsConsumedByPrevUsers = collectionData[userNo]["Publications"].length;
+        employeeID_iter_cell.row += rowsConsumedByPrevUsers;
+      }
+    };
+
+    const saveAsFile = async () => {
+      await workbook.xlsx.writeBuffer().then((data) => {
+        const blob = new Blob([data], { type: "application/octet-stream" });
+        saveAs(blob, "Publications.xlsx");
+      });
+    };
+
+    setupHeaders();
+    setupDataRows();
+    await saveAsFile();
   };
 
   return (
