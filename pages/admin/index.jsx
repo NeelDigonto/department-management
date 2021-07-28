@@ -6,7 +6,7 @@ const CreateUser = () => {
   const [message, setMessage] = useState("");
 
   return (
-    <div style={{ margin: "20rem", padding: "2rem " }}>
+    <div style={{ margin: "10rem", padding: "2rem " }}>
       <h1>Add a New User</h1>
       <Formik
         initialValues={{ employeeID: "", password: "" }}
