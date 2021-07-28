@@ -329,7 +329,7 @@ const schema = {
         value: "",
         info: "Title of the Paper",
         excel_field_name: "Title",
-        excel_col_width: 20,
+        excel_col_width: 40,
         type: "string",
         input_type: "text",
         required: true,

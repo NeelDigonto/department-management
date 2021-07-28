@@ -15,9 +15,9 @@ const AdminGetData = () => {
 
     workbook.creator = "Saikat Dey";
     workbook.lastModifiedBy = "Nobody";
-    workbook.created = new Date(2015, 8, 30);
+    workbook.created = new Date();
     workbook.modified = new Date();
-    workbook.lastPrinted = new Date(2016, 9, 27);
+    workbook.lastPrinted = new Date();
 
     workbook.calcProperties.fullCalcOnLoad = true;
 
@@ -53,14 +53,14 @@ const AdminGetData = () => {
       cell.value = item.excel_field_name;
     });
 
-    worksheet.getCell("A3").value = collectionData[1]["employeeID"];
+    worksheet.getCell("A3").value = collectionData[0]["employeeID"];
 
     colStart = "B";
     schema["Profile"].forEach((item, index) => {
       const colCode = colStart.charCodeAt(0) + index;
       const colId = String.fromCharCode(colCode);
       const cell = worksheet.getCell(`${colId}3`);
-      cell.value = collectionData[1]["Profile"][item.db_field];
+      cell.value = collectionData[0]["Profile"][item.db_field];
     });
 
     /*     worksheet.addRow({ id: 1, name: "John Doe", dob: new Date(1970, 1, 1) });
@@ -68,7 +68,7 @@ const AdminGetData = () => {
 
     await workbook.xlsx.writeBuffer().then((data) => {
       const blob = new Blob([data], { type: "application/octet-stream" });
-      saveAs(blob, "faculties.xlsx");
+      saveAs(blob, "Profiles.xlsx");
     });
   };
 
@@ -79,9 +79,9 @@ const AdminGetData = () => {
 
     workbook.creator = "Saikat Dey";
     workbook.lastModifiedBy = "Nobody";
-    workbook.created = new Date(2015, 8, 30);
+    workbook.created = new Date();
     workbook.modified = new Date();
-    workbook.lastPrinted = new Date(2016, 9, 27);
+    workbook.lastPrinted = new Date();
 
     workbook.calcProperties.fullCalcOnLoad = true;
 
@@ -104,9 +104,8 @@ const AdminGetData = () => {
 
     worksheet.columns = ws_columns_hot;
 
-    const __code = "B".charCodeAt(0) + schema["Publications"]["fields"].length;
-    const __char = String.fromCharCode(__code);
-    console.log(__char);
+    let __code = "B".charCodeAt(0) + schema["Publications"]["fields"].length;
+    let __char = String.fromCharCode(__code);
 
     worksheet.mergeCells(`B1:${__char}1`);
     worksheet.mergeCells("A1:A2");
@@ -115,6 +114,7 @@ const AdminGetData = () => {
     worksheet.getCell("B1").alignment = { horizontal: "center" };
 
     let colStart = "B";
+    let rowStart = 3;
     schema["Publications"]["fields"].forEach((item, index) => {
       const colCode = colStart.charCodeAt(0) + index;
       const colId = String.fromCharCode(colCode);
@@ -122,22 +122,25 @@ const AdminGetData = () => {
       cell.value = item.excel_field_name;
     });
 
-    worksheet.getCell("A3").value = collectionData[1]["employeeID"];
+    worksheet.getCell("A3").value = collectionData[0]["employeeID"];
 
-    colStart = "B";
-    schema["Publications"]["fields"].forEach((item, index) => {
-      const colCode = colStart.charCodeAt(0) + index;
-      const colId = String.fromCharCode(colCode);
-      const cell = worksheet.getCell(`${colId}3`);
-      cell.value = collectionData[1]["Publications"][0][item.db_field];
-    });
+    for (let i = 0; i < collectionData[0]["Publications"].length; ++i) {
+      colStart = "B";
+      schema["Publications"]["fields"].forEach((item, index) => {
+        const colCode = colStart.charCodeAt(0) + index;
+        const colId = String.fromCharCode(colCode);
+        const cell = worksheet.getCell(`${colId}${rowStart + i}`);
+        cell.value = collectionData[0]["Publications"][i][item.db_field];
+      });
+    }
+    worksheet.mergeCells(`A3:A${3 + collectionData[0]["Publications"].length - 1}`);
 
     /*     worksheet.addRow({ id: 1, name: "John Doe", dob: new Date(1970, 1, 1) });
     worksheet.addRow({ id: 2, name: "Jane Doe", dob: new Date(1965, 1, 7) }); */
 
     await workbook.xlsx.writeBuffer().then((data) => {
       const blob = new Blob([data], { type: "application/octet-stream" });
-      saveAs(blob, "faculties.xlsx");
+      saveAs(blob, "Publications.xlsx");
     });
   };
 
