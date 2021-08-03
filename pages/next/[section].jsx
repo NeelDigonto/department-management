@@ -28,7 +28,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 
-import { mainListItems, secondaryListItems } from "./listItems.jsx";
+import { mainListItems, secondaryListItems } from "../../components/Profile/listItems.jsx";
 
 function Copyright() {
   return (

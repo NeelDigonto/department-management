@@ -38,7 +38,7 @@ const FileTest = () => {
       <div>
         <a
           href=""
-          ref={fileLinkRef}
+          ref={link_ref}
           style={{ color: "blue", padding: "5rem", margin: "20rem", fontSize: "3rem" }}
         >
           Open The file
