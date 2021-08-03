@@ -1,13 +1,13 @@
 const DataTypes = { string: 0, date: 1, bool: 3 };
 
 const sidebarOptions = [
-  "Profile",
-  "Education",
-  "Conferences",
-  "Publications",
-  "Experience",
-  "Seminars",
-  "Projects",
+  { menuItem: "Profile", urlSuffix: "profile" },
+  { menuItem: "Education", urlSuffix: "edudation" },
+  { menuItem: "Conferences", urlSuffix: "conferences" },
+  { menuItem: "Publications", urlSuffix: "publications" },
+  { menuItem: "Experience", urlSuffix: "experience" },
+  { menuItem: "Seminars", urlSuffix: "seminars" },
+  { menuItem: "Projects", urlSuffix: "projects" },
 ];
 
 const schema = {
@@ -375,7 +375,7 @@ const schema = {
         info: "Volume No/Issue No. & Page No of the paper",
         excel_field_name: "Volume No/Issue No. & Page No",
         excel_col_width: 20,
-        type: "text",
+        type: "string",
         input_type: "text",
         required: true,
         db_field: "vol_issue_no",
@@ -386,7 +386,7 @@ const schema = {
         info: "ISSN/ISBN of the paper",
         excel_field_name: "ISSN/ISBN",
         excel_col_width: 20,
-        type: "text",
+        type: "string",
         input_type: "text",
         required: true,
         db_field: "issn_isbn",
@@ -397,10 +397,21 @@ const schema = {
         info: "Indexing of the paper",
         excel_field_name: "Indexing",
         excel_col_width: 20,
-        type: "text",
+        type: "string",
         input_type: "text",
         required: true,
         db_field: "indexing",
+      },
+      {
+        label: "Students Involved",
+        value: "",
+        info: "Number of students involved (if any)",
+        excel_field_name: "Students Involved",
+        excel_col_width: 20,
+        type: "number",
+        input_type: "text",
+        required: true,
+        db_field: "studs_involved",
       },
       {
         label: "Invited Paper",
@@ -413,30 +424,23 @@ const schema = {
         required: true,
         db_field: "inv_paper",
       },
-      /*         {
-          label: "Proof of Invitation",
-          value: null,
-          info: "Proof of Invitation (Upload pdf)",
-          type: "file",
-          input_type: "file",
-          required: true,
-          db_field: "prof_inv_file",
-        }, */
-      {
-        label: "Students Involved",
-        value: "",
-        info: "Number of students involved (if any)",
-        excel_field_name: "Students Involved",
+      /*       {
+        label: "Proof of Invitation",
+        value: null,
+        info: "Proof of Invitation (Upload pdf)",
+        excel_field_name: "Proof of Invitation",
         excel_col_width: 20,
-        type: "number",
-        input_type: "text",
+        type: "file",
+        input_type: "file",
         required: true,
-        db_field: "studs_involved",
-      },
+        db_field: "prof_inv_file",
+      }, */
       /*         {
           label: "Attachments",
           value: [],
           info: "Attachments",
+          excel_field_name: "Proof of Invitation",
+          excel_col_width: 20,
           type: "file",
           input_type: "file",
           required: true,
@@ -448,5 +452,7 @@ const schema = {
   Seminars: [],
   Projects: [],
 };
+
+const fileSchema = { filename: "", encoding: "", mimetype: "", fuid: "", mapped: false };
 
 export { DataTypes, sidebarOptions, schema };

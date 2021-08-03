@@ -103,7 +103,8 @@ const AdminGetData = () => {
         schema["Profile"].forEach((item, index) => {
           const cell = worksheet.getCell(employeeField_cell.getString());
           employeeField_cell.column += 1;
-          cell.value = collectionData[userNo]["Profile"][item.db_field];
+          const value = collectionData[userNo]["Profile"][item.db_field];
+          cell.value = !!value ? value : null;
         });
 
         employeeID_cell.row += 1;
@@ -185,7 +186,8 @@ const AdminGetData = () => {
             const colCode = colStart.charCodeAt(0) + index;
             const colId = String.fromCharCode(colCode);
             const cell = worksheet.getCell(`${colId}${3 + rowsConsumedByPrevUsers + pubNo}`);
-            cell.value = collectionData[userNo]["Publications"][pubNo][item.db_field];
+            const value = collectionData[userNo]["Publications"][pubNo][item.db_field];
+            cell.value = !!value ? value : null;
             cell.alignment = { horizontal: "center", vertical: "middle", wrapText: true };
           });
         }

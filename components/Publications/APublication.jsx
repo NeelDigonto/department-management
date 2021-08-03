@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
+import axios from "axios";
 import PublicationCard from "./PublicationCard";
 import styles from "./APublication.module.css";
 
@@ -16,8 +17,7 @@ import {
   StylesProvider,
 } from "@material-ui/core";
 import * as Yup from "yup";
-
-import { PublicationSchema } from "./PublicationSchema";
+import { schema } from "../../data/schema";
 import InfoField from "./Field/InfoField";
 
 const APublication = ({ element, index }) => {
@@ -28,19 +28,21 @@ const APublication = ({ element, index }) => {
     initialValues: element,
     onSubmit: (values, { setSubmitting }) => {
       setSubmitting(true);
-      fetch("api/user/editData/publications/edit", {
+      axios({
+        url: "api/user/editData/publications/edit",
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
+        data: {
           employeeID: user.employeeID,
           pub_sl_no_to_update: element.sl_no,
           updateObject: values,
-        }),
+        },
       })
-        .then((response) => response.json())
+        .then((response) => response.data)
         .then((result) => {
+          v;
           if (result.isUpdated === true) {
             setUser((oldState) => {
               let newState = { ...oldState };
@@ -84,40 +86,43 @@ const APublication = ({ element, index }) => {
       });
   };
 
-  const currentPublication = element;
-  const name_of_auth = currentPublication["name_of_auth"];
-  const yop = currentPublication["yop"];
-  const title = currentPublication["title"];
-  const journal_name = currentPublication["journal_name"];
-  const nat_inter_imp = currentPublication["nat_inter_imp"];
-  const impact_factor = currentPublication["impact_factor"];
-  const vol_issue_no = currentPublication["vol_issue_no"];
-  const issn_isbn = currentPublication["issn_isbn"];
-  const indexing = currentPublication["indexing"];
-  const inv_paper = currentPublication["inv_paper"];
-  // const prof_inv_file = currentPublication["prof_inv_file"];
-  const studs_involved = currentPublication["studs_involved"];
-
   const info_content = (
     <div className={styles.APublication__info_box_grid_layout}>
-      <InfoField label={"Author's Name"} value={name_of_auth} />
-      <InfoField label={"Published on"} value={yop} />
-      <InfoField label={"Title"} value={title} />
-      <InfoField label={"Journal"} value={journal_name} />
-      <InfoField label={"Coverage"} value={nat_inter_imp} />
-      <InfoField label={"Impact"} value={impact_factor} />
-      <InfoField label={"Volume No/Issue No. & Page No"} value={vol_issue_no} />
-      <InfoField label={"ISSN/ISBN"} value={issn_isbn} />
-      <InfoField label={"Indexing"} value={indexing} />
-      <InfoField label={"Invited Paper"} value={!!inv_paper && inv_paper ? "Yes" : "No"} />
-      {/*  <InfoField label={"Proof of Invitation"} value={prof_inv_file} /> */}
-      <InfoField label={"Students Involved"} value={studs_involved} />
+      {schema["Publications"]["fields"].map((item, index) => {
+        const label = item.label;
+        const value = element[item.db_field];
+        if (item.type === "boolean")
+          return (
+            <InfoField key={item.db_field} label={label} value={!!value && value ? "Yes" : "No"} />
+          );
+        else if (item.type === "string" || item.type === "date" || item.type === "number")
+          return <InfoField key={item.db_field} label={label} value={!!value ? value : null} />;
+        else if (item.type === "file")
+          return (
+            <InfoField
+              key={item.db_field}
+              label={label}
+              value={
+                !!value ? (
+                  <Button variant="contained" size="small">
+                    {value.file_name}
+                  </Button>
+                ) : null
+              }
+            />
+          );
+        else return null;
+      })}
     </div>
   );
 
   const edit_content = (
-    <form onSubmit={formik.handleSubmit} className={styles.APublication__form_layout}>
-      {PublicationSchema.map((field) => {
+    <form
+      onSubmit={formik.handleSubmit}
+      className={styles.APublication__form_layout}
+      encType="multipart/form-data"
+    >
+      {schema["Publications"]["fields"].map((field) => {
         switch (field.input_type) {
           case "text":
             return (
@@ -163,8 +168,7 @@ const APublication = ({ element, index }) => {
                 </Select>
               </FormControl>
             );
-          case "checkbox": {
-            console.log("Formik:", formik.values[field.db_field]);
+          case "checkbox":
             return (
               <FormControlLabel
                 key={field.db_field}
@@ -180,15 +184,39 @@ const APublication = ({ element, index }) => {
                 label={field.label}
               />
             );
-          }
+          case "file":
+            return (
+              <div style={{ width: "auto" }} key={field.db_field}>
+                <input
+                  hidden
+                  id="upload-inv-file"
+                  type="file"
+                  name={field.db_field}
+                  /* value={formik.values[field.db_field]} */
+                  onBlur={formik.handleBlur}
+                  onChange={(event) => {
+                    formik.setFieldValue(field.db_field, event.currentTarget.files[0]);
+                  }}
+                />
+                <label htmlFor="upload-inv-file">
+                  Proof Of Invitation File
+                  <Button
+                    style={{ marginLeft: "2rem" }}
+                    variant="contained"
+                    color="primary"
+                    component="span"
+                  >
+                    Upload
+                  </Button>
+                </label>
+              </div>
+            );
           default:
             null;
         }
       })}
     </form>
   );
-
-  console.log(user["Publications"][index].inv_paper);
 
   return (
     <Fragment>

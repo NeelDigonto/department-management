@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styles from "./CreatePublication.module.css";
 import { useUserContext } from "../../contexts/UserContext";
-
+import { schema } from "../../data/schema";
+/* 
 const emptyPublicationDataBP = {
   sl_no: 0,
   name_of_auth: "",
-  yop: "",
+  yop: "", 
   title: "",
   journal_name: "",
   nat_inter_imp: "",
@@ -17,7 +18,13 @@ const emptyPublicationDataBP = {
   prof_inv_file: null,
   studs_involved: "",
   attachments: [],
-};
+}; */
+
+let emptyPublicationDataBP = {};
+emptyPublicationDataBP["sl_no"] = 0;
+schema["Publications"]["fields"].forEach((item) => {
+  emptyPublicationDataBP[item.db_field] = item.value;
+});
 
 const CreatePublication = () => {
   const { user, setUser } = useUserContext();
