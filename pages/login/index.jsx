@@ -78,7 +78,7 @@ function Login() {
 
       if (!result.error) {
         // set some auth state
-        router.replace("/next/profile");
+        router.replace("/profile");
       } else {
         console.log(result.error);
       }
