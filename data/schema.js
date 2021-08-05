@@ -424,7 +424,7 @@ const schema = {
         required: true,
         db_field: "inv_paper",
       },
-      /*       {
+      {
         label: "Proof of Invitation",
         value: null,
         info: "Proof of Invitation (Upload pdf)",
@@ -434,7 +434,7 @@ const schema = {
         input_type: "file",
         required: true,
         db_field: "prof_inv_file",
-      }, */
+      },
       /*         {
           label: "Attachments",
           value: [],

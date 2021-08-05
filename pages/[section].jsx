@@ -29,6 +29,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import ErrorPage from "next/error";
 import Profile from "../components/profile/Profile.jsx";
+import Publications from "../components/publications/Publications.jsx";
 
 import { mainListItems, secondaryListItems } from "../components/sidebar/listItems.jsx";
 
@@ -36,7 +37,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" target="_blank" component={NextLink} href="https://iem.edu.in/">
+      <Link color="inherit" target="_blank" href="https://iem.edu.in/">
         {"IEM"}
       </Link>{" "}
       {new Date().getFullYear()}
@@ -129,14 +130,14 @@ const useStyles = makeStyles((theme) => ({
 export default function Dashboard() {
   const router = useRouter();
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  //const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const [mainViewComponents, setMainViewComponents] = useState(null);
 
   useEffect(() => {
@@ -146,8 +147,12 @@ export default function Dashboard() {
         setMainViewComponents(<Profile />);
         break;
       }
+      case "publications": {
+        setMainViewComponents(<Publications />);
+        break;
+      }
       default: {
-        return null;
+        setMainViewComponents(null);
       }
     }
   }, [router]);
@@ -196,11 +201,8 @@ export default function Dashboard() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}></Grid>
-          <Box pt={4}>
-            {mainViewComponents}
-            <Copyright />
-          </Box>
+          {mainViewComponents}
+          <Copyright />
         </Container>
       </main>
     </div>

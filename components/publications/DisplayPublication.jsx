@@ -8,34 +8,19 @@ import Container from "@material-ui/core/Container";
 import Fab from "@material-ui/core/Fab";
 import { Card, Box, CardContent, Grid, Typography } from "@material-ui/core";
 import { v4 as uuidv4 } from "uuid";
+import APublication from "./APublication";
+
 import EditIcon from "@material-ui/icons/Edit";
 
-const useStyles = makeStyles({
-  label: {
-    fontSize: 16,
-    color: "#2e2ec7",
-  },
-  value: { fontSize: "18" },
-});
-
-const DisplayProfile = () => {
+const DisplayPublication = () => {
   const { user, setUser } = useUserContext();
-  const classes = useStyles();
-
   return (
     <Box pt={4}>
-      {schema["Profile"].map((item) => (
-        <Card key={uuidv4} variant="outlined">
-          <CardContent>
-            <Typography color="textSecondary" gutterBottom>
-              {item.label}
-            </Typography>
-            {user["Profile"][item.db_field]}
-          </CardContent>
-        </Card>
+      {user["Publications"].map((publication) => (
+        <APublication key={uuidv4()} publication={publication} />
       ))}
     </Box>
   );
 };
 
-export default DisplayProfile;
+export default DisplayPublication;

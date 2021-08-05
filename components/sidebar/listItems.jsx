@@ -18,7 +18,7 @@ import ComputerIcon from "@material-ui/icons/Computer";
 
 export const mainListItems = (
   <div>
-    <NextLink href={"/next/profile"}>
+    <NextLink href={"/profile"}>
       <ListItem button>
         <ListItemIcon>
           <DashboardIcon />
