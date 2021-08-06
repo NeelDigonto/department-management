@@ -1,26 +1,55 @@
 import React from "react";
-import { useUserContext } from "../../contexts/UserContext";
+import { Fragment } from "react";
 import { schema } from "../../data/schema";
-import BottomNavigation from "@material-ui/core/BottomNavigation";
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import Fab from "@material-ui/core/Fab";
-import { Card, Box, CardContent, Grid, Typography } from "@material-ui/core";
 import { v4 as uuidv4 } from "uuid";
-import APublication from "./APublication";
+import { Card, Button, CardContent, Grid, Typography } from "@material-ui/core";
 
-import EditIcon from "@material-ui/icons/Edit";
+const DisplayPublication = ({ publication }) => {
+  const info_content = () => (
+    <Fragment>
+      {schema["Publications"]["fields"].map((item, index) => {
+        const label = item.label;
+        const value = publication[item.db_field];
 
-const DisplayPublication = () => {
-  const { user, setUser } = useUserContext();
-  return (
-    <Box pt={4}>
-      {user["Publications"].map((publication) => (
-        <APublication key={uuidv4()} publication={publication} />
-      ))}
-    </Box>
+        if (item.type === "boolean")
+          return (
+            <Grid item xs={12} lg={6}>
+              <Typography color="textSecondary" gutterBottom>
+                {label}
+              </Typography>
+              {!!value && value ? "Yes" : "No"}
+            </Grid>
+          );
+        else if (item.type === "string" || item.type === "date" || item.type === "number")
+          return (
+            <Grid item xs={12} lg={6}>
+              <Typography color="textSecondary" gutterBottom></Typography>
+              {label} {!!value ? value : null}
+            </Grid>
+          );
+        else if (item.type === "file") {
+          return (
+            <Grid item xs={12} lg={6}>
+              {label}
+              {!!value ? (
+                <Button
+                  variant="contained"
+                  size="small"
+                  onClick={() => {
+                    window.open("/api/file/get/" + value.fuid, "_blank");
+                  }}
+                >
+                  {value.fname}
+                </Button>
+              ) : null}
+            </Grid>
+          );
+        } else return null;
+      })}
+    </Fragment>
   );
+
+  return <Grid container>{info_content()}</Grid>;
 };
 
 export default DisplayPublication;
