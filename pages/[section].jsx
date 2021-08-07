@@ -27,10 +27,9 @@ import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import ErrorPage from "next/error";
+
 import Profile from "../components/profile/Profile.jsx";
 import Publications from "../components/publications/Publications.jsx";
-
 import { mainListItems, secondaryListItems } from "../components/sidebar/listItems.jsx";
 
 function Copyright() {
