@@ -17,6 +17,7 @@ const FileTest = () => {
   const handleUpload = () => {
     if (!!file) {
       let formData = new FormData();
+
       formData.append("file", file);
 
       axios({
