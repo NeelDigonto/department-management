@@ -39,11 +39,6 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
   const [open, setOpen] = useState(false);
   const [file, setFile] = useState(null);
 
-  useEffect(() => {
-    if (isUploading) setOpen(true);
-    else if (!isUploading) setOpen(false);
-  }, [isUploading, setOpen]);
-
   const handleFileUpload = async () => {
     if (!!file) {
       let formData = new FormData();
@@ -101,8 +96,8 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
   useEffect(() => {
     const fileHandler = async () => {
       setIsUploading(true);
+      setOpen(true);
       const fuid = await handleFileUpload();
-      console.log(fuid);
 
       //fix it fast
       formik.setFieldValue("prof_inv_file", {
@@ -110,9 +105,10 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
         fuid: fuid,
       });
       setIsUploading(false);
+      setOpen(false);
       setFile(null);
     };
-    if (file) fileHandler();
+    if (!!file) fileHandler();
   }, [file]);
 
   const getFormNode = (
