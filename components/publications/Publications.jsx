@@ -2,20 +2,34 @@ import React, { Fragment, useState } from "react";
 import DisplayPublication from "./DisplayPublication";
 import { useUserContext } from "../../contexts/UserContext";
 import APublication from "./APublication";
-import { Card, Box, CardContent, Grid, Typography } from "@material-ui/core";
-import { v4 as uuidv4 } from "uuid";
+import { Card, Box, CardContent, Grid, Typography, Fab, makeStyles } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
+
+const useStyles = makeStyles((theme) => ({
+  fab: {
+    position: "fixed",
+    bottom: theme.spacing(2),
+    right: /* theme.spacing(2) */ "4%",
+  },
+}));
 
 const Publications = () => {
   const { user, setUser } = useUserContext();
+  const classes = useStyles();
 
   return (
-    <Box pt={4}>
-      {!!user
-        ? user["Publications"].map((publication, index) => (
-            <APublication key={uuidv4()} publication={publication} index={index} />
-          ))
-        : null}
-    </Box>
+    <Fragment>
+      <Box pt={4}>
+        {!!user
+          ? user["Publications"].map((publication, index) => (
+              <APublication key={index} publication={publication} index={index} />
+            ))
+          : null}
+      </Box>
+      <Fab className={classes.fab} color="primary" aria-label="add">
+        <AddIcon />
+      </Fab>
+    </Fragment>
   );
 };
 

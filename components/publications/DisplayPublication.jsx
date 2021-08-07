@@ -3,8 +3,9 @@ import { Fragment } from "react";
 import { schema } from "../../data/schema";
 import { v4 as uuidv4 } from "uuid";
 import { Card, Button, CardContent, Grid, Typography } from "@material-ui/core";
+import { isEmptyObject } from "../../lib/util";
 
-const DisplayPublication = ({ publication }) => {
+const DisplayPublication = ({ publication, index }) => {
   const info_content = () => (
     <Fragment>
       {schema["Publications"]["fields"].map((item, index) => {
@@ -13,7 +14,7 @@ const DisplayPublication = ({ publication }) => {
 
         if (item.type === "boolean")
           return (
-            <Grid item xs={12} lg={6}>
+            <Grid item xs={12} lg={6} key={item.db_field}>
               <Typography color="textSecondary" gutterBottom>
                 {label}
               </Typography>
@@ -22,16 +23,16 @@ const DisplayPublication = ({ publication }) => {
           );
         else if (item.type === "string" || item.type === "date" || item.type === "number")
           return (
-            <Grid item xs={12} lg={6}>
+            <Grid item xs={12} lg={6} key={item.db_field}>
               <Typography color="textSecondary" gutterBottom></Typography>
               {label} {!!value ? value : null}
             </Grid>
           );
-        else if (item.type === "file") {
+        else if (item.input_type === "file" && item.type === "object") {
           return (
-            <Grid item xs={12} lg={6}>
-              {label}
-              {!!value ? (
+            <Grid item xs={12} lg={6} key={item.db_field}>
+              {label + " : "}
+              {!isEmptyObject(value) ? (
                 <Button
                   variant="contained"
                   size="small"
@@ -41,7 +42,9 @@ const DisplayPublication = ({ publication }) => {
                 >
                   {value.fname}
                 </Button>
-              ) : null}
+              ) : (
+                " No file Uploaded"
+              )}
             </Grid>
           );
         } else return null;

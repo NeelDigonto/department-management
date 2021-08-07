@@ -20,7 +20,7 @@ const APublication = ({ publication, index }) => {
       <CardContent>
         <Box pt={4}>
           {!isEditing ? (
-            <DisplayPublication publication={publication} />
+            <DisplayPublication publication={publication} index={index} />
           ) : (
             <EditPublication publication={publication} index={index} setIsEditing={setIsEditing} />
           )}

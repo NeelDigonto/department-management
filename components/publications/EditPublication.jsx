@@ -1,9 +1,9 @@
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useEffect, useCallback } from "react";
 import { schema } from "../../data/schema";
 import { useUserContext } from "../../contexts/UserContext";
 import axios from "axios";
+import { isEmptyObject } from "../../lib/util";
 import {
   Card,
   Button,
@@ -18,14 +18,31 @@ import {
   Box,
   MenuItem,
   Typography,
+  makeStyles,
+  Backdrop,
+  CircularProgress,
 } from "@material-ui/core";
 import { Formik, useFormik, Field, Form, ErrorMessage } from "formik";
 import DeleteIcon from "@material-ui/icons/Delete";
 
+const useStyles = makeStyles((theme) => ({
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: "#fff",
+  },
+}));
+
 const EditPublication = ({ publication, index, setIsEditing }) => {
+  const classes = useStyles();
   const { user, setUser } = useUserContext();
   const [isUploading, setIsUploading] = useState(false);
+  const [open, setOpen] = useState(false);
   const [file, setFile] = useState(null);
+
+  useEffect(() => {
+    if (isUploading) setOpen(true);
+    else if (!isUploading) setOpen(false);
+  }, [isUploading, setOpen]);
 
   const handleFileUpload = async () => {
     if (!!file) {
@@ -105,7 +122,7 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
           switch (field.input_type) {
             case "text":
               return (
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={6} key={field.db_field}>
                   <TextField
                     fullWidth
                     key={field.db_field}
@@ -120,7 +137,7 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
               );
             case "date":
               return (
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={6} key={field.db_field}>
                   <TextField
                     fullWidth
                     key={field.db_field}
@@ -135,7 +152,7 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
               );
             case "select":
               return (
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={6} key={field.db_field}>
                   <FormControl key={field.db_field} fullWidth>
                     <InputLabel id={field.db_fiel}>{field.label}</InputLabel>
                     <Select
@@ -157,9 +174,8 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
               );
             case "checkbox":
               return (
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={6} key={field.db_field}>
                   <FormControlLabel
-                    fullWidth
                     key={field.db_field}
                     control={
                       <Checkbox
@@ -176,11 +192,9 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
               );
             case "file": {
               const value = formik.values[field.db_field];
-              const isNull =
-                !!value && Object.keys(value).length === 0 && value.constructor === Object;
-              console.log(value);
+              const isNull = isEmptyObject(value);
               return (
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={6} key={field.db_field}>
                   {!isNull ? (
                     <Card>
                       {"Proof Of Invitation File"}
@@ -207,6 +221,7 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
                         type="file"
                         name={field.db_field}
                         /* value={formik.values[field.db_field]} */
+                        accept={field.input_range}
                         onBlur={formik.handleBlur}
                         onChange={async (event) => {
                           setFile(event.currentTarget.files[0]);
@@ -232,39 +247,40 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
   );
 
   return (
-    <Card variant="outlined">
-      <CardContent>
-        {getFormNode}
-        <Box>
-          <Grid container>
-            <Grid item xs={12} md={6}>
-              <Button
-                variant="contained"
-                color="default"
-                fullWidth
-                onClick={() => {
-                  setIsEditing(false);
-                }}
-              >
-                Cancel
-              </Button>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Button
-                variant="contained"
-                color="secondary"
-                fullWidth
-                onClick={() => {
-                  formik.handleSubmit();
-                }}
-              >
-                Apply
-              </Button>
-            </Grid>
+    <Fragment>
+      <Backdrop className={classes.backdrop} open={open}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
+      {getFormNode}
+      <Box>
+        <Grid container>
+          <Grid item xs={12} md={6}>
+            <Button
+              variant="contained"
+              color="default"
+              fullWidth
+              onClick={() => {
+                setIsEditing(false);
+              }}
+            >
+              Cancel
+            </Button>
           </Grid>
-        </Box>
-      </CardContent>
-    </Card>
+          <Grid item xs={12} md={6}>
+            <Button
+              variant="contained"
+              color="secondary"
+              fullWidth
+              onClick={() => {
+                formik.handleSubmit();
+              }}
+            >
+              Apply
+            </Button>
+          </Grid>
+        </Grid>
+      </Box>
+    </Fragment>
   );
 };
 
