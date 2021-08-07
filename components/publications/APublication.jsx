@@ -7,9 +7,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Fab from "@material-ui/core/Fab";
 import { Card, Box, CardContent, Grid, Typography, Button } from "@material-ui/core";
-import { v4 as uuidv4 } from "uuid";
-import DisplayPublication from "./DisplayPublication";
-import EditPublication from "./EditPublication";
+
+import DisplayPublication from "./DisplayPublication.jsx";
+import EditPublication from "./EditPublication.jsx";
 
 import EditIcon from "@material-ui/icons/Edit";
 

@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import DisplayProfile from "./DisplayProfile";
+import DisplayProfile from "./DisplayProfile.jsx";
 import { useUserContext } from "../../contexts/UserContext";
 
 const Profile = () => {

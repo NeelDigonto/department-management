@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
-import DisplayPublication from "./DisplayPublication";
+import DisplayPublication from "./DisplayPublication.jsx";
 import { useUserContext } from "../../contexts/UserContext";
-import APublication from "./APublication";
+import APublication from "./APublication.jsx";
 import { Card, Box, CardContent, Grid, Typography, Fab, makeStyles } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 
