@@ -25,7 +25,7 @@ const DisplayProfile = () => {
   return (
     <Box pt={4}>
       {schema["Profile"].map((item) => (
-        <Card key={uuidv4} variant="outlined">
+        <Card key={item.db_field} variant="outlined">
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
               {item.label}
