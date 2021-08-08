@@ -24,8 +24,10 @@ const DisplayPublication = ({ publication, index }) => {
         else if (item.type === "string" || item.type === "date" || item.type === "number")
           return (
             <Grid item xs={12} lg={6} key={item.db_field}>
-              <Typography color="textSecondary" gutterBottom></Typography>
-              {label} {!!value ? value : null}
+              <Typography color="textSecondary" gutterBottom>
+                {label}
+              </Typography>
+              {!!value ? value : null}
             </Grid>
           );
         else if (item.input_type === "file" && item.type === "object") {

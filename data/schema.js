@@ -426,7 +426,7 @@ const schema = {
       },
       {
         label: "Proof of Invitation",
-        value: null,
+        value: {},
         info: "Proof of Invitation (Upload pdf)",
         excel_field_name: "Proof of Invitation",
         excel_col_width: 20,

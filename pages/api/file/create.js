@@ -30,10 +30,9 @@ export default async function handler(req, res) {
 
     file.on("data", function (data) {
       console.log("File [" + fieldname + "] got " + data.length + " bytes");
-    });
-    file.on("end", async function () {
+    });*/
+    /*  file.on("end", async function () {
       console.log("File [" + fieldname + "] Finished");
-
     }); */
   });
 
@@ -47,7 +46,7 @@ export default async function handler(req, res) {
   busboy.on("finish", function () {
     /*     console.log("Done parsing form!"); */
     /* res.writeHead(303, { Connection: "close", Location: "/" }); */
-
+    console.log("req ended");
     res.status(200).end(JSON.stringify({ status: "ok", fuid: fuid }));
   });
   req.pipe(busboy);

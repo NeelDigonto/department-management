@@ -4,18 +4,10 @@ import { useUserContext } from "../../contexts/UserContext";
 import APublication from "./APublication.jsx";
 import { Card, Box, CardContent, Grid, Typography, Fab, makeStyles } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
-
-const useStyles = makeStyles((theme) => ({
-  fab: {
-    position: "fixed",
-    bottom: theme.spacing(2),
-    right: /* theme.spacing(2) */ "4%",
-  },
-}));
+import CreatePublication from "./CreatePublication.jsx";
 
 const Publications = () => {
   const { user, setUser } = useUserContext();
-  const classes = useStyles();
 
   return (
     <Fragment>
@@ -26,9 +18,7 @@ const Publications = () => {
             ))
           : null}
       </Box>
-      <Fab className={classes.fab} color="primary" aria-label="add">
-        <AddIcon />
-      </Fab>
+      <CreatePublication />
     </Fragment>
   );
 };
