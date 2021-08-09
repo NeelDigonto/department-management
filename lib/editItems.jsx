@@ -104,7 +104,7 @@ const getEditNode = ({ field, formik }) => {
         <Grid item xs={12} md={6} key={field.db_field}>
           {!isNull ? (
             <Card>
-              {"Proof Of Invitation File"}
+              {field.label}
               <Button
                 varient="contained"
                 color="primary"
@@ -124,17 +124,24 @@ const getEditNode = ({ field, formik }) => {
             <Fragment>
               <input
                 hidden
-                id="upload-inv-file"
+                id={field.db_field}
                 type="file"
                 name={field.db_field}
                 /* value={formik.values[field.db_field]} */
                 accept={field.input_range}
                 onBlur={formik.handleBlur}
                 onChange={async (event) => {
-                  setFile(event.currentTarget.files[0]);
+                  const file = event.currentTarget.files[0];
+                  stageFileUpload(file, (file_obj) => {
+                    formik.setFieldValue(field.db_field, {
+                      fname: file_obj.fname,
+                      fuid: file_obj.fuid,
+                    });
+                  });
+                  /*       setFile(event.currentTarget.files[0]); */
                 }}
               />
-              <label htmlFor="upload-inv-file">
+              <label htmlFor={field.db_field}>
                 {field.label}
                 <Button variant="contained" color="primary" component="span">
                   Upload

@@ -39,21 +39,31 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
   const [open, setOpen] = useState(false);
   const [file, setFile] = useState(null);
 
-  const handleFileUpload = async () => {
+  const stageFileUpload = async (file, callbackFunc) => {
     if (!!file) {
-      let formData = new FormData();
-      formData.append("file", file);
+      setIsUploading(true);
+      setOpen(true);
 
-      const fuid = await axios({
-        url: "/api/file/create",
-        method: "POST",
-        data: formData,
-      })
-        .then((response) => response.data)
-        .then((result) => {
-          return result.fuid;
-        });
-      return fuid;
+      const handleFileUpload = async () => {
+        let formData = new FormData();
+        formData.append("file", file);
+        const fuid = await axios({
+          url: "/api/file/create",
+          method: "POST",
+          data: formData,
+        })
+          .then((response) => response.data)
+          .then((result) => {
+            return result.fuid;
+          });
+        return fuid;
+      };
+
+      const fuid = await handleFileUpload();
+
+      setIsUploading(false);
+      callbackFunc({ fname: file.name, fuid: fuid });
+      setOpen(false);
     }
   };
 
@@ -93,24 +103,7 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
     },
   });
 
-  useEffect(() => {
-    const fileHandler = async () => {
-      setIsUploading(true);
-      setOpen(true);
-      const fuid = await handleFileUpload();
-
-      //fix it fast
-      formik.setFieldValue("prof_inv_file", {
-        fname: file.name,
-        fuid: fuid,
-      });
-      setIsUploading(false);
-      setOpen(false);
-      setFile(null);
-    };
-    if (!!file) fileHandler();
-  }, [file]);
-
+  console.log(formik.values);
   const getFormNode = (
     <form onSubmit={formik.handleSubmit} /* encType="multipart/form-data" */>
       <Grid container>
@@ -193,7 +186,7 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
                 <Grid item xs={12} md={6} key={field.db_field}>
                   {!isNull ? (
                     <Card>
-                      {"Proof Of Invitation File"}
+                      {field.label}
                       <Button
                         varient="contained"
                         color="primary"
@@ -213,17 +206,24 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
                     <Fragment>
                       <input
                         hidden
-                        id="upload-inv-file"
+                        id={field.db_field}
                         type="file"
                         name={field.db_field}
                         /* value={formik.values[field.db_field]} */
                         accept={field.input_range}
                         onBlur={formik.handleBlur}
                         onChange={async (event) => {
-                          setFile(event.currentTarget.files[0]);
+                          const file = event.currentTarget.files[0];
+                          stageFileUpload(file, (file_obj) => {
+                            formik.setFieldValue(field.db_field, {
+                              fname: file_obj.fname,
+                              fuid: file_obj.fuid,
+                            });
+                          });
+                          /*       setFile(event.currentTarget.files[0]); */
                         }}
                       />
-                      <label htmlFor="upload-inv-file">
+                      <label htmlFor={field.db_field}>
                         {field.label}
                         <Button variant="contained" color="primary" component="span">
                           Upload

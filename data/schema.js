@@ -436,17 +436,18 @@ const schema = {
         required: true,
         db_field: "prof_inv_file",
       },
-      /*       {
+      {
         label: "First Page of Publication",
         value: {},
         info: "Attachments",
         excel_field_name: "Publication First Page",
         excel_col_width: 20,
-        type: "file",
+        type: "object",
         input_type: "file",
+        input_range: "application/pdf",
         required: true,
-        db_field: "attachments",
-      }, */
+        db_field: "first_page_pb",
+      },
     ],
   },
   Experience: [],
