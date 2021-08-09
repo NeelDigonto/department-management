@@ -1,3 +1,4 @@
+import * as Yup from "yup";
 const DataTypes = { string: 0, date: 1, bool: 3 };
 
 const sidebarOptions = [
@@ -24,6 +25,7 @@ const schema = {
       input_type: "text",
       required: true,
       db_field: "name",
+      validation: Yup.string().min(5, "Too Short!").max(80, "Too Long!").required("Required!"),
     },
     {
       label: "Father's Name",
@@ -35,6 +37,7 @@ const schema = {
       input_type: "text",
       required: true,
       db_field: "f_name",
+      validation: Yup.string().min(5, "Too Short!").max(80, "Too Long!").required("Required!"),
     },
     {
       label: "Mother's Name",
@@ -46,6 +49,7 @@ const schema = {
       input_type: "text",
       required: true,
       db_field: "m_name",
+      validation: Yup.string().min(5, "Too Short!").max(80, "Too Long!").required("Required!"),
     },
     {
       label: "Permanent Address (Full Postal Address)",
@@ -57,6 +61,7 @@ const schema = {
       input_type: "text",
       required: true,
       db_field: "p_address",
+      validation: Yup.string().min(10, "Too Short!").max(80, "Too Long!").required("Required!"),
     },
     {
       label: "Local Address",
@@ -68,6 +73,7 @@ const schema = {
       input_type: "text",
       required: true,
       db_field: "l_address",
+      validation: Yup.string().min(10, "Too Short!").max(80, "Too Long!").required("Required!"),
     },
     {
       label: "Official Email of IEM domain",
@@ -79,6 +85,19 @@ const schema = {
       input_type: "email",
       required: true,
       db_field: "oficial_email",
+      validation: Yup.string().email("Invalid email").required("Required!"),
+    },
+    {
+      label: "Personal Email",
+      value: "",
+      info: "Your personal email",
+      excel_field_name: "Personal Email",
+      excel_col_width: 20,
+      type: "string",
+      input_type: "email",
+      required: true,
+      db_field: "personal_email",
+      validation: Yup.string().email("Invalid email").required("Required!"),
     },
     {
       label: "Blood Group",
@@ -91,17 +110,7 @@ const schema = {
       options: ["A", "B", "AB+", "AB-", "O+", "O-"],
       required: true,
       db_field: "bld_grp",
-    },
-    {
-      label: "Personal Email",
-      value: "",
-      info: "Your personal email",
-      excel_field_name: "Personal Email",
-      excel_col_width: 20,
-      type: "string",
-      input_type: "email",
-      required: true,
-      db_field: "personal_email",
+      validation: Yup.string().required("Required!"),
     },
     {
       label: "Mobile Number(for SMS)",
@@ -113,6 +122,7 @@ const schema = {
       input_type: "text",
       required: true,
       db_field: "mobile_no",
+      validation: Yup.string().length(10, "Must be of 10 digits!").required("Required!"),
     },
     {
       label: "Landline Number.",
@@ -124,6 +134,7 @@ const schema = {
       input_type: "text",
       required: true,
       db_field: "landline_no",
+      validation: Yup.string().length(10, "Must be of 10 digits!").required("Required!"),
     },
     {
       label: "Date of Birth",
@@ -135,6 +146,7 @@ const schema = {
       input_type: "date",
       required: true,
       db_field: "dob",
+      validation: Yup.date().required("Required!"),
     },
     {
       label: "Gender",
@@ -147,6 +159,7 @@ const schema = {
       options: ["Male", "Female"],
       required: true,
       db_field: "gender",
+      validation: Yup.string().required("Required!"),
     },
     {
       label: "Department",
@@ -159,6 +172,7 @@ const schema = {
       options: ["C.S.E.", "MECH.", "ELEC.", "BIO", "CHEM.", "PHYS."],
       required: true,
       db_field: "department",
+      validation: Yup.string().required("Required!"),
     },
     {
       label: "Designation",
@@ -171,6 +185,7 @@ const schema = {
       options: ["H.O.D.", "Asst. Prof.", "Prof"],
       required: true,
       db_field: "designation",
+      validation: Yup.string().required("Required!"),
     },
     {
       label: "Date of Joining(at the Organisation)",
@@ -182,6 +197,7 @@ const schema = {
       input_type: "date",
       required: true,
       db_field: "dojioning",
+      validation: Yup.date().required("Required!"),
     },
     {
       label: "Religion",
@@ -194,6 +210,7 @@ const schema = {
       options: ["Hinduisim", "Christian", "Bhudhisim", "Muslim"],
       required: true,
       db_field: "religion",
+      validation: Yup.string().required("Required!"),
     },
     {
       label: "Caste",
@@ -206,6 +223,7 @@ const schema = {
       options: ["General", "S.C.", "S.T.", "O.B.C."],
       required: true,
       db_field: "caste",
+      validation: Yup.string().required("Required!"),
     },
     {
       label: "PAN",
@@ -217,6 +235,7 @@ const schema = {
       input_type: "text",
       required: true,
       db_field: "pan",
+      validation: Yup.string().min(5, "Too Short!").max(80, "Too Long!").required("Required!"),
     },
     {
       label: "Bank Name(with Branch) [Salary] ",
@@ -228,6 +247,7 @@ const schema = {
       input_type: "text",
       required: true,
       db_field: "bank_name",
+      validation: Yup.string().min(5, "Too Short!").max(80, "Too Long!").required("Required!"),
     },
     {
       label: "Salary Account",
@@ -239,6 +259,7 @@ const schema = {
       input_type: "text",
       required: true,
       db_field: "salary_account",
+      validation: Yup.string().min(5, "Too Short!").max(80, "Too Long!").required("Required!"),
     },
     {
       label: "IFSC",
@@ -250,6 +271,7 @@ const schema = {
       input_type: "text",
       required: true,
       db_field: "IFSC",
+      validation: Yup.string().min(5, "Too Short!").max(80, "Too Long!").required("Required!"),
     },
     {
       label: "PF-Account Number",
@@ -261,6 +283,7 @@ const schema = {
       input_type: "text",
       required: true,
       db_field: "pf_acc_no",
+      validation: Yup.string().min(5, "Too Short!").max(80, "Too Long!").required("Required!"),
     },
     {
       label: "Passport Number",
@@ -272,6 +295,7 @@ const schema = {
       input_type: "text",
       required: true,
       db_field: "passport_number",
+      validation: Yup.string().min(5, "Too Short!").max(80, "Too Long!").required("Required!"),
     },
     {
       label: "Driving License",
@@ -283,6 +307,7 @@ const schema = {
       input_type: "text",
       required: true,
       db_field: "driving_license",
+      validation: Yup.string().min(5, "Too Short!").max(80, "Too Long!").required("Required!"),
     },
     {
       label: "Location (in Campus)",
@@ -295,6 +320,7 @@ const schema = {
       options: ["Management", "Gurukul", "Ashram"],
       required: true,
       db_field: "loc_in_campus",
+      validation: Yup.string().required("Required!"),
     },
   ],
   Education: [],
@@ -312,6 +338,7 @@ const schema = {
         input_type: "text",
         required: true,
         db_field: "name_of_auth",
+        validation: Yup.string().min(5, "Too Short!").max(80, "Too Long!").required("Required!"),
       },
       {
         label: "Published on",
@@ -323,6 +350,7 @@ const schema = {
         input_type: "date",
         required: true,
         db_field: "yop",
+        validation: Yup.date().required("Required!"),
       },
       {
         label: "Title",
@@ -334,6 +362,7 @@ const schema = {
         input_type: "text",
         required: true,
         db_field: "title",
+        validation: Yup.string().min(5, "Too Short!").max(50, "Too Long!").required("Required!"),
       },
       {
         label: "Journal",
@@ -345,6 +374,7 @@ const schema = {
         input_type: "text",
         required: true,
         db_field: "journal_name",
+        validation: Yup.string().min(1, "Too Short!").max(30, "Too Long!").required("Required!"),
       },
       {
         label: "Coverage",
@@ -357,6 +387,7 @@ const schema = {
         options: ["National", "International"],
         required: true,
         db_field: "nat_inter_imp",
+        validation: Yup.string().required("Required!"),
       },
       {
         label: "Impact" /*make this field a color value*/,
@@ -368,17 +399,43 @@ const schema = {
         input_type: "text",
         required: true,
         db_field: "impact_factor",
+        validation: Yup.string().required("Required!"),
       },
       {
-        label: "Volume No/Issue No. & Page No",
+        label: "Volume No.",
         value: "",
-        info: "Volume No/Issue No. & Page No of the paper",
-        excel_field_name: "Volume No/Issue No. & Page No",
+        info: "Volume No. of the paper",
+        excel_field_name: "Volume No.",
         excel_col_width: 20,
         type: "string",
         input_type: "text",
         required: true,
-        db_field: "vol_issue_no",
+        db_field: "vol_no",
+        validation: Yup.string().min(1, "Too Short!").max(10, "Too Long!").required("Required!"),
+      },
+      {
+        label: "Issue No.",
+        value: "",
+        info: "Issue No. of the paper",
+        excel_field_name: "Issue No.",
+        excel_col_width: 20,
+        type: "string",
+        input_type: "text",
+        required: true,
+        db_field: "issue_no",
+        validation: Yup.string().min(1, "Too Short!").max(10, "Too Long!").required("Required!"),
+      },
+      {
+        label: "Page No.",
+        value: "",
+        info: "Page No. of the paper",
+        excel_field_name: "Page No",
+        excel_col_width: 20,
+        type: "string",
+        input_type: "text",
+        required: true,
+        db_field: "page_no",
+        validation: Yup.string().min(1, "Too Short!").max(10, "Too Long!").required("Required!"),
       },
       {
         label: "ISSN/ISBN",
@@ -390,6 +447,7 @@ const schema = {
         input_type: "text",
         required: true,
         db_field: "issn_isbn",
+        validation: Yup.string().min(5, "Too Short!").max(50, "Too Long!").required("Required!"),
       },
       {
         label: "Indexing",
@@ -401,6 +459,7 @@ const schema = {
         input_type: "text",
         required: true,
         db_field: "indexing",
+        validation: Yup.string().min(5, "Too Short!").max(50, "Too Long!").required("Required!"),
       },
       {
         label: "Students Involved",
@@ -412,6 +471,7 @@ const schema = {
         input_type: "text",
         required: true,
         db_field: "studs_involved",
+        validation: Yup.string().required("Required!"),
       },
       {
         label: "Invited Paper",
@@ -423,6 +483,7 @@ const schema = {
         input_type: "checkbox",
         required: true,
         db_field: "inv_paper",
+        validation: Yup.boolean().required("Required!"),
       },
       {
         label: "Proof of Invitation",
@@ -435,6 +496,7 @@ const schema = {
         input_range: "application/pdf",
         required: true,
         db_field: "prof_inv_file",
+        validation: Yup.object({ fname: Yup.string(), fuid: Yup.string() }).required("Required!"),
       },
       {
         label: "First Page of Publication",
@@ -447,6 +509,7 @@ const schema = {
         input_range: "application/pdf",
         required: true,
         db_field: "first_page_pb",
+        validation: Yup.object({ fname: Yup.string(), fuid: Yup.string() }).required("Required!"),
       },
     ],
   },
@@ -455,6 +518,28 @@ const schema = {
   Projects: [],
 };
 
+const getProfileValidationSchema = () => {
+  let profileValidationSchema = {};
+  schema["Profile"].forEach((field) => {
+    profileValidationSchema[field.db_field] = field.validation;
+  });
+  return Yup.object().shape(profileValidationSchema);
+};
+
+const getPublicationValidationSchema = () => {
+  let publicationValidationSchema = {};
+  schema["Publications"]["fields"].forEach((field) => {
+    publicationValidationSchema[field.db_field] = field.validation;
+  });
+  return Yup.object().shape(publicationValidationSchema);
+};
+
 const fileSchema = { filename: "", encoding: "", mimetype: "", fuid: "", mapped: false };
 
-export { DataTypes, sidebarOptions, schema };
+export {
+  DataTypes,
+  sidebarOptions,
+  schema,
+  getProfileValidationSchema,
+  getPublicationValidationSchema,
+};

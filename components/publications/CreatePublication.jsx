@@ -26,7 +26,6 @@ const CreatePublication = ({}) => {
 
   const createPublicationHandler = async () => {
     setIsCreatingPublication(true);
-    console.log("HMMcreating");
     const emptyPublicationData = { ...emptyPublicationDataBP, sl_no: user["Publications"].length };
     fetch("/api/user/editData/publications/create_new", {
       method: "POST",
@@ -41,7 +40,6 @@ const CreatePublication = ({}) => {
       .then((response) => response.json())
       .then((result) => {
         if (result.created === true) {
-          console.log("Publication created");
           setUser((oldState) => {
             let newState = { ...oldState };
             newState["Publications"].push(emptyPublicationData);

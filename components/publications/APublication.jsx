@@ -52,27 +52,29 @@ const APublication = ({ publication, index }) => {
             <EditPublication publication={publication} index={index} setIsEditing={setIsEditing} />
           )}
           {!isEditing ? (
-            <ButtonGroup fullWidth aria-label="edit button group">
-              <Button
-                fullWidth
-                variant="contained"
-                color="secondary"
-                onClick={() => {
-                  setIsEditing((oldState) => !oldState);
-                }}
-              >
-                {"Edit"}
-              </Button>
-              <Button
-                variant="contained"
-                color="default"
-                onClick={() => {
-                  deletePublicationHandler(publication.sl_no);
-                }}
-              >
-                {"Delete"}
-              </Button>
-            </ButtonGroup>
+            <Box pt={2}>
+              <ButtonGroup fullWidth aria-label="edit button group">
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => {
+                    setIsEditing((oldState) => !oldState);
+                  }}
+                >
+                  {"Edit"}
+                </Button>
+                <Button
+                  variant="contained"
+                  color="default"
+                  onClick={() => {
+                    deletePublicationHandler(publication.sl_no);
+                  }}
+                >
+                  {"Delete"}
+                </Button>
+              </ButtonGroup>
+            </Box>
           ) : null}
         </Box>
       </CardContent>

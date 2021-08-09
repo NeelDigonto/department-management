@@ -34,14 +34,16 @@ import { mainListItems, secondaryListItems } from "../components/sidebar/listIte
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" target="_blank" href="https://iem.edu.in/">
-        {"IEM"}
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
+    <Box pt={8}>
+      <Typography variant="body2" color="textSecondary" align="center">
+        {"Copyright © "}
+        <Link color="inherit" target="_blank" href="https://iem.edu.in/">
+          {"IEM"}
+        </Link>{" "}
+        {new Date().getFullYear()}
+        {"."}
+      </Typography>
+    </Box>
   );
 }
 

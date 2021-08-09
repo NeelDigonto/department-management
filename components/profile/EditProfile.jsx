@@ -75,7 +75,13 @@ const EditProfile = ({ setIsEditing }) => {
           <Grid container>
             {schema["Profile"].map((field) => (
               <Grid item xs={12} md={6} key={field.db_field}>
-                <EditNode field={field} formik={formik} setIsUploading={setIsUploading}></EditNode>
+                <Box px={0.5} py={0.5}>
+                  <EditNode
+                    field={field}
+                    formik={formik}
+                    setIsUploading={setIsUploading}
+                  ></EditNode>
+                </Box>
               </Grid>
             ))}
           </Grid>

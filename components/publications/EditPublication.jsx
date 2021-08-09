@@ -1,6 +1,6 @@
 import React from "react";
 import { Fragment, useState, useEffect, useCallback } from "react";
-import { schema } from "../../data/schema";
+import { schema, getPublicationValidationSchema } from "../../data/schema";
 import { useUserContext } from "../../contexts/UserContext";
 import axios from "axios";
 import { isEmptyObject } from "../../lib/util";
@@ -73,6 +73,7 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
           setIsEditing(false);
         });
     },
+    validationSchema: getPublicationValidationSchema(),
   });
 
   useEffect(() => {
@@ -85,7 +86,9 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
       <Grid container>
         {schema["Publications"]["fields"].map((field) => (
           <Grid item xs={12} md={6} key={field.db_field}>
-            <EditNode field={field} formik={formik} setIsUploading={setIsUploading}></EditNode>
+            <Box px={0.5} py={0.5}>
+              <EditNode field={field} formik={formik} setIsUploading={setIsUploading}></EditNode>
+            </Box>
           </Grid>
         ))}
       </Grid>
@@ -98,7 +101,7 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
         <CircularProgress color="inherit" />
       </Backdrop>
       {getFormNode}
-      <Box>
+      <Box pt={2}>
         <Grid container>
           <Grid item xs={12} md={6}>
             <Button
