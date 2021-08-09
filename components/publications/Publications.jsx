@@ -6,17 +6,32 @@ import { Card, Box, CardContent, Grid, Typography, Fab, makeStyles } from "@mate
 import AddIcon from "@material-ui/icons/Add";
 import CreatePublication from "./CreatePublication.jsx";
 
+const useStyles = makeStyles((theme) => ({
+  noPubMsg: {
+    textAlign: "center",
+    /*     textDecoration: "underline" */
+    /*     color: theme.palette.error.main, */
+  },
+}));
+
 const Publications = () => {
   const { user, setUser } = useUserContext();
+  const classes = useStyles();
 
   return (
     <Fragment>
       <Box pt={4}>
-        {!!user
-          ? user["Publications"].map((publication, index) => (
+        {!!user ? (
+          user["Publications"].length === 0 ? (
+            <Typography className={classes.noPubMsg}>
+              {"No Publications here, Create One!"}
+            </Typography>
+          ) : (
+            user["Publications"].map((publication, index) => (
               <APublication key={index} publication={publication} index={index} />
             ))
-          : null}
+          )
+        ) : null}
       </Box>
       <CreatePublication />
     </Fragment>
