@@ -1,10 +1,12 @@
 import React from "react";
 import { Formik, useFormik, Field, Form, ErrorMessage } from "formik";
 
+import { useUserContext } from "../../contexts/UserContext";
 const EditProfile = () => {
+  const { user, setUser } = useUserContext();
   const formik = useFormik({
-    initialValues: publication,
-    onSubmit: (values, { setSubmitting }) => {
+    initialValues: user["Publications"],
+    /*  onSubmit: (values, { setSubmitting }) => {
       setSubmitting(true);
       axios({
         url: "api/user/editData/publications/edit",
@@ -35,7 +37,7 @@ const EditProfile = () => {
           setSubmitting(false);
           setIsEditing(false);
         });
-    },
+    }, */
   });
 
   return <div></div>;

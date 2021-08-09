@@ -415,7 +415,7 @@ const schema = {
       },
       {
         label: "Invited Paper",
-        value: null,
+        value: false,
         info: "Whether the paper was an invited paper ? Input Yes/No",
         excel_field_name: "Invited Paper",
         excel_col_width: 20,

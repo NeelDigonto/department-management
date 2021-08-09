@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect, useRef } from "react";
 import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import { schema } from "../../data/schema";
+import { isEmptyObject } from "../../lib/util";
 
 function TypeOf(obj) {
   return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
@@ -187,7 +188,20 @@ const AdminGetData = () => {
             const colId = String.fromCharCode(colCode);
             const cell = worksheet.getCell(`${colId}${3 + rowsConsumedByPrevUsers + pubNo}`);
             const value = collectionData[userNo]["Publications"][pubNo][item.db_field];
-            cell.value = !!value ? value : null;
+            if (item.input_type !== "file") {
+              cell.value = !!value ? value : null;
+            } else {
+              if (isEmptyObject(value)) {
+                cell.value = "No File Uploaded";
+              } else {
+                cell.value = {
+                  //put an env variable for this
+                  text: value.fname,
+                  hyperlink: "https://faculty-book.vercel.app/api/file/get/" + value.fuid,
+                  tooltip: "https://faculty-book.vercel.app/api/file/get/" + value.fuid,
+                };
+              }
+            }
             cell.alignment = { horizontal: "center", vertical: "middle", wrapText: true };
           });
         }

@@ -224,7 +224,7 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
                         }}
                       />
                       <label htmlFor="upload-inv-file">
-                        {"Proof Of Invitation File"}
+                        {field.label}
                         <Button variant="contained" color="primary" component="span">
                           Upload
                         </Button>
