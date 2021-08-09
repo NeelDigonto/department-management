@@ -23,7 +23,7 @@ const Profile = () => {
         !isEditing ? (
           <DisplayProfile setIsEditing={setIsEditing} />
         ) : (
-          <EditProfile />
+          <EditProfile setIsEditing={setIsEditing} />
         )
       ) : null}
     </Fragment>

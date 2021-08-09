@@ -24,6 +24,7 @@ import {
 } from "@material-ui/core";
 import { Formik, useFormik, Field, Form, ErrorMessage } from "formik";
 import DeleteIcon from "@material-ui/icons/Delete";
+import EditNode from "../../lib/EditNode";
 
 const useStyles = makeStyles((theme) => ({
   backdrop: {
@@ -37,35 +38,6 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
   const { user, setUser } = useUserContext();
   const [isUploading, setIsUploading] = useState(false);
   const [open, setOpen] = useState(false);
-  const [file, setFile] = useState(null);
-
-  const stageFileUpload = async (file, callbackFunc) => {
-    if (!!file) {
-      setIsUploading(true);
-      setOpen(true);
-
-      const handleFileUpload = async () => {
-        let formData = new FormData();
-        formData.append("file", file);
-        const fuid = await axios({
-          url: "/api/file/create",
-          method: "POST",
-          data: formData,
-        })
-          .then((response) => response.data)
-          .then((result) => {
-            return result.fuid;
-          });
-        return fuid;
-      };
-
-      const fuid = await handleFileUpload();
-
-      setIsUploading(false);
-      callbackFunc({ fname: file.name, fuid: fuid });
-      setOpen(false);
-    }
-  };
 
   const formik = useFormik({
     initialValues: publication,
@@ -103,141 +75,19 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
     },
   });
 
-  console.log(formik.values);
+  useEffect(() => {
+    if (isUploading || formik.isSubmitting) setOpen(true);
+    else setOpen(false);
+  }, [isUploading, formik.isSubmitting]);
+
   const getFormNode = (
     <form onSubmit={formik.handleSubmit} /* encType="multipart/form-data" */>
       <Grid container>
-        {schema["Publications"]["fields"].map((field) => {
-          switch (field.input_type) {
-            case "text":
-              return (
-                <Grid item xs={12} md={6} key={field.db_field}>
-                  <TextField
-                    fullWidth
-                    key={field.db_field}
-                    variant="filled"
-                    label={field.label}
-                    name={field.db_field}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values[field.db_field]}
-                  ></TextField>
-                </Grid>
-              );
-            case "date":
-              return (
-                <Grid item xs={12} md={6} key={field.db_field}>
-                  <TextField
-                    fullWidth
-                    key={field.db_field}
-                    type="date"
-                    label={field.label}
-                    name={field.db_field}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values[field.db_field]}
-                  />
-                </Grid>
-              );
-            case "select":
-              return (
-                <Grid item xs={12} md={6} key={field.db_field}>
-                  <FormControl key={field.db_field} fullWidth>
-                    <InputLabel id={field.db_fiel}>{field.label}</InputLabel>
-                    <Select
-                      labelId={field.db_fiel}
-                      id={field.db_field}
-                      value={formik.values[field.db_field]}
-                      name={field.db_field}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                    >
-                      {field.options.map((item) => (
-                        <MenuItem key={item} value={item}>
-                          {item}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                </Grid>
-              );
-            case "checkbox":
-              return (
-                <Grid item xs={12} md={6} key={field.db_field}>
-                  <FormControlLabel
-                    key={field.db_field}
-                    control={
-                      <Checkbox
-                        checked={formik.values[field.db_field]}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        name={field.db_field}
-                        color="primary"
-                      />
-                    }
-                    label={field.label}
-                  />
-                </Grid>
-              );
-            case "file": {
-              const value = formik.values[field.db_field];
-              const isNull = isEmptyObject(value);
-              return (
-                <Grid item xs={12} md={6} key={field.db_field}>
-                  {!isNull ? (
-                    <Card>
-                      {field.label}
-                      <Button
-                        varient="contained"
-                        color="primary"
-                        component="span"
-                        onClick={() => window.open("/api/file/get/" + value.fuid, "_blank")}
-                      >
-                        {value.fname}
-                      </Button>
-                      <Button
-                        endIcon={<DeleteIcon />}
-                        onClick={() => {
-                          formik.setFieldValue(field.db_field, {});
-                        }}
-                      ></Button>
-                    </Card>
-                  ) : (
-                    <Fragment>
-                      <input
-                        hidden
-                        id={field.db_field}
-                        type="file"
-                        name={field.db_field}
-                        /* value={formik.values[field.db_field]} */
-                        accept={field.input_range}
-                        onBlur={formik.handleBlur}
-                        onChange={async (event) => {
-                          const file = event.currentTarget.files[0];
-                          stageFileUpload(file, (file_obj) => {
-                            formik.setFieldValue(field.db_field, {
-                              fname: file_obj.fname,
-                              fuid: file_obj.fuid,
-                            });
-                          });
-                          /*       setFile(event.currentTarget.files[0]); */
-                        }}
-                      />
-                      <label htmlFor={field.db_field}>
-                        {field.label}
-                        <Button variant="contained" color="primary" component="span">
-                          Upload
-                        </Button>
-                      </label>
-                    </Fragment>
-                  )}
-                </Grid>
-              );
-            }
-            default:
-              null;
-          }
-        })}
+        {schema["Publications"]["fields"].map((field) => (
+          <Grid item xs={12} md={6} key={field.db_field}>
+            <EditNode field={field} formik={formik} setIsUploading={setIsUploading}></EditNode>
+          </Grid>
+        ))}
       </Grid>
     </form>
   );
