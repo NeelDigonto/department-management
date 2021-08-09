@@ -3,7 +3,7 @@ import { Formik, useFormik, Field, Form, ErrorMessage } from "formik";
 
 import { useUserContext } from "../../contexts/UserContext";
 import EditNode from "../../lib/EditNode";
-import { schema } from "../../data/schema";
+import { schema, getProfileValidationSchema } from "../../data/schema";
 import axios from "axios";
 import {
   makeStyles,
@@ -61,6 +61,7 @@ const EditProfile = ({ setIsEditing }) => {
           setIsEditing(false);
         });
     },
+    validationSchema: getProfileValidationSchema(),
   });
 
   useEffect(() => {

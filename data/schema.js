@@ -134,7 +134,7 @@ const schema = {
       input_type: "text",
       required: true,
       db_field: "landline_no",
-      validation: Yup.string().length(10, "Must be of 10 digits!").required("Required!"),
+      validation: Yup.string().length(8, "Must be of 8 digits!").required("Required!"),
     },
     {
       label: "Date of Birth",
