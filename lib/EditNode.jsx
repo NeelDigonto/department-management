@@ -11,13 +11,17 @@ import {
   Card,
   Button,
   FormHelperText,
+  makeStyles,
 } from "@material-ui/core";
 
 import DeleteIcon from "@material-ui/icons/Delete";
 import { isEmptyObject } from "./util";
 import stageFileUpload from "./fileUpload";
 
+const useStyles = makeStyles((theme) => ({ errorBody: { color: theme.palette.error.main } }));
+
 const EditNode = ({ field, formik, setIsUploading }) => {
+  const classes = useStyles();
   let outputNode;
   switch (field.input_type) {
     case "text": {
@@ -158,6 +162,14 @@ const EditNode = ({ field, formik, setIsUploading }) => {
               Upload
             </Button>
           </label>
+        </Fragment>
+      );
+      outputNode = (
+        <Fragment>
+          {outputNode}
+          {!!formik.errors[field.db_field] && formik.touched[field.db_field] ? (
+            <div className={classes.errorBody}>{`${field.label} must not be empty`}</div>
+          ) : null}
         </Fragment>
       );
       break;

@@ -362,7 +362,7 @@ const schema = {
         input_type: "text",
         required: true,
         db_field: "title",
-        validation: Yup.string().min(5, "Too Short!").max(50, "Too Long!").required("Required!"),
+        validation: Yup.string().min(5, "Too Short!").max(100, "Too Long!").required("Required!"),
       },
       {
         label: "Journal",
@@ -496,7 +496,9 @@ const schema = {
         input_range: "application/pdf",
         required: true,
         db_field: "prof_inv_file",
-        validation: Yup.object({ fname: Yup.string(), fuid: Yup.string() }).required("Required!"),
+        validation: Yup.object()
+          .shape({ fname: Yup.string().required(), fuid: Yup.string().required() })
+          .required("Required!"),
       },
       {
         label: "First Page of Publication",
@@ -509,7 +511,9 @@ const schema = {
         input_range: "application/pdf",
         required: true,
         db_field: "first_page_pb",
-        validation: Yup.object({ fname: Yup.string(), fuid: Yup.string() }).required("Required!"),
+        validation: Yup.object()
+          .shape({ fname: Yup.string().required(), fuid: Yup.string().required() })
+          .required("Required!"),
       },
     ],
   },
