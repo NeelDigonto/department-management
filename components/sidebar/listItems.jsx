@@ -15,6 +15,7 @@ import AnnouncementIcon from "@material-ui/icons/Announcement";
 import SchoolIcon from "@material-ui/icons/School";
 import BookIcon from "@material-ui/icons/Book";
 import ComputerIcon from "@material-ui/icons/Computer";
+import TableChartIcon from "@material-ui/icons/TableChart";
 
 export const mainListItems = (
   <div>
@@ -80,11 +81,21 @@ export const mainListItems = (
 export const secondaryListItems = (
   <div>
     <ListSubheader inset>General</ListSubheader>
-    <ListItem button>
-      <ListItemIcon>
-        <AnnouncementIcon />
-      </ListItemIcon>
-      <ListItemText primary="News" />
-    </ListItem>
+    <NextLink href={"/news"}>
+      <ListItem button>
+        <ListItemIcon>
+          <AnnouncementIcon />
+        </ListItemIcon>
+        <ListItemText primary="News" />
+      </ListItem>
+    </NextLink>
+    <NextLink href={"/routine"}>
+      <ListItem button>
+        <ListItemIcon>
+          <TableChartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Routine" />
+      </ListItem>
+    </NextLink>
   </div>
 );

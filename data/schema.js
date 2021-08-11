@@ -39,7 +39,7 @@ const schema = {
       db_field: "f_name",
       validation: Yup.string().min(5, "Too Short!").max(80, "Too Long!").required("Required!"),
     },
-    {
+    /*     {
       label: "Mother's Name",
       value: "",
       info: "Your Mother's name",
@@ -50,7 +50,7 @@ const schema = {
       required: true,
       db_field: "m_name",
       validation: Yup.string().min(5, "Too Short!").max(80, "Too Long!").required("Required!"),
-    },
+    }, */
     {
       label: "Permanent Address (Full Postal Address)",
       value: "",
@@ -134,7 +134,7 @@ const schema = {
       input_type: "text",
       required: true,
       db_field: "landline_no",
-      validation: Yup.string().length(8, "Must be of 8 digits!").required("Required!"),
+      validation: Yup.string().length(8, "Must be of 8 digits!"),
     },
     {
       label: "Date of Birth",
@@ -199,7 +199,7 @@ const schema = {
       db_field: "dojioning",
       validation: Yup.date().required("Required!"),
     },
-    {
+    /*     {
       label: "Religion",
       value: "",
       info: "",
@@ -211,8 +211,8 @@ const schema = {
       required: true,
       db_field: "religion",
       validation: Yup.string().required("Required!"),
-    },
-    {
+    }, */
+    /*     {
       label: "Caste",
       value: "",
       info: "",
@@ -224,8 +224,8 @@ const schema = {
       required: true,
       db_field: "caste",
       validation: Yup.string().required("Required!"),
-    },
-    {
+    }, */
+    /*     {
       label: "PAN",
       value: "",
       info: "",
@@ -236,8 +236,8 @@ const schema = {
       required: true,
       db_field: "pan",
       validation: Yup.string().min(5, "Too Short!").max(80, "Too Long!").required("Required!"),
-    },
-    {
+    }, */
+    /*     {
       label: "Bank Name(with Branch) [Salary] ",
       value: "",
       info: "",
@@ -248,8 +248,8 @@ const schema = {
       required: true,
       db_field: "bank_name",
       validation: Yup.string().min(5, "Too Short!").max(80, "Too Long!").required("Required!"),
-    },
-    {
+    }, */
+    /*     {
       label: "Salary Account",
       value: "",
       info: "",
@@ -260,8 +260,8 @@ const schema = {
       required: true,
       db_field: "salary_account",
       validation: Yup.string().min(5, "Too Short!").max(80, "Too Long!").required("Required!"),
-    },
-    {
+    }, */
+    /*     {
       label: "IFSC",
       value: "",
       info: "",
@@ -272,8 +272,8 @@ const schema = {
       required: true,
       db_field: "IFSC",
       validation: Yup.string().min(5, "Too Short!").max(80, "Too Long!").required("Required!"),
-    },
-    {
+    }, */
+    /*     {
       label: "PF-Account Number",
       value: "",
       info: "",
@@ -284,8 +284,8 @@ const schema = {
       required: true,
       db_field: "pf_acc_no",
       validation: Yup.string().min(5, "Too Short!").max(80, "Too Long!").required("Required!"),
-    },
-    {
+    }, */
+    /*     {
       label: "Passport Number",
       value: "",
       info: "",
@@ -296,8 +296,8 @@ const schema = {
       required: true,
       db_field: "passport_number",
       validation: Yup.string().min(5, "Too Short!").max(80, "Too Long!").required("Required!"),
-    },
-    {
+    }, */
+    /*     {
       label: "Driving License",
       value: "",
       info: "",
@@ -308,7 +308,7 @@ const schema = {
       required: true,
       db_field: "driving_license",
       validation: Yup.string().min(5, "Too Short!").max(80, "Too Long!").required("Required!"),
-    },
+    }, */
     {
       label: "Location (in Campus)",
       value: "",
