@@ -1,29 +1,10 @@
 import React from "react";
-import { Fragment, useState, useEffect, useCallback } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { schema, getPublicationValidationSchema } from "../../data/schema";
 import { useUserContext } from "../../contexts/UserContext";
 import axios from "axios";
-import { isEmptyObject } from "../../lib/util";
-import {
-  Card,
-  Button,
-  TextField,
-  FormControl,
-  InputLabel,
-  Select,
-  CardContent,
-  Grid,
-  FormControlLabel,
-  Checkbox,
-  Box,
-  MenuItem,
-  Typography,
-  makeStyles,
-  Backdrop,
-  CircularProgress,
-} from "@material-ui/core";
-import { Formik, useFormik, Field, Form, ErrorMessage } from "formik";
-import DeleteIcon from "@material-ui/icons/Delete";
+import { Button, Grid, Box, makeStyles, Backdrop, CircularProgress } from "@material-ui/core";
+import { useFormik } from "formik";
 import EditNode from "../../lib/EditNode";
 
 const useStyles = makeStyles((theme) => ({

@@ -43,9 +43,9 @@ const APublication = ({ publication, index }) => {
   };
 
   return (
-    <Card variant="outlined">
-      <CardContent>
-        <Box pt={2}>
+    <Box pt={2}>
+      <Card variant="outlined">
+        <CardContent>
           {!isEditing ? (
             <DisplayPublication publication={publication} index={index} />
           ) : (
@@ -76,9 +76,9 @@ const APublication = ({ publication, index }) => {
               </ButtonGroup>
             </Box>
           ) : null}
-        </Box>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </Box>
   );
 };
 

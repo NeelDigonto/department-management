@@ -1,32 +1,35 @@
 import React from "react";
 import { Grid, Typography, Button } from "@material-ui/core";
+import { Fragment } from "react";
+import { isEmptyObject } from "../lib/util";
 
 const DisplayNode = ({ field, value }) => {
-  const label = item.label;
-  /*   const value = publication[item.db_field]; */
-
-  if (item.type === "boolean")
-    return (
-      <Grid item xs={12} lg={6} key={item.db_field}>
+  const label = field.label;
+  /*   const value = publication[field.db_field]; */
+  let outputNode;
+  if (field.type === "boolean")
+    outputNode = (
+      /*       <Grid item xs={12} lg={6} key={field.db_field}> */
+      <Fragment>
         <Typography color="textSecondary" gutterBottom>
           {label}
         </Typography>
         {!!value && value ? "Yes" : "No"}
-      </Grid>
+      </Fragment>
     );
-  else if (item.type === "string" || item.type === "date" || item.type === "number")
-    return (
-      <Grid item xs={12} lg={6} key={item.db_field}>
+  else if (field.type === "string" || field.type === "date" || field.type === "number")
+    outputNode = (
+      <Fragment>
         <Typography color="textSecondary" gutterBottom>
           {label}
         </Typography>
         {!!value ? value : null}
-      </Grid>
+      </Fragment>
     );
-  else if (item.input_type === "file" && item.type === "object") {
-    return (
-      <Grid item xs={12} lg={6} key={item.db_field}>
-        {label + " : "}
+  else if (field.input_type === "file" && field.type === "object") {
+    outputNode = (
+      <Fragment>
+        {label + " "}
         {!isEmptyObject(value) ? (
           <Button
             variant="contained"
@@ -40,9 +43,10 @@ const DisplayNode = ({ field, value }) => {
         ) : (
           " No file Uploaded"
         )}
-      </Grid>
+      </Fragment>
     );
-  } else return null;
+  } else outputNode = <Fragment></Fragment>;
+  return outputNode;
 };
 
 export default DisplayNode;

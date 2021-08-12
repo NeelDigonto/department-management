@@ -120,23 +120,25 @@ const EditNode = ({ field, formik, setIsUploading }) => {
       const value = formik.values[field.db_field];
       const isNull = isEmptyObject(value);
       outputNode = !isNull ? (
-        <Card>
+        <Fragment>
           {field.label}
-          <Button
-            varient="contained"
-            color="primary"
-            component="span"
-            onClick={() => window.open("/api/file/get/" + value.fuid, "_blank")}
-          >
-            {value.fname}
-          </Button>
-          <Button
-            endIcon={<DeleteIcon />}
-            onClick={() => {
-              formik.setFieldValue(field.db_field, {});
-            }}
-          ></Button>
-        </Card>
+          <Card>
+            <Button
+              varient="contained"
+              color="primary"
+              component="span"
+              onClick={() => window.open("/api/file/get/" + value.fuid, "_blank")}
+            >
+              {value.fname}
+            </Button>
+            <Button
+              endIcon={<DeleteIcon />}
+              onClick={() => {
+                formik.setFieldValue(field.db_field, {});
+              }}
+            ></Button>
+          </Card>
+        </Fragment>
       ) : (
         <Fragment>
           <input

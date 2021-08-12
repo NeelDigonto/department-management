@@ -9,25 +9,29 @@ import { sidebarOptions, schema } from "../data/schema";
 import { useUserContext } from "../contexts/UserContext.jsx";
 
 import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Drawer from "@material-ui/core/Drawer";
-import Box from "@material-ui/core/Box";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
-import Badge from "@material-ui/core/Badge";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import Link from "@material-ui/core/Link";
+import {
+  makeStyles,
+  CssBaseline,
+  Drawer,
+  Box,
+  AppBar,
+  Toolbar,
+  List,
+  Typography,
+  Divider,
+  IconButton,
+  Badge,
+  Container,
+  InputBase,
+  alpha,
+  Button,
+} from "@material-ui/core";
+import MuiLink from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import SearchIcon from "@material-ui/icons/Search";
 import Profile from "../components/profile/Profile.jsx";
 import Publications from "../components/publications/Publications.jsx";
 import { mainListItems, secondaryListItems } from "../components/sidebar/listItems.jsx";
@@ -37,9 +41,9 @@ function Copyright() {
     <Box pt={8}>
       <Typography variant="body2" color="textSecondary" align="center">
         {"Copyright © "}
-        <Link color="inherit" target="_blank" href="https://iem.edu.in/">
+        <MuiLink color="inherit" target="_blank" href="https://iem.edu.in/">
           {"IEM"}
-        </Link>{" "}
+        </MuiLink>{" "}
         {new Date().getFullYear()}
         {"."}
       </Typography>
@@ -126,6 +130,46 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
+
+  search: {
+    position: "relative",
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    "&:hover": {
+      backgroundColor: alpha(theme.palette.common.white, 0.25),
+    },
+    marginLeft: 0,
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: theme.spacing(1),
+      width: "auto",
+    },
+  },
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  inputRoot: {
+    color: "inherit",
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      width: "12ch",
+      "&:focus": {
+        width: "20ch",
+      },
+    },
+  },
 }));
 
 export default function Dashboard() {
@@ -172,9 +216,27 @@ export default function Dashboard() {
           >
             <MenuIcon />
           </IconButton>
+          {/*  <NextLink href="/"> */}
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             {"Faculty Book"}
           </Typography>
+          {/*  </NextLink> */}
+          {/*  <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Search…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ "aria-label": "search" }}
+            />
+          </div> */}
+          <IconButton color="inherit" onClick={signOut}>
+            <ExitToAppIcon />
+          </IconButton>
           <IconButton color="inherit">
             <Badge badgeContent={6} color="secondary">
               <NotificationsIcon />

@@ -14,18 +14,21 @@ const theme = createTheme({
     fontWeightBold: 700,
   },
   palette: {
+    type: "dark",
     primary: {
-      main: /* "#556cd6",*/ "#ffb703",
+      //main:  "#556cd6",
+      main: "#ffb703",
     },
     secondary: {
-      main: /* "#19857b",*/ "#219ebc",
+      //main: "#19857b",
+      main: "#219ebc",
     },
-    error: {
+    /*     error: {
       main: red.A400,
-    },
-    background: {
+    }, */
+    /*     background: {
       default: "#fff",
-    },
+    }, */
   },
 });
 
