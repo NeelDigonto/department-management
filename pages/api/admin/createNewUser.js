@@ -1,6 +1,6 @@
 import { getMongoClient } from "../../../lib/db";
 import { hashPassword } from "../../../lib/auth";
-import { schema, MASTER_SCHEMA, EMPTY_USER_DOCUMENT } from "../../../data/schema";
+import { MASTER_SCHEMA, EMPTY_USER_DOCUMENT } from "../../../data/schema";
 
 export default async function handler(req, res) {
   //check if user is allowed to acces this api
