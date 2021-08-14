@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { useUserContext } from "../../contexts/UserContext";
-import { schema } from "../../data/schema";
+import { MASTER_SCHEMA } from "../../data/schema";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import { makeStyles } from "@material-ui/core/styles";
@@ -30,15 +30,17 @@ const DisplayProfile = ({ setIsEditing }) => {
   return (
     <Fragment>
       <Box pt={4}>
-        {schema["Profile"].map((item) => (
-          <Card key={item.db_field} variant="outlined">
-            <CardContent>
-              <Typography color="textSecondary" gutterBottom>
-                {item.label}
-              </Typography>
-              {user["Profile"][item.db_field]}
-            </CardContent>
-          </Card>
+        {MASTER_SCHEMA["profile"].map((item) => (
+          <Box key={item.db_field}>
+            <Card variant="outlined">
+              <CardContent>
+                <Typography color="textSecondary" gutterBottom>
+                  {item.label}
+                </Typography>
+                {user["profile"][item.db_field]}
+              </CardContent>
+            </Card>
+          </Box>
         ))}
       </Box>
       <Fab

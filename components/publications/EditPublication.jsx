@@ -1,6 +1,6 @@
 import React from "react";
 import { Fragment, useState, useEffect } from "react";
-import { schema, getPublicationValidationSchema } from "../../data/schema";
+import { MASTER_SCHEMA, getPublicationValidationSchema } from "../../data/schema";
 import { useUserContext } from "../../contexts/UserContext";
 import axios from "axios";
 import { Button, Grid, Box, makeStyles, Backdrop, CircularProgress } from "@material-ui/core";
@@ -41,8 +41,8 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
           if (result.isUpdated === true) {
             setUser((oldState) => {
               let newState = { ...oldState };
-              newState["Publications"][index] = {
-                ...newState["Publications"][index],
+              newState["publications"][index] = {
+                ...newState["publications"][index],
                 ...values,
               };
               return newState;
@@ -65,7 +65,7 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
   const getFormNode = (
     <form onSubmit={formik.handleSubmit} /* encType="multipart/form-data" */>
       <Grid container>
-        {schema["Publications"]["fields"].map((field) => (
+        {MASTER_SCHEMA["publications"]["fields"].map((field) => (
           <Grid item xs={12} md={6} key={field.db_field}>
             <Box px={0.5} py={0.5}>
               <EditNode field={field} formik={formik} setIsUploading={setIsUploading}></EditNode>

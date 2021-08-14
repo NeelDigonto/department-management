@@ -19,7 +19,7 @@ export default async function handler(req, res) {
     {
       employeeID: employeeID,
     },
-    { $set: { Profile: newProfile } }
+    { $set: { profile: newProfile } }
   );
 
   connection.close();

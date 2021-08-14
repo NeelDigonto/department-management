@@ -9,8 +9,6 @@ import CreatePublication from "./CreatePublication.jsx";
 const useStyles = makeStyles((theme) => ({
   noPubMsg: {
     textAlign: "center",
-    /*     textDecoration: "underline" */
-    /*     color: theme.palette.error.main, */
   },
 }));
 
@@ -22,12 +20,12 @@ const Publications = () => {
     <Fragment>
       <Box pt={4}>
         {!!user ? (
-          user["Publications"].length === 0 ? (
+          user["publications"].length === 0 ? (
             <Typography className={classes.noPubMsg}>
               {"No Publications here, Create One!"}
             </Typography>
           ) : (
-            user["Publications"].map((publication, index) => (
+            user["publications"].map((publication, index) => (
               <APublication key={index} publication={publication} index={index} />
             ))
           )

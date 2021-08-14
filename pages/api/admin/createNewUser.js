@@ -1,6 +1,6 @@
 import { getMongoClient } from "../../../lib/db";
 import { hashPassword } from "../../../lib/auth";
-import { schema } from "../../../data/schema";
+import { schema, MASTER_SCHEMA, EMPTY_USER_DOCUMENT } from "../../../data/schema";
 
 export default async function handler(req, res) {
   //check if user is allowed to acces this api
@@ -16,7 +16,7 @@ export default async function handler(req, res) {
 
   const { employeeID, password } = req.body;
 
-  let mockProfile = {};
+  /*   let mockProfile = {};
   schema["Profile"].forEach((item) => {
     mockProfile[item.db_field] = item.value;
   });
@@ -24,8 +24,12 @@ export default async function handler(req, res) {
   const emptyUserDocument = {
     employeeID: employeeID,
     hashedPassword: await hashPassword(password),
-    Profile: mockProfile,
-    Publications: [],
+    ...MASTER_SCHEMA,
+  }; */
+  const emptyUserDocument = {
+    ...EMPTY_USER_DOCUMENT,
+    employeeID: employeeID,
+    hashedPassword: await hashPassword(password),
   };
 
   const insertResult = await usersCollection.insertOne(emptyUserDocument);

@@ -17,6 +17,7 @@ import {
 import DeleteIcon from "@material-ui/icons/Delete";
 import { isEmptyObject } from "./util";
 import stageFileUpload from "./fileUpload";
+import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE } from "../data/types/types";
 
 const useStyles = makeStyles((theme) => ({ errorBody: { color: theme.palette.error.main } }));
 
@@ -24,7 +25,7 @@ const EditNode = ({ field, formik, setIsUploading }) => {
   const classes = useStyles();
   let outputNode;
   switch (field.input_type) {
-    case "text": {
+    case INPUT_TYPE.TEXT: {
       outputNode = (
         <TextField
           error={!!formik.errors[field.db_field] && formik.touched[field.db_field]}
@@ -40,7 +41,7 @@ const EditNode = ({ field, formik, setIsUploading }) => {
       );
       break;
     }
-    case "date": {
+    case INPUT_TYPE.DATE: {
       outputNode = (
         <TextField
           error={!!formik.errors[field.db_field] && formik.touched[field.db_field]}
@@ -57,7 +58,7 @@ const EditNode = ({ field, formik, setIsUploading }) => {
       );
       break;
     }
-    case "select": {
+    case INPUT_TYPE.SELECT: {
       outputNode = (
         <FormControl
           fullWidth
@@ -83,7 +84,7 @@ const EditNode = ({ field, formik, setIsUploading }) => {
       );
       break;
     }
-    case "checkbox": {
+    case INPUT_TYPE.CHECKBOX: {
       outputNode = (
         <FormControlLabel
           control={
@@ -100,7 +101,7 @@ const EditNode = ({ field, formik, setIsUploading }) => {
       );
       break;
     }
-    case "email": {
+    case INPUT_TYPE.EMAIL: {
       outputNode = (
         <TextField
           error={!!formik.errors[field.db_field] && formik.touched[field.db_field]}
@@ -116,7 +117,7 @@ const EditNode = ({ field, formik, setIsUploading }) => {
       );
       break;
     }
-    case "file": {
+    case INPUT_TYPE.FILE: {
       const value = formik.values[field.db_field];
       const isNull = isEmptyObject(value);
       outputNode = !isNull ? (

@@ -18,7 +18,7 @@ export default async function handler(req, res) {
       employeeID: employeeID,
     },
     {
-      $pull: { Publications: { sl_no: delete_sl_no } },
+      $pull: { publications: { sl_no: delete_sl_no } },
     }
   );
 

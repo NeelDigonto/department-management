@@ -17,25 +17,25 @@ const sidebarOptions = [
   { menuDisplay: "Projects", urlSuffix: "projects" },
 ];
 
-const schema = {
+const MASTER_SCHEMA = {
   employeeID: "",
   hashedPassword: "",
-  Profile: PROFILE_SCHEMA,
-  Education: [],
-  Conferences: [],
-  Publications: PUBLICATION_SCHEMA,
-  Experience: [],
-  Seminars: [],
-  Projects: [],
+  profile: PROFILE_SCHEMA,
+  publications: PUBLICATION_SCHEMA,
 };
 
-const MASTER_SCHEMA = { profile: PROFILE_SCHEMA, publications: PUBLICATION_SCHEMA };
+let mockProfile = {};
+MASTER_SCHEMA["profile"].forEach((item) => {
+  mockProfile[item.db_field] = item.value;
+});
+let EMPTY_USER_DOCUMENT = { employeeID: "", hashedPassword: "", profile: mockProfile };
+EMPTY_USER_DOCUMENT["publications"] = [];
 
 export {
   DataTypes,
   sidebarOptions,
-  schema,
   MASTER_SCHEMA,
+  EMPTY_USER_DOCUMENT,
   getProfileValidationSchema,
   getPublicationValidationSchema,
 };

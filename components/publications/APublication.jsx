@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useUserContext } from "../../contexts/UserContext";
-import { schema } from "../../data/schema";
+import { MASTER_SCHEMA } from "../../data/schema";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import { makeStyles } from "@material-ui/core/styles";
@@ -30,7 +30,7 @@ const APublication = ({ publication, index }) => {
         if (result.deleted) {
           setUser((oldState) => {
             let newState = { ...oldState };
-            newState["Publications"] = newState["Publications"].filter(
+            newState["publications"] = newState["publications"].filter(
               (item) => item.sl_no !== sl_no_to_delete
             );
             return newState;

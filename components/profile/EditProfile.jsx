@@ -3,7 +3,7 @@ import { Formik, useFormik, Field, Form, ErrorMessage } from "formik";
 
 import { useUserContext } from "../../contexts/UserContext";
 import EditNode from "../../lib/EditNode";
-import { schema, getProfileValidationSchema } from "../../data/schema";
+import { MASTER_SCHEMA, getProfileValidationSchema } from "../../data/schema";
 import axios from "axios";
 import {
   makeStyles,
@@ -30,7 +30,7 @@ const EditProfile = ({ setIsEditing }) => {
   const [open, setOpen] = useState(false);
   const classes = useStyles();
   const formik = useFormik({
-    initialValues: user["Profile"],
+    initialValues: user["profile"],
     onSubmit: (values, { setSubmitting }) => {
       setSubmitting(true);
       axios({
@@ -49,7 +49,7 @@ const EditProfile = ({ setIsEditing }) => {
           if (result.isUpdated === true) {
             setUser((oldState) => {
               let newState = { ...oldState };
-              newState["Profile"] = {
+              newState["profile"] = {
                 ...values,
               };
               return newState;
@@ -74,7 +74,7 @@ const EditProfile = ({ setIsEditing }) => {
       <Card>
         <CardContent>
           <Grid container>
-            {schema["Profile"].map((field) => (
+            {MASTER_SCHEMA["profile"].map((field) => (
               <Grid item xs={12} md={6} key={field.db_field}>
                 <Box px={0.5} py={0.5}>
                   <EditNode

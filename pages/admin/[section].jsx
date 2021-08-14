@@ -4,9 +4,12 @@ import React from "react";
 import { useRouter } from "next/router";
 import { signIn, signOut, useSession, getSession } from "next-auth/client";
 import NextLink from "next/link";
-import { sidebarOptions, schema } from "../data/schema";
+import { sidebarOptions, schema } from "../../data/schema";
 
-import { useUserContext } from "../contexts/UserContext.jsx";
+import { useUserContext } from "../../contexts/UserContext.jsx";
+
+import Download from "../../components/admin/download/Download";
+import { mainListItems, secondaryListItems } from "../../components/admin/sidebar/listItems.jsx";
 
 import clsx from "clsx";
 import {
@@ -32,11 +35,11 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import SearchIcon from "@material-ui/icons/Search";
-import Profile from "../components/profile/Profile.jsx";
-import Publications from "../components/publications/Publications.jsx";
-import { mainListItems, secondaryListItems } from "../components/sidebar/listItems.jsx";
+import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
+import CreateUser from "../../components/admin/createUser/CreateUser";
+import DeleteUser from "../../components/admin/deleteUser/DeleteUser";
 
-import Copyright from "../components/copyright/Copyright";
+import Copyright from "../../components/copyright/Copyright";
 
 const drawerWidth = 240;
 
@@ -159,7 +162,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard() {
+export default function AdminDashboard() {
   const router = useRouter();
   const classes = useStyles();
   const [open, setOpen] = useState(false);
@@ -175,12 +178,16 @@ export default function Dashboard() {
   useEffect(() => {
     const { section } = router.query;
     switch (section) {
-      case "profile": {
-        setMainViewComponents(<Profile />);
+      case "download": {
+        setMainViewComponents(<Download />);
         break;
       }
-      case "publications": {
-        setMainViewComponents(<Publications />);
+      case "create-user": {
+        setMainViewComponents(<CreateUser />);
+        break;
+      }
+      case "delete-user": {
+        setMainViewComponents(<DeleteUser />);
         break;
       }
       default: {

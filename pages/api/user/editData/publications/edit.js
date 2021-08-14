@@ -16,13 +16,13 @@ export default async function handler(req, res) {
 
   let updateQuerry = {};
   for (let [key, value] of Object.entries(updateObject)) {
-    updateQuerry[`Publications.$.${key}`] = value;
+    updateQuerry[`publications.$.${key}`] = value;
   }
 
   const updateResult = await usersCollection.updateOne(
     {
       employeeID: employeeID,
-      "Publications.sl_no": pub_sl_no_to_update,
+      "publications.sl_no": pub_sl_no_to_update,
     },
     { $set: updateQuerry }
   );

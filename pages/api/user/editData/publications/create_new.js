@@ -19,7 +19,7 @@ export default async function handler(req, res) {
     },
     {
       $push: {
-        Publications: {
+        publications: {
           $each: [emptyPublicationData],
           $sort: { sl_no: 1 },
         },

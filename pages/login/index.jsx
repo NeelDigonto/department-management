@@ -20,18 +20,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <MuiLink component={NextLink} color="inherit" href="https://iem.edu.in/">
-        IEM
-      </MuiLink>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import Copyright from "../../components/copyright/Copyright";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -172,8 +161,9 @@ function Login() {
                       </MuiLink>
                     </Grid>
                     <Grid item>
-                      <MuiLink href="#" variant="body2">
-                        {"Don't have an account? Sign Up"}
+                      <MuiLink href="/admin" variant="body2">
+                        {/*"Don't have an account? Sign Up"*/}
+                        {"Login as admin"}
                       </MuiLink>
                     </Grid>
                   </Grid>

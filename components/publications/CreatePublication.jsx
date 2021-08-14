@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useUserContext } from "../../contexts/UserContext";
-import { schema } from "../../data/schema";
+import { MASTER_SCHEMA } from "../../data/schema";
 import { Card, Box, CardContent, Grid, Typography, Fab, makeStyles } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 
 let emptyPublicationDataBP = {};
 emptyPublicationDataBP["sl_no"] = 0;
-schema["Publications"]["fields"].forEach((item) => {
+MASTER_SCHEMA["publications"]["fields"].forEach((item) => {
   emptyPublicationDataBP[item.db_field] = item.value;
 });
 
@@ -26,7 +26,7 @@ const CreatePublication = ({}) => {
 
   const createPublicationHandler = async () => {
     setIsCreatingPublication(true);
-    const emptyPublicationData = { ...emptyPublicationDataBP, sl_no: user["Publications"].length };
+    const emptyPublicationData = { ...emptyPublicationDataBP, sl_no: user["publications"].length };
     fetch("/api/user/editData/publications/create_new", {
       method: "POST",
       headers: {
@@ -42,7 +42,7 @@ const CreatePublication = ({}) => {
         if (result.created === true) {
           setUser((oldState) => {
             let newState = { ...oldState };
-            newState["Publications"].push(emptyPublicationData);
+            newState["publications"].push(emptyPublicationData);
             setIsCreatingPublication(false);
             return newState;
           });

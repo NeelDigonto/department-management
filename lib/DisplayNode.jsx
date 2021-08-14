@@ -2,12 +2,13 @@ import React from "react";
 import { Grid, Typography, Button } from "@material-ui/core";
 import { Fragment } from "react";
 import { isEmptyObject } from "../lib/util";
+import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE } from "../data/types/types";
 
 const DisplayNode = ({ field, value }) => {
   const label = field.label;
   /*   const value = publication[field.db_field]; */
   let outputNode;
-  if (field.type === "boolean")
+  if (field.type === VALUE_TYPE.BOOLEAN)
     outputNode = (
       /*       <Grid item xs={12} lg={6} key={field.db_field}> */
       <Fragment>
@@ -17,7 +18,11 @@ const DisplayNode = ({ field, value }) => {
         {!!value && value ? "Yes" : "No"}
       </Fragment>
     );
-  else if (field.type === "string" || field.type === "date" || field.type === "number")
+  else if (
+    field.type === VALUE_TYPE.STRING ||
+    field.type === VALUE_TYPE.DATE ||
+    field.type === VALUE_TYPE.NUMBER
+  )
     outputNode = (
       <Fragment>
         <Typography color="textSecondary" gutterBottom>
@@ -26,7 +31,7 @@ const DisplayNode = ({ field, value }) => {
         {!!value ? value : null}
       </Fragment>
     );
-  else if (field.input_type === "file" && field.type === "object") {
+  else if (field.type === VALUE_TYPE.OBJECT && field.input_type === INPUT_TYPE.FILE) {
     outputNode = (
       <Fragment>
         {label + " "}
