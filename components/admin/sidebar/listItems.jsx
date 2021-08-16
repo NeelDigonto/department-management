@@ -28,7 +28,7 @@ export const mainListItems = (
         <ListItemIcon>
           <CloudDownloadIcon />
         </ListItemIcon>
-        <ListItemText primary="Profile" />
+        <ListItemText primary="Dashboard" />
       </ListItem>
     </NextLink>
     <NextLink href={"/admin/create-user"}>

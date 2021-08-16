@@ -18,20 +18,22 @@ const Publications = () => {
 
   return (
     <Fragment>
-      <Box pt={4}>
-        {!!user ? (
-          user["publications"].length === 0 ? (
-            <Typography className={classes.noPubMsg}>
-              {"No Publications here, Create One!"}
-            </Typography>
-          ) : (
-            user["publications"].map((publication, index) => (
-              <APublication key={index} publication={publication} index={index} />
-            ))
-          )
-        ) : null}
-      </Box>
-      <CreatePublication />
+      {!!user ? (
+        <Fragment>
+          <Box pt={4}>
+            {user["publications"].length === 0 ? (
+              <Typography className={classes.noPubMsg}>
+                {"No Publications here, Create One!"}
+              </Typography>
+            ) : (
+              user["publications"].map((publication, index) => (
+                <APublication key={index} publication={publication} index={index} />
+              ))
+            )}
+          </Box>
+          <CreatePublication />
+        </Fragment>
+      ) : null}
     </Fragment>
   );
 };

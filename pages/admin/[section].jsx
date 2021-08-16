@@ -274,14 +274,14 @@ export default function AdminDashboard() {
 export async function getServerSideProps(context) {
   const session = await getSession({ req: context.req });
 
-  if (!session) {
+  if (!session || !session.user.isAdmin) {
     return {
       redirect: {
         destination: "/login",
         permanent: false,
       },
     };
-  } else {
+  } else if (!!session) {
     return {
       props: { session },
     };

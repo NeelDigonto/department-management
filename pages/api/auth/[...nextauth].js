@@ -14,26 +14,52 @@ export default NextAuth({
         const client = await getMongoClient();
         const connection = await client.connect();
 
-        const usersCollection = connection.db("users").collection("faculties");
+        if (credentials.isAdmin === false || credentials.isAdmin === "false") {
+          //dont know why next-auth makes the boolean a string
+          const usersCollection = connection.db("users").collection("faculties");
 
-        const user = await usersCollection.findOne({
-          employeeID: credentials.employeeID,
-        });
+          const user = await usersCollection.findOne({
+            employeeID: credentials.employeeID,
+          });
 
-        if (!user) {
+          if (!user) {
+            connection.close();
+            throw new Error("No user found!");
+          }
+
+          const isValid = await verifyPassword(credentials.password, user.hashedPassword);
+
+          if (!isValid) {
+            connection.close();
+            //throw new Error("Could not log you in!");
+            return null;
+          }
+
           connection.close();
-          throw new Error("No user found!");
-        }
+          return { employeeID: user.employeeID, isAdmin: false };
+        } else if (credentials.isAdmin === true || credentials.isAdmin === "true") {
+          const usersCollection = connection.db("users").collection("admins");
 
-        const isValid = await verifyPassword(credentials.password, user.hashedPassword);
+          const admin = await usersCollection.findOne({
+            adminID: credentials.adminID,
+          });
 
-        if (!isValid) {
+          if (!admin) {
+            connection.close();
+            throw new Error("No such admin found!");
+          }
+
+          const isValid = await verifyPassword(credentials.password, admin.hashedPassword);
+
+          if (!isValid) {
+            connection.close();
+            // throw new Error("Could not log you in!");
+            return null;
+          }
+
           connection.close();
-          throw new Error("Could not log you in!");
+          return { adminID: admin.adminID, isAdmin: true };
         }
-
-        connection.close();
-        return { employeeID: user.employeeID };
       },
     }),
   ],

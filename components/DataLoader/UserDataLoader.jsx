@@ -12,7 +12,7 @@ const UserDataLoader = ({ children }) => {
 
   useEffect(() => {
     //dont use db_field here as key
-    if (!!session && !loading) {
+    if (!!session && !loading && session.user.isAdmin === false) {
       const employeeID = session.user.employeeID;
 
       // stops useless data fetching

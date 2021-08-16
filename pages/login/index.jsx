@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import Head from "next/head";
 import { Formik, Form } from "formik";
 
@@ -19,6 +19,9 @@ import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+
+import UserLogin from "../../components/login/user/UserLogin";
+import AdminLogin from "../../components/login/admin/AdminLogin";
 
 import Copyright from "../../components/copyright/Copyright";
 
@@ -55,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Login() {
   const router = useRouter();
-
+  const [isAdminLogin, setIsAdminLogin] = useState(false);
   const handleSubmit = (values, { setSubmitting }) => {
     setSubmitting(true);
     const signInHandler = async () => {
@@ -89,91 +92,14 @@ function Login() {
         <CssBaseline />
         <Grid item xs={false} sm={4} md={7} className={classes.image} />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-          <div className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign in
-            </Typography>
-            <Formik
-              initialValues={{ employeeID: "", password: "" }}
-              onSubmit={handleSubmit}
-              autoComplete="on"
-            >
-              {({
-                values,
-                errors,
-                touched,
-                handleChange,
-                handleBlur,
-                handleSubmit,
-                isSubmitting,
-              }) => (
-                <Form className={classes.form}>
-                  <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="employeeID"
-                    label="Employee ID"
-                    name="employeeID"
-                    value={values.employeeID}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    autoComplete=""
-                    autoFocus
-                  />
-                  <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    type="password"
-                    id="password"
-                    value={values.password}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    autoComplete="current-password"
-                  />
-                  <FormControlLabel
-                    control={<Checkbox value="remember" color="primary" />}
-                    label="Remember me"
-                  />
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                    className={classes.submit}
-                    disabled={isSubmitting}
-                    onClick={handleSubmit}
-                  >
-                    Sign In
-                  </Button>
-                  <Grid container>
-                    <Grid item xs>
-                      <MuiLink href="#" variant="body2">
-                        Forgot password?
-                      </MuiLink>
-                    </Grid>
-                    <Grid item>
-                      <MuiLink href="/admin" variant="body2">
-                        {/*"Don't have an account? Sign Up"*/}
-                        {"Login as admin"}
-                      </MuiLink>
-                    </Grid>
-                  </Grid>
-                  <Box mt={5}>
-                    <Copyright />
-                  </Box>
-                </Form>
-              )}
-            </Formik>
-          </div>
+          {!isAdminLogin ? (
+            <UserLogin setIsAdminLogin={setIsAdminLogin} />
+          ) : (
+            <AdminLogin setIsAdminLogin={setIsAdminLogin} />
+          )}
+          <Box mt={2}>
+            <Copyright />
+          </Box>
         </Grid>
       </Grid>
     </Fragment>
