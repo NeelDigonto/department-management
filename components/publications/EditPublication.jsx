@@ -1,11 +1,11 @@
-import React from "react";
-import { Fragment, useState, useEffect } from "react";
-import { MASTER_SCHEMA, getPublicationValidationSchema } from "../../data/schema";
-import { useUserContext } from "../../contexts/UserContext";
+import React, { Fragment, useState, useEffect } from "react";
+import { useFormik } from "formik";
 import axios from "axios";
 import { Button, Grid, Box, makeStyles, Backdrop, CircularProgress } from "@material-ui/core";
-import { useFormik } from "formik";
-import EditNode from "../../lib/EditNode";
+
+import { MASTER_SCHEMA, getPublicationValidationSchema } from "../../data/schema";
+import { useUserContext } from "../../contexts/UserContext";
+import EditNode from "../nodes/EditNode";
 
 const useStyles = makeStyles((theme) => ({
   backdrop: {
@@ -84,7 +84,7 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
       {getFormNode}
       <Box pt={2}>
         <Grid container>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={6}>
             <Button
               variant="contained"
               color="default"
@@ -93,10 +93,10 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
                 setIsEditing(false);
               }}
             >
-              Cancel
+              {"Discard"}
             </Button>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={6}>
             <Button
               variant="contained"
               color="secondary"
@@ -105,7 +105,7 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
                 formik.handleSubmit();
               }}
             >
-              Apply
+              {"Save"}
             </Button>
           </Grid>
         </Grid>

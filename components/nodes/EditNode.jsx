@@ -15,9 +15,9 @@ import {
 } from "@material-ui/core";
 
 import DeleteIcon from "@material-ui/icons/Delete";
-import { isEmptyObject } from "./util";
-import stageFileUpload from "./fileUpload";
-import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE } from "../data/types/types";
+import { isEmptyObject } from "../../lib/util";
+import stageFileUpload from "../../lib/fileUpload";
+import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE } from "../../data/types/types";
 
 const useStyles = makeStyles((theme) => ({ errorBody: { color: theme.palette.error.main } }));
 

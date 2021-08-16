@@ -17,4 +17,6 @@ const INPUT_TYPE = {
   EMAIL: "email",
 };
 
-export { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE };
+const WIDTH_TYPE = { SMALL: "small", MEDIUM: "medium", LARGE: "large" };
+
+export { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE, WIDTH_TYPE };

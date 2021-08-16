@@ -1,16 +1,56 @@
-import React from "react";
-import { Fragment } from "react";
-import { MASTER_SCHEMA } from "../../data/schema";
-import { Card, Button, CardContent, Grid, Typography } from "@material-ui/core";
-import DisplayNode from "../../lib/DisplayNode";
+import React, { Fragment } from "react";
+import { Grid, Box, ButtonGroup, Button } from "@material-ui/core";
 
-const DisplayPublication = ({ publication, index }) => {
+import { useUserContext } from "../../contexts/UserContext";
+import DisplayNode from "../nodes/DisplayNode";
+import { MASTER_SCHEMA } from "../../data/schema";
+import { WIDTH_TYPE } from "../../data/types/types";
+
+const DisplayPublication = ({ publication, index, setIsEditing }) => {
+  const { user, setUser } = useUserContext();
+
+  const deletePublicationHandler = (sl_no_to_delete) => {
+    fetch("api/user/editData/publications/delete", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ employeeID: user.employeeID, delete_sl_no: sl_no_to_delete }),
+    })
+      .then((respone) => respone.json())
+      .then((result) => {
+        if (result.deleted) {
+          setUser((oldState) => {
+            let newState = { ...oldState };
+            newState["publications"] = newState["publications"].filter(
+              (item) => item.sl_no !== sl_no_to_delete
+            );
+            return newState;
+          });
+        } else {
+          console.error("pub not deleted");
+          console.log(result.updateResult);
+        }
+      });
+  };
+
   const info_content = () => (
     <Fragment>
       {MASTER_SCHEMA["publications"]["fields"].map((field, index) => {
         const value = publication[field.db_field];
+        let media_queries = {};
+        if (!field.view_width) {
+          media_queries = { xs: 12, lg: 6 };
+        } else if (field.view_width === WIDTH_TYPE.SMALL) {
+          media_queries = { xs: 6, lg: 6 };
+        } else if (field.view_width === WIDTH_TYPE.MEDIUM) {
+          media_queries = { xs: 6, lg: 6 };
+        } else if (field.view_width === WIDTH_TYPE.LARGE) {
+          media_queries = { xs: 6, lg: 6 };
+        }
+
         return (
-          <Grid item xs={12} lg={6} key={field.db_field}>
+          <Grid item {...media_queries} key={field.db_field}>
             <DisplayNode field={field} value={value}></DisplayNode>
           </Grid>
         );
@@ -18,7 +58,34 @@ const DisplayPublication = ({ publication, index }) => {
     </Fragment>
   );
 
-  return <Grid container>{info_content()}</Grid>;
+  return (
+    <Fragment>
+      <Grid container>{info_content()}</Grid>
+      <Box pt={2}>
+        <ButtonGroup fullWidth aria-label="edit button group">
+          <Button
+            fullWidth
+            variant="contained"
+            color="secondary"
+            onClick={() => {
+              setIsEditing((oldState) => !oldState);
+            }}
+          >
+            {"Edit"}
+          </Button>
+          <Button
+            variant="contained"
+            color="default"
+            onClick={() => {
+              deletePublicationHandler(publication.sl_no);
+            }}
+          >
+            {"Delete"}
+          </Button>
+        </ButtonGroup>
+      </Box>
+    </Fragment>
+  );
 };
 
 export default DisplayPublication;

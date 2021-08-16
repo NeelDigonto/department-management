@@ -1,8 +1,20 @@
 import React from "react";
-import { Grid, Typography, Button } from "@material-ui/core";
+import { Grid, Typography, Button, Link as MuiLink } from "@material-ui/core";
 import { Fragment } from "react";
-import { isEmptyObject } from "../lib/util";
-import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE } from "../data/types/types";
+import { isEmptyObject } from "../../lib/util";
+import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE } from "../../data/types/types";
+
+const getTrimmedFileName = (org_fname, max_fname_len) => {
+  if (org_fname.length > max_fname_len) {
+    const f_ext_ind = org_fname.lastIndexOf(".");
+    const f_ext = org_fname.substring(f_ext_ind);
+
+    const new_fname = org_fname.substring(0, f_ext_ind).substring(0, max_fname_len - f_ext.length);
+    return new_fname + ".." + f_ext;
+  } else {
+    return org_fname;
+  }
+};
 
 const DisplayNode = ({ field, value }) => {
   const label = field.label;
@@ -36,15 +48,12 @@ const DisplayNode = ({ field, value }) => {
       <Fragment>
         {label + " "}
         {!isEmptyObject(value) ? (
-          <Button
-            variant="contained"
-            size="small"
-            onClick={() => {
-              window.open("/api/file/get/" + value.fuid, "_blank");
-            }}
+          <MuiLink
+            /* rel="noopener noreferrer" */ href={"/api/file/get/" + value.fuid}
+            target="_blank"
           >
-            {value.fname}
-          </Button>
+            {/* getTrimmedFileName(value.fname, 20) */ value.fname}
+          </MuiLink>
         ) : (
           " No file Uploaded"
         )}
@@ -55,3 +64,8 @@ const DisplayNode = ({ field, value }) => {
 };
 
 export default DisplayNode;
+
+/*
+onClick={() => {
+  window.open("/api/file/get/" + value.fuid, "_blank");
+}}*/

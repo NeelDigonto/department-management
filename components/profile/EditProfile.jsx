@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Formik, useFormik, Field, Form, ErrorMessage } from "formik";
 
 import { useUserContext } from "../../contexts/UserContext";
-import EditNode from "../../lib/EditNode";
+import EditNode from "../nodes/EditNode";
 import { MASTER_SCHEMA, getProfileValidationSchema } from "../../data/schema";
 import axios from "axios";
 import {
