@@ -11,14 +11,14 @@ export default async function handler(req, res) {
 
   const usersCollection = connection.db("users").collection("faculties");
 
-  const { employeeID, delete_sl_no } = req.body;
+  const { employeeID, delete_id_no } = req.body;
 
   const updateResult = await usersCollection.updateOne(
     {
       employeeID: employeeID,
     },
     {
-      $pull: { publications: { sl_no: delete_sl_no } },
+      $pull: { publications: { id: delete_id_no } },
     }
   );
 

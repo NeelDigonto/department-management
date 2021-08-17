@@ -27,7 +27,7 @@ export const mainListItems = (
         <ListItemText primary="Profile" />
       </ListItem>
     </NextLink>
-    <NextLink href={"/education"}>
+    {/*     <NextLink href={"/education"}>
       <ListItem button>
         <ListItemIcon>
           <SchoolIcon />
@@ -42,7 +42,7 @@ export const mainListItems = (
         </ListItemIcon>
         <ListItemText primary="Conferences" />
       </ListItem>
-    </NextLink>
+    </NextLink> */}
     <NextLink href={"/publications"}>
       <ListItem button>
         <ListItemIcon>
@@ -51,7 +51,7 @@ export const mainListItems = (
         <ListItemText primary="Publications" />
       </ListItem>
     </NextLink>
-    <NextLink href={"/experience"}>
+    {/*  <NextLink href={"/experience"}>
       <ListItem button>
         <ListItemIcon>
           <BarChartIcon />
@@ -74,7 +74,7 @@ export const mainListItems = (
         </ListItemIcon>
         <ListItemText primary="Projects" />
       </ListItem>
-    </NextLink>
+    </NextLink> */}
   </div>
 );
 

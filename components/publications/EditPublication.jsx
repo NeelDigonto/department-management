@@ -1,11 +1,11 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { useFormik } from "formik";
-import axios from "axios";
 import { Button, Grid, Box, makeStyles, Backdrop, CircularProgress } from "@material-ui/core";
 
 import { MASTER_SCHEMA, getPublicationValidationSchema } from "../../data/schema";
 import { useUserContext } from "../../contexts/UserContext";
 import EditNode from "../nodes/EditNode";
+import { editPublicationHandler } from "./handlers";
 
 const useStyles = makeStyles((theme) => ({
   backdrop: {
@@ -22,37 +22,16 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
 
   const formik = useFormik({
     initialValues: publication,
-    onSubmit: (values, { setSubmitting }) => {
-      setSubmitting(true);
-      axios({
-        url: "api/user/editData/publications/edit",
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        data: {
-          employeeID: user.employeeID,
-          pub_sl_no_to_update: publication.sl_no,
-          updateObject: values,
-        },
-      })
-        .then((response) => response.data)
-        .then((result) => {
-          if (result.isUpdated === true) {
-            setUser((oldState) => {
-              let newState = { ...oldState };
-              newState["publications"][index] = {
-                ...newState["publications"][index],
-                ...values,
-              };
-              return newState;
-            });
-          }
-        })
-        .then(() => {
-          setSubmitting(false);
-          setIsEditing(false);
-        });
+    onSubmit: async (values, { setSubmitting }) => {
+      editPublicationHandler(
+        user.employeeID,
+        publication.id,
+        index,
+        values,
+        { setSubmitting },
+        setUser,
+        setIsEditing
+      );
     },
     validationSchema: getPublicationValidationSchema(),
   });
@@ -93,7 +72,7 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
                 setIsEditing(false);
               }}
             >
-              {"Discard"}
+              {"Cancel"}
             </Button>
           </Grid>
           <Grid item xs={6}>

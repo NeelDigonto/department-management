@@ -21,7 +21,7 @@ export default async function handler(req, res) {
       $push: {
         publications: {
           $each: [emptyPublicationData],
-          $sort: { sl_no: 1 },
+          // $sort: { sl_no: 1 }, //no need to sort now
         },
       },
     }

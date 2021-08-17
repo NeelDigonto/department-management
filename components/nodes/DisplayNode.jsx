@@ -46,7 +46,9 @@ const DisplayNode = ({ field, value }) => {
   else if (field.type === VALUE_TYPE.OBJECT && field.input_type === INPUT_TYPE.FILE) {
     outputNode = (
       <Fragment>
-        {label + " "}
+        <Typography color="textSecondary" gutterBottom>
+          {label}
+        </Typography>
         {!isEmptyObject(value) ? (
           <MuiLink
             /* rel="noopener noreferrer" */ href={"/api/file/get/" + value.fuid}

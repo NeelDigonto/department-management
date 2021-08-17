@@ -5,34 +5,10 @@ import { useUserContext } from "../../contexts/UserContext";
 import DisplayNode from "../nodes/DisplayNode";
 import { MASTER_SCHEMA } from "../../data/schema";
 import { WIDTH_TYPE } from "../../data/types/types";
+import { deletePublicationHandler } from "./handlers";
 
 const DisplayPublication = ({ publication, index, setIsEditing }) => {
   const { user, setUser } = useUserContext();
-
-  const deletePublicationHandler = (sl_no_to_delete) => {
-    fetch("api/user/editData/publications/delete", {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ employeeID: user.employeeID, delete_sl_no: sl_no_to_delete }),
-    })
-      .then((respone) => respone.json())
-      .then((result) => {
-        if (result.deleted) {
-          setUser((oldState) => {
-            let newState = { ...oldState };
-            newState["publications"] = newState["publications"].filter(
-              (item) => item.sl_no !== sl_no_to_delete
-            );
-            return newState;
-          });
-        } else {
-          console.error("pub not deleted");
-          console.log(result.updateResult);
-        }
-      });
-  };
 
   const info_content = () => (
     <Fragment>
@@ -77,7 +53,7 @@ const DisplayPublication = ({ publication, index, setIsEditing }) => {
             variant="contained"
             color="default"
             onClick={() => {
-              deletePublicationHandler(publication.sl_no);
+              deletePublicationHandler(user.employeeID, publication.id, setUser);
             }}
           >
             {"Delete"}

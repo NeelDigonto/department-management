@@ -223,7 +223,8 @@ const PUBLICATION_FIELDS = [
 ];
 
 const PUBLICATION_SCHEMA = {
-  sl_no: null,
+  id: "",
+  last_modified: new Date(2000, 1, 1, 1, 1, 1, 1),
   fields: PUBLICATION_FIELDS,
 };
 

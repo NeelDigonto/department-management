@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     return;
   }
 
-  const { employeeID, pub_sl_no_to_update, updateObject } = req.body;
+  const { employeeID, pub_id_no_to_update, updateObject } = req.body;
 
   const client = await getMongoClient();
   const connection = await client.connect();
@@ -22,7 +22,7 @@ export default async function handler(req, res) {
   const updateResult = await usersCollection.updateOne(
     {
       employeeID: employeeID,
-      "publications.sl_no": pub_sl_no_to_update,
+      "publications.id": pub_id_no_to_update,
     },
     { $set: updateQuerry }
   );
