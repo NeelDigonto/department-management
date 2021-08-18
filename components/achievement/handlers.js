@@ -1,30 +1,34 @@
 import { v4 as uuidv4 } from "uuid";
-import { MASTER_SCHEMA } from "../../data/schema";
 import axios from "axios";
 
-const createPublicationHandler = async (employeeID, setUser, setIsCreatingPublication) => {
-  const getEmptyPublicationDataBP = () => {
-    let emptyPublicationDataBP = {};
-    MASTER_SCHEMA["publications"]["fields"].forEach((item) => {
-      emptyPublicationDataBP[item.db_field] = item.value;
+import { MASTER_SCHEMA } from "../../data/schema";
+
+const createAchievementHandler = async (
+  employeeID,
+  setUser,
+  setIsCreatingAchievement,
+  achievementCategory
+) => {
+  const getEmptyAchievementData = () => {
+    let emptyAchievementData = {};
+    MASTER_SCHEMA[achievementCategory]["fields"].forEach((field) => {
+      emptyAchievementData[field.db_field] = field.value;
     });
-    emptyPublicationDataBP["id"] = uuidv4();
-    emptyPublicationDataBP["last_modified"] = new Date();
-    return emptyPublicationDataBP;
+    emptyAchievementData["id"] = uuidv4();
+    emptyAchievementData["last_modified"] = new Date();
+    return emptyAchievementData;
   };
 
-  const emptyPublicationDataBP = getEmptyPublicationDataBP();
-
-  setIsCreatingPublication(true);
-  const emptyPublicationData = { ...emptyPublicationDataBP };
-  fetch("/api/user/editData/publications/create_new", {
+  setIsCreatingAchievement(true);
+  const emptyAchievementData = getEmptyAchievementData();
+  fetch(`/api/user/editData/${achievementCategory}/create_new`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
       employeeID: employeeID,
-      emptyPublicationData: emptyPublicationData,
+      emptyAchievementData: emptyAchievementData,
     }),
   })
     .then((response) => response.json())
@@ -32,19 +36,19 @@ const createPublicationHandler = async (employeeID, setUser, setIsCreatingPublic
       if (result.created === true) {
         setUser((oldState) => {
           let newState = { ...oldState };
-          newState["publications"].push(emptyPublicationData);
-          setIsCreatingPublication(false);
+          newState[achievementCategory].push(emptyAchievementData);
+          setIsCreatingAchievement(false);
           return newState;
         });
       } else {
-        console.log("Couldn't create publication");
-        setIsCreatingPublication(false);
+        console.log("Couldn't create " + achievementCategory);
+        setIsCreatingAchievement(false);
       }
     });
 };
 
-const deletePublicationHandler = async (employeeID, id_to_delete, setUser) => {
-  fetch("api/user/editData/publications/delete", {
+const deleteAchievementHandler = async (employeeID, id_to_delete, setUser, achievementCategory) => {
+  fetch(`api/user/editData/${achievementCategory}/delete`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -56,37 +60,38 @@ const deletePublicationHandler = async (employeeID, id_to_delete, setUser) => {
       if (result.deleted) {
         setUser((oldState) => {
           let newState = { ...oldState };
-          newState["publications"] = newState["publications"].filter(
+          newState[achievementCategory] = newState[achievementCategory].filter(
             (item) => item.id !== id_to_delete
           );
           return newState;
         });
       } else {
-        console.error("pub not deleted");
+        console.error(achievementCategory + " not deleted");
         console.log(result.updateResult);
       }
     });
 };
 
-const editPublicationHandler = async (
+const editAchievementHandler = async (
   employeeID,
-  publication_id,
+  achievement_id,
   index,
   values,
   { setSubmitting },
   setUser,
-  setIsEditing
+  setIsEditing,
+  achievementCategory
 ) => {
   setSubmitting(true);
   axios({
-    url: "api/user/editData/publications/edit",
+    url: `api/user/editData/${achievementCategory}/edit`,
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
     data: {
       employeeID: employeeID,
-      pub_id_no_to_update: publication_id,
+      delete_id_no: achievement_id,
       updateObject: values,
     },
   })
@@ -95,8 +100,8 @@ const editPublicationHandler = async (
       if (result.isUpdated === true) {
         setUser((oldState) => {
           let newState = { ...oldState };
-          newState["publications"][index] = {
-            ...newState["publications"][index],
+          newState[achievementCategory][index] = {
+            ...newState[achievementCategory][index],
             ...values,
           };
           return newState;
@@ -109,4 +114,4 @@ const editPublicationHandler = async (
     });
 };
 
-export { createPublicationHandler, deletePublicationHandler, editPublicationHandler };
+export { createAchievementHandler, deleteAchievementHandler, editAchievementHandler };

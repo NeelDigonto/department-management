@@ -5,7 +5,7 @@ import { Button, Grid, Box, makeStyles, Backdrop, CircularProgress } from "@mate
 import { MASTER_SCHEMA, getPublicationValidationSchema } from "../../data/schema";
 import { useUserContext } from "../../contexts/UserContext";
 import EditNode from "../nodes/EditNode";
-import { editPublicationHandler } from "./handlers";
+import { editAchievementHandler } from "./handlers";
 
 const useStyles = makeStyles((theme) => ({
   backdrop: {
@@ -14,26 +14,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const EditPublication = ({ publication, index, setIsEditing }) => {
+const EditAchievement = ({
+  achievementCategory,
+  getAchievementValidationSchema,
+  achievement,
+  index,
+  setIsEditing,
+}) => {
   const classes = useStyles();
   const { user, setUser } = useUserContext();
   const [isUploading, setIsUploading] = useState(false);
   const [open, setOpen] = useState(false);
 
   const formik = useFormik({
-    initialValues: publication,
+    initialValues: achievement,
     onSubmit: async (values, { setSubmitting }) => {
-      editPublicationHandler(
+      editAchievementHandler(
         user.employeeID,
-        publication.id,
+        achievement.id,
         index,
         values,
         { setSubmitting },
         setUser,
-        setIsEditing
+        setIsEditing,
+        achievementCategory
       );
     },
-    validationSchema: getPublicationValidationSchema(),
+    validationSchema: getAchievementValidationSchema(),
   });
 
   useEffect(() => {
@@ -44,7 +51,7 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
   const getFormNode = (
     <form onSubmit={formik.handleSubmit} /* encType="multipart/form-data" */>
       <Grid container>
-        {MASTER_SCHEMA["publications"]["fields"].map((field) => (
+        {MASTER_SCHEMA[achievementCategory]["fields"].map((field) => (
           <Grid item xs={12} md={6} key={field.db_field}>
             <Box px={0.5} py={0.5}>
               <EditNode field={field} formik={formik} setIsUploading={setIsUploading}></EditNode>
@@ -93,4 +100,4 @@ const EditPublication = ({ publication, index, setIsEditing }) => {
   );
 };
 
-export default EditPublication;
+export default EditAchievement;

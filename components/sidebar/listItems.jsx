@@ -51,6 +51,14 @@ export const mainListItems = (
         <ListItemText primary="Publications" />
       </ListItem>
     </NextLink>
+    <NextLink href={"/journal_publications"}>
+      <ListItem button>
+        <ListItemIcon>
+          <BookIcon />
+        </ListItemIcon>
+        <ListItemText primary="Journal Publications" />
+      </ListItem>
+    </NextLink>
     {/*  <NextLink href={"/experience"}>
       <ListItem button>
         <ListItemIcon>

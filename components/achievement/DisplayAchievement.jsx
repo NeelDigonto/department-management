@@ -5,15 +5,15 @@ import { useUserContext } from "../../contexts/UserContext";
 import DisplayNode from "../nodes/DisplayNode";
 import { MASTER_SCHEMA } from "../../data/schema";
 import { WIDTH_TYPE } from "../../data/types/types";
-import { deletePublicationHandler } from "./handlers";
+import { deleteAchievementHandler } from "./handlers";
 
-const DisplayPublication = ({ publication, index, setIsEditing }) => {
+const DisplayAchievement = ({ achievementCategory, achievement, index, setIsEditing }) => {
   const { user, setUser } = useUserContext();
 
   const info_content = () => (
     <Fragment>
-      {MASTER_SCHEMA["publications"]["fields"].map((field, index) => {
-        const value = publication[field.db_field];
+      {MASTER_SCHEMA[achievementCategory]["fields"].map((field, index) => {
+        const value = achievement[field.db_field];
         let media_queries = {};
         if (!field.view_width) {
           media_queries = { xs: 12, lg: 6 };
@@ -53,7 +53,12 @@ const DisplayPublication = ({ publication, index, setIsEditing }) => {
             variant="contained"
             color="default"
             onClick={() => {
-              deletePublicationHandler(user.employeeID, publication.id, setUser);
+              deleteAchievementHandler(
+                user.employeeID,
+                achievement.id,
+                setUser,
+                achievementCategory
+              );
             }}
           >
             {"Delete"}
@@ -64,4 +69,4 @@ const DisplayPublication = ({ publication, index, setIsEditing }) => {
   );
 };
 
-export default DisplayPublication;
+export default DisplayAchievement;

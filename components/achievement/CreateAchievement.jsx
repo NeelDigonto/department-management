@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Fab, makeStyles } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 
-import { createPublicationHandler } from "./handlers";
+import { createAchievementHandler } from "./handlers";
 import { useUserContext } from "../../contexts/UserContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -13,20 +13,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CreatePublication = ({}) => {
+const CreateAchievement = ({ achievementCategory }) => {
   const classes = useStyles();
   const { user, setUser } = useUserContext();
 
-  const [isCreatingPublication, setIsCreatingPublication] = useState(false);
+  const [isCreatingAchievement, setIsCreatingAchievement] = useState(false);
 
   return (
     <Fab
       className={classes.fab}
       color="primary"
       aria-label="add"
-      disabled={isCreatingPublication}
+      disabled={isCreatingAchievement}
       onClick={() => {
-        createPublicationHandler(user.employeeID, setUser, setIsCreatingPublication);
+        createAchievementHandler(
+          user.employeeID,
+          setUser,
+          setIsCreatingAchievement,
+          achievementCategory
+        );
       }}
     >
       <AddIcon />
@@ -34,4 +39,4 @@ const CreatePublication = ({}) => {
   );
 };
 
-export default CreatePublication;
+export default CreateAchievement;

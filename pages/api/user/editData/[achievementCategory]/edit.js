@@ -7,7 +7,9 @@ export default async function handler(req, res) {
     return;
   }
 
-  const { employeeID, pub_id_no_to_update, updateObject } = req.body;
+  const { achievementCategory } = req.query;
+
+  const { employeeID, delete_id_no, updateObject } = req.body;
 
   const client = await getMongoClient();
   const connection = await client.connect();
@@ -16,13 +18,13 @@ export default async function handler(req, res) {
 
   let updateQuerry = {};
   for (let [key, value] of Object.entries(updateObject)) {
-    updateQuerry[`publications.$.${key}`] = value;
+    updateQuerry[`${achievementCategory}.$.${key}`] = value;
   }
 
   const updateResult = await usersCollection.updateOne(
     {
       employeeID: employeeID,
-      "publications.id": pub_id_no_to_update,
+      [`${achievementCategory}.id`]: delete_id_no,
     },
     { $set: updateQuerry }
   );

@@ -3,17 +3,11 @@ import Head from "next/head";
 import React from "react";
 import { useRouter } from "next/router";
 import { signIn, signOut, useSession, getSession } from "next-auth/client";
-import NextLink from "next/link";
-import { sidebarOptions, schema } from "../data/schema";
-
-import { useUserContext } from "../contexts/UserContext.jsx";
-
 import clsx from "clsx";
 import {
   makeStyles,
   CssBaseline,
   Drawer,
-  Box,
   AppBar,
   Toolbar,
   List,
@@ -22,9 +16,7 @@ import {
   IconButton,
   Badge,
   Container,
-  InputBase,
   alpha,
-  Button,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
@@ -32,8 +24,9 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import SearchIcon from "@material-ui/icons/Search";
 import Profile from "../components/profile/Profile.jsx";
-import Publications from "../components/publications/Publications.jsx";
 import { mainListItems, secondaryListItems } from "../components/sidebar/listItems.jsx";
+import Achievements from "../components/achievement/Achievements";
+import { getValidationSchema } from "../data/schema.js";
 
 import Copyright from "../components/copyright/Copyright";
 
@@ -179,7 +172,21 @@ export default function Dashboard() {
         break;
       }
       case "publications": {
-        setMainViewComponents(<Publications />);
+        setMainViewComponents(
+          <Achievements
+            achievementCategory="publications"
+            getAchievementValidationSchema={getValidationSchema("publications")}
+          />
+        );
+        break;
+      }
+      case "journal_publications": {
+        setMainViewComponents(
+          <Achievements
+            achievementCategory="journal_publications"
+            getAchievementValidationSchema={getValidationSchema("journal_publications")}
+          />
+        );
         break;
       }
       default: {

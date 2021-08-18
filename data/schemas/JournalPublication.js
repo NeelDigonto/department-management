@@ -14,7 +14,7 @@ import {
   BOOLEAN_REQUIRED_VALIDATION_SCHEMA,
 } from "../../validation/schemas";
 
-const PUBLICATION_FIELDS = [
+const JOURNAL_PUBLICATION_FIELDS = [
   {
     label: "Title",
     value: "",
@@ -29,17 +29,31 @@ const PUBLICATION_FIELDS = [
     validation: NAME_VALIDATION_SCHEMA(),
   },
   {
-    label: "Author's Name",
+    label: "Author",
     value: "",
-    info: "Name of the Author of the paper",
-    excel_field_name: "Author's Name",
-    excel_col_width: 20,
+    info: "Author (Only name of the faculty associated with BSH, No Co-author) ",
+    excel_field_name: "Author",
+    excel_col_width: 40,
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
     view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "name_of_auth",
+    db_field: "author",
     validation: NAME_VALIDATION_SCHEMA(),
+  },
+  {
+    label: "Department",
+    value: "",
+    info: "",
+    excel_field_name: "Department",
+    excel_col_width: 20,
+    type: VALUE_TYPE.STRING,
+    db_field_type: DB_FIELD_TYPE.STRING,
+    input_type: INPUT_TYPE.SELECT,
+    view_width: WIDTH_TYPE.MEDIUM,
+    options: ["Department of Basic Science and Humanities"],
+    db_field: "department",
+    validation: OPTIONS_VALIDATION_SCHEMA(),
   },
   {
     label: "Published on",
@@ -55,16 +69,16 @@ const PUBLICATION_FIELDS = [
     validation: DATE_VALIDATION_SCHEMA(),
   },
   {
-    label: "Journal",
+    label: "Conference Name",
     value: "",
-    info: "Name of the Journal",
-    excel_field_name: "Journal",
-    excel_col_width: 20,
+    info: "Name of the Conference",
+    excel_field_name: "Conference Name",
+    excel_col_width: 40,
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
     view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "journal_name",
+    db_field: "name_of_conf",
     validation: NAME_VALIDATION_SCHEMA(),
   },
   {
@@ -222,18 +236,22 @@ const PUBLICATION_FIELDS = [
   },
 ];
 
-const PUBLICATION_SCHEMA = {
+const JOURNAL_PUBLICATION_SCHEMA = {
   id: "",
   last_modified: new Date(2000, 1, 1, 1, 1, 1, 1),
-  fields: PUBLICATION_FIELDS,
+  fields: JOURNAL_PUBLICATION_FIELDS,
 };
 
-const getPublicationValidationSchema = () => {
-  let publicationValidationSchema = {};
-  PUBLICATION_FIELDS.forEach((field) => {
-    publicationValidationSchema[field.db_field] = field.validation;
+const getJournalPublicationValidationSchema = () => {
+  let journalPublicationValidationSchema = {};
+  JOURNAL_PUBLICATION_FIELDS.forEach((field) => {
+    journalPublicationValidationSchema[field.db_field] = field.validation;
   });
-  return Yup.object().shape(publicationValidationSchema);
+  return Yup.object().shape(journalPublicationValidationSchema);
 };
 
-export { PUBLICATION_FIELDS, PUBLICATION_SCHEMA, getPublicationValidationSchema };
+export {
+  JOURNAL_PUBLICATION_FIELDS,
+  JOURNAL_PUBLICATION_SCHEMA,
+  getJournalPublicationValidationSchema,
+};
