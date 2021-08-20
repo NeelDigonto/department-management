@@ -24,9 +24,9 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import SearchIcon from "@material-ui/icons/Search";
 import Profile from "../components/profile/Profile.jsx";
-import { mainListItems, secondaryListItems } from "../components/sidebar/listItems.jsx";
+import { getMainListItems, secondaryListItems } from "../components/sidebar/listItems.jsx";
 import Achievements from "../components/achievement/Achievements";
-import { getValidationSchema } from "../data/schema.js";
+import { ACHIEVEMENTS_GROUP_SCHEMA, getValidationSchema } from "../data/schema.js";
 
 import Copyright from "../components/copyright/Copyright";
 
@@ -166,32 +166,17 @@ export default function Dashboard() {
 
   useEffect(() => {
     const { section } = router.query;
-    switch (section) {
-      case "profile": {
-        setMainViewComponents(<Profile />);
-        break;
-      }
-      case "publications": {
-        setMainViewComponents(
-          <Achievements
-            achievementCategory="publications"
-            getAchievementValidationSchema={getValidationSchema("publications")}
-          />
-        );
-        break;
-      }
-      case "journal_publications": {
-        setMainViewComponents(
-          <Achievements
-            achievementCategory="journal_publications"
-            getAchievementValidationSchema={getValidationSchema("journal_publications")}
-          />
-        );
-        break;
-      }
-      default: {
-        setMainViewComponents(null);
-      }
+
+    if (section === "profile") setMainViewComponents(<Profile />);
+    else if (!!ACHIEVEMENTS_GROUP_SCHEMA[section]) {
+      setMainViewComponents(
+        <Achievements
+          achievementCategory={section}
+          getAchievementValidationSchema={getValidationSchema(section)}
+        />
+      );
+    } else {
+      setMainViewComponents(null);
     }
   }, [router.query]);
 
@@ -255,7 +240,7 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <Divider />
-        <List>{mainListItems}</List>
+        <List>{getMainListItems()}</List>
         <Divider />
         <List>{secondaryListItems}</List>
       </Drawer>

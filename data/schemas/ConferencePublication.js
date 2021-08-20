@@ -14,13 +14,11 @@ import {
   BOOLEAN_REQUIRED_VALIDATION_SCHEMA,
 } from "../../validation/schemas";
 
-const PUBLICATION_FIELDS = [
+const FIELDS = [
   {
     label: "Title",
     value: "",
     info: "Title of the Paper",
-    excel_field_name: "Title",
-    excel_col_width: 40,
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
@@ -32,8 +30,6 @@ const PUBLICATION_FIELDS = [
     label: "Author's Name",
     value: "",
     info: "Name of the Author of the paper",
-    excel_field_name: "Author's Name",
-    excel_col_width: 20,
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
@@ -45,8 +41,6 @@ const PUBLICATION_FIELDS = [
     label: "Published on",
     value: "",
     info: "Year of Publication of the paper",
-    excel_field_name: "Published on",
-    excel_col_width: 20,
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.DATE,
@@ -58,8 +52,6 @@ const PUBLICATION_FIELDS = [
     label: "Journal",
     value: "",
     info: "Name of the Journal",
-    excel_field_name: "Journal",
-    excel_col_width: 20,
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
@@ -71,8 +63,6 @@ const PUBLICATION_FIELDS = [
     label: "Coverage",
     value: "",
     info: "National/ International",
-    excel_field_name: "Coverage",
-    excel_col_width: 20,
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.SELECT,
@@ -85,8 +75,6 @@ const PUBLICATION_FIELDS = [
     label: "Impact" /*make this field a color value*/,
     value: "",
     info: "Impact Factor",
-    excel_field_name: "Impact Factor",
-    excel_col_width: 20,
     type: VALUE_TYPE.NUMBER,
     input_type: INPUT_TYPE.TEXT,
     db_field_type: DB_FIELD_TYPE.STRING,
@@ -98,8 +86,6 @@ const PUBLICATION_FIELDS = [
     label: "Volume No.",
     value: "",
     info: "Volume No. of the paper",
-    excel_field_name: "Volume No.",
-    excel_col_width: 20,
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
@@ -111,8 +97,6 @@ const PUBLICATION_FIELDS = [
     label: "Issue No.",
     value: "",
     info: "Issue No. of the paper",
-    excel_field_name: "Issue No.",
-    excel_col_width: 20,
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
@@ -124,8 +108,6 @@ const PUBLICATION_FIELDS = [
     label: "Page No.",
     value: "",
     info: "Page No. of the paper",
-    excel_field_name: "Page No",
-    excel_col_width: 20,
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
@@ -137,8 +119,6 @@ const PUBLICATION_FIELDS = [
     label: "ISSN/ISBN",
     value: "",
     info: "ISSN/ISBN of the paper",
-    excel_field_name: "ISSN/ISBN",
-    excel_col_width: 20,
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
@@ -150,8 +130,6 @@ const PUBLICATION_FIELDS = [
     label: "Indexing",
     value: "",
     info: "Indexing of the paper",
-    excel_field_name: "Indexing",
-    excel_col_width: 20,
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
@@ -163,8 +141,6 @@ const PUBLICATION_FIELDS = [
     label: "Students Involved",
     value: "0",
     info: "Number of students involved (if any)",
-    excel_field_name: "Students Involved",
-    excel_col_width: 20,
     type: VALUE_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
     db_field_type: DB_FIELD_TYPE.STRING,
@@ -176,8 +152,6 @@ const PUBLICATION_FIELDS = [
     label: "Invited Paper",
     value: false,
     info: "Whether the paper was an invited paper ? Input Yes/No",
-    excel_field_name: "Invited Paper",
-    excel_col_width: 20,
     type: VALUE_TYPE.BOOLEAN,
     input_type: INPUT_TYPE.CHECKBOX,
     db_field_type: DB_FIELD_TYPE.BOOLEAN,
@@ -189,8 +163,6 @@ const PUBLICATION_FIELDS = [
     label: "Proof of Invitation",
     value: {},
     info: "Proof of Invitation (Upload pdf)",
-    excel_field_name: "Proof of Invitation",
-    excel_col_width: 20,
     type: VALUE_TYPE.OBJECT,
     input_type: INPUT_TYPE.FILE,
     db_field_type: DB_FIELD_TYPE.OBJECT,
@@ -210,8 +182,6 @@ const PUBLICATION_FIELDS = [
     label: "First Page of Publication",
     value: {},
     info: "Attachments",
-    excel_field_name: "Publication First Page",
-    excel_col_width: 20,
     type: VALUE_TYPE.OBJECT,
     input_type: INPUT_TYPE.FILE,
     db_field_type: DB_FIELD_TYPE.OBJECT,
@@ -222,18 +192,20 @@ const PUBLICATION_FIELDS = [
   },
 ];
 
-const PUBLICATION_SCHEMA = {
+const SCHEMA = {
   id: "",
   last_modified: new Date(2000, 1, 1, 1, 1, 1, 1),
-  fields: PUBLICATION_FIELDS,
+  fields: FIELDS,
 };
 
-const getPublicationValidationSchema = () => {
-  let publicationValidationSchema = {};
-  PUBLICATION_FIELDS.forEach((field) => {
-    publicationValidationSchema[field.db_field] = field.validation;
+const getValidationSchema = () => {
+  let validationSchema = {};
+  FIELDS.forEach((field) => {
+    validationSchema[field.db_field] = field.validation;
   });
-  return Yup.object().shape(publicationValidationSchema);
+  return Yup.object().shape(validationSchema);
 };
 
-export { PUBLICATION_FIELDS, PUBLICATION_SCHEMA, getPublicationValidationSchema };
+const export_object = { FIELDS, SCHEMA, getValidationSchema };
+
+export default export_object;

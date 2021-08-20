@@ -3,6 +3,7 @@ import * as ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import { MASTER_SCHEMA } from "../../data/schema";
 import { isEmptyObject } from "../../lib/util";
+import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE, WIDTH_TYPE } from "../../data/types/types";
 
 function TypeOf(obj) {
   return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
@@ -42,6 +43,19 @@ class Cell {
   }
 }
 
+const getColumnWidth = (view_width) => {
+  switch (view_width) {
+    case WIDTH_TYPE.SMALL:
+      return 20;
+    case WIDTH_TYPE.MEDIUM:
+      return 30;
+    case WIDTH_TYPE.LARGE:
+      return 40;
+    default:
+      return 20;
+  }
+};
+
 const AdminGetData = () => {
   const getCollectionData = async () => {
     return fetch("/api/admin/getUserCollection").then((response) => response.json());
@@ -69,11 +83,15 @@ const AdminGetData = () => {
     const setupHeaders = () => {
       let ws_columns_hot = [
         { header: "ID's", key: "id", width: collectionData[0]["employeeID"].length + 3 },
-        { header: "Profile", key: "profile", width: MASTER_SCHEMA["profile"][0].excel_col_width },
+        {
+          header: "Profile",
+          key: "profile",
+          width: getColumnWidth(MASTER_SCHEMA["profile"][0].view_width),
+        },
       ];
       for (let i = 1; i < MASTER_SCHEMA["profile"].length; ++i) {
         ws_columns_hot.push({
-          width: MASTER_SCHEMA["profile"][i].excel_col_width,
+          width: getColumnWidth(MASTER_SCHEMA["profile"][i].view_width),
         });
       }
       worksheet.columns = ws_columns_hot;
@@ -87,10 +105,10 @@ const AdminGetData = () => {
       worksheet.getCell("B1").alignment = { horizontal: "center", vertical: "middle" };
 
       const iter_cell = new Cell("B", 2);
-      MASTER_SCHEMA["profile"].forEach((item, index) => {
+      MASTER_SCHEMA["profile"].forEach((field, index) => {
         const cell = worksheet.getCell(iter_cell.getString());
         iter_cell.column += 1;
-        cell.value = item.excel_field_name;
+        cell.value = field.label;
         cell.alignment = { horizontal: "center", vertical: "middle" };
       });
     };
@@ -101,10 +119,10 @@ const AdminGetData = () => {
         worksheet.getCell(employeeID_cell.getString()).value = collectionData[userNo]["employeeID"];
 
         const employeeField_cell = new Cell("B", 3 + userNo);
-        MASTER_SCHEMA["profile"].forEach((item, index) => {
+        MASTER_SCHEMA["profile"].forEach((field, index) => {
           const cell = worksheet.getCell(employeeField_cell.getString());
           employeeField_cell.column += 1;
-          const value = collectionData[userNo]["profile"][item.db_field];
+          const value = collectionData[userNo]["profile"][field.db_field];
           cell.value = !!value ? value : null;
         });
 
@@ -137,13 +155,13 @@ const AdminGetData = () => {
         {
           header: "Publications",
           key: "publications",
-          width: MASTER_SCHEMA["publications"]["fields"][0].excel_col_width,
+          width: getColumnWidth(MASTER_SCHEMA["publications"]["fields"][0].view_width),
         },
       ];
 
       for (let i = 1; i < MASTER_SCHEMA["publications"]["fields"].length; ++i) {
         ws_columns_hot.push({
-          width: MASTER_SCHEMA["publications"]["fields"][i].excel_col_width,
+          width: getColumnWidth(MASTER_SCHEMA["publications"]["fields"][i].view_width),
         });
       }
       worksheet.columns = ws_columns_hot;
@@ -158,10 +176,10 @@ const AdminGetData = () => {
       worksheet.getCell("B1").alignment = { horizontal: "center", vertical: "middle" };
 
       const iter_cell = new Cell("B", 2);
-      MASTER_SCHEMA["publications"]["fields"].forEach((item, index) => {
+      MASTER_SCHEMA["publications"]["fields"].forEach((field, index) => {
         const cell = worksheet.getCell(iter_cell.getString());
         iter_cell.column += 1;
-        cell.value = item.excel_field_name;
+        cell.value = field.label;
         cell.alignment = { horizontal: "center", vertical: "middle" };
       });
     };
@@ -183,12 +201,12 @@ const AdminGetData = () => {
 
         for (let pubNo = 0; pubNo < collectionData[userNo]["publications"].length; ++pubNo) {
           let colStart = "B";
-          MASTER_SCHEMA["publications"]["fields"].forEach((item, index) => {
+          MASTER_SCHEMA["publications"]["fields"].forEach((field, index) => {
             const colCode = colStart.charCodeAt(0) + index;
             const colId = String.fromCharCode(colCode);
             const cell = worksheet.getCell(`${colId}${3 + rowsConsumedByPrevUsers + pubNo}`);
-            const value = collectionData[userNo]["publications"][pubNo][item.db_field];
-            if (item.input_type !== "file") {
+            const value = collectionData[userNo]["publications"][pubNo][field.db_field];
+            if (field.input_type !== "file") {
               cell.value = !!value ? value : null;
             } else {
               if (isEmptyObject(value)) {

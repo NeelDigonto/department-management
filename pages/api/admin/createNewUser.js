@@ -1,6 +1,6 @@
 import { getMongoClient } from "../../../lib/db";
 import { hashPassword } from "../../../lib/auth";
-import { MASTER_SCHEMA, EMPTY_USER_DOCUMENT } from "../../../data/schema";
+import { MASTER_SCHEMA, getEmptyUserDocument } from "../../../data/schema";
 
 export default async function handler(req, res) {
   //check if user is allowed to acces this api
@@ -26,6 +26,9 @@ export default async function handler(req, res) {
     hashedPassword: await hashPassword(password),
     ...MASTER_SCHEMA,
   }; */
+
+  const EMPTY_USER_DOCUMENT = getEmptyUserDocument();
+
   const emptyUserDocument = {
     ...EMPTY_USER_DOCUMENT,
     employeeID: employeeID,

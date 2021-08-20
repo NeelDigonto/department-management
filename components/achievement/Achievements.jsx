@@ -4,6 +4,8 @@ import { Box, Typography, makeStyles } from "@material-ui/core";
 import { useUserContext } from "../../contexts/UserContext";
 import AAchievement from "./AAchievement.jsx";
 import CreateAchievement from "./CreateAchievement";
+/* import AchievementCard from "./ui/AchievementCard";
+import RecipeReviewCard from "./ui/RecipeReviewCard"; */
 
 const useStyles = makeStyles((theme) => ({
   noPubMsg: {
@@ -36,6 +38,8 @@ const Achievements = ({ achievementCategory, getAchievementValidationSchema }) =
               ))
             )}
           </Box>
+          {/* <RecipeReviewCard />
+          <AchievementCard /> */}
           <CreateAchievement achievementCategory={achievementCategory} />
         </Fragment>
       ) : null}

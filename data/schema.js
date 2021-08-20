@@ -1,51 +1,69 @@
 import * as Yup from "yup";
-import { PROFILE_SCHEMA, PROFILE_FIELDS, getProfileValidationSchema } from "./schemas/Profile";
-import {
-  PUBLICATION_FIELDS,
-  PUBLICATION_SCHEMA,
-  getPublicationValidationSchema,
-} from "./schemas/Publication";
-import {
-  JOURNAL_PUBLICATION_FIELDS,
-  JOURNAL_PUBLICATION_SCHEMA,
-  getJournalPublicationValidationSchema,
-} from "./schemas/JournalPublication";
-const DataTypes = { string: 0, date: 1, bool: 3 };
+
+import Profile from "./schemas/Profile";
+import ConferencePublication from "./schemas/ConferencePublication";
+import JournalPublication from "./schemas/JournalPublication";
+
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListSubheader from "@material-ui/core/ListSubheader";
+import DashboardIcon from "@material-ui/icons/Dashboard";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import PeopleIcon from "@material-ui/icons/People";
+import BarChartIcon from "@material-ui/icons/BarChart";
+import LayersIcon from "@material-ui/icons/Layers";
+import AssignmentIcon from "@material-ui/icons/Assignment";
+import AnnouncementIcon from "@material-ui/icons/Announcement";
+import SchoolIcon from "@material-ui/icons/School";
+import BookIcon from "@material-ui/icons/Book";
+import ComputerIcon from "@material-ui/icons/Computer";
+import TableChartIcon from "@material-ui/icons/TableChart";
+import VideoCallIcon from "@material-ui/icons/VideoCall";
+import VideocamIcon from "@material-ui/icons/Videocam";
 
 const sidebarOptions = [
-  { menuDisplay: "Profile", urlSuffix: "profile" },
-  { menuDisplay: "Education", urlSuffix: "edudation" },
-  { menuDisplay: "Conferences", urlSuffix: "conferences" },
-  { menuDisplay: "Publications", urlSuffix: "publications" },
-  { menuDisplay: "Experience", urlSuffix: "experience" },
-  { menuDisplay: "Seminars", urlSuffix: "seminars" },
-  { menuDisplay: "Projects", urlSuffix: "projects" },
+  { menuDisplay: "Profile", urlSuffix: "profile", icon: <DashboardIcon /> },
+  { menuDisplay: "Journal Publications", urlSuffix: "journal_publications", icon: <BookIcon /> },
+  {
+    menuDisplay: "Conference Publications",
+    urlSuffix: "conference_publications",
+    icon: <VideocamIcon />,
+  },
 ];
+
+const ACHIEVEMENTS_GROUP_SCHEMA = {
+  conference_publications: ConferencePublication.SCHEMA,
+  journal_publications: JournalPublication.SCHEMA,
+};
 
 const MASTER_SCHEMA = {
   employeeID: "",
   hashedPassword: "",
-  profile: PROFILE_SCHEMA,
-  publications: PUBLICATION_SCHEMA,
-  journal_publications: JOURNAL_PUBLICATION_SCHEMA,
+  profile: Profile.SCHEMA,
+  ...ACHIEVEMENTS_GROUP_SCHEMA,
 };
 
-let mockProfile = {};
-MASTER_SCHEMA["profile"].forEach((item) => {
-  mockProfile[item.db_field] = item.value;
-});
-let EMPTY_USER_DOCUMENT = { employeeID: "", hashedPassword: "", profile: mockProfile };
-EMPTY_USER_DOCUMENT["publications"] = [];
-EMPTY_USER_DOCUMENT["journal_publications"] = [];
+const getEmptyUserDocument = () => {
+  let mockProfile = {};
+  MASTER_SCHEMA["profile"].forEach((item) => {
+    mockProfile[item.db_field] = item.value;
+  });
+  let EMPTY_USER_DOCUMENT = { employeeID: "", hashedPassword: "", profile: mockProfile };
+  for (let [key, value] of Object.entries(ACHIEVEMENTS_GROUP_SCHEMA)) {
+    EMPTY_USER_DOCUMENT[key] = [];
+  }
+  return EMPTY_USER_DOCUMENT;
+};
 
 const getValidationSchema = (achievementCategory) => {
   switch (achievementCategory) {
     case "profile":
-      return getProfileValidationSchema;
-    case "publications":
-      return getPublicationValidationSchema;
+      return Profile.getValidationSchema;
+    case "conference_publications":
+      return ConferencePublication.getValidationSchema;
     case "journal_publications":
-      return getJournalPublicationValidationSchema;
+      return JournalPublication.getValidationSchema;
     default: {
       console.log("unkown item passed here");
       return () => {};
@@ -54,10 +72,9 @@ const getValidationSchema = (achievementCategory) => {
 };
 
 export {
-  DataTypes,
   sidebarOptions,
+  ACHIEVEMENTS_GROUP_SCHEMA,
   MASTER_SCHEMA,
-  EMPTY_USER_DOCUMENT,
+  getEmptyUserDocument,
   getValidationSchema,
-  getProfileValidationSchema,
 };
