@@ -1,18 +1,6 @@
 import * as Yup from "yup";
 import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE, WIDTH_TYPE } from "../types/types";
-import {
-  NAME_VALIDATION_SCHEMA,
-  ADDRESS_VALIDATION_SCHEMA,
-  EMAIL_VALIDATION_SCHEMA,
-  OPTIONS_VALIDATION_SCHEMA,
-  MOBILE_VALIDATION_SCHEMA,
-  LANDLINE_VALIDATION_SCHEMA,
-  DATE_VALIDATION_SCHEMA,
-  FILE_VALIDATION_SCHEMA,
-  FILE_REQUIRED_VALIDATION_SCHEMA,
-  STRING_REQUIRED_VALIDATION_SCHEMA,
-  BOOLEAN_REQUIRED_VALIDATION_SCHEMA,
-} from "../../validation/schemas";
+import Validation from "../../validation/schemas";
 
 const FIELDS = [
   {
@@ -24,7 +12,7 @@ const FIELDS = [
     input_type: INPUT_TYPE.TEXT,
     view_width: WIDTH_TYPE.LARGE,
     db_field: "title",
-    validation: NAME_VALIDATION_SCHEMA(),
+    validation: Validation.string(),
   },
   {
     label: "Author's Name",
@@ -35,7 +23,7 @@ const FIELDS = [
     input_type: INPUT_TYPE.TEXT,
     view_width: WIDTH_TYPE.MEDIUM,
     db_field: "name_of_auth",
-    validation: NAME_VALIDATION_SCHEMA(),
+    validation: Validation.string(),
   },
   {
     label: "Published on",
@@ -46,7 +34,7 @@ const FIELDS = [
     input_type: INPUT_TYPE.DATE,
     view_width: WIDTH_TYPE.MEDIUM,
     db_field: "yop",
-    validation: DATE_VALIDATION_SCHEMA(),
+    validation: Validation.date(),
   },
   {
     label: "Journal",
@@ -57,7 +45,7 @@ const FIELDS = [
     input_type: INPUT_TYPE.TEXT,
     view_width: WIDTH_TYPE.MEDIUM,
     db_field: "journal_name",
-    validation: NAME_VALIDATION_SCHEMA(),
+    validation: Validation.string(),
   },
   {
     label: "Coverage",
@@ -69,18 +57,18 @@ const FIELDS = [
     view_width: WIDTH_TYPE.MEDIUM,
     options: ["National", "International"],
     db_field: "nat_inter_imp",
-    validation: OPTIONS_VALIDATION_SCHEMA(),
+    validation: Validation.option(),
   },
   {
     label: "Impact" /*make this field a color value*/,
     value: "",
     info: "Impact Factor",
-    type: VALUE_TYPE.NUMBER,
+    type: VALUE_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
     db_field_type: DB_FIELD_TYPE.STRING,
     view_width: WIDTH_TYPE.SMALL,
     db_field: "impact_factor",
-    validation: STRING_REQUIRED_VALIDATION_SCHEMA(),
+    validation: Validation.string(),
   },
   {
     label: "Volume No.",
@@ -91,7 +79,7 @@ const FIELDS = [
     input_type: INPUT_TYPE.TEXT,
     view_width: WIDTH_TYPE.SMALL,
     db_field: "vol_no",
-    validation: STRING_REQUIRED_VALIDATION_SCHEMA(),
+    validation: Validation.string(),
   },
   {
     label: "Issue No.",
@@ -102,7 +90,7 @@ const FIELDS = [
     input_type: INPUT_TYPE.TEXT,
     view_width: WIDTH_TYPE.SMALL,
     db_field: "issue_no",
-    validation: STRING_REQUIRED_VALIDATION_SCHEMA(),
+    validation: Validation.string(),
   },
   {
     label: "Page No.",
@@ -113,7 +101,7 @@ const FIELDS = [
     input_type: INPUT_TYPE.TEXT,
     view_width: WIDTH_TYPE.SMALL,
     db_field: "page_no",
-    validation: STRING_REQUIRED_VALIDATION_SCHEMA(),
+    validation: Validation.string(),
   },
   {
     label: "ISSN/ISBN",
@@ -124,7 +112,7 @@ const FIELDS = [
     input_type: INPUT_TYPE.TEXT,
     view_width: WIDTH_TYPE.LARGE,
     db_field: "issn_isbn",
-    validation: STRING_REQUIRED_VALIDATION_SCHEMA(),
+    validation: Validation.string(),
   },
   {
     label: "Indexing",
@@ -135,18 +123,18 @@ const FIELDS = [
     input_type: INPUT_TYPE.TEXT,
     view_width: WIDTH_TYPE.MEDIUM,
     db_field: "indexing",
-    validation: STRING_REQUIRED_VALIDATION_SCHEMA(),
+    validation: Validation.string(),
   },
   {
     label: "Students Involved",
-    value: "0",
+    value: 0,
     info: "Number of students involved (if any)",
-    type: VALUE_TYPE.STRING,
-    input_type: INPUT_TYPE.TEXT,
-    db_field_type: DB_FIELD_TYPE.STRING,
+    type: VALUE_TYPE.NUMBER,
+    input_type: INPUT_TYPE.NUMBER,
+    db_field_type: DB_FIELD_TYPE.INT32,
     view_width: WIDTH_TYPE.SMALL,
     db_field: "studs_involved",
-    validation: STRING_REQUIRED_VALIDATION_SCHEMA(),
+    validation: Validation.number(),
   },
   {
     label: "Invited Paper",
@@ -157,7 +145,7 @@ const FIELDS = [
     db_field_type: DB_FIELD_TYPE.BOOLEAN,
     view_width: WIDTH_TYPE.SMALL,
     db_field: "inv_paper",
-    validation: BOOLEAN_REQUIRED_VALIDATION_SCHEMA(),
+    validation: Validation.boolean(),
   },
   {
     label: "Proof of Invitation",
@@ -188,7 +176,7 @@ const FIELDS = [
     view_width: WIDTH_TYPE.LARGE,
     input_range: "application/pdf",
     db_field: "first_page_pb",
-    validation: FILE_REQUIRED_VALIDATION_SCHEMA(),
+    validation: Validation.file(),
   },
 ];
 

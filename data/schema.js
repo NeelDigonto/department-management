@@ -60,12 +60,12 @@ const getValidationSchema = (achievementCategory) => {
   switch (achievementCategory) {
     case "profile":
       return Profile.getValidationSchema;
-    case "conference_publications":
+    case "conference-publications":
       return ConferencePublication.getValidationSchema;
-    case "journal_publications":
+    case "journal-publications":
       return JournalPublication.getValidationSchema;
     default: {
-      console.log("unkown item passed here");
+      console.log("unkown item passed here: " + achievementCategory);
       return () => {};
     }
   }

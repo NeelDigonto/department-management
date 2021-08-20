@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import {
-  Grid,
   TextField,
   FormControl,
   InputLabel,
@@ -26,12 +25,30 @@ const EditNode = ({ field, formik, setIsUploading }) => {
   let outputNode;
   switch (field.input_type) {
     case INPUT_TYPE.TEXT: {
+      console.log(formik.errors[field.db_field]);
       outputNode = (
         <TextField
           error={!!formik.errors[field.db_field] && formik.touched[field.db_field]}
-          helperText={formik.errors[field.db_field]}
+          helperText={!!formik.errors[field.db_field] ? formik.errors[field.db_field] : field.info}
           fullWidth
           variant="filled"
+          label={field.label}
+          name={field.db_field}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values[field.db_field]}
+        ></TextField>
+      );
+      break;
+    }
+    case INPUT_TYPE.NUMBER: {
+      outputNode = (
+        <TextField
+          error={!!formik.errors[field.db_field] && formik.touched[field.db_field]}
+          helperText={!!formik.errors[field.db_field] ? formik.errors[field.db_field] : field.info}
+          fullWidth
+          variant="filled"
+          type="number"
           label={field.label}
           name={field.db_field}
           onChange={formik.handleChange}
@@ -45,7 +62,7 @@ const EditNode = ({ field, formik, setIsUploading }) => {
       outputNode = (
         <TextField
           error={!!formik.errors[field.db_field] && formik.touched[field.db_field]}
-          helperText={formik.errors[field.db_field]}
+          helperText={!!formik.errors[field.db_field] ? formik.errors[field.db_field] : field.info}
           fullWidth
           key={field.db_field}
           type="date"
@@ -60,27 +77,24 @@ const EditNode = ({ field, formik, setIsUploading }) => {
     }
     case INPUT_TYPE.SELECT: {
       outputNode = (
-        <FormControl
-          fullWidth
+        <TextField
+          id={field.db_field}
           error={!!formik.errors[field.db_field] && formik.touched[field.db_field]}
+          helperText={!!formik.errors[field.db_field] ? formik.errors[field.db_field] : field.info}
+          fullWidth
+          select
+          label={field.label}
+          name={field.db_field}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values[field.db_field]}
         >
-          <InputLabel id={field.db_fiel}>{field.label}</InputLabel>
-          <Select
-            labelId={field.db_fiel}
-            id={field.db_field}
-            value={formik.values[field.db_field]}
-            name={field.db_field}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          >
-            {field.options.map((item) => (
-              <MenuItem key={item} value={item}>
-                {item}
-              </MenuItem>
-            ))}
-          </Select>
-          <FormHelperText>{formik.errors[field.db_field]}</FormHelperText>
-        </FormControl>
+          {field.options.map((option) => (
+            <MenuItem key={option} value={option}>
+              {option}
+            </MenuItem>
+          ))}
+        </TextField>
       );
       break;
     }
@@ -97,7 +111,7 @@ const EditNode = ({ field, formik, setIsUploading }) => {
             />
           }
           label={field.label}
-        />
+        ></FormControlLabel>
       );
       break;
     }
@@ -105,7 +119,7 @@ const EditNode = ({ field, formik, setIsUploading }) => {
       outputNode = (
         <TextField
           error={!!formik.errors[field.db_field] && formik.touched[field.db_field]}
-          helperText={formik.errors[field.db_field]}
+          helperText={!!formik.errors[field.db_field] ? formik.errors[field.db_field] : field.info}
           fullWidth
           variant="filled"
           label={field.label}

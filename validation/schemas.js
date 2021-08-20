@@ -1,44 +1,44 @@
 import * as Yup from "yup";
 
-const NAME_VALIDATION_SCHEMA = () =>
-  Yup.string().min(2, "Too Short!").max(200, "Too Long!").required("Required!");
+const string = (required = true, minLength = 1, maxLength = 200) =>
+  required
+    ? Yup.string().min(minLength, "Too Short!").max(maxLength, "Too Long!").required("Required!")
+    : Yup.string().min(minLength, "Too Short!").max(maxLength, "Too Long!");
 
-const ADDRESS_VALIDATION_SCHEMA = () =>
-  Yup.string().min(5, "Too Short!").max(100, "Too Long!").required("Required!");
+const email = (required = true) =>
+  required
+    ? Yup.string().email("Invalid email").required("Required!")
+    : Yup.string().email("Invalid email");
 
-const EMAIL_VALIDATION_SCHEMA = () => Yup.string().email("Invalid email").required("Required!");
+const option = (required = true) => (required ? Yup.string().required("Required!") : Yup.string());
 
-const OPTIONS_VALIDATION_SCHEMA = () => Yup.string().required("Required!");
+const date = (required = true) =>
+  required ? Yup.date("Not a date").required("Required!") : Yup.date("Not a date");
 
-const MOBILE_VALIDATION_SCHEMA = () =>
-  Yup.string().length(10, "Must be of 10 digits!").required("Required!");
+const file = (required = true) =>
+  required
+    ? Yup.object().shape({
+        fname: Yup.string().required("File Required"),
+        fuid: Yup.string().required("File Required"),
+      })
+    : Yup.object();
 
-const LANDLINE_VALIDATION_SCHEMA = () =>
-  Yup.string().length(8, "Must be of 10 digits!").required("Required!");
+const boolean = (required = true) =>
+  required ? Yup.boolean().required("Required!") : Yup.boolean();
 
-const DATE_VALIDATION_SCHEMA = () => Yup.date().required("Required!");
+const number = (required = true, integer = true, positive = true) => {
+  let validation_object = Yup.number("Must be a Number").required("Required");
 
-const FILE_VALIDATION_SCHEMA = () =>
-  Yup.object().shape({ fname: Yup.string().required(), fuid: Yup.string().required() });
+  required ? validation_object.required("Required") : validation_object;
+  integer ? validation_object.integer("Must be an Integer") : validation_object;
+  positive ? validation_object.positive("Must be Positive") : validation_object;
 
-const FILE_REQUIRED_VALIDATION_SCHEMA = () =>
-  Yup.object()
-    .shape({ fname: Yup.string().required(), fuid: Yup.string().required() })
-    .required("Required!");
-
-const STRING_REQUIRED_VALIDATION_SCHEMA = () => Yup.string().required("Required!");
-const BOOLEAN_REQUIRED_VALIDATION_SCHEMA = () => Yup.boolean().required("Required!");
-
-export {
-  NAME_VALIDATION_SCHEMA,
-  ADDRESS_VALIDATION_SCHEMA,
-  EMAIL_VALIDATION_SCHEMA,
-  OPTIONS_VALIDATION_SCHEMA,
-  MOBILE_VALIDATION_SCHEMA,
-  LANDLINE_VALIDATION_SCHEMA,
-  DATE_VALIDATION_SCHEMA,
-  FILE_VALIDATION_SCHEMA,
-  FILE_REQUIRED_VALIDATION_SCHEMA,
-  STRING_REQUIRED_VALIDATION_SCHEMA,
-  BOOLEAN_REQUIRED_VALIDATION_SCHEMA,
+  /* ? Yup.number("Must be a Number")
+        .required("Required")
+        .positive("Must be Positive")
+        .integer("Must be an Integer") */
 };
+
+const export_object = { string, email, option, date, file, boolean, number };
+
+export default export_object;

@@ -22,7 +22,7 @@ const INPUT_TYPE = {
   FILE: "file",
   DATE: "date",
   EMAIL: "email",
-  INT32: "int32",
+  NUMBER: "number",
 };
 
 const WIDTH_TYPE = { SMALL: "small", MEDIUM: "medium", LARGE: "large" };
