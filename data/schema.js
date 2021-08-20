@@ -24,17 +24,17 @@ import VideocamIcon from "@material-ui/icons/Videocam";
 
 const sidebarOptions = [
   { menuDisplay: "Profile", urlSuffix: "profile", icon: <DashboardIcon /> },
-  { menuDisplay: "Journal Publications", urlSuffix: "journal_publications", icon: <BookIcon /> },
+  { menuDisplay: "Journal Publications", urlSuffix: "journal-publications", icon: <BookIcon /> },
   {
     menuDisplay: "Conference Publications",
-    urlSuffix: "conference_publications",
+    urlSuffix: "conference-publications",
     icon: <VideocamIcon />,
   },
 ];
 
 const ACHIEVEMENTS_GROUP_SCHEMA = {
-  conference_publications: ConferencePublication.SCHEMA,
-  journal_publications: JournalPublication.SCHEMA,
+  "conference-publications": ConferencePublication.SCHEMA,
+  "journal-publications": JournalPublication.SCHEMA,
 };
 
 const MASTER_SCHEMA = {

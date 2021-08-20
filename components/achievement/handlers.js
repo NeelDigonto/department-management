@@ -36,7 +36,9 @@ const createAchievementHandler = async (
       if (result.created === true) {
         setUser((oldState) => {
           let newState = { ...oldState };
-          newState[achievementCategory].push(emptyAchievementData);
+          if (!!newState[achievementCategory])
+            newState[achievementCategory].push(emptyAchievementData);
+          else newState[achievementCategory] = [emptyAchievementData];
           setIsCreatingAchievement(false);
           return newState;
         });

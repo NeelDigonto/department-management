@@ -206,7 +206,7 @@ const FIELDS = [
 
 const SCHEMA = {
   id: "",
-  last_modified: new Date(2000, 1, 1, 1, 1, 1, 1),
+  last_modified: new Date(2000, 0, 1, 0, 0, 0, 0),
   fields: FIELDS,
 };
 

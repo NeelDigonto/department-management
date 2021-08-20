@@ -22,11 +22,7 @@ const Achievements = ({ achievementCategory, getAchievementValidationSchema }) =
       {!!user ? (
         <Fragment>
           <Box pt={4}>
-            {user[achievementCategory].length === 0 ? (
-              <Typography className={classes.noPubMsg}>
-                {"No " + achievementCategory + "here, Create One!"}
-              </Typography>
-            ) : (
+            {!!user[achievementCategory] && user[achievementCategory].length !== 0 ? (
               user[achievementCategory].map((achievement, index) => (
                 <AAchievement
                   key={index}
@@ -36,6 +32,10 @@ const Achievements = ({ achievementCategory, getAchievementValidationSchema }) =
                   index={index}
                 />
               ))
+            ) : (
+              <Typography className={classes.noPubMsg}>
+                {"No " + achievementCategory + " here, Create One!"}
+              </Typography>
             )}
           </Box>
           {/* <RecipeReviewCard />
