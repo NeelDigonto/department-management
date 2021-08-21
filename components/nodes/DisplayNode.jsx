@@ -30,17 +30,22 @@ const DisplayNode = ({ field, value }) => {
         {!!value && value ? "Yes" : "No"}
       </Fragment>
     );
-  else if (
-    field.type === VALUE_TYPE.STRING ||
-    field.type === VALUE_TYPE.DATE ||
-    field.type === VALUE_TYPE.NUMBER
-  )
+  else if (field.type === VALUE_TYPE.STRING || field.type === VALUE_TYPE.DATE)
     outputNode = (
       <Fragment>
         <Typography color="textSecondary" gutterBottom>
           {label}
         </Typography>
         {!!value ? value : null}
+      </Fragment>
+    );
+  else if (field.type === VALUE_TYPE.NUMBER)
+    outputNode = (
+      <Fragment>
+        <Typography color="textSecondary" gutterBottom>
+          {label}
+        </Typography>
+        {value !== "undefined" || value !== null ? value : null}
       </Fragment>
     );
   else if (field.type === VALUE_TYPE.OBJECT && field.input_type === INPUT_TYPE.FILE) {

@@ -27,16 +27,13 @@ const boolean = (required = true) =>
   required ? Yup.boolean().required("Required!") : Yup.boolean();
 
 const number = (required = true, integer = true, positive = true) => {
-  let validation_object = Yup.number("Must be a Number").required("Required");
+  let validation_object = Yup.number("Must be a Number");
 
-  required ? validation_object.required("Required") : validation_object;
-  integer ? validation_object.integer("Must be an Integer") : validation_object;
-  positive ? validation_object.positive("Must be Positive") : validation_object;
+  validation_object = required ? validation_object.required("Required") : validation_object;
+  validation_object = integer ? validation_object.integer("Must be an Integer") : validation_object;
+  validation_object = positive ? validation_object.min(0, "Must be >= 0") : validation_object;
 
-  /* ? Yup.number("Must be a Number")
-        .required("Required")
-        .positive("Must be Positive")
-        .integer("Must be an Integer") */
+  return validation_object;
 };
 
 const url = (required = true) =>

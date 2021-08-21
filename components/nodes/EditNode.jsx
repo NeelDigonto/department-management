@@ -190,7 +190,8 @@ const EditNode = ({ field, formik, setIsUploading }) => {
           />
           <label htmlFor={field.db_field}>
             {field.label}
-            <Button variant="contained" color="primary" component="span">
+            <br />
+            <Button fullWidth variant="contained" color="primary" component="span">
               Upload
             </Button>
           </label>

@@ -145,7 +145,7 @@ const FIELDS = [
     input_type: INPUT_TYPE.SELECT,
     db_field_type: DB_FIELD_TYPE.STRING,
     view_width: WIDTH_TYPE.MEDIUM,
-    options: ["C.S.E.", "MECHANICAL", "ELECTRICAL", "BIOLOGY", "CHEMISTRY.", "PHYSICS"],
+    options: ["C.S.E.", "MECHANICAL", "ELECTRICAL", "BIOLOGY", "CHEMISTRY", "PHYSICS"],
     db_field: "department",
     validation: Validation.option(),
   },
