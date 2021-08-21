@@ -23,6 +23,7 @@ const INPUT_TYPE = {
   DATE: "date",
   EMAIL: "email",
   NUMBER: "number",
+  MULTILINE_TEXT: "multiline-text",
 };
 
 const WIDTH_TYPE = { SMALL: "small", MEDIUM: "medium", LARGE: "large" };

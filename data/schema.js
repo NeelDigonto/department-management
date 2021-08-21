@@ -1,16 +1,17 @@
-import * as Yup from "yup";
-
 import Profile from "./schemas/Profile";
 import ConferencePublication from "./schemas/ConferencePublication";
 import JournalPublication from "./schemas/JournalPublication";
+import BookPublication from "./schemas/BookPublication";
+import PatentPublication from "./schemas/PatentPublication";
+import Copyright from "./schemas/Copyright";
+import ResearchProject from "./schemas/ResearchProject";
+import SeminarOrganized from "./schemas/SeminarOrganized";
+import SeminarAttended from "./schemas/SeminarAttended";
+import WebinarOrganized from "./schemas/WebinarOrganized";
+import WebinarAttended from "./schemas/WebinarAttended";
 
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListSubheader from "@material-ui/core/ListSubheader";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import PeopleIcon from "@material-ui/icons/People";
 import BarChartIcon from "@material-ui/icons/BarChart";
 import LayersIcon from "@material-ui/icons/Layers";
 import AssignmentIcon from "@material-ui/icons/Assignment";
@@ -21,20 +22,81 @@ import ComputerIcon from "@material-ui/icons/Computer";
 import TableChartIcon from "@material-ui/icons/TableChart";
 import VideoCallIcon from "@material-ui/icons/VideoCall";
 import VideocamIcon from "@material-ui/icons/Videocam";
+import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
+import SecurityIcon from "@material-ui/icons/Security";
+import CopyrightIcon from "@material-ui/icons/Copyright";
+import BuildIcon from "@material-ui/icons/Build";
+import DomainIcon from "@material-ui/icons/Domain";
+import PeopleIcon from "@material-ui/icons/People";
+import PeopleOutlineIcon from "@material-ui/icons/PeopleOutline";
+import VideoLibraryIcon from "@material-ui/icons/VideoLibrary";
+import VideoLibraryOutlinedIcon from "@material-ui/icons/VideoLibraryOutlined";
 
 const sidebarOptions = [
   { menuDisplay: "Profile", urlSuffix: "profile", icon: <DashboardIcon /> },
-  { menuDisplay: "Journal Publications", urlSuffix: "journal-publications", icon: <BookIcon /> },
+  {
+    menuDisplay: "Journal Publications",
+    urlSuffix: "journal-publications",
+    icon: <LibraryBooksIcon />,
+  },
   {
     menuDisplay: "Conference Publications",
     urlSuffix: "conference-publications",
     icon: <VideocamIcon />,
+  },
+  {
+    menuDisplay: "Books/Book Chapters Publication",
+    urlSuffix: "book-publications",
+    icon: <BookIcon />,
+  },
+  {
+    menuDisplay: "Patent Publication",
+    urlSuffix: "patent-publications",
+    icon: <SecurityIcon />,
+  },
+  {
+    menuDisplay: "Copyright",
+    urlSuffix: "copyrights",
+    icon: <CopyrightIcon />,
+  },
+  {
+    menuDisplay: "Research Project",
+    urlSuffix: "research-projects",
+    icon: <DomainIcon />,
+  },
+  {
+    menuDisplay: "Seminar Organized",
+    urlSuffix: "seminar-organized",
+    icon: <PeopleIcon />,
+  },
+  {
+    menuDisplay: "Seminar Attended",
+    urlSuffix: "seminar-attended",
+    icon: <PeopleOutlineIcon />,
+  },
+  {
+    menuDisplay: "Webinar Organized",
+    urlSuffix: "webinar-organized",
+    icon: <VideoLibraryIcon />,
+  },
+  {
+    menuDisplay: "Webinar Attended",
+    urlSuffix: "webinar-attended",
+    icon: <VideoLibraryOutlinedIcon />,
   },
 ];
 
 const ACHIEVEMENTS_GROUP_SCHEMA = {
   "conference-publications": ConferencePublication.SCHEMA,
   "journal-publications": JournalPublication.SCHEMA,
+  "book-publications": BookPublication.SCHEMA,
+  "patent-publications": PatentPublication.SCHEMA,
+  copyrights: Copyright.SCHEMA,
+  "research-projects": ResearchProject.SCHEMA,
+  "seminar-organized": SeminarOrganized.SCHEMA,
+  "seminar-attended": SeminarAttended.SCHEMA,
+  "webinar-organized": WebinarOrganized.SCHEMA,
+  "webinar-attended": WebinarAttended.SCHEMA,
 };
 
 const MASTER_SCHEMA = {

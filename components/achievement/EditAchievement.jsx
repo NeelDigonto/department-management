@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { useFormik } from "formik";
 import { Button, Grid, Box, makeStyles, Backdrop, CircularProgress } from "@material-ui/core";
 
-import { MASTER_SCHEMA, getPublicationValidationSchema } from "../../data/schema";
+import { MASTER_SCHEMA } from "../../data/schema";
 import { useUserContext } from "../../contexts/UserContext";
 import EditNode from "../nodes/EditNode";
 import { editAchievementHandler } from "./handlers";

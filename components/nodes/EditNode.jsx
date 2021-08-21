@@ -1,9 +1,6 @@
 import React, { Fragment } from "react";
 import {
   TextField,
-  FormControl,
-  InputLabel,
-  Select,
   MenuItem,
   FormControlLabel,
   Checkbox,
@@ -25,12 +22,30 @@ const EditNode = ({ field, formik, setIsUploading }) => {
   let outputNode;
   switch (field.input_type) {
     case INPUT_TYPE.TEXT: {
-      console.log(formik.errors[field.db_field]);
       outputNode = (
         <TextField
           error={!!formik.errors[field.db_field] && formik.touched[field.db_field]}
           helperText={!!formik.errors[field.db_field] ? formik.errors[field.db_field] : field.info}
           fullWidth
+          variant="filled"
+          label={field.label}
+          name={field.db_field}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values[field.db_field]}
+        ></TextField>
+      );
+      break;
+    }
+    case INPUT_TYPE.MULTILINE_TEXT: {
+      outputNode = (
+        <TextField
+          error={!!formik.errors[field.db_field] && formik.touched[field.db_field]}
+          helperText={!!formik.errors[field.db_field] ? formik.errors[field.db_field] : field.info}
+          fullWidth
+          multiline
+          rows={2}
+          rowsMax={Infinity}
           variant="filled"
           label={field.label}
           name={field.db_field}
@@ -192,7 +207,7 @@ const EditNode = ({ field, formik, setIsUploading }) => {
       break;
     }
     default: {
-      console.error('Unrecognized field passed to "getEditNode"');
+      console.error('Unrecognized field passed to "getEditNode"' + field.input_type);
       outputNode = <Fragment></Fragment>;
     }
   }
