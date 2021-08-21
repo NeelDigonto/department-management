@@ -26,6 +26,7 @@ const Achievements = ({ achievementCategory, getAchievementValidationSchema }) =
               user[achievementCategory].map((achievement, index) => (
                 <AAchievement
                   key={index}
+                  /* key={achievement["id"]} */
                   achievementCategory={achievementCategory}
                   getAchievementValidationSchema={getAchievementValidationSchema}
                   achievement={achievement}

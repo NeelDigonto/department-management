@@ -171,6 +171,7 @@ export default function Dashboard() {
     else if (!!ACHIEVEMENTS_GROUP_SCHEMA[section]) {
       setMainViewComponents(
         <Achievements
+          key={section}
           achievementCategory={section}
           getAchievementValidationSchema={getValidationSchema(section)}
         />
