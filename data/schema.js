@@ -99,6 +99,37 @@ const ACHIEVEMENTS_GROUP_SCHEMA = {
   "webinar-attended": WebinarAttended.SCHEMA,
 };
 
+const getValidationSchema = (achievementCategory) => {
+  switch (achievementCategory) {
+    case "profile":
+      return Profile.getValidationSchema;
+    case "conference-publications":
+      return ConferencePublication.getValidationSchema;
+    case "journal-publications":
+      return JournalPublication.getValidationSchema;
+    case "book-publications":
+      return BookPublication.getValidationSchema;
+    case "patent-publications":
+      return PatentPublication.getValidationSchema;
+    case "copyrights":
+      return Copyright.getValidationSchema;
+    case "research-projects":
+      return ResearchProject.getValidationSchema;
+    case "seminar-organized":
+      return SeminarOrganized.getValidationSchema;
+    case "seminar-attended":
+      return SeminarAttended.getValidationSchema;
+    case "webinar-organized":
+      return WebinarOrganized.getValidationSchema;
+    case "webinar-attended":
+      return WebinarAttended.getValidationSchema;
+    default: {
+      console.log("unkown item passed here: " + achievementCategory);
+      return () => {};
+    }
+  }
+};
+
 const MASTER_SCHEMA = {
   employeeID: "",
   hashedPassword: "",
@@ -116,21 +147,6 @@ const getEmptyUserDocument = () => {
     EMPTY_USER_DOCUMENT[key] = [];
   }
   return EMPTY_USER_DOCUMENT;
-};
-
-const getValidationSchema = (achievementCategory) => {
-  switch (achievementCategory) {
-    case "profile":
-      return Profile.getValidationSchema;
-    case "conference-publications":
-      return ConferencePublication.getValidationSchema;
-    case "journal-publications":
-      return JournalPublication.getValidationSchema;
-    default: {
-      console.log("unkown item passed here: " + achievementCategory);
-      return () => {};
-    }
-  }
 };
 
 export {
