@@ -1,4 +1,9 @@
 import { getMongoClient } from "../../../../../lib/db.js";
+import {
+  toTypedAchievements,
+  toTypedProfile,
+  getTypedDocument,
+} from "../../../../../lib/type_converter";
 
 export default async function handler(req, res) {
   //check if user is allowed to acces this api
@@ -9,6 +14,9 @@ export default async function handler(req, res) {
   const { achievementCategory } = req.query;
 
   const { employeeID, emptyAchievementData } = req.body;
+
+  // throw error if the dat eformat is not right, and fail the request
+  toTypedAchievements([emptyAchievementData]);
 
   const client = await getMongoClient();
   const connection = await client.connect();

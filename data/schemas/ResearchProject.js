@@ -62,10 +62,10 @@ const FIELDS = [
   },
   {
     label: "Date of Sanction",
-    value: "",
+    value: new Date().toISOString(),
     info: "Date of Sanction",
     type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
+    db_field_type: DB_FIELD_TYPE.DATE,
     input_type: INPUT_TYPE.DATE,
     view_width: WIDTH_TYPE.MEDIUM,
     db_field: "sanc_date",
@@ -73,10 +73,10 @@ const FIELDS = [
   },
   {
     label: "Date of Completion",
-    value: "",
+    value: new Date().toISOString(),
     info: "Date of publication",
     type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
+    db_field_type: DB_FIELD_TYPE.DATE,
     input_type: INPUT_TYPE.DATE,
     view_width: WIDTH_TYPE.MEDIUM,
     db_field: "comp_date",
@@ -154,7 +154,7 @@ const FIELDS = [
 
 const SCHEMA = {
   id: "",
-  last_modified: new Date(2000, 0, 1, 0, 0, 0, 0),
+  last_modified: new Date(2000, 0, 1, 0, 0, 0, 0).toISOString(),
   fields: FIELDS,
 };
 

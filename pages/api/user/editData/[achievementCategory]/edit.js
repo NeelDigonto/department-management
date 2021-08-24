@@ -1,4 +1,9 @@
 import { getMongoClient } from "../../../../../lib/db";
+import {
+  toTypedAchievements,
+  toTypedProfile,
+  getTypedDocument,
+} from "../../../../../lib/type_converter";
 
 export default async function handler(req, res) {
   //check if user is allowed to acces this api
@@ -9,7 +14,9 @@ export default async function handler(req, res) {
 
   const { achievementCategory } = req.query;
 
-  const { employeeID, delete_id_no, updateObject } = req.body;
+  const { employeeID, edit_id_no, updateObject } = req.body;
+
+  toTypedAchievements([updateObject], achievementCategory);
 
   const client = await getMongoClient();
   const connection = await client.connect();
@@ -24,7 +31,7 @@ export default async function handler(req, res) {
   const updateResult = await usersCollection.updateOne(
     {
       employeeID: employeeID,
-      [`${achievementCategory}.id`]: delete_id_no,
+      [`${achievementCategory}.id`]: edit_id_no,
     },
     { $set: updateQuerry }
   );

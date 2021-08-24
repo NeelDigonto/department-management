@@ -2,13 +2,13 @@ import React, { Fragment } from "react";
 import Filter from "./panels/Filter";
 import DataTable from "./table/DataTable";
 
-const Download = () => {
+const Dashboard = () => {
   return (
     <Fragment>
       <Filter />
-      <DataTable />
+      {/* <DataTable /> */}
     </Fragment>
   );
 };
 
-export default Download;
+export default Dashboard;

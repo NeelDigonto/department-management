@@ -1,4 +1,9 @@
 import { getMongoClient } from "../../../../../lib/db";
+import {
+  toTypedAchievement,
+  toTypedProfile,
+  getTypedDocument,
+} from "../../../../../lib/type_converter";
 
 export default async function handler(req, res) {
   //check if user is allowed to acces this api
@@ -9,6 +14,8 @@ export default async function handler(req, res) {
   }
 
   const { employeeID, newProfile } = req.body;
+
+  toTypedProfile(newProfile);
 
   const client = await getMongoClient();
   const connection = await client.connect();

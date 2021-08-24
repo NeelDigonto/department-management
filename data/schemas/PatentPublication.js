@@ -73,10 +73,10 @@ const FIELDS = [
   },
   {
     label: "Date of patent filing",
-    value: "",
+    value: new Date().toISOString(),
     info: "Date of patent filing",
     type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
+    db_field_type: DB_FIELD_TYPE.DATE,
     input_type: INPUT_TYPE.DATE,
     view_width: WIDTH_TYPE.MEDIUM,
     db_field: "pat_fil_date",
@@ -84,10 +84,10 @@ const FIELDS = [
   },
   {
     label: "Publication Date",
-    value: "",
+    value: new Date().toISOString(),
     info: "Date of patent publication",
     type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
+    db_field_type: DB_FIELD_TYPE.DATE,
     input_type: INPUT_TYPE.DATE,
     view_width: WIDTH_TYPE.MEDIUM,
     db_field: "pub_date",
@@ -121,7 +121,7 @@ const FIELDS = [
 
 const SCHEMA = {
   id: "",
-  last_modified: new Date(2000, 0, 1, 0, 0, 0, 0),
+  last_modified: new Date(2000, 0, 1, 0, 0, 0, 0).toISOString(),
   fields: FIELDS,
 };
 

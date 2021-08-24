@@ -73,10 +73,10 @@ const FIELDS = [
   },
   {
     label: "Published on",
-    value: "",
+    value: new Date().toISOString(),
     info: "Publication date of the Copyright",
     type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
+    db_field_type: DB_FIELD_TYPE.DATE,
     input_type: INPUT_TYPE.DATE,
     view_width: WIDTH_TYPE.MEDIUM,
     db_field: "yop",
@@ -98,7 +98,7 @@ const FIELDS = [
 
 const SCHEMA = {
   id: "",
-  last_modified: new Date(2000, 0, 1, 0, 0, 0, 0),
+  last_modified: new Date(2000, 0, 1, 0, 0, 0, 0).toISOString(),
   fields: FIELDS,
 };
 

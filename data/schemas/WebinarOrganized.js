@@ -16,10 +16,10 @@ const FIELDS = [
   },
   {
     label: "Entry Date",
-    value: "",
+    value: new Date().toISOString(),
     info: "Date of Entry",
     type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
+    db_field_type: DB_FIELD_TYPE.DATE,
     input_type: INPUT_TYPE.DATE,
     view_width: WIDTH_TYPE.MEDIUM,
     db_field: "entry_date",
@@ -83,10 +83,10 @@ const FIELDS = [
   },
   {
     label: "Webinar Start Date",
-    value: "",
+    value: new Date().toISOString(),
     info: "Date of Webinar (From)",
     type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
+    db_field_type: DB_FIELD_TYPE.DATE,
     input_type: INPUT_TYPE.DATE,
     view_width: WIDTH_TYPE.MEDIUM,
     db_field: "event_start_date",
@@ -94,10 +94,10 @@ const FIELDS = [
   },
   {
     label: "Webinar End Date",
-    value: "",
+    value: new Date().toISOString(),
     info: "Date of Webinar (End)",
     type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
+    db_field_type: DB_FIELD_TYPE.DATE,
     input_type: INPUT_TYPE.DATE,
     view_width: WIDTH_TYPE.MEDIUM,
     db_field: "event_end_date",
@@ -142,7 +142,7 @@ const FIELDS = [
 
 const SCHEMA = {
   id: "",
-  last_modified: new Date(2000, 0, 1, 0, 0, 0, 0),
+  last_modified: new Date(2000, 0, 1, 0, 0, 0, 0).toISOString(),
   fields: FIELDS,
 };
 

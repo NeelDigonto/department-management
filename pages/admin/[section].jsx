@@ -8,7 +8,7 @@ import { sidebarOptions, schema } from "../../data/schema";
 
 import { useUserContext } from "../../contexts/UserContext.jsx";
 
-import Download from "../../components/admin/download/Download";
+import Dashboard from "../../components/admin/dashboard/Dashboard";
 import { mainListItems, secondaryListItems } from "../../components/admin/sidebar/listItems.jsx";
 
 import clsx from "clsx";
@@ -179,7 +179,7 @@ export default function AdminDashboard() {
     const { section } = router.query;
     switch (section) {
       case "download": {
-        setMainViewComponents(<Download />);
+        setMainViewComponents(<Dashboard />);
         break;
       }
       case "create-user": {

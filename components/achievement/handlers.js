@@ -15,7 +15,7 @@ const createAchievementHandler = async (
       emptyAchievementData[field.db_field] = field.value;
     });
     emptyAchievementData["id"] = uuidv4();
-    emptyAchievementData["last_modified"] = new Date();
+    emptyAchievementData["last_modified"] = new Date().toISOString();
     return emptyAchievementData;
   };
 
@@ -93,7 +93,7 @@ const editAchievementHandler = async (
     },
     data: {
       employeeID: employeeID,
-      delete_id_no: achievement_id,
+      edit_id_no: achievement_id,
       updateObject: values,
     },
   })

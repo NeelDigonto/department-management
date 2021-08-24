@@ -83,7 +83,10 @@ const EditNode = ({ field, formik, setIsUploading }) => {
           type="date"
           label={field.label}
           name={field.db_field}
-          onChange={formik.handleChange}
+          onChange={(e) => {
+            console.log(e.target.value);
+            formik.setFieldValue(field.db_field, e.target.value);
+          }}
           onBlur={formik.handleBlur}
           value={formik.values[field.db_field]}
         />
