@@ -4,7 +4,7 @@ import { Box, Grid, Paper, Card, CardContent } from "@material-ui/core";
 import ProfileFilter from "./ProfileFilter";
 import AchievementFilter from "./AchievementFilter";
 
-const Filter = () => {
+const Search = () => {
   const toFilterRef = useRef({});
   const filterRef = useRef({});
   const sortRef = useRef({});
@@ -80,4 +80,4 @@ const Filter = () => {
   );
 };
 
-export default Filter;
+export default Search;

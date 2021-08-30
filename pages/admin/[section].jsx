@@ -282,7 +282,6 @@ export default function AdminDashboard() {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-
         {mainViewComponents}
       </main>
     </div>
