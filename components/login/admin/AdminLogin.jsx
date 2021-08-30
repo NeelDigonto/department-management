@@ -54,7 +54,7 @@ const AdminLogin = ({ setIsAdminLogin }) => {
       });
       if (!result.error) {
         // set some auth state
-        router.replace("/admin/download");
+        router.replace("/admin/dashboard");
       } else {
         console.error(result.error);
       }
