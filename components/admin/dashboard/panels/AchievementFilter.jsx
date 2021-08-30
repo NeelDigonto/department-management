@@ -36,7 +36,7 @@ const AchievementFilter = ({
                 expandIcon={<ExpandMoreIcon />}
                 aria-label="Expand"
                 aria-controls="additional-actions1-content"
-                id="additional-actions1-header"
+                id={`accordion-action-${ACHIEVEMENTS_GROUP_SCHEMA[key].diplay_name}`}
               >
                 <FormControlLabel
                   aria-label="Acknowledge"
@@ -82,29 +82,3 @@ const AchievementFilter = ({
 };
 
 export default AchievementFilter;
-
-/*<Box key={key_index} pt={2}>
-              <Card variant="outlined">
-                <CardContent>
-                  <Box>
-                    <Grid container>
-                      {ACHIEVEMENTS_GROUP_SCHEMA[key]["fields"].map((field, field_index) => (
-                        <Grid key={field_index} item md={3}>
-                          <Box px={1} py={1}>
-                            <FilterNode
-                              valueLastUpdatedRef={valueLastUpdatedRef}
-                              categoryName={key}
-                              toFilterRef={toFilterRef}
-                              filterRef={filterRef}
-                              sortRef={sortRef}
-                              displayRef={displayRef}
-                              field={field}
-                            />
-                          </Box>
-                        </Grid>
-                      ))}
-                    </Grid>
-                  </Box>
-                </CardContent>
-              </Card>
-            </Box> */

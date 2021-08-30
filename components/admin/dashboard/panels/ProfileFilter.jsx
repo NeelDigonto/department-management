@@ -25,7 +25,7 @@ const ProfileFilter = ({ valueLastUpdatedRef, toFilterRef, filterRef, sortRef, d
           expandIcon={<ExpandMoreIcon />}
           aria-label="Expand"
           aria-controls="additional-actions1-content"
-          id="additional-actions1-header"
+          id={`accordion-action-profile}`}
         >
           <FormControlLabel
             aria-label="Acknowledge"
