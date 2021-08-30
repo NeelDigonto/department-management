@@ -2,6 +2,12 @@ import { getMongoClient } from "../../../lib/db";
 import { isEmptyObject } from "../../../lib/util";
 import { MASTER_SCHEMA } from "../../../data/schema";
 import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE } from "../../../data/types/types";
+import {
+  toTypedAchievements,
+  toTypedProfile,
+  getTypedDocument,
+  toTypedQuerry,
+} from "../../../lib/type_converter";
 
 export default async function handler(req, res) {
   //check if user is allowed to acces this api
@@ -35,24 +41,22 @@ export default async function handler(req, res) {
     }, */
   };
 
+  toTypedQuerry(rawFilter);
+
+  res.status(200).json(rawFilter);
+
   // https://docs.mongodb.com/manual/reference/operator/query-comparison/
   // https://docs.mongodb.com/manual/reference/operator/query/regex/
   // https://docs.mongodb.com/manual/tutorial/project-fields-from-query-results/
 
-  const payload = await usersCollection
-    .find(
-      filter
-      /*   {
+  /*   {
         sort: {
           "journal-publications.title": -1,
         },
         projection: { profile: { name: 1, f_name: 1 }, "journal-publications": 1 },
       }  */
-    )
-    .toArray();
 
-  await usersCollection.insertOne({ aDate: new Date() });
-  const test = await usersCollection.find().toArray();
+  //const payload = await usersCollection.find(filter).toArray();
 
   /* const sanitizedPayload = payload.map((document) => {
     let temp_obj = { ...document };
@@ -60,52 +64,7 @@ export default async function handler(req, res) {
     delete temp_obj["_id"];
     return temp_obj;
   });
-
-  res.status(200).json(sanitizedPayload); */
-  res.status(200).json(test);
+  */
 
   connection.close();
 }
-//studs_involved
-
-/*  let filter = {};
-  if (!!rawFilter["profile"] && !isEmptyObject(rawFilter)) {
-    for (let [key, value] of Object.entries(rawFilter["profile"])) {
-      const field_schema = MASTER_SCHEMA["profile"].find((field) => field.db_field === key);
-      if (!!field_schema) {
-        switch (field_schema.input_type) {
-          case INPUT_TYPE.TEXT: {
-            if (typeof value === "string")
-              filter[`profile.${key}`] = { $regex: value, $options: "im" };
-            else {
-              console.warn("Wrong type found, search.js");
-            }
-            break;
-          }
-          case INPUT_TYPE.MULTILINE_TEXT: {
-            if (typeof value === "string")
-              filter[`profile.${key}`] = { $regex: value, $options: "im" };
-            else {
-              console.warn("Wrong type found, search.js");
-            }
-            break;
-          }
-          case INPUT_TYPE.EMAIL: {
-            if (typeof value === "string")
-              filter[`profile.${key}`] = { $regex: value, $options: "im" };
-            else {
-              console.warn("Wrong type found, search.js");
-            }
-            break;
-          }
-          case INPUT_TYPE.NUMBER: {
-            if (typeof value === "number") filter[`profile.${key}`] = value;
-            else {
-              console.warn("Wrong type found, search.js");
-            }
-            break;
-          }
-        }
-      }
-    }
-  } */

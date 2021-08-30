@@ -23,7 +23,7 @@ import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
 
 export const mainListItems = (
   <div>
-    <NextLink href={"/admin/download"}>
+    <NextLink href={"/admin/dashboard"}>
       <ListItem button>
         <ListItemIcon>
           <CloudDownloadIcon />

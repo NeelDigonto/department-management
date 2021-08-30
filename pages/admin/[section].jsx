@@ -16,6 +16,7 @@ import {
   makeStyles,
   CssBaseline,
   Drawer,
+  Grid,
   Box,
   AppBar,
   Toolbar,
@@ -24,6 +25,8 @@ import {
   Divider,
   IconButton,
   Badge,
+  Hidden,
+  Paper,
   Container,
   InputBase,
   alpha,
@@ -178,23 +181,40 @@ export default function AdminDashboard() {
   useEffect(() => {
     const { section } = router.query;
     switch (section) {
-      case "download": {
-        setMainViewComponents(<Dashboard />);
+      case "dashboard": {
+        setMainViewComponents(
+          <Fragment>
+            <Dashboard />
+            <Container className={classes.container}>
+              <Copyright />
+            </Container>
+          </Fragment>
+        );
         break;
       }
       case "create-user": {
-        setMainViewComponents(<CreateUser />);
+        setMainViewComponents(
+          <Container maxWidth="lg" className={classes.container}>
+            <CreateUser />
+            <Copyright />
+          </Container>
+        );
         break;
       }
       case "delete-user": {
-        setMainViewComponents(<DeleteUser />);
+        setMainViewComponents(
+          <Container maxWidth="lg" className={classes.container}>
+            <DeleteUser />
+            <Copyright />
+          </Container>
+        );
         break;
       }
       default: {
         setMainViewComponents(null);
       }
     }
-  }, [router.query]);
+  }, [router.query, classes]);
 
   return (
     <div className={classes.root}>
@@ -262,13 +282,28 @@ export default function AdminDashboard() {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          {mainViewComponents}
-          <Copyright />
-        </Container>
+
+        {mainViewComponents}
       </main>
     </div>
   );
+}
+
+{
+  /* <Grid container component="main" className={classes.root}>
+        <CssBaseline />
+        <Grid item xs={false} sm={4} md={7} className={classes.image} />
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+          {!isAdminLogin ? (
+            <UserLogin setIsAdminLogin={setIsAdminLogin} />
+          ) : (
+            <AdminLogin setIsAdminLogin={setIsAdminLogin} />
+          )}
+          <Box mt={2}>
+            <Copyright />
+          </Box>
+        </Grid>
+      </Grid> */
 }
 
 export async function getServerSideProps(context) {

@@ -155,6 +155,7 @@ const FIELDS = [
 const SCHEMA = {
   id: "",
   last_modified: new Date(2000, 0, 1, 0, 0, 0, 0).toISOString(),
+  diplay_name: "Research Project",
   fields: FIELDS,
 };
 

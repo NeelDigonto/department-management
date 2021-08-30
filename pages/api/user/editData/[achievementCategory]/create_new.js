@@ -16,7 +16,7 @@ export default async function handler(req, res) {
   const { employeeID, emptyAchievementData } = req.body;
 
   // throw error if the dat eformat is not right, and fail the request
-  toTypedAchievements([emptyAchievementData]);
+  toTypedAchievements([emptyAchievementData], achievementCategory);
 
   const client = await getMongoClient();
   const connection = await client.connect();
