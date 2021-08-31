@@ -45,7 +45,7 @@ const sidebarOptions = [
     icon: <VideocamIcon />,
   },
   {
-    menuDisplay: "Books/Book Chapters Publication",
+    menuDisplay: "Books & Chapters Publication",
     urlSuffix: "book-publications",
     icon: <BookIcon />,
   },

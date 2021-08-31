@@ -133,6 +133,8 @@ const AdminGetData = () => {
     const saveAsFile = async () => {
       await workbook.xlsx.writeBuffer().then((data) => {
         const blob = new Blob([data], { type: "application/octet-stream" });
+        //const blob = new Uint8Array(data);
+
         saveAs(blob, "Profiles.xlsx");
       });
     };
@@ -154,20 +156,20 @@ const AdminGetData = () => {
         { header: "ID's", key: "id", width: 12 },
         {
           header: "Publications",
-          key: "publications",
-          width: getColumnWidth(MASTER_SCHEMA["publications"]["fields"][0].view_width),
+          key: "journal-publications",
+          width: getColumnWidth(MASTER_SCHEMA["journal-publications"]["fields"][0].view_width),
         },
       ];
 
-      for (let i = 1; i < MASTER_SCHEMA["publications"]["fields"].length; ++i) {
+      for (let i = 1; i < MASTER_SCHEMA["journal-publications"]["fields"].length; ++i) {
         ws_columns_hot.push({
-          width: getColumnWidth(MASTER_SCHEMA["publications"]["fields"][i].view_width),
+          width: getColumnWidth(MASTER_SCHEMA["journal-publications"]["fields"][i].view_width),
         });
       }
       worksheet.columns = ws_columns_hot;
 
       const mergeUptoCell = new Cell("B", 1);
-      mergeUptoCell.column += MASTER_SCHEMA["publications"]["fields"].length - 1;
+      mergeUptoCell.column += MASTER_SCHEMA["journal-publications"]["fields"].length - 1;
 
       worksheet.mergeCells(`B1:${mergeUptoCell.getString()}`);
       worksheet.mergeCells("A1:A2");
@@ -176,7 +178,7 @@ const AdminGetData = () => {
       worksheet.getCell("B1").alignment = { horizontal: "center", vertical: "middle" };
 
       const iter_cell = new Cell("B", 2);
-      MASTER_SCHEMA["publications"]["fields"].forEach((field, index) => {
+      MASTER_SCHEMA["journal-publications"]["fields"].forEach((field, index) => {
         const cell = worksheet.getCell(iter_cell.getString());
         iter_cell.column += 1;
         cell.value = field.label;
@@ -195,17 +197,21 @@ const AdminGetData = () => {
         employeeID_cell.alignment = { horizontal: "center", vertical: "middle" };
         worksheet.mergeCells(
           `A${3 + rowsConsumedByPrevUsers}:A${
-            3 + rowsConsumedByPrevUsers + collectionData[userNo]["publications"].length - 1
+            3 + rowsConsumedByPrevUsers + collectionData[userNo]["journal-publications"].length - 1
           }`
         );
 
-        for (let pubNo = 0; pubNo < collectionData[userNo]["publications"].length; ++pubNo) {
+        for (
+          let pubNo = 0;
+          pubNo < collectionData[userNo]["journal-publications"].length;
+          ++pubNo
+        ) {
           let colStart = "B";
-          MASTER_SCHEMA["publications"]["fields"].forEach((field, index) => {
+          MASTER_SCHEMA["journal-publications"]["fields"].forEach((field, index) => {
             const colCode = colStart.charCodeAt(0) + index;
             const colId = String.fromCharCode(colCode);
             const cell = worksheet.getCell(`${colId}${3 + rowsConsumedByPrevUsers + pubNo}`);
-            const value = collectionData[userNo]["publications"][pubNo][field.db_field];
+            const value = collectionData[userNo]["journal-publications"][pubNo][field.db_field];
             if (field.input_type !== "file") {
               cell.value = !!value ? value : null;
             } else {
@@ -224,7 +230,7 @@ const AdminGetData = () => {
           });
         }
 
-        rowsConsumedByPrevUsers = collectionData[userNo]["publications"].length;
+        rowsConsumedByPrevUsers = collectionData[userNo]["journal-publications"].length;
         rowsConsumedByAllUsers += rowsConsumedByPrevUsers;
         employeeID_iter_cell.row += rowsConsumedByPrevUsers;
       }

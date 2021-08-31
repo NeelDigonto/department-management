@@ -76,10 +76,6 @@ const useStyles = makeStyles((theme) => ({
   header: {
     color: theme.palette.primary.main,
   },
-  downloadButton: {
-    padding: theme.spacing(1),
-    margin: theme.spacing(1),
-  },
 }));
 
 export default function DataTable() {
@@ -145,21 +141,6 @@ export default function DataTable() {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-      <Box px={1} py={2}>
-        <Card variant="outlined">
-          <CardContent>
-            <Button variant="outlined" color="primary" fullWidth className={classes.downloadButton}>
-              Download All Data
-            </Button>
-            <Button variant="outlined" color="primary" fullWidth className={classes.downloadButton}>
-              Download as multi-spreadsheets
-            </Button>
-            <Button variant="outlined" color="primary" fullWidth className={classes.downloadButton}>
-              Download as single-spreadsheet
-            </Button>
-          </CardContent>
-        </Card>
-      </Box>
     </Fragment>
   );
 }
