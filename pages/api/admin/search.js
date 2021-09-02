@@ -23,48 +23,28 @@ export default async function handler(req, res) {
 
   const usersCollection = connection.db("users").collection("faculties");
 
-  const { filter: rawFilter, sort: rawSort, display: rawDisplay } = req.body;
+  const { filter } = req.body;
 
-  const filter = {
-    "profile.f_name": { $regex: "jahar dey", $options: "im" },
-    "profile.m_name": { $regex: "dey", $options: "im" },
-    //"profile.bld_grp": { $regex: "AB+", $options: "" },
-    "profile.bld_grp": { $in: ["A+", "AB+"] },
-    //"profile.dob": { $lte: new Date(2001, 11, 20) },
+  toTypedQuerry(filter);
 
-    /* "journal-publications": {
-      $elemMatch: {
-        title: { $regex: "integration", $options: "im" },
-        author: { $regex: "saikat", $options: "im" },
-        studs_involved: { $gte: 1 },
+  const pipeline = [
+    {
+      $match: filter,
+    },
+    {
+      $project: {
+        _id: 0,
+        employeeID: 1,
+        "profile.name": 1,
+        "profile.department": 1,
+        "profile.designation": 1,
       },
-    }, */
-  };
+    },
+  ];
 
-  toTypedQuerry(rawFilter);
+  const payload = await usersCollection.aggregate(pipeline).toArray();
 
-  res.status(200).json(rawFilter);
-
-  // https://docs.mongodb.com/manual/reference/operator/query-comparison/
-  // https://docs.mongodb.com/manual/reference/operator/query/regex/
-  // https://docs.mongodb.com/manual/tutorial/project-fields-from-query-results/
-
-  /*   {
-        sort: {
-          "journal-publications.title": -1,
-        },
-        projection: { profile: { name: 1, f_name: 1 }, "journal-publications": 1 },
-      }  */
-
-  //const payload = await usersCollection.find(filter).toArray();
-
-  /* const sanitizedPayload = payload.map((document) => {
-    let temp_obj = { ...document };
-    delete temp_obj["hashedPassword"];
-    delete temp_obj["_id"];
-    return temp_obj;
-  });
-  */
+  res.status(200).json({ searchResult: payload });
 
   connection.close();
 }

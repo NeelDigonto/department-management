@@ -22,13 +22,13 @@ const ActionNode = ({
     valueLastUpdatedRef.current = new Date();
     setFilter((oldState) => {
       if (oldState) {
-        if (!field.input_type === INPUT_TYPE.FILE)
-          toFilterRef.current[`${categoryName}.${field.db_field}`] = false;
-        else toFilterRef.current[`${categoryName}.${field.db_field}.fname`] = false;
-      } else {
-        if (!field.input_type === INPUT_TYPE.FILE)
+        if (field.input_type !== INPUT_TYPE.FILE)
           delete toFilterRef.current[`${categoryName}.${field.db_field}`];
         else delete toFilterRef.current[`${categoryName}.${field.db_field}.fname`];
+      } else {
+        if (field.input_type !== INPUT_TYPE.FILE)
+          toFilterRef.current[`${categoryName}.${field.db_field}`] = true;
+        else toFilterRef.current[`${categoryName}.${field.db_field}.fname`] = true;
       }
 
       return !oldState;

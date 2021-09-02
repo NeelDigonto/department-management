@@ -8,23 +8,46 @@ const DATE_FILTER_OPTIONS = [
   { display: "Greater Than Equal", code: "$gte" },
   { display: "Equal To", code: "$eq" },
   { display: "Not Equal To", code: "$ne" },
+  { display: "In Range", code: "$gte$lt" },
 ];
+
+const getDateString = (date) => {
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = String(date.getFullYear());
+
+  const date_string = `${year}-${month}-${day}`;
+  return date_string;
+};
 
 const DateQuerry = ({ field, categoryName, valueLastUpdatedRef, filterRef }) => {
   //const [selectedQuerryType, setSelectedQuerryType] = useState(DATE_FILTER_OPTIONS[0].code);
-  const [selectedQuerryType, setSelectedQuerryType] = useState("");
-  const [querryDate, setQuerryDate] = useState("2000-01-01");
+  const [querryType, setQuerryType] = useState(DATE_FILTER_OPTIONS[0].code);
+  const [querryDate, setQuerryDate] = useState(new Date());
+  const [querryRangedDate, setQuerryRangedDate] = useState([new Date(), new Date()]);
 
-  const handleChange = (_selectedQuerryType) => {
-    const queryCode = !!_selectedQuerryType ? _selectedQuerryType : selectedQuerryType;
-
+  useEffect(() => {
     valueLastUpdatedRef.current = new Date();
-    const date = new Date(querryDate);
-    if (!!date)
+
+    if (querryType === "$gte$lt") {
       filterRef.current[`${categoryName}.${field.db_field}`] = {
-        [queryCode]: [date.toISOString(), "$___convert_to___.date"],
+        ["$gte"]: [querryRangedDate[0].toISOString(), "$___convert_to___.date"],
+        ["$lt"]: [querryRangedDate[1].toISOString(), "$___convert_to___.date"],
       };
-  };
+    } else {
+      filterRef.current[`${categoryName}.${field.db_field}`] = {
+        [querryType]: [querryDate.toISOString(), "$___convert_to___.date"],
+      };
+    }
+  }, [
+    valueLastUpdatedRef,
+    categoryName,
+    field.db_field,
+    filterRef,
+    querryType,
+    querryDate,
+    querryRangedDate,
+  ]);
 
   return (
     <Fragment>
@@ -36,10 +59,9 @@ const DateQuerry = ({ field, categoryName, valueLastUpdatedRef, filterRef }) => 
         name={categoryName + field.db_field}
         onChange={(event) => {
           const value = event.target.value;
-          setSelectedQuerryType(value);
-          handleChange(value);
+          setQuerryType(value);
         }}
-        value={selectedQuerryType}
+        value={querryType}
       >
         {DATE_FILTER_OPTIONS.map((option, index) => (
           <MenuItem key={index} value={option.code}>
@@ -47,22 +69,52 @@ const DateQuerry = ({ field, categoryName, valueLastUpdatedRef, filterRef }) => 
           </MenuItem>
         ))}
       </TextField>
-      <Grid container direction="row" justifyContent="space-around">
-        <Grid item>
-          <TextField
-            fullWidth
-            key={field.db_field}
-            type="date"
-            label={"Date"}
-            onChange={(event) => {
-              const value = event.target.value;
-              setQuerryDate(value);
-              handleChange();
-            }}
-            value={querryDate}
-          />
+      {querryType === "$gte$lt" ? (
+        <Grid container direction="row" justifyContent="space-around">
+          <Grid item>
+            <TextField
+              fullWidth
+              key={field.db_field}
+              type="date"
+              label={"From"}
+              onChange={(event) => {
+                const date = event.target.valueAsDate;
+                setQuerryRangedDate((oldValue) => [date, oldValue[1]]);
+              }}
+              value={getDateString(querryRangedDate[0])}
+            />
+          </Grid>
+          <Grid item>
+            <TextField
+              fullWidth
+              key={field.db_field}
+              type="date"
+              label={"To"}
+              onChange={(event) => {
+                const date = event.target.valueAsDate;
+                setQuerryRangedDate((oldValue) => [oldValue[0], date]);
+              }}
+              value={getDateString(querryRangedDate[1])}
+            />
+          </Grid>
         </Grid>
-      </Grid>
+      ) : (
+        <Grid container direction="row" justifyContent="space-around">
+          <Grid item>
+            <TextField
+              fullWidth
+              key={field.db_field}
+              type="date"
+              label={"Date"}
+              onChange={(event) => {
+                const date = event.target.valueAsDate;
+                setQuerryDate(date);
+              }}
+              value={getDateString(querryDate)}
+            />
+          </Grid>
+        </Grid>
+      )}
     </Fragment>
   );
 };

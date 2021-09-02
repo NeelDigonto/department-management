@@ -13,6 +13,7 @@ const DB_FIELD_TYPE = {
   BOOLEAN: "boolean",
   DATE: "date",
   INT32: "int32",
+  Decimal128: "decimal128",
 };
 
 const INPUT_TYPE = {
