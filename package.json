@@ -6,6 +6,7 @@
     "dev": "cross-env NODE_OPTIONS='--inspect' next",
     "build": "next build",
     "start": "next start",
+    "start:prod": "next start -p 80",
     "lint": "next lint"
   },
   "dependencies": {
