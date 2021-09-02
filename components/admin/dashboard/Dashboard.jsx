@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
   searchBox: {
     paddingLeft: theme.spacing(0.5),
   },
+  slidingItems: { height: "100%" },
   downloadButton: {
     padding: theme.spacing(1),
     margin: theme.spacing(1),
@@ -109,7 +110,7 @@ const Dashboard = () => {
                   name: document["profile"]["name"],
                   department: document["profile"]["department"],
                   designation: document["profile"]["designation"],
-                  employeeID: document["employeID"],
+                  employeeID: document["employeeID"],
                 };
               })
             )
@@ -124,8 +125,10 @@ const Dashboard = () => {
   return (
     <Fragment>
       <Grid container className={classes.dashboardGrid}>
-        <Grid item xs={12} sm={12} lg={6} className={classes.table}>
-          <DataTable rows={rows} />
+        <Grid item xs={12} sm={12} lg={6}>
+          <Box className={classes.table}>
+            <DataTable rows={rows} />
+          </Box>
           <Box px={1} py={2}>
             <Card variant="outlined">
               <CardContent>
@@ -161,8 +164,10 @@ const Dashboard = () => {
           </Box>
         </Grid>
         <Hidden only={["xs", "sm"]}>
-          <Grid item xs={false} sm={false} lg={6} elevation={6} className={classes.searchBox}>
-            <Search {...{ valueLastUpdatedRef, toFilterRef, filterRef, sortRef, displayRef }} />
+          <Grid item xs={false} sm={false} lg={6} elevation={6}>
+            <Box className={classes.searchBox}>
+              <Search {...{ valueLastUpdatedRef, toFilterRef, filterRef, sortRef, displayRef }} />
+            </Box>
           </Grid>
         </Hidden>
       </Grid>
