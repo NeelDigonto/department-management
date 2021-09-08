@@ -46,8 +46,8 @@ const ActionNode = ({
   const handleDisplayToggle = () => {
     valueLastUpdatedRef.current = new Date();
     setDisplay((oldState) => {
-      //if (oldState) delete displayRef.current[`${categoryName}.${field.db_field}`];
-      // else displayRef.current[`${categoryName}.${field.db_field}`] = 1;
+      if (oldState) delete displayRef.current[`${categoryName}.${field.db_field}`];
+      else displayRef.current[`${categoryName}.${field.db_field}`] = 1;
       return !oldState;
     });
   };

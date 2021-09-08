@@ -5,7 +5,8 @@ const FileQuerry = ({ field, categoryName, valueLastUpdatedRef, filterRef }) => 
   const handleChange = (event) => {
     valueLastUpdatedRef.current = new Date();
 
-    filterRef.current[`${categoryName}.${field.db_field}.fname`] = {
+    //`${categoryName}.${field.db_field}.fname`
+    filterRef.current[`${categoryName}.${field.db_field}`] = {
       $regex: event.target.value,
       $options: "im",
     };

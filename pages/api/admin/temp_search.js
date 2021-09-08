@@ -100,3 +100,84 @@ export default async function handler(req, res) {
 
   connection.close();
 }
+
+/*
+const pipeline = [
+  {
+    $match: filter,
+  },
+  {
+    $project: {
+      "journal-publications": {
+        $filter: {
+          input: "$journal-publications",
+          as: "achievement",
+          cond: {
+            $and: [
+              //{ $gte: ["$$achievement.studs_involved", 9] },
+              //{ $in: ["$$achievement.studs_involved", [9]] },
+              // { $lte: ["$$achievement", NumberLong("9223372036854775807")] },
+            ],
+            //$regexMatch: { input: "$$achievement.title", regex: "biot", options: "i" },
+          },
+        },
+      },
+    },
+  },*/
+
+/*  // projectionFilter
+ projectionFilter[split_field_key[0]]["$filter"] = {
+  input: `${split_field_key[0]}`,
+  as: "achievement",
+  cond: {
+    $and: [
+      // { $gte: ["$$achievement.studs_involved", 9] },
+      // { $in: ["$$achievement.studs_involved", [9]] },
+      { $regexMatch: { input: "$$achievement.title", regex: "biot", options: "i" } },
+    ],
+  },
+}; */
+
+/*   const filter = {
+    "profile.name": { $regex: "Saikat Dey", $options: "im" },
+    "journal-publications": {
+      $elemMatch: {
+        //title: { $regex: "integration", $options: "im" },
+        //author: { $regex: "saikat", $options: "im" },
+        studs_involved: { $gte: 1 },
+      },
+    },
+  }; */
+
+/*     {
+      $project: display,
+    }, */
+/* {
+      $project: {
+        // profile: 1,
+        "journal-publications": {
+          $filter: {
+            input: "$journal-publications",
+            as: "achievement",
+            cond: {
+              $and: [
+                { $gte: ["$$achievement.studs_involved", 9] },
+                //{ $in: ["$$achievement.studs_involved", [9]] },
+                // { $lte: ["$$achievement", NumberLong("9223372036854775807")] },
+                { $regexMatch: { input: "$$achievement.title", regex: "biot", options: "i" } },
+              ],
+            },
+          },
+        },
+      },
+    }, */
+/*  {
+      $project: {
+        _id: 0,
+        employeeID: 1,
+        "profile.name": 1,
+        "profile.department": 1,
+        "profile.designation": 1,
+        "journal-publications.issn_isbn": 1,
+      },
+    }, */

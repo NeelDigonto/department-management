@@ -4,12 +4,35 @@ import { Box, Grid, Paper, Card, CardContent } from "@material-ui/core";
 import ProfileFilter from "./ProfileFilter";
 import AchievementFilter from "./AchievementFilter";
 
-const Search = ({ valueLastUpdatedRef, toFilterRef, filterRef, sortRef, displayRef }) => {
+const Search = ({
+  valueLastUpdatedRef,
+  toFilterRef,
+  filterRef,
+
+  sortRef,
+  displayRef,
+}) => {
   return (
     <Fragment>
-      <ProfileFilter {...{ valueLastUpdatedRef, toFilterRef, filterRef, sortRef, displayRef }} />
+      <ProfileFilter
+        {...{
+          valueLastUpdatedRef,
+          toFilterRef,
+          filterRef,
+
+          sortRef,
+          displayRef,
+        }}
+      />
       <AchievementFilter
-        {...{ valueLastUpdatedRef, toFilterRef, filterRef, sortRef, displayRef }}
+        {...{
+          valueLastUpdatedRef,
+          toFilterRef,
+          filterRef,
+
+          sortRef,
+          displayRef,
+        }}
       />
     </Fragment>
   );

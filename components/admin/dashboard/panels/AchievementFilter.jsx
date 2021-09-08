@@ -21,14 +21,13 @@ const AchievementFilter = ({
   valueLastUpdatedRef,
   toFilterRef,
   filterRef,
+
   sortRef,
   displayRef,
 }) => {
   return (
     <Fragment>
       {Object.keys(ACHIEVEMENTS_GROUP_SCHEMA).map((key, key_index) => {
-        const categoryName = key;
-
         return (
           <Fragment key={key_index}>
             <Accordion>
@@ -58,13 +57,16 @@ const AchievementFilter = ({
                         <Grid key={field_index} item md={3}>
                           <Box px={1} py={1}>
                             <FilterNode
-                              valueLastUpdatedRef={valueLastUpdatedRef}
-                              categoryName={key}
-                              toFilterRef={toFilterRef}
-                              filterRef={filterRef}
-                              sortRef={sortRef}
-                              displayRef={displayRef}
-                              field={field}
+                              {...{
+                                valueLastUpdatedRef,
+                                categoryName: key,
+                                toFilterRef,
+                                filterRef,
+
+                                sortRef,
+                                displayRef,
+                                field,
+                              }}
                             />
                           </Box>
                         </Grid>

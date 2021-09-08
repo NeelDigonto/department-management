@@ -13,6 +13,8 @@ import {
 import Search from "./panels/Search";
 import DataTable from "./table/DataTable";
 
+const _MS = 500;
+
 const useStyles = makeStyles((theme) => ({
   dashboardGrid: {
     paddingTop: theme.spacing(2),
@@ -41,61 +43,57 @@ const Dashboard = () => {
   const sortRef = useRef({});
   const displayRef = useRef({});
 
-  const valueLastUpdatedRef = useRef(new Date());
+  const valueLastUpdatedRef = useRef(new Date(new Date().getTime() + _MS + 1));
   const resultLastUpdatedRef = useRef(new Date());
 
-  const [rows, setRows] = useState([
-    /* {
-      sl_no: 1,
-      name: "Saikat Dey",
-      department: "C.S.E.",
-      designation: "H.O.D.",
-      employeeID: "GASD456516A",
-    }, */
-  ]);
+  const [rows, setRows] = useState([]);
 
-  const _MS = 500;
+  const getFilterObject = () => {
+    const filter = {};
+
+    Object.keys(toFilterRef.current).forEach((field_key, item) => {
+      const split_field_key = field_key.split(".");
+      const first_split_ind = field_key.indexOf(".");
+
+      if (!!split_field_key[0] && toFilterRef.current[field_key] === true) {
+        if (split_field_key[0] === "profile") {
+          // for profile
+          filter[field_key] = filterRef.current[field_key];
+        } else {
+          //stronger check if [0] is an achievement
+          //for achievements
+
+          if (!filter[split_field_key[0]] || !filter[split_field_key[0]]["$elemMatch"]) {
+            filter[split_field_key[0]] = { $elemMatch: {} };
+          }
+
+          filter[split_field_key[0]]["$elemMatch"][field_key.substring(first_split_ind + 1)] =
+            filterRef.current[field_key];
+        }
+      }
+    });
+    return filter;
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (valueLastUpdatedRef.current.getTime() - resultLastUpdatedRef.current.getTime() >= _MS) {
         resultLastUpdatedRef.current = valueLastUpdatedRef.current;
 
-        let filter = {};
-        Object.keys(toFilterRef.current).forEach((field_key, item) => {
-          const split_field_key = field_key.split(".");
-          const first_split_ind = field_key.indexOf(".");
-
-          if (!!split_field_key[0] && toFilterRef.current[field_key] === true) {
-            if (split_field_key[0] === "profile") {
-              filter[field_key] = filterRef.current[field_key];
-            } else {
-              //for achievements
-              if (!filter[split_field_key[0]]) filter[split_field_key[0]] = {};
-
-              if (!filter[split_field_key[0]]["$elemMatch"])
-                filter[split_field_key[0]]["$elemMatch"] = {};
-
-              /*  filter[split_field_key[0]]["$elemMatch"][split_field_key[1]] =
-                filterRef.current[field_key]; */
-
-              filter[split_field_key[0]]["$elemMatch"][field_key.substring(first_split_ind + 1)] =
-                filterRef.current[field_key];
-            }
-          }
-        });
+        const filter = getFilterObject();
 
         console.log("toFilterRef: ", toFilterRef.current);
         console.log("filterRef: ", filterRef.current);
         console.log("filter: ", filter);
         //console.log("sortRef: ", sortRef.current);
-        //console.log("displayRef: ", displayRef.current);
+        console.log("displayRef: ", displayRef.current);
 
         fetch("/api/admin/search", {
           method: "POST",
           body: JSON.stringify({
             filter: filter,
             //sort: sortRef.current,
+            display: displayRef.current,
           }),
           headers: {
             "Content-Type": "application/json",
@@ -121,6 +119,25 @@ const Dashboard = () => {
 
     return () => clearInterval(interval);
   }, []);
+  const handleWorkbookDownload = () => {
+    fetch("/api/admin/download_selected", {
+      method: "POST",
+      body: JSON.stringify({
+        filter: getFilterObject(),
+        sort: sortRef.current,
+        display: displayRef.current,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.blob())
+      .then((blob) => URL.createObjectURL(blob))
+      .then((url) => {
+        window.open(url, "_blank");
+        URL.revokeObjectURL(url);
+      });
+  };
 
   return (
     <Fragment>
@@ -148,6 +165,7 @@ const Dashboard = () => {
                   color="primary"
                   fullWidth
                   className={classes.downloadButton}
+                  onClick={handleWorkbookDownload}
                 >
                   Download as multi-spreadsheets
                 </Button>
@@ -156,6 +174,7 @@ const Dashboard = () => {
                   color="primary"
                   fullWidth
                   className={classes.downloadButton}
+                  onClick={handleWorkbookDownload}
                 >
                   Download as single-spreadsheet
                 </Button>
@@ -166,7 +185,15 @@ const Dashboard = () => {
         <Hidden only={["xs", "sm"]}>
           <Grid item xs={false} sm={false} lg={6} elevation={6}>
             <Box className={classes.searchBox}>
-              <Search {...{ valueLastUpdatedRef, toFilterRef, filterRef, sortRef, displayRef }} />
+              <Search
+                {...{
+                  valueLastUpdatedRef,
+                  toFilterRef,
+                  filterRef,
+                  sortRef,
+                  displayRef,
+                }}
+              />
             </Box>
           </Grid>
         </Hidden>
