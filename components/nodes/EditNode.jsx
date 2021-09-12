@@ -7,6 +7,7 @@ import {
   Card,
   Button,
   FormHelperText,
+  Grid,
   makeStyles,
 } from "@material-ui/core";
 
@@ -14,11 +15,13 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import { isEmptyObject } from "../../lib/util";
 import stageFileUpload from "../../lib/fileUpload";
 import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE } from "../../data/types/types";
+import CustomSelect from "../ui/CustomSelect";
 
 const useStyles = makeStyles((theme) => ({ errorBody: { color: theme.palette.error.main } }));
 
 const EditNode = ({ field, formik, setIsUploading }) => {
   const classes = useStyles();
+
   let outputNode;
   switch (field.input_type) {
     case INPUT_TYPE.TEXT: {
@@ -114,6 +117,11 @@ const EditNode = ({ field, formik, setIsUploading }) => {
           ))}
         </TextField>
       );
+      break;
+    }
+    case INPUT_TYPE.CUSTOM_SELECT: {
+      outputNode = <CustomSelect field={field} formik={formik} />;
+      //outputNode = null;
       break;
     }
     case INPUT_TYPE.CHECKBOX: {

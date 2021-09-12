@@ -2,13 +2,13 @@ import React, { Fragment, useState, useEffect, useRef } from "react";
 import { Typography } from "@material-ui/core";
 
 import ActionNode from "./ActionNode";
-import TextQuerry from "./TextQuerry";
-import EmailQuerry from "./EmailQuerry";
-import SelectQuerry from "./SelectQuerry";
-import DateQuerry from "./DateQuerry";
-import NumberQuerry from "./NumberQuerry";
-import CheckboxQuerry from "./CheckboxQuerry";
-import FileQuerry from "./FileQuerry";
+import TextQuerry from "./querry/TextQuerry";
+import EmailQuerry from "./querry/EmailQuerry";
+import SelectQuerry from "./querry/SelectQuerry";
+import DateQuerry from "./querry/DateQuerry";
+import NumberQuerry from "./querry/NumberQuerry";
+import CheckboxQuerry from "./querry/CheckboxQuerry";
+import FileQuerry from "./querry/FileQuerry";
 
 import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE } from "../../data/types/types";
 

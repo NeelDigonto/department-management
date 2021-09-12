@@ -25,6 +25,7 @@ const INPUT_TYPE = {
   EMAIL: "email",
   NUMBER: "number",
   MULTILINE_TEXT: "multiline-text",
+  CUSTOM_SELECT: "custom-select",
 };
 
 const WIDTH_TYPE = { SMALL: "small", MEDIUM: "medium", LARGE: "large" };

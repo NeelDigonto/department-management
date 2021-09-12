@@ -17,6 +17,7 @@ import {
   Badge,
   Container,
   alpha,
+  Box,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
@@ -72,6 +73,9 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     position: "relative",
+    //position: "absolute",
+    //position: "fixed",
+    //maxHeight: "100vh",
     whiteSpace: "nowrap",
     width: drawerWidth,
     transition: theme.transitions.create("width", {
@@ -94,6 +98,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     height: "100vh",
+    //height: "100%",
     overflow: "auto",
   },
   container: {
