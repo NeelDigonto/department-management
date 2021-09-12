@@ -5,8 +5,7 @@ import {
   Button,
   Paper,
   Box,
-  Card,
-  CardContent,
+  Container,
   Grid,
   Typography,
   makeStyles,
@@ -24,7 +23,7 @@ const CreateUser = () => {
       <Box px={2} py={2}>
         <h1>Add a New User</h1>
         <Formik
-          initialValues={{ employeeID: "", password: "" }}
+          initialValues={{ employeeID: "", password: "", name: "" }}
           onSubmit={(values, { setSubmitting }) => {
             setSubmitting(true);
             fetch("/api/admin/createNewUser", {
@@ -32,7 +31,11 @@ const CreateUser = () => {
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify({ employeeID: values.employeeID, password: values.password }),
+              body: JSON.stringify({
+                employeeID: values.employeeID,
+                password: values.password,
+                name: values.name,
+              }),
             })
               .then((response) => response.json())
               .then((result) =>
@@ -64,6 +67,20 @@ const CreateUser = () => {
                       label="EmployeeID"
                       autoComplete="off"
                       value={values.employeeID}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    ></TextField>
+                  </Box>
+                </Grid>
+                <Grid item sm={12} lg={6}>
+                  <Box px={2} py={2}>
+                    <TextField
+                      fullWidth
+                      variant="filled"
+                      name="name"
+                      label="Name"
+                      autoComplete="off"
+                      value={values.name}
                       onChange={handleChange}
                       onBlur={handleBlur}
                     ></TextField>

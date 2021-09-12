@@ -3,10 +3,6 @@ import Head from "next/head";
 import React from "react";
 import { useRouter } from "next/router";
 import { signIn, signOut, useSession, getSession } from "next-auth/client";
-import NextLink from "next/link";
-import { sidebarOptions, schema } from "../../data/schema";
-
-import { useUserContext } from "../../contexts/UserContext.jsx";
 
 import Dashboard from "../../components/admin/dashboard/Dashboard";
 import { mainListItems, secondaryListItems } from "../../components/admin/sidebar/listItems.jsx";

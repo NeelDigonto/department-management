@@ -19,26 +19,17 @@ export default async function handler(req, res) {
 
   const usersCollection = connection.db("users").collection("faculties");
 
-  const { employeeID, password } = req.body;
-
-  /*   let mockProfile = {};
-  schema["Profile"].forEach((item) => {
-    mockProfile[item.db_field] = item.value;
-  });
-
-  const emptyUserDocument = {
-    employeeID: employeeID,
-    hashedPassword: await hashPassword(password),
-    ...MASTER_SCHEMA,
-  }; */
+  const { employeeID, password, name } = req.body;
 
   const EMPTY_USER_DOCUMENT = getTypedDocument(getEmptyUserDocument());
 
-  const emptyUserDocument = {
+  let emptyUserDocument = {
     ...EMPTY_USER_DOCUMENT,
     employeeID: employeeID,
     hashedPassword: await hashPassword(password),
   };
+
+  emptyUserDocument["profile"]["name"] = name;
 
   const insertResult = await usersCollection.insertOne(emptyUserDocument);
   connection.close();

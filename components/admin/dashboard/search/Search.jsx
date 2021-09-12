@@ -1,8 +1,8 @@
 import React, { Fragment, useRef, useEffect } from "react";
 import { Box, Grid, Paper, Card, CardContent } from "@material-ui/core";
 
-import ProfileFilter from "./ProfileFilter";
-import AchievementFilter from "./AchievementFilter";
+import ProfileFilter from "./panels/ProfileFilter";
+import AchievementFilter from "./panels/AchievementFilter";
 
 const Search = ({
   valueLastUpdatedRef,

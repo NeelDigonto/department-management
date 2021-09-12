@@ -14,8 +14,8 @@ import {
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-import FilterNode from "../../../nodes/SearchNode";
-import { MASTER_SCHEMA, ACHIEVEMENTS_GROUP_SCHEMA } from "../../../../data/schema";
+import FilterNode from "../../../../nodes/SearchNode";
+import { MASTER_SCHEMA, ACHIEVEMENTS_GROUP_SCHEMA } from "../../../../../data/schema";
 
 const AchievementFilter = ({
   valueLastUpdatedRef,

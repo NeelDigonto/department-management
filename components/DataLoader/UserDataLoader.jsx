@@ -28,6 +28,9 @@ const UserDataLoader = ({ children }) => {
           setForceUpdate(false);
         });
     }
+    return () => {
+      setUser(false);
+    };
   }, [session, loading]);
 
   return <Fragment>{children}</Fragment>;

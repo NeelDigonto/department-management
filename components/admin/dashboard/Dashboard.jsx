@@ -1,17 +1,10 @@
 import React, { Fragment, useState, useEffect, useRef } from "react";
-import {
-  Hidden,
-  Grid,
-  makeStyles,
-  Box,
-  Card,
-  CardContent,
-  Container,
-  Button,
-} from "@material-ui/core";
+import { Hidden, Grid, makeStyles, Box, Fab } from "@material-ui/core";
+import ListIcon from "@material-ui/icons/List";
 
-import Search from "./panels/Search";
+import Search from "./search/Search";
 import DataTable from "./table/DataTable";
+import DownloadOptions from "./download/DownloadOptions";
 
 const _MS = 500;
 
@@ -29,9 +22,12 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(0.5),
   },
   slidingItems: { height: "100%" },
-  downloadButton: {
-    padding: theme.spacing(1),
-    margin: theme.spacing(1),
+  leftColumn: {},
+  rightColumn: {},
+  fab: {
+    position: "fixed",
+    bottom: theme.spacing(2),
+    right: /* theme.spacing(2) */ "4%",
   },
 }));
 
@@ -119,71 +115,18 @@ const Dashboard = () => {
 
     return () => clearInterval(interval);
   }, []);
-  const handleWorkbookDownload = () => {
-    fetch("/api/admin/download_selected", {
-      method: "POST",
-      body: JSON.stringify({
-        filter: getFilterObject(),
-        sort: sortRef.current,
-        display: displayRef.current,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.blob())
-      .then((blob) => URL.createObjectURL(blob))
-      .then((url) => {
-        window.open(url, "_blank");
-        URL.revokeObjectURL(url);
-      });
-  };
 
   return (
     <Fragment>
       <Grid container className={classes.dashboardGrid}>
-        <Grid item xs={12} sm={12} lg={6}>
+        <Grid item xs={12} sm={12} lg={6} className={classes.leftColumn}>
           <Box className={classes.table}>
             <DataTable rows={rows} />
           </Box>
-          <Box px={1} py={2}>
-            <Card variant="outlined">
-              <CardContent>
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  fullWidth
-                  className={classes.downloadButton}
-                  onClick={() => {
-                    window.open("/api/admin/download_all", "_blank");
-                  }}
-                >
-                  Download All Data
-                </Button>
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  fullWidth
-                  className={classes.downloadButton}
-                  onClick={handleWorkbookDownload}
-                >
-                  Download as multi-spreadsheets
-                </Button>
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  fullWidth
-                  className={classes.downloadButton}
-                  onClick={handleWorkbookDownload}
-                >
-                  Download as single-spreadsheet
-                </Button>
-              </CardContent>
-            </Card>
-          </Box>
+          <DownloadOptions {...{ getFilterObject, sortRef, displayRef }} />
         </Grid>
         <Hidden only={["xs", "sm"]}>
-          <Grid item xs={false} sm={false} lg={6} elevation={6}>
+          <Grid item xs={false} sm={false} lg={6} elevation={6} className={classes.rightColumn}>
             <Box className={classes.searchBox}>
               <Search
                 {...{
@@ -198,6 +141,11 @@ const Dashboard = () => {
           </Grid>
         </Hidden>
       </Grid>
+      <Hidden only={["md", "lg", "xl"]}>
+        <Fab className={classes.fab} color="primary" aria-label="add" onClick={() => {}}>
+          <ListIcon />
+        </Fab>
+      </Hidden>
     </Fragment>
   );
 };

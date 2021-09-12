@@ -30,9 +30,11 @@ class MyDocument extends Document {
       <Html>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <Head>
+          <link rel="icon" href="/favicon.ico" />
+          <link rel="apple-touch-icon" href="/favicon.ico" />
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={"true"} />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={"anonymous"} />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
