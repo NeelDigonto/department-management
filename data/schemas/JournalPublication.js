@@ -135,7 +135,7 @@ const FIELDS = [
     input_type: INPUT_TYPE.TEXT,
     view_width: WIDTH_TYPE.LARGE,
     db_field: "journ_web_link",
-    validation: Validation.string(),
+    validation: Validation.url(),
   },
   {
     label: "Indexing",

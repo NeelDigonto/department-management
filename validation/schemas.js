@@ -36,11 +36,20 @@ const number = (required = true, integer = true, positive = true) => {
   return validation_object;
 };
 
-const url = (required = true) =>
-  required
-    ? Yup.string().url("Must be a URL").required("Required!")
-    : Yup.string().url("Must be a URL");
-
-const export_object = { string, email, option, date, file, boolean, number, url };
+const url = (required = true) => (required ? Yup.string().required("Required!") : Yup.string());
+/*   required
+  ? Yup.string().url("Must be a URL").required("Required!")
+  : Yup.string().url("Must be a URL"); 
+*/
+const export_object = {
+  string,
+  email,
+  option,
+  date,
+  file,
+  boolean,
+  number,
+  url,
+};
 
 export default export_object;
