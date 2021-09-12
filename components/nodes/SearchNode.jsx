@@ -47,6 +47,12 @@ const FilterNode = ({
       ) : null;
       break;
     }
+    case INPUT_TYPE.CUSTOM_SELECT: {
+      filterNode = filter ? (
+        <TextQuerry {...{ field, categoryName, valueLastUpdatedRef, filterRef }} />
+      ) : null;
+      break;
+    }
     case INPUT_TYPE.DATE: {
       filterNode = filter ? (
         <DateQuerry {...{ field, categoryName, valueLastUpdatedRef, filterRef }} />
