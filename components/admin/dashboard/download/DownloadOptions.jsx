@@ -13,7 +13,7 @@ const DownloadOptions = ({ getFilterObject, sortRef, displayRef }) => {
   const classes = useStyles();
 
   const handleWorkbookDownload = () => {
-    fetch("/api/admin/download_selected", {
+    fetch("/api/admin/download/selected", {
       method: "POST",
       body: JSON.stringify({
         filter: getFilterObject(),
@@ -42,7 +42,7 @@ const DownloadOptions = ({ getFilterObject, sortRef, displayRef }) => {
             fullWidth
             className={classes.downloadButton}
             onClick={() => {
-              window.open("/api/admin/download_all", "_blank");
+              window.open("/api/admin/download/all", "_blank");
             }}
           >
             Download All Data

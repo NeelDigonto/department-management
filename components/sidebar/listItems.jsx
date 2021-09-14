@@ -33,21 +33,17 @@ export const MainListItems = ({ section }) => {
 export const secondaryListItems = (
   <div>
     <ListSubheader inset>General</ListSubheader>
-    <NextLink href={"/news"}>
-      <ListItem button>
-        <ListItemIcon>
-          <AnnouncementIcon />
-        </ListItemIcon>
-        <ListItemText primary="News" />
-      </ListItem>
-    </NextLink>
-    <NextLink href={"/routine"}>
-      <ListItem button>
-        <ListItemIcon>
-          <TableChartIcon />
-        </ListItemIcon>
-        <ListItemText primary="Routine" />
-      </ListItem>
-    </NextLink>
+    <ListItem button>
+      <ListItemIcon>
+        <AnnouncementIcon />
+      </ListItemIcon>
+      <ListItemText primary="News" />
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <TableChartIcon />
+      </ListItemIcon>
+      <ListItemText primary="Routine" />
+    </ListItem>
   </div>
 );

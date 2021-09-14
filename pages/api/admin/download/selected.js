@@ -3,11 +3,11 @@ import { Readable } from "stream";
 import { getSession } from "next-auth/client";
 import { ReasonPhrases, StatusCodes, getReasonPhrase, getStatusCode } from "http-status-codes";
 
-import { getMongoClient } from "../../../lib/db";
-import { MASTER_SCHEMA, ACHIEVEMENTS_GROUP_SCHEMA } from "../../../data/schema";
-import { toTypedQuerry } from "../../../lib/type_converter";
+import { getMongoClient } from "../../../../lib/db";
+import { MASTER_SCHEMA, ACHIEVEMENTS_GROUP_SCHEMA } from "../../../../data/schema";
+import { toTypedQuerry } from "../../../../lib/type_converter";
 
-import { getWorkBookBuffer } from "../../../lib/workbook";
+import { getWorkBookBuffer } from "../../../../lib/workbook";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {

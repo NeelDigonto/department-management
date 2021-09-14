@@ -1,5 +1,5 @@
 import { getSession } from "next-auth/client";
-import { ReasonPhrases, StatusCodes, getReasonPhrase, getStatusCode } from "http-status-codes";
+import { ReasonPhrases, StatusCodes } from "http-status-codes";
 
 import { getMongoClient } from "../../../../lib/db";
 import { hashPassword } from "../../../../lib/auth";

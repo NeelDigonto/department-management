@@ -1,13 +1,15 @@
-import { getMongoClient } from "../../../../../lib/db.js";
+import { ReasonPhrases, StatusCodes, getReasonPhrase, getStatusCode } from "http-status-codes";
+
+import { getMongoClient } from "../../../../../../lib/db.js";
 import {
   toTypedAchievements,
   toTypedProfile,
   getTypedDocument,
-} from "../../../../../lib/type_converter";
+} from "../../../../../../lib/type_converter";
 
 export default async function handler(req, res) {
-  //check if user is allowed to acces this api
   if (req.method !== "POST") {
+    res.status(StatusCodes.METHOD_NOT_ALLOWED).send(ReasonPhrases.METHOD_NOT_ALLOWED);
     return;
   }
 

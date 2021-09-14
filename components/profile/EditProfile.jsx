@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Formik, useFormik, Field, Form, ErrorMessage } from "formik";
+import { ReasonPhrases, StatusCodes, getReasonPhrase } from "http-status-codes";
 
 import { useUserContext } from "../../contexts/UserContext";
 import EditNode from "../nodes/EditNode";
@@ -33,20 +34,18 @@ const EditProfile = ({ setIsEditing }) => {
     initialValues: user["profile"],
     onSubmit: (values, { setSubmitting }) => {
       setSubmitting(true);
-      axios({
-        url: "api/user/editData/profile/edit",
+      fetch("api/user/data/edit/profile/edit", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
-        data: {
+        body: JSON.stringify({
           employeeID: user.employeeID,
           newProfile: values,
-        },
+        }),
       })
-        .then((response) => response.data)
-        .then((result) => {
-          if (result.isUpdated === true) {
+        .then((response) => {
+          if (response.status === StatusCodes.OK) {
             setUser((oldState) => {
               let newState = { ...oldState };
               newState["profile"] = {
@@ -54,6 +53,8 @@ const EditProfile = ({ setIsEditing }) => {
               };
               return newState;
             });
+          } else {
+            throw `Server responded with: ${getReasonPhrase(response.status)}`;
           }
         })
         .then(() => {

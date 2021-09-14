@@ -1,10 +1,13 @@
-import { getMongoClient } from "../../../../../lib/db.js";
+import { ReasonPhrases, StatusCodes, getReasonPhrase, getStatusCode } from "http-status-codes";
+
+import { getMongoClient } from "../../../../../../lib/db.js";
 
 export default async function handler(req, res) {
-  //check if user is allowed to acces this api
   if (req.method !== "PATCH") {
+    res.status(StatusCodes.METHOD_NOT_ALLOWED).send(ReasonPhrases.METHOD_NOT_ALLOWED);
     return;
   }
+
   const { achievementCategory } = req.query;
 
   const client = await getMongoClient();

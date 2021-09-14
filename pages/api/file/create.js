@@ -1,6 +1,8 @@
 import Busboy from "busboy";
 import { uploadFileStream } from "../../../lib/aws-wrapper";
 import { v4 as uuidv4 } from "uuid";
+import { ReasonPhrases, StatusCodes } from "http-status-codes";
+import { getSession } from "next-auth/client";
 
 export const config = {
   api: {
@@ -9,45 +11,36 @@ export const config = {
 };
 
 export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    res.status(StatusCodes.METHOD_NOT_ALLOWED).send(ReasonPhrases.METHOD_NOT_ALLOWED);
+    return;
+  }
+
+  const session = await getSession({ req });
+  if (!session) {
+    res.status(StatusCodes.UNAUTHORIZED).send(ReasonPhrases.UNAUTHORIZED);
+    return;
+  }
+
   const fuid = uuidv4();
 
-  var busboy = new Busboy({ headers: req.headers });
-  busboy.on("file", async function (fieldname, fileStream, filename, encoding, mimetype) {
-    uploadFileStream(fileStream, fuid, filename, mimetype, encoding);
+  await new Promise(function (resolve, reject) {
+    var busboy = new Busboy({ headers: req.headers });
+    busboy.on("file", async function (fieldname, fileStream, filename, encoding, mimetype) {
+      uploadFileStream(fileStream, fuid, filename, mimetype, encoding);
+    });
 
-    //check if upload succeded
+    busboy.on("finish", function () {
+      res.status(StatusCodes.CREATED).json({ fuid: fuid });
+      resolve();
+    });
 
-    /*     console.log(
-      "File [" +
-        fieldname +
-        "]: filename: " +
-        filename +
-        ", encoding: " +
-        encoding +
-        ", mimetype: " +
-        mimetype
-    );
-
-    file.on("data", function (data) {
-      console.log("File [" + fieldname + "] got " + data.length + " bytes");
-    });*/
-    /*  file.on("end", async function () {
-      console.log("File [" + fieldname + "] Finished");
-    }); */
-  });
-
-  /*   busboy.on(
-    "field",
-    function (fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
-       console.log("Field [" + fieldname + "]: value: " + inspect(val)); 
+    try {
+      req.pipe(busboy);
+    } catch (err) {
+      console.error(err);
+      res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(ReasonPhrases.INTERNAL_SERVER_ERROR);
+      return;
     }
-  ); */
-
-  busboy.on("finish", function () {
-    /*     console.log("Done parsing form!"); */
-    /* res.writeHead(303, { Connection: "close", Location: "/" }); */
-    console.log("req ended");
-    res.status(200).end(JSON.stringify({ status: "ok", fuid: fuid }));
   });
-  req.pipe(busboy);
 }

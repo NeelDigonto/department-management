@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState, useMemo } from "react";
 import { signIn, signOut, useSession, getSession } from "next-auth/client";
+import { ReasonPhrases, StatusCodes, getReasonPhrase } from "http-status-codes";
 
-import { DataTypes, sidebarOptions, schema } from "../../data/schema.js";
 import { useUserContext } from "../../contexts/UserContext.jsx";
 
 const UserDataLoader = ({ children }) => {
@@ -11,7 +11,6 @@ const UserDataLoader = ({ children }) => {
   const [forceUpdate, setForceUpdate] = useState(false);
 
   useEffect(() => {
-    //dont use db_field here as key
     if (!!session && !loading && session.user.isAdmin === false) {
       const employeeID = session.user.employeeID;
 
@@ -20,10 +19,13 @@ const UserDataLoader = ({ children }) => {
         return;
       else setLastSession(session);
 
-      fetch(`/api/user/getFullData/${employeeID}`)
-        .then((response) => response.json())
+      // if error re request data
+      fetch(`/api/user/data/get/full/${employeeID}`)
+        .then((response) => {
+          if (response.status === StatusCodes.OK) return response.json();
+          else throw ` Server responded with: ${getReasonPhrase(response.status)}`;
+        })
         .then((result) => {
-          console.log("Data Fetched");
           setUser(result);
           setForceUpdate(false);
         });
@@ -37,5 +39,3 @@ const UserDataLoader = ({ children }) => {
 };
 
 export default UserDataLoader;
-
-//check why its updating so many times

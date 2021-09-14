@@ -1,16 +1,29 @@
+import { ReasonPhrases, StatusCodes, getReasonPhrase, getStatusCode } from "http-status-codes";
+import { getSession } from "next-auth/client";
+
 import { deleteFile } from "../../../../lib/aws-wrapper";
 
 export default async function handler(req, res) {
-  //check if the uid is valid
-  //check also if the user is ok
+  if (req.method !== "DELETE") {
+    res.status(StatusCodes.METHOD_NOT_ALLOWED).send(ReasonPhrases.METHOD_NOT_ALLOWED);
+    return;
+  }
 
-  if (req.method !== "PATCH") {
-    console.error("Non patch req received!");
+  const session = await getSession({ req });
+  if (!session) {
+    res.status(StatusCodes.UNAUTHORIZED).send(ReasonPhrases.UNAUTHORIZED);
+    return;
   }
 
   const { fuid } = req.query;
 
-  deleteFile(fuid);
+  try {
+    deleteFile(fuid);
+  } catch (err) {
+    console.error(err);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(ReasonPhrases.INTERNAL_SERVER_ERROR);
+    return;
+  }
 
-  res.status(200).json({ status: "ok" });
+  res.status(StatusCodes.OK).send(ReasonPhrases.OK);
 }

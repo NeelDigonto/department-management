@@ -21,7 +21,7 @@ const createAchievementHandler = async (
 
   setIsCreatingAchievement(true);
   const emptyAchievementData = getEmptyAchievementData();
-  fetch(`/api/user/editData/${achievementCategory}/create_new`, {
+  fetch(`/api/user/data/edit/${achievementCategory}/create`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -50,7 +50,7 @@ const createAchievementHandler = async (
 };
 
 const deleteAchievementHandler = async (employeeID, id_to_delete, setUser, achievementCategory) => {
-  fetch(`api/user/editData/${achievementCategory}/delete`, {
+  fetch(`/api/user/data/edit/${achievementCategory}/delete`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -86,7 +86,7 @@ const editAchievementHandler = async (
 ) => {
   setSubmitting(true);
   axios({
-    url: `api/user/editData/${achievementCategory}/edit`,
+    url: `/api/user/data/edit/${achievementCategory}/edit`,
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
