@@ -94,18 +94,6 @@ const FIELDS = [
     validation: Validation.date(),
   },
   {
-    label: "Proof",
-    value: {},
-    info: "Proof (Put drive link filing proof)",
-    type: VALUE_TYPE.OBJECT,
-    input_type: INPUT_TYPE.FILE,
-    db_field_type: DB_FIELD_TYPE.OBJECT,
-    view_width: WIDTH_TYPE.LARGE,
-    input_range: "application/pdf",
-    db_field: "proof_file",
-    validation: Validation.file(),
-  },
-  {
     label: "Proof of Patent publication",
     value: {},
     info: "Proof of Patent publication (if Published)",

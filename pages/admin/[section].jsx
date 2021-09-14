@@ -284,23 +284,6 @@ export default function AdminDashboard() {
   );
 }
 
-{
-  /* <Grid container component="main" className={classes.root}>
-        <CssBaseline />
-        <Grid item xs={false} sm={4} md={7} className={classes.image} />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-          {!isAdminLogin ? (
-            <UserLogin setIsAdminLogin={setIsAdminLogin} />
-          ) : (
-            <AdminLogin setIsAdminLogin={setIsAdminLogin} />
-          )}
-          <Box mt={2}>
-            <Copyright />
-          </Box>
-        </Grid>
-      </Grid> */
-}
-
 export async function getServerSideProps(context) {
   const session = await getSession({ req: context.req });
 

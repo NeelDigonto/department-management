@@ -25,9 +25,9 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import SearchIcon from "@material-ui/icons/Search";
 import Profile from "../components/profile/Profile.jsx";
-import { getMainListItems, secondaryListItems } from "../components/sidebar/listItems.jsx";
+import { MainListItems, secondaryListItems } from "../components/sidebar/listItems.jsx";
 import Achievements from "../components/achievement/Achievements";
-import { ACHIEVEMENTS_GROUP_SCHEMA, getValidationSchema } from "../data/schema.js";
+import { ACHIEVEMENTS_GROUP_SCHEMA, getValidationSchema, sidebarOptions } from "../data/schema.js";
 
 import Copyright from "../components/copyright/Copyright";
 
@@ -154,10 +154,13 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  categoryHeading: { textAlign: "center", letterSpacing: ".75rem" },
 }));
 
 export default function Dashboard() {
   const router = useRouter();
+  const { section } = router.query;
+
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const handleDrawerOpen = () => {
@@ -246,13 +249,27 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <Divider />
-        <List>{getMainListItems()}</List>
+        <List>
+          <MainListItems {...{ section }} />
+        </List>
         <Divider />
         <List>{secondaryListItems}</List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
+          <Typography
+            variant="h5"
+            component="h1"
+            color="secondary"
+            gutterBottom
+            className={classes.categoryHeading}
+          >
+            {
+              sidebarOptions.find((category) => category.urlSuffix === router.query.section)
+                .menuDisplay
+            }
+          </Typography>
           {mainViewComponents}
           <Copyright />
         </Container>

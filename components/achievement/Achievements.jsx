@@ -21,7 +21,7 @@ const Achievements = ({ achievementCategory, getAchievementValidationSchema }) =
     <Fragment>
       {!!user ? (
         <Fragment>
-          <Box pt={4}>
+          <Box pt={1}>
             {!!user[achievementCategory] && user[achievementCategory].length !== 0 ? (
               user[achievementCategory].map((achievement, index) => (
                 <AAchievement

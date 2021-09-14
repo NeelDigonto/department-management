@@ -1,3 +1,6 @@
+import { getSession } from "next-auth/client";
+import { ReasonPhrases, StatusCodes, getReasonPhrase, getStatusCode } from "http-status-codes";
+
 import { getMongoClient } from "../../../lib/db";
 import { isEmptyObject } from "../../../lib/util";
 import { MASTER_SCHEMA } from "../../../data/schema";
@@ -10,11 +13,17 @@ import {
 } from "../../../lib/type_converter";
 
 export default async function handler(req, res) {
-  //check if user is allowed to acces this api
-
   if (req.method !== "POST") {
-    console.error("Other than POST method received");
-    res.status("400").json({ msg: "Only accepts post request on this route" });
+    res.status(StatusCodes.METHOD_NOT_ALLOWED).send(ReasonPhrases.METHOD_NOT_ALLOWED);
+    return;
+  }
+
+  const session = await getSession({ req });
+  if (!session) {
+    res.status(StatusCodes.UNAUTHORIZED).send(ReasonPhrases.UNAUTHORIZED);
+    return;
+  } else if (session.user.isAdmin !== true) {
+    res.status(StatusCodes.FORBIDDEN).send(ReasonPhrases.FORBIDDEN);
     return;
   }
 
@@ -25,7 +34,13 @@ export default async function handler(req, res) {
 
   const { filter } = req.body;
 
-  toTypedQuerry(filter);
+  try {
+    toTypedQuerry(filter);
+  } catch (err) {
+    console.error(err);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(ReasonPhrases.INTERNAL_SERVER_ERROR);
+    return;
+  }
 
   const pipeline = [
     {
@@ -42,9 +57,16 @@ export default async function handler(req, res) {
     },
   ];
 
-  const payload = await usersCollection.aggregate(pipeline).toArray();
-
-  res.status(200).json({ searchResult: payload });
-
+  let payload;
+  try {
+    payload = await usersCollection.aggregate(pipeline).toArray();
+  } catch (err) {
+    console.error(err);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(ReasonPhrases.INTERNAL_SERVER_ERROR);
+    connection.close();
+    return;
+  }
   connection.close();
+
+  res.status(StatusCodes.OK).json({ searchResult: payload });
 }

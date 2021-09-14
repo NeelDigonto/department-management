@@ -11,6 +11,7 @@ import {
   Typography,
   makeStyles,
 } from "@material-ui/core";
+import { ReasonPhrases, StatusCodes, getReasonPhrase, getStatusCode } from "http-status-codes";
 
 const useStyles = makeStyles((theme) => ({
   info_msg: { color: theme.palette.error.main, textAlign: "center", padding: "1rem" },
@@ -27,16 +28,11 @@ const DeleteUser = () => {
           initialValues={{ employeeID: "", password: "" }}
           onSubmit={(values, { setSubmitting }) => {
             setSubmitting(true);
-            fetch("/api/admin/deleteUser", {
-              method: "PATCH",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ employeeID: values.employeeID }),
+            fetch(`/api/admin/delete_user/${values.employeeID}`, {
+              method: "DELETE",
             })
-              .then((response) => response.json())
-              .then((result) =>
-                result.isDeleted
+              .then((response) =>
+                response.status === StatusCodes.OK
                   ? setMessage("User Removed Successfully")
                   : setMessage("Couldn't remove user")
               )

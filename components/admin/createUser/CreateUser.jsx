@@ -10,6 +10,7 @@ import {
   Typography,
   makeStyles,
 } from "@material-ui/core";
+import { ReasonPhrases, StatusCodes, getReasonPhrase, getStatusCode } from "http-status-codes";
 
 const useStyles = makeStyles((theme) => ({
   info_msg: { color: theme.palette.error.main, textAlign: "center", padding: "1rem" },
@@ -26,20 +27,18 @@ const CreateUser = () => {
           initialValues={{ employeeID: "", password: "", name: "" }}
           onSubmit={(values, { setSubmitting }) => {
             setSubmitting(true);
-            fetch("/api/admin/createNewUser", {
-              method: "PATCH",
+            fetch(`/api/admin/create_user/${values.employeeID}`, {
+              method: "POST",
               headers: {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                employeeID: values.employeeID,
                 password: values.password,
                 name: values.name,
               }),
             })
-              .then((response) => response.json())
-              .then((result) =>
-                result.isCreated
+              .then((response) =>
+                response.status === StatusCodes.OK || response.status === StatusCodes.CREATED
                   ? setMessage("User Created Successfully")
                   : setMessage("Couldn't create user")
               )

@@ -1,8 +1,10 @@
-import { getMongoClient } from "../../../lib/db";
+import { getSession } from "next-auth/client";
+import { ReasonPhrases, StatusCodes, getReasonPhrase, getStatusCode } from "http-status-codes";
 import * as ExcelJS from "exceljs";
 import contentDisposition from "content-disposition";
 import { Readable } from "stream";
 
+import { getMongoClient } from "../../../lib/db";
 import { MASTER_SCHEMA, sidebarOptions } from "../../../data/schema";
 import { isEmptyObject } from "../../../lib/util";
 import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE, WIDTH_TYPE } from "../../../data/types/types";
@@ -22,10 +24,17 @@ const getColumnWidth = (view_width) => {
 };
 
 export default async function handler(req, res) {
-  //check if user is allowed to acces this api
-
   if (req.method !== "GET") {
-    console.error("Other than get method received");
+    res.status(StatusCodes.METHOD_NOT_ALLOWED).send(ReasonPhrases.METHOD_NOT_ALLOWED);
+    return;
+  }
+
+  const session = await getSession({ req });
+  if (!session) {
+    res.status(StatusCodes.UNAUTHORIZED).send(ReasonPhrases.UNAUTHORIZED);
+    return;
+  } else if (session.user.isAdmin !== true) {
+    res.status(StatusCodes.FORBIDDEN).send(ReasonPhrases.FORBIDDEN);
     return;
   }
 
@@ -34,8 +43,12 @@ export default async function handler(req, res) {
 
   const usersCollection = connection.db("users").collection("faculties");
 
-  const collectionData = await usersCollection.find().toArray();
-
+  let collectionData;
+  try {
+    collectionData = await usersCollection.find().toArray();
+  } catch (err) {
+    console.error(err);
+  }
   connection.close();
 
   const getStandardWorkBook = () => {
