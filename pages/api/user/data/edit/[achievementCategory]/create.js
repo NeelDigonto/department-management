@@ -1,11 +1,7 @@
 import { ReasonPhrases, StatusCodes, getReasonPhrase, getStatusCode } from "http-status-codes";
 
-import { getMongoClient } from "../../../../../../lib/db.js";
-import {
-  toTypedAchievements,
-  toTypedProfile,
-  getTypedDocument,
-} from "../../../../../../lib/type_converter";
+import { getMongoClient } from "../../../../../../src/lib/db.js";
+import { toTypedAchievements } from "../../../../../../src/lib/type_converter";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {

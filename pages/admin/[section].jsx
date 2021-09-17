@@ -4,8 +4,11 @@ import React from "react";
 import { useRouter } from "next/router";
 import { signIn, signOut, useSession, getSession } from "next-auth/client";
 
-import Dashboard from "../../components/admin/dashboard/Dashboard";
-import { mainListItems, secondaryListItems } from "../../components/admin/sidebar/listItems.jsx";
+import Dashboard from "../../src/components/admin/dashboard/Dashboard";
+import {
+  mainListItems,
+  secondaryListItems,
+} from "../../src/components/admin/sidebar/listItems.jsx";
 
 import clsx from "clsx";
 import {

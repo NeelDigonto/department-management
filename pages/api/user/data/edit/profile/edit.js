@@ -1,7 +1,7 @@
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 
-import { getMongoClient } from "../../../../../../lib/db";
-import { toTypedProfile } from "../../../../../../lib/type_converter";
+import { getMongoClient } from "../../../../../../src/lib/db";
+import { toTypedProfile } from "../../../../../../src/lib/type_converter";
 
 export default async function handler(req, res) {
   if (req.method !== "PATCH") {

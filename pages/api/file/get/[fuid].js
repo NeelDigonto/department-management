@@ -1,6 +1,6 @@
 import { ReasonPhrases, StatusCodes, getReasonPhrase, getStatusCode } from "http-status-codes";
 
-import { downloadFileStream, getFileHead } from "../../../../lib/aws-wrapper";
+import { downloadFileStream, getFileHead } from "../../../../src/lib/aws-wrapper";
 
 export default async function handler(req, res) {
   if (req.method !== "GET") {

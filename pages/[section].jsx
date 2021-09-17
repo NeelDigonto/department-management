@@ -24,12 +24,16 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import SearchIcon from "@material-ui/icons/Search";
-import Profile from "../components/profile/Profile.jsx";
-import { MainListItems, secondaryListItems } from "../components/sidebar/listItems.jsx";
-import Achievements from "../components/achievement/Achievements";
-import { ACHIEVEMENTS_GROUP_SCHEMA, getValidationSchema, sidebarOptions } from "../data/schema.js";
 
-import Copyright from "../components/copyright/Copyright";
+import Profile from "../src/components/profile/Profile.jsx";
+import { MainListItems, secondaryListItems } from "../src/components/sidebar/listItems.jsx";
+import Achievements from "../src/components/achievement/Achievements";
+import {
+  ACHIEVEMENTS_GROUP_SCHEMA,
+  getValidationSchema,
+  sidebarOptions,
+} from "../src/data/schema.js";
+import Copyright from "../src/components/copyright/Copyright";
 
 const drawerWidth = 240;
 

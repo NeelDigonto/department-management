@@ -1,7 +1,7 @@
 import { ReasonPhrases, StatusCodes, getReasonPhrase, getStatusCode } from "http-status-codes";
 import { getSession } from "next-auth/client";
 
-import { deleteFile } from "../../../../lib/aws-wrapper";
+import { deleteFile } from "../../../../src/lib/aws-wrapper";
 
 export default async function handler(req, res) {
   if (req.method !== "DELETE") {

@@ -1,9 +1,9 @@
 import { getSession } from "next-auth/client";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 
-import { getMongoClient } from "../../../../lib/db";
-import { hashPassword } from "../../../../lib/auth";
-import { MASTER_SCHEMA, getEmptyUserDocument } from "../../../../data/schema";
+import { getMongoClient } from "../../../../src/lib/db";
+import { hashPassword } from "../../../../src/lib/auth";
+import { MASTER_SCHEMA, getEmptyUserDocument } from "../../../../src/data/schema";
 import {
   getTypedAchievement,
   getTypedProfile,

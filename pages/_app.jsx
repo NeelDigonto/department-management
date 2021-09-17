@@ -1,15 +1,12 @@
+import React, { Fragment, useEffect } from "react";
 import Head from "next/head";
-
 import { Provider } from "next-auth/client";
-
-import { UserContextProvider } from "../contexts/UserContext.jsx";
-import UserDataLoader from "../components/DataLoader/UserDataLoader";
-
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import theme from "../themes/theme.jsx";
 
-import React, { Fragment, useEffect } from "react";
+import theme from "../src/themes/theme.jsx";
+import { UserContextProvider } from "../src/contexts/UserContext.jsx";
+import UserDataLoader from "../src/components/DataLoader/UserDataLoader";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {

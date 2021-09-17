@@ -1,8 +1,8 @@
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
 
-import { verifyPassword } from "../../../lib/auth";
-import { getMongoClient } from "../../../lib/db";
+import { verifyPassword } from "../../../src/lib/auth";
+import { getMongoClient } from "../../../src/lib/db";
 
 export default NextAuth({
   session: {

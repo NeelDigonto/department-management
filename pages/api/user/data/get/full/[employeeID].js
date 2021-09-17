@@ -1,6 +1,6 @@
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 
-import { getMongoClient } from "../../../../../../lib/db";
+import { getMongoClient } from "../../../../../../src/lib/db";
 
 export default async function handler(req, res) {
   if (req.method !== "GET") {

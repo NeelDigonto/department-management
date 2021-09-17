@@ -1,16 +1,8 @@
 import { getSession } from "next-auth/client";
 import { ReasonPhrases, StatusCodes, getReasonPhrase, getStatusCode } from "http-status-codes";
 
-import { getMongoClient } from "../../../lib/db";
-import { isEmptyObject } from "../../../lib/util";
-import { MASTER_SCHEMA } from "../../../data/schema";
-import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE } from "../../../data/types/types";
-import {
-  toTypedAchievements,
-  toTypedProfile,
-  getTypedDocument,
-  toTypedQuerry,
-} from "../../../lib/type_converter";
+import { getMongoClient } from "../../../src/lib/db";
+import { toTypedQuerry } from "../../../src/lib/type_converter";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {

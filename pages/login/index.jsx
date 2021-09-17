@@ -5,9 +5,9 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { CssBaseline, Paper, Box, Grid, makeStyles } from "@material-ui/core";
 
-import UserLogin from "../../components/login/user/UserLogin";
-import AdminLogin from "../../components/login/admin/AdminLogin";
-import Copyright from "../../components/copyright/Copyright";
+import UserLogin from "../../src/components/login/user/UserLogin";
+import AdminLogin from "../../src/components/login/admin/AdminLogin";
+import Copyright from "../../src/components/copyright/Copyright";
 import IEM_FACULTIES_PHOTO from "../../public/iem_faculties.jpg";
 
 const useStyles = makeStyles((theme) => ({
