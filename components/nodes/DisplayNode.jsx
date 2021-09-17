@@ -30,15 +30,27 @@ const DisplayNode = ({ field, value }) => {
         {!!value && value ? "Yes" : "No"}
       </Fragment>
     );
-  else if (field.type === VALUE_TYPE.STRING || field.type === VALUE_TYPE.DATE)
-    outputNode = (
-      <Fragment>
-        <Typography color="textSecondary" gutterBottom>
-          {label}
-        </Typography>
-        {!!value ? value : null}
-      </Fragment>
-    );
+  else if (field.type === VALUE_TYPE.STRING)
+    if (field.input_type === INPUT_TYPE.DATE) {
+      const date = new Date(value);
+      outputNode = (
+        <Fragment>
+          <Typography color="textSecondary" gutterBottom>
+            {label}
+          </Typography>
+          {!!date ? date.toDateString() : "Invalid Date"}
+        </Fragment>
+      );
+    } else {
+      outputNode = (
+        <Fragment>
+          <Typography color="textSecondary" gutterBottom>
+            {label}
+          </Typography>
+          {!!value ? value : null}
+        </Fragment>
+      );
+    }
   else if (field.type === VALUE_TYPE.NUMBER)
     outputNode = (
       <Fragment>
@@ -55,12 +67,13 @@ const DisplayNode = ({ field, value }) => {
           {label}
         </Typography>
         {!isEmptyObject(value) ? (
-          <MuiLink
-            /* rel="noopener noreferrer" */ href={"/api/file/get/" + value.fuid}
-            target="_blank"
-          >
-            {/* getTrimmedFileName(value.fname, 20) */ value.fname}
-          </MuiLink>
+          value.isLink ? (
+            value.flink
+          ) : (
+            <MuiLink href={"/api/file/get/" + value.fuid} target="_blank">
+              {value.fname}
+            </MuiLink>
+          )
         ) : (
           " No file Uploaded"
         )}

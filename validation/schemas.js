@@ -18,8 +18,9 @@ const date = (required = true) =>
 const file = (required = true) =>
   required
     ? Yup.object().shape({
-        fname: Yup.string().required("File Required"),
-        fuid: Yup.string().required("File Required"),
+        /*    fname: Yup.string().required("File Required"),
+        fuid: Yup.string().required("File Required"), */
+        isLink: Yup.boolean(), //hmmm, kindda stupid, make it better, but no worries now ig
       })
     : Yup.object();
 

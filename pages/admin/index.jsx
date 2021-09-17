@@ -9,8 +9,8 @@ export default AdminRedirect;
 export async function getServerSideProps(context) {
   return {
     redirect: {
-      destination: "admin/download",
-      permanent: false,
+      destination: "admin/dashboard",
+      permanent: true,
     },
   };
 }

@@ -172,11 +172,8 @@ const FIELDS = [
     db_field: "prof_inv_file",
     validation: Yup.object().when(["inv_paper"], {
       is: true,
-      then: Yup.object().shape({
-        fname: Yup.string().required(),
-        fuid: Yup.string().required(),
-      }),
-      otherwise: Yup.object().shape({}),
+      then: Validation.file(true),
+      otherwise: Validation.file(false),
     }),
   },
   {

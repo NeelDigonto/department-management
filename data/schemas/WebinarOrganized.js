@@ -60,7 +60,7 @@ const FIELDS = [
     validation: Validation.string(),
   },
   {
-    label: "Speaker's Designation'",
+    label: "Speaker's Designation",
     value: "",
     info: "Designation of the Speaker",
     type: VALUE_TYPE.STRING,
@@ -71,7 +71,7 @@ const FIELDS = [
     validation: Validation.string(),
   },
   {
-    label: "Speaker's Organization'",
+    label: "Speaker's Organization",
     value: "",
     info: "Organization of the Speaker",
     type: VALUE_TYPE.STRING,
