@@ -1,7 +1,4 @@
-import { v4 as uuidv4 } from "uuid";
-import axios from "axios";
-
-import { MASTER_SCHEMA } from "../../data/schema";
+import { StatusCodes, getReasonPhrase } from "http-status-codes";
 
 const createAchievementHandler = async (
   employeeID,
@@ -9,69 +6,48 @@ const createAchievementHandler = async (
   setIsCreatingAchievement,
   achievementCategory
 ) => {
-  const getEmptyAchievementData = () => {
-    let emptyAchievementData = {};
-    MASTER_SCHEMA[achievementCategory]["fields"].forEach((field) => {
-      emptyAchievementData[field.db_field] = field.value;
-    });
-    emptyAchievementData["id"] = uuidv4();
-    emptyAchievementData["last_modified"] = new Date().toISOString();
-    return emptyAchievementData;
-  };
-
   setIsCreatingAchievement(true);
-  const emptyAchievementData = getEmptyAchievementData();
-  fetch(`/api/user/data/edit/${achievementCategory}/create`, {
+  fetch(`/api/user/${employeeID}/data/edit/${achievementCategory}/create`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      employeeID: employeeID,
-      emptyAchievementData: emptyAchievementData,
-    }),
   })
-    .then((response) => response.json())
-    .then((result) => {
-      if (result.created === true) {
-        setUser((oldState) => {
-          let newState = { ...oldState };
-          if (!!newState[achievementCategory])
-            newState[achievementCategory].push(emptyAchievementData);
-          else newState[achievementCategory] = [emptyAchievementData];
-          setIsCreatingAchievement(false);
-          return newState;
-        });
-      } else {
-        console.log("Couldn't create " + achievementCategory);
-        setIsCreatingAchievement(false);
+    .then((response) => {
+      if (response.status === StatusCodes.CREATED) return response.json();
+      else {
+        console.warn("Couldn't create " + achievementCategory);
+        throw `Server responded with: ${getReasonPhrase(response.status)}`;
       }
+    })
+    .then((result) => {
+      setUser((oldState) => {
+        let newState = { ...oldState };
+        // get the created one from server
+        if (!!newState[achievementCategory])
+          newState[achievementCategory].push(result.createdAchievement);
+        else newState[achievementCategory] = [result.createdAchievement];
+
+        setIsCreatingAchievement(false);
+        return newState;
+      });
     });
 };
 
 const deleteAchievementHandler = async (employeeID, id_to_delete, setUser, achievementCategory) => {
-  fetch(`/api/user/data/edit/${achievementCategory}/delete`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ employeeID: employeeID, delete_id_no: id_to_delete }),
-  })
-    .then((respone) => respone.json())
-    .then((result) => {
-      if (result.deleted) {
-        setUser((oldState) => {
-          let newState = { ...oldState };
-          newState[achievementCategory] = newState[achievementCategory].filter(
-            (item) => item.id !== id_to_delete
-          );
-          return newState;
-        });
-      } else {
-        console.error(achievementCategory + " not deleted");
-        console.log(result.updateResult);
-      }
-    });
+  fetch(`/api/user/${employeeID}/data/edit/${achievementCategory}/delete/${id_to_delete}`, {
+    method: "DELETE",
+  }).then((response) => {
+    if (response.status === StatusCodes.OK) {
+      setUser((oldState) => {
+        let newState = { ...oldState };
+        newState[achievementCategory] = newState[achievementCategory].filter(
+          (item) => item.id !== id_to_delete
+        );
+        return newState;
+      });
+    } else {
+      console.error("Couldn't delete a " + achievementCategory);
+      throw `Server responded with: ${getReasonPhrase(response.status)}`;
+    }
+  });
 };
 
 const editAchievementHandler = async (
@@ -85,32 +61,31 @@ const editAchievementHandler = async (
   achievementCategory
 ) => {
   setSubmitting(true);
-  axios({
-    url: `/api/user/data/edit/${achievementCategory}/edit`,
+  fetch(`/api/user/${employeeID}/data/edit/${achievementCategory}/edit/${achievement_id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
-    data: {
-      employeeID: employeeID,
-      edit_id_no: achievement_id,
+    body: JSON.stringify({
       updateObject: values,
-    },
+    }),
   })
-    .then((response) => response.data)
-    .then((result) => {
-      if (result.isUpdated === true) {
-        setUser((oldState) => {
-          let newState = { ...oldState };
-          newState[achievementCategory][index] = {
-            ...newState[achievementCategory][index],
-            ...values,
-          };
-          return newState;
-        });
+    .then((response) => {
+      if (response.status === StatusCodes.OK) return response.json();
+      else {
+        console.warn("Couldn't edit " + achievementCategory);
+        throw `Server responded with: ${getReasonPhrase(response.status)}`;
       }
     })
-    .then(() => {
+    .then((result) => {
+      setUser((oldState) => {
+        let newState = { ...oldState };
+        newState[achievementCategory][index] = {
+          ...newState[achievementCategory][index],
+          ...result.updatedAchievement,
+        };
+        return newState;
+      });
       setSubmitting(false);
       setIsEditing(false);
     });

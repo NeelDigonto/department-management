@@ -3,13 +3,6 @@ import Head from "next/head";
 import React from "react";
 import { useRouter } from "next/router";
 import { signIn, signOut, useSession, getSession } from "next-auth/client";
-
-import Dashboard from "../../src/components/admin/dashboard/Dashboard";
-import {
-  mainListItems,
-  secondaryListItems,
-} from "../../src/components/admin/sidebar/listItems.jsx";
-
 import clsx from "clsx";
 import {
   makeStyles,
@@ -38,10 +31,17 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import SearchIcon from "@material-ui/icons/Search";
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
-import CreateUser from "../../components/admin/createUser/CreateUser";
-import DeleteUser from "../../components/admin/deleteUser/DeleteUser";
 
-import Copyright from "../../components/copyright/Copyright";
+import Dashboard from "../../src/components/admin/dashboard/Dashboard";
+import {
+  mainListItems,
+  secondaryListItems,
+} from "../../src/components/admin/sidebar/listItems.jsx";
+
+import CreateUser from "../../src/components/admin/createUser/CreateUser";
+import DeleteUser from "../../src/components/admin/deleteUser/DeleteUser";
+
+import Copyright from "../../src/components/copyright/Copyright";
 
 const drawerWidth = 240;
 

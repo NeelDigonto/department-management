@@ -1,8 +1,10 @@
 import React, { Fragment, useRef, useEffect } from "react";
-import { Box, Grid, Paper, Card, CardContent } from "@material-ui/core";
+import { Box, makeStyles, Grid, Paper, Card, CardContent, Container } from "@material-ui/core";
 
 import ProfileFilter from "./panels/ProfileFilter";
 import AchievementFilter from "./panels/AchievementFilter";
+
+const useStyles = makeStyles((theme) => ({ searchBox: { maxHeight: "10rem" } }));
 
 const Search = ({
   valueLastUpdatedRef,
@@ -12,6 +14,8 @@ const Search = ({
   sortRef,
   displayRef,
 }) => {
+  const classes = useStyles();
+
   return (
     <Fragment>
       <ProfileFilter

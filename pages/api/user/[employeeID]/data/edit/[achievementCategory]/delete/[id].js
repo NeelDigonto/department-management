@@ -1,17 +1,24 @@
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
+import { getSession } from "next-auth/client";
 
-import { getMongoClient } from "../../../../../../src/lib/db";
-import { toTypedProfile } from "../../../../../../src/lib/type_converter";
+import { getMongoClient } from "../../../../../../../../src/lib/db.js";
 
 export default async function handler(req, res) {
-  if (req.method !== "PATCH") {
+  if (req.method !== "DELETE") {
     res.status(StatusCodes.METHOD_NOT_ALLOWED).send(ReasonPhrases.METHOD_NOT_ALLOWED);
     return;
   }
 
-  const { employeeID, newProfile } = req.body;
+  const { employeeID, achievementCategory, id } = req.query;
 
-  toTypedProfile(newProfile);
+  const session = await getSession({ req });
+  if (!session) {
+    res.status(StatusCodes.UNAUTHORIZED).send(ReasonPhrases.UNAUTHORIZED);
+    return;
+  } else if (session.user.isAdmin === false && session.user.employeeID !== employeeID) {
+    res.status(StatusCodes.FORBIDDEN).send(ReasonPhrases.FORBIDDEN);
+    return;
+  }
 
   const client = await getMongoClient();
   const connection = await client.connect();
@@ -24,7 +31,9 @@ export default async function handler(req, res) {
       {
         employeeID: employeeID,
       },
-      { $set: { profile: newProfile } }
+      {
+        $pull: { [achievementCategory]: { id: id } },
+      }
     );
   } catch (err) {
     console.error(err);

@@ -14,6 +14,13 @@ import {
 import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE } from "../../data/types/types";
 import CustomSelect from "../ui/CustomSelect";
 import FileEdit from "../ui/FileEdit";
+import { isValidDate } from "../../lib/util";
+
+const getISO8601DateFormat = (dateIsoString) => {
+  const date = new Date(dateIsoString);
+  if (isValidDate(date)) return date.toISOString().split("T")[0];
+  else "";
+};
 
 const EditNode = ({ field, formik, setIsUploading }) => {
   let outputNode;
@@ -41,8 +48,8 @@ const EditNode = ({ field, formik, setIsUploading }) => {
           helperText={!!formik.errors[field.db_field] ? formik.errors[field.db_field] : field.info}
           fullWidth
           multiline
-          rows={2}
-          rowsMax={Infinity}
+          minRows={2}
+          maxRows={Infinity}
           variant="filled"
           label={field.label}
           name={field.db_field}
@@ -85,7 +92,7 @@ const EditNode = ({ field, formik, setIsUploading }) => {
             formik.setFieldValue(field.db_field, e.target.value);
           }}
           onBlur={formik.handleBlur}
-          value={formik.values[field.db_field]}
+          value={getISO8601DateFormat(formik.values[field.db_field])}
         />
       );
       break;

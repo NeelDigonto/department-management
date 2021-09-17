@@ -1,8 +1,9 @@
 import Busboy from "busboy";
-import { uploadFileStream } from "../../../lib/aws-wrapper";
 import { v4 as uuidv4 } from "uuid";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { getSession } from "next-auth/client";
+
+import { uploadFileStream } from "../../../src/lib/aws-wrapper";
 
 export const config = {
   api: {
@@ -21,6 +22,7 @@ export default async function handler(req, res) {
     res.status(StatusCodes.UNAUTHORIZED).send(ReasonPhrases.UNAUTHORIZED);
     return;
   }
+  // anyone can create a file
 
   const fuid = uuidv4();
 

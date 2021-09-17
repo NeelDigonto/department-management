@@ -20,7 +20,7 @@ const UserDataLoader = ({ children }) => {
       else setLastSession(session);
 
       // if error re request data
-      fetch(`/api/user/data/get/full/${employeeID}`)
+      fetch(`/api/user/${employeeID}/data/get/full`)
         .then((response) => {
           if (response.status === StatusCodes.OK) return response.json();
           else throw ` Server responded with: ${getReasonPhrase(response.status)}`;

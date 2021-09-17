@@ -34,30 +34,31 @@ const EditProfile = ({ setIsEditing }) => {
     initialValues: user["profile"],
     onSubmit: (values, { setSubmitting }) => {
       setSubmitting(true);
-      fetch("api/user/data/edit/profile/edit", {
+      fetch(`api/user/${user.employeeID}/data/edit/profile/edit`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          employeeID: user.employeeID,
           newProfile: values,
         }),
       })
         .then((response) => {
           if (response.status === StatusCodes.OK) {
-            setUser((oldState) => {
-              let newState = { ...oldState };
-              newState["profile"] = {
-                ...values,
-              };
-              return newState;
-            });
+            return response.json();
           } else {
+            console.warn("Couldn't update Profile");
             throw `Server responded with: ${getReasonPhrase(response.status)}`;
           }
         })
-        .then(() => {
+        .then((result) => {
+          setUser((oldState) => {
+            let newState = { ...oldState };
+            newState["profile"] = {
+              ...result.updatedProfile,
+            };
+            return newState;
+          });
           setSubmitting(false);
           setIsEditing(false);
         });
