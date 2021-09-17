@@ -8,7 +8,7 @@ import {
   getTypedAchievement,
   getTypedProfile,
   getTypedDocument,
-} from "../../../../lib/type_converter";
+} from "../../../../src/lib/type_converter";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
