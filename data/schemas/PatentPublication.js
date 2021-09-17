@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE, WIDTH_TYPE } from "../types/types";
-import Validation from "../../validation/schemas";
+import Validation from "../validation/schemas";
 
 const FIELDS = [
   {
