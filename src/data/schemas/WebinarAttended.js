@@ -154,7 +154,6 @@ const FIELDS = [
 ];
 
 const SCHEMA = {
-  //only fields matter here rest doesnt
   id: "",
   last_modified: new Date().toISOString(),
   diplay_name: "Webinar Attended",

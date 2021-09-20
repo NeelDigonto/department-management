@@ -1,14 +1,14 @@
 import * as Yup from "yup";
-import VideoLibraryIcon from "@material-ui/icons/VideoLibrary";
+import GroupOutlinedIcon from "@material-ui/icons/GroupOutlined";
 
 import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE, WIDTH_TYPE } from "../types/types";
 import Validation from "../validation/schemas";
 
 const FIELDS = [
   {
-    label: "Webinar Title",
+    label: "Session Title",
     value: "",
-    info: "Title of the Webinar",
+    info: "Title of the Trimentoring Session",
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
@@ -84,7 +84,7 @@ const FIELDS = [
     validation: Validation.string(),
   },
   {
-    label: "Webinar Start Date",
+    label: "Start Date",
     value: new Date().toISOString(),
     info: "Date of Webinar (From)",
     type: VALUE_TYPE.STRING,
@@ -95,7 +95,7 @@ const FIELDS = [
     validation: Validation.date(),
   },
   {
-    label: "Webinar End Date",
+    label: "End Date",
     value: new Date().toISOString(),
     info: "Date of Webinar (End)",
     type: VALUE_TYPE.STRING,
@@ -145,9 +145,9 @@ const FIELDS = [
 const SCHEMA = {
   id: "",
   last_modified: new Date().toISOString(),
-  diplay_name: "Webinar Oranized",
-  key: "webinar-organized",
-  icon: <VideoLibraryIcon />,
+  diplay_name: "Trimentoring Organized",
+  key: "trimentoring-organized",
+  icon: <GroupOutlinedIcon />,
   fields: FIELDS,
 };
 

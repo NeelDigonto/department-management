@@ -1,14 +1,26 @@
 import * as Yup from "yup";
-import VideoLibraryIcon from "@material-ui/icons/VideoLibrary";
+import BuildOutlinedIcon from "@material-ui/icons/BuildOutlined";
 
 import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE, WIDTH_TYPE } from "../types/types";
 import Validation from "../validation/schemas";
 
 const FIELDS = [
   {
-    label: "Webinar Title",
+    label: "Type of the Event",
     value: "",
-    info: "Title of the Webinar",
+    info: "Type of the Event (FDP or workshop)",
+    type: VALUE_TYPE.STRING,
+    db_field_type: DB_FIELD_TYPE.STRING,
+    input_type: INPUT_TYPE.SELECT,
+    view_width: WIDTH_TYPE.MEDIUM,
+    options: ["FDP", "Workshop"],
+    db_field: "event_type",
+    validation: Validation.option(),
+  },
+  {
+    label: "FDP/Workshop Title",
+    value: "",
+    info: "Title of the FDP or Workshop",
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
@@ -62,31 +74,31 @@ const FIELDS = [
     validation: Validation.string(),
   },
   {
-    label: "Speaker's Designation",
+    label: "Speaker's Affiliation",
     value: "",
-    info: "Designation of the Speaker",
+    info: "Affiliation of the Speaker",
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
     view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "speaker_designation",
+    db_field: "speaker_affiliation",
     validation: Validation.string(),
   },
   {
-    label: "Speaker's Organization",
+    label: "Organizing Institute",
     value: "",
-    info: "Organization of the Speaker",
+    info: "Organizing Institute",
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
     view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "speaker_org",
+    db_field: "org_inst",
     validation: Validation.string(),
   },
   {
-    label: "Webinar Start Date",
+    label: "Event Start Date",
     value: new Date().toISOString(),
-    info: "Date of Webinar (From)",
+    info: "Date of Event (From)",
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.DATE,
     input_type: INPUT_TYPE.DATE,
@@ -95,9 +107,9 @@ const FIELDS = [
     validation: Validation.date(),
   },
   {
-    label: "Webinar End Date",
+    label: "Event End Date",
     value: new Date().toISOString(),
-    info: "Date of Webinar (End)",
+    info: "Date of Event (End)",
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.DATE,
     input_type: INPUT_TYPE.DATE,
@@ -145,9 +157,9 @@ const FIELDS = [
 const SCHEMA = {
   id: "",
   last_modified: new Date().toISOString(),
-  diplay_name: "Webinar Oranized",
-  key: "webinar-organized",
-  icon: <VideoLibraryIcon />,
+  diplay_name: "FDP-Workshop Attended",
+  key: "fdp-workshop-attended",
+  icon: <BuildOutlinedIcon />,
   fields: FIELDS,
 };
 

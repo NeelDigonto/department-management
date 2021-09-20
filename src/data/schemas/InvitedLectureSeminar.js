@@ -1,19 +1,19 @@
 import * as Yup from "yup";
-import VideoLibraryIcon from "@material-ui/icons/VideoLibrary";
+import AddIcCallIcon from "@material-ui/icons/AddIcCall";
 
 import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE, WIDTH_TYPE } from "../types/types";
 import Validation from "../validation/schemas";
 
 const FIELDS = [
   {
-    label: "Webinar Title",
+    label: "Event Title",
     value: "",
-    info: "Title of the Webinar",
+    info: "Title of the Event",
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
     view_width: WIDTH_TYPE.LARGE,
-    db_field: "title",
+    db_field: "event_title",
     validation: Validation.string(),
   },
   {
@@ -51,42 +51,43 @@ const FIELDS = [
     validation: Validation.option(),
   },
   {
-    label: "Speaker Name",
+    label: "Type of Event",
     value: "",
-    info: "Name of the Speaker",
+    info: "Type of Event",
+    type: VALUE_TYPE.STRING,
+    db_field_type: DB_FIELD_TYPE.STRING,
+    input_type: INPUT_TYPE.CUSTOM_SELECT,
+    view_width: WIDTH_TYPE.MEDIUM,
+    options: ["Seminar", "Webinar"],
+    db_field: "event_type",
+    validation: Validation.string(),
+  },
+  {
+    label: "Lecture Title",
+    value: "",
+    info: "Title of Your Lecture",
+    type: VALUE_TYPE.STRING,
+    db_field_type: DB_FIELD_TYPE.STRING,
+    input_type: INPUT_TYPE.TEXT,
+    view_width: WIDTH_TYPE.LARGE,
+    db_field: "lecture_title",
+    validation: Validation.string(),
+  },
+  {
+    label: "Organizing Institute",
+    value: "",
+    info: "Organizing Institute",
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
     view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "speaker_name",
+    db_field: "org_inst",
     validation: Validation.string(),
   },
   {
-    label: "Speaker's Designation",
-    value: "",
-    info: "Designation of the Speaker",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.TEXT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "speaker_designation",
-    validation: Validation.string(),
-  },
-  {
-    label: "Speaker's Organization",
-    value: "",
-    info: "Organization of the Speaker",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.TEXT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "speaker_org",
-    validation: Validation.string(),
-  },
-  {
-    label: "Webinar Start Date",
+    label: "Event Start Date",
     value: new Date().toISOString(),
-    info: "Date of Webinar (From)",
+    info: "Date of Event (From)",
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.DATE,
     input_type: INPUT_TYPE.DATE,
@@ -95,9 +96,9 @@ const FIELDS = [
     validation: Validation.date(),
   },
   {
-    label: "Webinar End Date",
+    label: "Event End Date",
     value: new Date().toISOString(),
-    info: "Date of Webinar (End)",
+    info: "Date of Event (End)",
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.DATE,
     input_type: INPUT_TYPE.DATE,
@@ -145,9 +146,9 @@ const FIELDS = [
 const SCHEMA = {
   id: "",
   last_modified: new Date().toISOString(),
-  diplay_name: "Webinar Oranized",
-  key: "webinar-organized",
-  icon: <VideoLibraryIcon />,
+  diplay_name: "Invited Lecture Seminar",
+  key: "invited-lecture",
+  icon: <AddIcCallIcon />,
   fields: FIELDS,
 };
 

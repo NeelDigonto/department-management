@@ -11,6 +11,15 @@ import * as WebinarOrganized from "./schemas/WebinarOrganized";
 import * as WebinarAttended from "./schemas/WebinarAttended";
 import * as DistinguishedLectureOrganized from "./schemas/DistinguishedLectureOrganized";
 import * as DistinguishedLectureAttended from "./schemas/DistinguishedLectureAttended";
+import * as TrimentoringOrganized from "./schemas/TrimentoringOrganized";
+import * as AlumniTalkOrganized from "./schemas/AlumniTalkOrganized";
+import * as ClubOutreachProgramsOrganized from "./schemas/ClubOutreachProgramsOrganized";
+import * as InvitedLectureSeminar from "./schemas/InvitedLectureSeminar";
+import * as ConferenceOrganized from "./schemas/ConferenceOrganized";
+import * as ConferenceAttended from "./schemas/ConferenceAttended";
+import * as FDPWorkshopOrganized from "./schemas/FDPWorkshopOrganized";
+import * as FDPWorkshopAttended from "./schemas/FDPWorkshopAttended";
+import * as MOU from "./schemas/MOU";
 
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import BarChartIcon from "@material-ui/icons/BarChart";
@@ -36,6 +45,15 @@ const ACHIEVEMENTS = [
   WebinarAttended,
   DistinguishedLectureOrganized,
   DistinguishedLectureAttended,
+  TrimentoringOrganized,
+  AlumniTalkOrganized,
+  ClubOutreachProgramsOrganized,
+  InvitedLectureSeminar,
+  ConferenceOrganized,
+  ConferenceAttended,
+  FDPWorkshopOrganized,
+  FDPWorkshopAttended,
+  MOU,
 ];
 
 const getAchievementGroupSchema = () => {

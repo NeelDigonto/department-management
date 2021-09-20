@@ -1,14 +1,14 @@
 import * as Yup from "yup";
-import VideoLibraryIcon from "@material-ui/icons/VideoLibrary";
+import EmojiPeopleOutlinedIcon from "@material-ui/icons/EmojiPeopleOutlined";
 
 import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE, WIDTH_TYPE } from "../types/types";
 import Validation from "../validation/schemas";
 
 const FIELDS = [
   {
-    label: "Webinar Title",
+    label: "Alumni Title Talk ",
     value: "",
-    info: "Title of the Webinar",
+    info: "Title of the Alumni Talk",
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
@@ -51,40 +51,40 @@ const FIELDS = [
     validation: Validation.option(),
   },
   {
-    label: "Speaker Name",
+    label: "Alumni Name",
     value: "",
     info: "Name of the Speaker",
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
     view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "speaker_name",
+    db_field: "alumni_name",
     validation: Validation.string(),
   },
   {
-    label: "Speaker's Designation",
+    label: "Alumni's Designation",
     value: "",
     info: "Designation of the Speaker",
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
     view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "speaker_designation",
+    db_field: "alumni_designation",
     validation: Validation.string(),
   },
   {
-    label: "Speaker's Organization",
+    label: "Alumni's Organization",
     value: "",
-    info: "Organization of the Speaker",
+    info: "Present Organization of the Alumni",
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
     view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "speaker_org",
+    db_field: "alumni_org",
     validation: Validation.string(),
   },
   {
-    label: "Webinar Start Date",
+    label: "Event Start Date",
     value: new Date().toISOString(),
     info: "Date of Webinar (From)",
     type: VALUE_TYPE.STRING,
@@ -95,7 +95,7 @@ const FIELDS = [
     validation: Validation.date(),
   },
   {
-    label: "Webinar End Date",
+    label: "Event End Date",
     value: new Date().toISOString(),
     info: "Date of Webinar (End)",
     type: VALUE_TYPE.STRING,
@@ -145,9 +145,9 @@ const FIELDS = [
 const SCHEMA = {
   id: "",
   last_modified: new Date().toISOString(),
-  diplay_name: "Webinar Oranized",
-  key: "webinar-organized",
-  icon: <VideoLibraryIcon />,
+  diplay_name: "Alumni Talk Organized",
+  key: "alumni-talk-organized",
+  icon: <EmojiPeopleOutlinedIcon />,
   fields: FIELDS,
 };
 
