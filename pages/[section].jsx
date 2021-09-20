@@ -30,8 +30,8 @@ import { MainListItems, secondaryListItems } from "../src/components/sidebar/lis
 import Achievements from "../src/components/achievement/Achievements";
 import {
   ACHIEVEMENTS_GROUP_SCHEMA,
-  getValidationSchema,
-  sidebarOptions,
+  getAchievementValidationSchema,
+  ACHIEVEMENTS,
 } from "../src/data/schema.js";
 import Copyright from "../src/components/copyright/Copyright";
 
@@ -161,6 +161,15 @@ const useStyles = makeStyles((theme) => ({
   categoryHeading: { textAlign: "center", letterSpacing: ".75rem" },
 }));
 
+const getHeaderName = (key) => {
+  if (key === "profile") return "Profile";
+  else {
+    const category = ACHIEVEMENTS.find((category) => category.SCHEMA.key === key);
+    if (!!category) return category.SCHEMA.diplay_name;
+    else return "Unrecognized Page..oops!";
+  }
+};
+
 export default function Dashboard() {
   const router = useRouter();
   const { section } = router.query;
@@ -185,7 +194,7 @@ export default function Dashboard() {
         <Achievements
           key={section}
           achievementCategory={section}
-          getAchievementValidationSchema={getValidationSchema(section)}
+          getAchievementValidationSchema={getAchievementValidationSchema(section)}
         />
       );
     } else {
@@ -269,10 +278,7 @@ export default function Dashboard() {
             gutterBottom
             className={classes.categoryHeading}
           >
-            {
-              sidebarOptions.find((category) => category.urlSuffix === router.query.section)
-                .menuDisplay
-            }
+            {getHeaderName(router.query.section)}
           </Typography>
           {mainViewComponents}
           <Copyright />

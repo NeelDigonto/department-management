@@ -5,7 +5,7 @@ import contentDisposition from "content-disposition";
 import { Readable } from "stream";
 
 import { getMongoClient } from "../../../../src/lib/db";
-import { MASTER_SCHEMA, sidebarOptions } from "../../../../src/data/schema";
+import { MASTER_SCHEMA, ACHIEVEMENTS } from "../../../../src/data/schema";
 import { isEmptyObject } from "../../../../src/lib/util";
 import {
   VALUE_TYPE,
@@ -129,9 +129,9 @@ export default async function handler(req, res) {
   };
 
   const setupAchievementSheets = async () => {
-    sidebarOptions.forEach((menu_item) => {
-      const display_name = menu_item.menuDisplay;
-      const achievement_key = menu_item.urlSuffix;
+    ACHIEVEMENTS.forEach((_category) => {
+      const display_name = _category.SCHEMA.diplay_name;
+      const achievement_key = _category.SCHEMA.key;
 
       if (achievement_key === "profile") return;
 

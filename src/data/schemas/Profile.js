@@ -221,6 +221,4 @@ const getValidationSchema = () => {
   return Yup.object().shape(validationSchema);
 };
 
-const export_object = { FIELDS, SCHEMA, getValidationSchema };
-
-export default export_object;
+export { FIELDS, SCHEMA, getValidationSchema };

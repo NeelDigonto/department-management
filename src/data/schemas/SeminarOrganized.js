@@ -1,4 +1,6 @@
 import * as Yup from "yup";
+import PeopleIcon from "@material-ui/icons/People";
+
 import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE, WIDTH_TYPE } from "../types/types";
 import Validation from "../validation/schemas";
 
@@ -133,6 +135,8 @@ const SCHEMA = {
   id: "",
   last_modified: new Date(2000, 0, 1, 0, 0, 0, 0).toISOString(),
   diplay_name: "Seminar Organized",
+  key: "seminar-organized",
+  icon: <PeopleIcon />,
   fields: FIELDS,
 };
 
@@ -144,6 +148,4 @@ const getValidationSchema = () => {
   return Yup.object().shape(validationSchema);
 };
 
-const export_object = { FIELDS, SCHEMA, getValidationSchema };
-
-export default export_object;
+export { FIELDS, SCHEMA, getValidationSchema };

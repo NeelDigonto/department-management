@@ -80,10 +80,11 @@ const editAchievementHandler = async (
     .then((result) => {
       setUser((oldState) => {
         let newState = { ...oldState };
-        newState[achievementCategory][index] = {
+        /* newState[achievementCategory][index] = {
           ...newState[achievementCategory][index],
           ...result.updatedAchievement,
-        };
+        }; */
+        newState[achievementCategory][index] = result.updatedAchievement;
         return newState;
       });
       setSubmitting(false);

@@ -1,11 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Formik, useFormik, Field, Form, ErrorMessage } from "formik";
 import { ReasonPhrases, StatusCodes, getReasonPhrase } from "http-status-codes";
-
-import { useUserContext } from "../../contexts/UserContext";
-import EditNode from "../nodes/EditNode";
-import { MASTER_SCHEMA, getValidationSchema } from "../../data/schema";
-import axios from "axios";
 import {
   makeStyles,
   Grid,
@@ -17,6 +12,11 @@ import {
   Backdrop,
   CircularProgress,
 } from "@material-ui/core";
+
+import { useUserContext } from "../../contexts/UserContext";
+import EditNode from "../nodes/EditNode";
+import { MASTER_SCHEMA } from "../../data/schema";
+import { getValidationSchema as getProfileValidationSchema } from "../../data/schemas/Profile";
 
 const useStyles = makeStyles((theme) => ({
   backdrop: {
@@ -63,7 +63,7 @@ const EditProfile = ({ setIsEditing }) => {
           setIsEditing(false);
         });
     },
-    validationSchema: getValidationSchema("profile"),
+    validationSchema: getProfileValidationSchema(),
   });
 
   useEffect(() => {

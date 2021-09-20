@@ -1,6 +1,6 @@
 import * as ExcelJS from "exceljs";
 
-import { ACHIEVEMENTS_GROUP_SCHEMA, MASTER_SCHEMA, sidebarOptions } from "../data/schema";
+import { ACHIEVEMENTS_GROUP_SCHEMA, MASTER_SCHEMA } from "../data/schema";
 import { isEmptyObject } from "../lib/util";
 import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE, WIDTH_TYPE } from "../data/types/types";
 import Cell from "../lib/Cell";
