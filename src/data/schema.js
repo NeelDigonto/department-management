@@ -20,17 +20,11 @@ import * as ConferenceAttended from "./schemas/ConferenceAttended";
 import * as FDPWorkshopOrganized from "./schemas/FDPWorkshopOrganized";
 import * as FDPWorkshopAttended from "./schemas/FDPWorkshopAttended";
 import * as MOU from "./schemas/MOU";
-
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import BarChartIcon from "@material-ui/icons/BarChart";
-import LayersIcon from "@material-ui/icons/Layers";
-import AssignmentIcon from "@material-ui/icons/Assignment";
-import AnnouncementIcon from "@material-ui/icons/Announcement";
-import SchoolIcon from "@material-ui/icons/School";
-import ComputerIcon from "@material-ui/icons/Computer";
-import TableChartIcon from "@material-ui/icons/TableChart";
-import VideoCallIcon from "@material-ui/icons/VideoCall";
-import BuildIcon from "@material-ui/icons/Build";
+import * as IndustryVisit from "./schemas/IndustryVisit";
+import * as Collaborations from "./schemas/Collaborations";
+import * as BSHProjectCompetitions from "./schemas/BSHProjectCompetitions";
+import * as BSHPosterCompetitions from "./schemas/BSHPosterCompetitions";
+import * as IntershipDetails from "./schemas/IntershipDetails";
 
 const ACHIEVEMENTS = [
   ConferencePublication,
@@ -54,6 +48,11 @@ const ACHIEVEMENTS = [
   FDPWorkshopOrganized,
   FDPWorkshopAttended,
   MOU,
+  IndustryVisit,
+  Collaborations,
+  BSHProjectCompetitions,
+  BSHPosterCompetitions,
+  IntershipDetails,
 ];
 
 const getAchievementGroupSchema = () => {
