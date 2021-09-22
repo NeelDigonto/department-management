@@ -39,7 +39,7 @@ const FIELDS = [
     db_field: "entry_date",
     validation: Validation.date(),
   },
-  {
+  /* {
     label: "Faculty Name",
     value: "",
     info: "Name of the Faculty",
@@ -61,7 +61,7 @@ const FIELDS = [
     options: ["Department of Basic Science and Humanities"],
     db_field: "department",
     validation: Validation.option(),
-  },
+  }, */
   {
     label: "Speaker Name",
     value: "",

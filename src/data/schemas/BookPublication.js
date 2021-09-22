@@ -27,7 +27,7 @@ const FIELDS = [
     db_field: "name_of_auth",
     validation: Validation.string(),
   },
-  {
+  /*  {
     label: "Department",
     value: "",
     info: "Department",
@@ -38,7 +38,7 @@ const FIELDS = [
     options: ["Department of Basic Science and Humanities"],
     db_field: "department",
     validation: Validation.option(),
-  },
+  }, */
   {
     label: "Published on",
     value: new Date().toISOString(),

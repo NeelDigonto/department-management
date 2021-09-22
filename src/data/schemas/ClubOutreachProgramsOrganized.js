@@ -27,7 +27,7 @@ const FIELDS = [
     db_field: "activity_name",
     validation: Validation.string(),
   },
-  {
+  /*  {
     label: "Faculty Name",
     value: "",
     info: "Entry Made By [Your Name]",
@@ -37,7 +37,7 @@ const FIELDS = [
     view_width: WIDTH_TYPE.MEDIUM,
     db_field: "fac_name",
     validation: Validation.string(),
-  },
+  }, */
   {
     label: "Organizing unit/ agency/ collaborating agency",
     value: "",

@@ -16,18 +16,7 @@ const FIELDS = [
     db_field: "title",
     validation: Validation.string(),
   },
-  {
-    label: "Entry Date",
-    value: new Date().toISOString(),
-    info: "Date of Entry",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.DATE,
-    input_type: INPUT_TYPE.DATE,
-    view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "entry_date",
-    validation: Validation.date(),
-  },
-  {
+  /*   {
     label: "Faculty Name",
     value: "",
     info: "Name of the Faculty",
@@ -37,8 +26,30 @@ const FIELDS = [
     view_width: WIDTH_TYPE.MEDIUM,
     db_field: "fac_name",
     validation: Validation.string(),
+  }, */
+  {
+    label: "Webinar Start Date",
+    value: new Date().toISOString(),
+    info: "Date of Webinar (From)",
+    type: VALUE_TYPE.STRING,
+    db_field_type: DB_FIELD_TYPE.DATE,
+    input_type: INPUT_TYPE.DATE,
+    view_width: WIDTH_TYPE.MEDIUM,
+    db_field: "event_start_date",
+    validation: Validation.date(),
   },
   {
+    label: "Webinar End Date",
+    value: new Date().toISOString(),
+    info: "Date of Webinar (End)",
+    type: VALUE_TYPE.STRING,
+    db_field_type: DB_FIELD_TYPE.DATE,
+    input_type: INPUT_TYPE.DATE,
+    view_width: WIDTH_TYPE.MEDIUM,
+    db_field: "event_end_date",
+    validation: Validation.date(),
+  },
+  /*   {
     label: "Department",
     value: "",
     info: "Department",
@@ -49,7 +60,7 @@ const FIELDS = [
     options: ["Department of Basic Science and Humanities"],
     db_field: "department",
     validation: Validation.option(),
-  },
+  }, */
   {
     label: "Speaker Name",
     value: "",
@@ -95,28 +106,6 @@ const FIELDS = [
     validation: Validation.string(),
   },
   {
-    label: "Webinar Start Date",
-    value: new Date().toISOString(),
-    info: "Date of Webinar (From)",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.DATE,
-    input_type: INPUT_TYPE.DATE,
-    view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "event_start_date",
-    validation: Validation.date(),
-  },
-  {
-    label: "Webinar End Date",
-    value: new Date().toISOString(),
-    info: "Date of Webinar (End)",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.DATE,
-    input_type: INPUT_TYPE.DATE,
-    view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "event_end_date",
-    validation: Validation.date(),
-  },
-  {
     label: "Coverage",
     value: "",
     info: "National/ International",
@@ -151,6 +140,17 @@ const FIELDS = [
     db_field: "proof_of_seminar",
     validation: Validation.file(),
   },
+  /*   {
+    label: "Entry Date",
+    value: new Date().toISOString(),
+    info: "Date of Entry",
+    type: VALUE_TYPE.STRING,
+    db_field_type: DB_FIELD_TYPE.DATE,
+    input_type: INPUT_TYPE.DATE,
+    view_width: WIDTH_TYPE.MEDIUM,
+    db_field: "entry_date",
+    validation: Validation.date(),
+  }, */
 ];
 
 const SCHEMA = {

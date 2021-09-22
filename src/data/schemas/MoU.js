@@ -1,53 +1,52 @@
 import * as Yup from "yup";
-import ArtTrackIcon from "@material-ui/icons/ArtTrack";
+import VideoCallOutlinedIcon from "@material-ui/icons/VideoCallOutlined";
 
 import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE, WIDTH_TYPE } from "../types/types";
 import Validation from "../validation/schemas";
 
 const FIELDS = [
-  /* {
-    label: "Department",
+  {
+    label: "Entity Name",
     value: "",
-    info: "Department",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.SELECT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    options: ["Department of Basic Science and Humanities"],
-    db_field: "department",
-    validation: Validation.option(),
-  }, */
-  {
-    label: "Event Start Date",
-    value: new Date().toISOString(),
-    info: "Date of Event (From)",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.DATE,
-    input_type: INPUT_TYPE.DATE,
-    view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "event_start_date",
-    validation: Validation.date(),
-  },
-  {
-    label: "Event End Date",
-    value: new Date().toISOString(),
-    info: "Date of Event (End)",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.DATE,
-    input_type: INPUT_TYPE.DATE,
-    view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "event_end_date",
-    validation: Validation.date(),
-  },
-  {
-    label: "Subject/Topic",
-    value: "",
-    info: "Subject/Topic",
+    info: "Name of the institution/ industry/ corporate house with which MoU is signed",
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
     view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "subject",
+    db_field: "entity_name",
+    validation: Validation.string(),
+  },
+  {
+    label: "Date of Signing MoU",
+    value: new Date().toISOString(),
+    info: "Date of Signing MoU",
+    type: VALUE_TYPE.STRING,
+    db_field_type: DB_FIELD_TYPE.DATE,
+    input_type: INPUT_TYPE.DATE,
+    view_width: WIDTH_TYPE.MEDIUM,
+    db_field: "sign_date",
+    validation: Validation.date(),
+  },
+  {
+    label: "Duration",
+    value: "",
+    info: "Duration",
+    type: VALUE_TYPE.STRING,
+    db_field_type: DB_FIELD_TYPE.STRING,
+    input_type: INPUT_TYPE.TEXT,
+    view_width: WIDTH_TYPE.MEDIUM,
+    db_field: "duration",
+    validation: Validation.string(),
+  },
+  {
+    label: "Activities",
+    value: "",
+    info: "List the actual activities under each MOU year wise",
+    type: VALUE_TYPE.STRING,
+    db_field_type: DB_FIELD_TYPE.STRING,
+    input_type: INPUT_TYPE.TEXT,
+    view_width: WIDTH_TYPE.MEDIUM,
+    db_field: "activities",
     validation: Validation.string(),
   },
   {
@@ -64,13 +63,13 @@ const FIELDS = [
   {
     label: "Proof",
     value: {},
-    info: "Proof of seminar organized",
+    info: "Proof of MoU organized",
     type: VALUE_TYPE.OBJECT,
     input_type: INPUT_TYPE.FILE,
     db_field_type: DB_FIELD_TYPE.OBJECT,
     view_width: WIDTH_TYPE.LARGE,
     input_range: "application/pdf",
-    db_field: "proof_of_seminar",
+    db_field: "proof_of_mou",
     validation: Validation.file(),
   },
 ];
@@ -78,9 +77,9 @@ const FIELDS = [
 const SCHEMA = {
   id: "",
   last_modified: new Date().toISOString(),
-  diplay_name: "BSH Poster Competitions",
-  key: "bsh-poster-competitions",
-  icon: <ArtTrackIcon />,
+  diplay_name: "MOU signed by BSH",
+  key: "mou-signed-bsh",
+  icon: <VideoCallOutlinedIcon />,
   fields: FIELDS,
 };
 

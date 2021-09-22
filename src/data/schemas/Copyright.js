@@ -16,7 +16,7 @@ const FIELDS = [
     db_field: "title",
     validation: Validation.string(),
   },
-  {
+  /*  {
     label: "Faculty Name",
     value: "",
     info: "Name of the Faculty",
@@ -38,7 +38,7 @@ const FIELDS = [
     options: ["Department of Basic Science and Humanities"],
     db_field: "department",
     validation: Validation.option(),
-  },
+  }, */
   {
     label: "Copyright Details",
     value: "",

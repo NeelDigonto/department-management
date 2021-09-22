@@ -27,7 +27,7 @@ const FIELDS = [
     db_field: "entry_date",
     validation: Validation.date(),
   },
-  {
+  /*  {
     label: "Faculty Name",
     value: "",
     info: "Name of the Faculty",
@@ -37,7 +37,7 @@ const FIELDS = [
     view_width: WIDTH_TYPE.MEDIUM,
     db_field: "fac_name",
     validation: Validation.string(),
-  },
+  }, */
   {
     label: "Speaker Name",
     value: "",

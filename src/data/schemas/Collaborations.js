@@ -5,7 +5,7 @@ import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE, WIDTH_TYPE } from "../types/type
 import Validation from "../validation/schemas";
 
 const FIELDS = [
-  {
+  /*  {
     label: "Faculty Name",
     value: "",
     info: "Name of the Faculty",
@@ -27,7 +27,7 @@ const FIELDS = [
     options: ["Department of Basic Science and Humanities"],
     db_field: "department",
     validation: Validation.option(),
-  },
+  }, */
   {
     label: "Date ",
     value: new Date().toISOString(),

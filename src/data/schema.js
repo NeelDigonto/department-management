@@ -19,7 +19,7 @@ import * as ConferenceOrganized from "./schemas/ConferenceOrganized";
 import * as ConferenceAttended from "./schemas/ConferenceAttended";
 import * as FDPWorkshopOrganized from "./schemas/FDPWorkshopOrganized";
 import * as FDPWorkshopAttended from "./schemas/FDPWorkshopAttended";
-import * as MOU from "./schemas/MOU";
+import * as MoU from "./schemas/MoU";
 import * as IndustryVisit from "./schemas/IndustryVisit";
 import * as Collaborations from "./schemas/Collaborations";
 import * as BSHProjectCompetitions from "./schemas/BSHProjectCompetitions";
@@ -47,7 +47,7 @@ const ACHIEVEMENTS = [
   ConferenceAttended,
   FDPWorkshopOrganized,
   FDPWorkshopAttended,
-  MOU,
+  MoU,
   IndustryVisit,
   Collaborations,
   BSHProjectCompetitions,

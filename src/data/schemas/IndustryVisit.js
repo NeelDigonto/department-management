@@ -5,7 +5,7 @@ import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE, WIDTH_TYPE } from "../types/type
 import Validation from "../validation/schemas";
 
 const FIELDS = [
-  {
+  /* {
     label: "Faculty Name",
     value: "",
     info: "Name of the Faculty",
@@ -27,7 +27,7 @@ const FIELDS = [
     options: ["Department of Basic Science and Humanities"],
     db_field: "department",
     validation: Validation.option(),
-  },
+  }, */
   {
     label: "Date of Visit",
     value: new Date().toISOString(),
@@ -38,18 +38,6 @@ const FIELDS = [
     view_width: WIDTH_TYPE.MEDIUM,
     db_field: "visit_date",
     validation: Validation.date(),
-  },
-  {
-    label: "Department",
-    value: "",
-    info: "Department",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.SELECT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    options: ["Department of Basic Science and Humanities"],
-    db_field: "department",
-    validation: Validation.option(),
   },
   {
     label: "Industry Type",

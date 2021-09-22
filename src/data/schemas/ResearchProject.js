@@ -16,7 +16,7 @@ const FIELDS = [
     db_field: "title",
     validation: Validation.string(),
   },
-  {
+  /*  {
     label: "Faculty Name",
     value: "",
     info: "Name of the Faculty",
@@ -26,7 +26,7 @@ const FIELDS = [
     view_width: WIDTH_TYPE.MEDIUM,
     db_field: "fac_name",
     validation: Validation.string(),
-  },
+  }, */
   {
     label: "Role Of Faculty",
     value: "",
@@ -39,7 +39,7 @@ const FIELDS = [
     db_field: "fac_role",
     validation: Validation.option(),
   },
-  {
+  /* {
     label: "Department",
     value: "",
     info: "Department",
@@ -50,7 +50,7 @@ const FIELDS = [
     options: ["Department of Basic Science and Humanities"],
     db_field: "department",
     validation: Validation.option(),
-  },
+  }, */
   {
     label: "Co-Principal Investigator Name",
     value: "",
