@@ -3,12 +3,8 @@ import { ReasonPhrases, StatusCodes } from "http-status-codes";
 
 import { getMongoClient } from "../../../../src/lib/db";
 import { hashPassword } from "../../../../src/lib/auth";
-import { MASTER_SCHEMA, getEmptyUserDocument } from "../../../../src/data/schema";
-import {
-  getTypedAchievement,
-  getTypedProfile,
-  getTypedDocument,
-} from "../../../../src/lib/type_converter";
+import { getEmptyUserDocument } from "../../../../src/data/schema";
+import { getTypedDocument } from "../../../../src/lib/type_converter";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
