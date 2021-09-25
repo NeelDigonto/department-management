@@ -9,6 +9,12 @@ const createAchievementHandler = async (
   setIsCreatingAchievement(true);
   fetch(`/api/user/${employeeID}/data/edit/${achievementCategory}/create`, {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      newObject: null,
+    }),
   })
     .then((response) => {
       if (response.status === StatusCodes.CREATED) return response.json();

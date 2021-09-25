@@ -93,7 +93,7 @@ const FIELDS = [
     db_field_type: DB_FIELD_TYPE.OBJECT,
     view_width: WIDTH_TYPE.LARGE,
     input_range: "application/pdf",
-    db_field: "proof_file",
+    db_field: "proof",
     validation: Validation.file(),
   },
 ];

@@ -33,7 +33,9 @@ export default async function handler(req, res) {
     return;
   }
 
-  const emptyAchievementData = getEmptyAchievementData(achievementCategory);
+  const emptyAchievementData = req.body["newObject"]
+    ? req.body["newObject"]
+    : getEmptyAchievementData(achievementCategory);
 
   // throw error if the date format is not right, and fail the request
   toTypedAchievements([emptyAchievementData], achievementCategory);
