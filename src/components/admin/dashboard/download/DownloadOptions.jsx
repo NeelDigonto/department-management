@@ -56,7 +56,7 @@ const DownloadOptions = ({ getFilterObject, sortRef, displayRef }) => {
           >
             Download as multi-spreadsheets
           </Button>
-          <Button
+          {/*  <Button
             variant="outlined"
             color="primary"
             fullWidth
@@ -64,7 +64,7 @@ const DownloadOptions = ({ getFilterObject, sortRef, displayRef }) => {
             onClick={handleWorkbookDownload}
           >
             Download as single-spreadsheet
-          </Button>
+          </Button> */}
         </CardContent>
       </Card>
     </Box>

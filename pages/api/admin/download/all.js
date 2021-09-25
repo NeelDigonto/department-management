@@ -175,25 +175,38 @@ export default async function handler(req, res) {
 
       const setupDataRows = () => {
         const employeeID_iter_cell = new Cell("A", 3); //A3
-        let rowsConsumedByPrevUsers = 0;
+        let rowsConsumedByPrevUser = 0;
         let rowsConsumedByAllUsers = 0;
 
         for (let userNo = 0; userNo < collectionData.length; ++userNo) {
           const employeeID_cell = worksheet.getCell(employeeID_iter_cell.getString());
           employeeID_cell.value = collectionData[userNo]["employeeID"];
           employeeID_cell.alignment = { horizontal: "center", vertical: "middle" };
-          worksheet.mergeCells(
-            `A${3 + rowsConsumedByPrevUsers}:A${
-              3 + rowsConsumedByPrevUsers + collectionData[userNo][achievement_key].length - 1
-            }`
-          );
+
+          if (collectionData[userNo][achievement_key].length !== 0) {
+            console.log(
+              userNo +
+                " | " +
+                achievement_key +
+                " | " +
+                `A${3 + rowsConsumedByAllUsers}:A${
+                  3 + rowsConsumedByAllUsers + collectionData[userNo][achievement_key].length - 1
+                }`
+            );
+
+            worksheet.mergeCells(
+              `A${3 + rowsConsumedByAllUsers}:A${
+                3 + rowsConsumedByAllUsers + collectionData[userNo][achievement_key].length - 1
+              }`
+            );
+          }
 
           for (let pubNo = 0; pubNo < collectionData[userNo][achievement_key].length; ++pubNo) {
             let colStart = "B";
             MASTER_SCHEMA[achievement_key]["fields"].forEach((field, index) => {
               const colCode = colStart.charCodeAt(0) + index;
               const colId = String.fromCharCode(colCode);
-              const cell = worksheet.getCell(`${colId}${3 + rowsConsumedByPrevUsers + pubNo}`);
+              const cell = worksheet.getCell(`${colId}${3 + rowsConsumedByAllUsers}`);
               const value = collectionData[userNo][achievement_key][pubNo][field.db_field];
               if (field.input_type !== "file") {
                 cell.value = !!value ? value : null;
@@ -219,11 +232,13 @@ export default async function handler(req, res) {
               }
               cell.alignment = { horizontal: "center", vertical: "middle", wrapText: true };
             });
+
+            rowsConsumedByAllUsers += 1;
           }
 
-          rowsConsumedByPrevUsers = collectionData[userNo][achievement_key].length;
-          rowsConsumedByAllUsers += rowsConsumedByPrevUsers;
-          employeeID_iter_cell.row += rowsConsumedByPrevUsers;
+          rowsConsumedByPrevUser = collectionData[userNo][achievement_key].length;
+
+          employeeID_iter_cell.row += rowsConsumedByPrevUser;
         }
 
         for (let currentRow = 3; currentRow < 3 + rowsConsumedByAllUsers; ++currentRow) {

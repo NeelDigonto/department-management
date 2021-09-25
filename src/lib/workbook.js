@@ -17,7 +17,7 @@ const getColumnWidth = (view_width) => {
       return 20;
   }
 };
-const rowHeight = 40;
+const rowHeight = 50;
 
 const getWorkBookBuffer = async (collectionData, display) => {
   const workbook = getWorkBook(collectionData, display);
@@ -37,8 +37,8 @@ function getWorkBook(collectionData, display) {
   const getStandardWorkBook = () => {
     const workbook = new ExcelJS.Workbook();
 
-    workbook.creator = "Saikat Dey";
-    workbook.lastModifiedBy = "Nobody";
+    workbook.creator = "IEM FACULTY BOOK";
+    workbook.lastModifiedBy = "IEM FACULTY BOOK";
     workbook.created = new Date();
     workbook.modified = new Date();
     workbook.lastPrinted = new Date();
@@ -192,7 +192,7 @@ function getWorkBook(collectionData, display) {
                   rowToWrite + Object.keys(collectionData[userNo][achievement_key]).length - 1
                 );
 
-                console.log(`${mergeStart_cell.getString()}:${mergeEnd_cell.getString()}`);
+                //console.log(`${mergeStart_cell.getString()}:${mergeEnd_cell.getString()}`);
                 worksheet.mergeCells(`${mergeStart_cell.getString()}:${mergeEnd_cell.getString()}`);
               }
             }
@@ -204,7 +204,7 @@ function getWorkBook(collectionData, display) {
         };
 
         const setupAchievementRows = () => {
-          let rowsConsumedByPrevUsers = 0;
+          let rowsConsumedByPrevUser = 0;
           let rowsConsumedByAllUsers = 0;
 
           for (let userNo = 0; userNo < collectionData.length; ++userNo) {
@@ -220,9 +220,12 @@ function getWorkBook(collectionData, display) {
                       : 0) +
                     fieldNo++;
                   const colId = String.fromCharCode(colCode);
-                  const cell = worksheet.getCell(`${colId}${3 + rowsConsumedByPrevUsers + pubNo}`);
+                  const cell = worksheet.getCell(`${colId}${3 + rowsConsumedByAllUsers}`);
                   const value = collectionData[userNo][achievement_key][pubNo][field.db_field];
                   if (field.input_type !== "file") {
+                    /*  if (userNo === 10 && field.db_field === "title") {
+                      console.log(`${colId}${3 + rowsConsumedByPrevUsers + pubNo}`);
+                    } */
                     cell.value = !!value ? value : null;
                   } else {
                     if (isEmptyObject(value)) {
@@ -239,18 +242,19 @@ function getWorkBook(collectionData, display) {
                         cell.value = {
                           //put an env variable for this
                           text: value.fname,
-                          hyperlink: "https://faculty-book.vercel.app/api/file/get/" + value.fuid,
-                          tooltip: "https://faculty-book.vercel.app/api/file/get/" + value.fuid,
+                          hyperlink: "https://digonto.in/api/file/get/" + value.fuid,
+                          tooltip: "https://digonto.in/api/file/get/" + value.fuid,
                         };
                     }
                   }
                   cell.alignment = { horizontal: "center", vertical: "middle", wrapText: true };
                 }
               });
+
+              rowsConsumedByAllUsers += 1;
             }
 
-            rowsConsumedByPrevUsers = collectionData[userNo][achievement_key].length;
-            rowsConsumedByAllUsers += rowsConsumedByPrevUsers;
+            rowsConsumedByPrevUser = collectionData[userNo][achievement_key].length;
           }
 
           for (let currentRow = 3; currentRow < 3 + rowsConsumedByAllUsers; ++currentRow) {
