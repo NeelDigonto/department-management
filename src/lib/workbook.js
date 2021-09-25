@@ -95,10 +95,10 @@ function getWorkBook(collectionData, display) {
           });
 
           // merge profile header cells
-          /*  worksheet.mergeCells(
+          worksheet.mergeCells(
             `A1:${new Cell(Cell.convertColumnToNumber("A") + iter_cell.column - 2, 1).getString()}`
           );
-          worksheet.getCell("A:1").alignment = { horizontal: "center", vertical: "middle" }; */
+          worksheet.getCell("A:1").alignment = { horizontal: "center", vertical: "middle" };
         };
 
         const setupAchievementHeaders = () => {
@@ -140,7 +140,7 @@ function getWorkBook(collectionData, display) {
 
           // Merging achievemnt header name cells
           mergeEnd_cell = new Cell(iter_cell.column - 1, 1);
-          /*  worksheet.mergeCells(`${mergeStart_cell.getString()}:${mergeEnd_cell.getString()}`); */
+          worksheet.mergeCells(`${mergeStart_cell.getString()}:${mergeEnd_cell.getString()}`);
           worksheet.getCell(mergeStart_cell.getString()).alignment = {
             horizontal: "center",
             vertical: "middle",
@@ -193,7 +193,7 @@ function getWorkBook(collectionData, display) {
                 );
 
                 console.log(`${mergeStart_cell.getString()}:${mergeEnd_cell.getString()}`);
-                /*        worksheet.mergeCells(`${mergeStart_cell.getString()}:${mergeEnd_cell.getString()}`); */
+                worksheet.mergeCells(`${mergeStart_cell.getString()}:${mergeEnd_cell.getString()}`);
               }
             }
 
