@@ -1,5 +1,5 @@
 import React from "react";
-
+import { saveAs } from "file-saver";
 import { Box, Card, CardContent, Button, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
 const DownloadOptions = ({ getFilterObject, sortRef, displayRef }) => {
   const classes = useStyles();
 
-  const handleWorkbookDownload = () => {
+  const handleWorkbookDownloadSelected = () => {
     fetch("/api/admin/download/selected", {
       method: "POST",
       body: JSON.stringify({
@@ -24,11 +24,21 @@ const DownloadOptions = ({ getFilterObject, sortRef, displayRef }) => {
         "Content-Type": "application/json",
       },
     })
-      .then((response) => response.blob())
-      .then((blob) => URL.createObjectURL(blob))
-      .then((url) => {
-        window.open(url, "_blank");
-        URL.revokeObjectURL(url);
+      .then((response) => {
+        return response.blob();
+      })
+      .then((blob) => {
+        saveAs(blob, `SelectedUsers-${new Date().toString()}.xlsx`);
+      });
+  };
+
+  const handleWorkbookDownloadAll = () => {
+    fetch("/api/admin/download/all")
+      .then((response) => {
+        return response.blob();
+      })
+      .then((blob) => {
+        saveAs(blob, `AllUsers-${new Date().toString()}.xlsx`);
       });
   };
 
@@ -41,9 +51,7 @@ const DownloadOptions = ({ getFilterObject, sortRef, displayRef }) => {
             color="primary"
             fullWidth
             className={classes.downloadButton}
-            onClick={() => {
-              window.open("/api/admin/download/all", "_blank");
-            }}
+            onClick={handleWorkbookDownloadAll}
           >
             Download All Data
           </Button>
@@ -52,9 +60,9 @@ const DownloadOptions = ({ getFilterObject, sortRef, displayRef }) => {
             color="primary"
             fullWidth
             className={classes.downloadButton}
-            onClick={handleWorkbookDownload}
+            onClick={handleWorkbookDownloadSelected}
           >
-            Download as multi-spreadsheets
+            Download Selected
           </Button>
           {/*  <Button
             variant="outlined"

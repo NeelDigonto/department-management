@@ -136,7 +136,7 @@ export default async function handler(req, res) {
       if (achievement_key === "profile") return;
 
       const worksheet = workbook.addWorksheet(display_name);
-      const rowHeight = 30;
+      const rowHeight = 50;
 
       const setupHeaders = () => {
         let ws_columns_hot = [
@@ -261,7 +261,7 @@ export default async function handler(req, res) {
     res.setHeader("Content-Length", buffer.byteLength);
     res.setHeader(
       "Content-Disposition",
-      contentDisposition("TestFile.xlsx", {
+      contentDisposition("AllUserData.xlsx", {
         type: "inline",
       })
     );

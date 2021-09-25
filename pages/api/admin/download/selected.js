@@ -135,7 +135,7 @@ export default async function handler(req, res) {
     res.setHeader("Content-Length", workbookBuffer.byteLength);
     res.setHeader(
       "Content-Disposition",
-      contentDisposition("TestFile.xlsx", {
+      contentDisposition("SelectedUserData.xlsx", {
         type: "inline",
       })
     );

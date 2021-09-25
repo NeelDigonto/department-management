@@ -78,11 +78,11 @@ const Dashboard = () => {
 
         const filter = getFilterObject();
 
-        console.log("toFilterRef: ", toFilterRef.current);
-        console.log("filterRef: ", filterRef.current);
-        console.log("filter: ", filter);
+        //console.log("toFilterRef: ", toFilterRef.current);
+        //console.log("filterRef: ", filterRef.current);
+        //console.log("filter: ", filter);
         //console.log("sortRef: ", sortRef.current);
-        console.log("displayRef: ", displayRef.current);
+        //console.log("displayRef: ", displayRef.current);
 
         fetch("/api/admin/search", {
           method: "POST",
