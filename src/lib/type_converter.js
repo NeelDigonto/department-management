@@ -68,10 +68,11 @@ const toTypedQuerry = (_json) => {
       if (
         Array.isArray(value) &&
         value.length === 2 &&
+        typeof value[0] === "string" &&
         typeof value[1] === "string" &&
         value[1].split(".")[0] === "$___convert_to___"
       ) {
-        if (value[1].split(".")[1] === "date") _json[key] = _convertToDate(value);
+        if (value[1].split(".")[1] === "date") _json[key] = _convertToType(value);
         else console.warn("Wtf passed :", value[1].split(".")[1]);
       } else toTypedQuerry(_json[key]);
     }
