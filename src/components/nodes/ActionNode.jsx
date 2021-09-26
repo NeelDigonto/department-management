@@ -1,5 +1,11 @@
 import React from "react";
 import { Box, FormControlLabel, Checkbox } from "@material-ui/core";
+import FilterListIcon from "@material-ui/icons/FilterList";
+import FilterListOutlinedIcon from "@material-ui/icons/FilterListOutlined";
+import SortIcon from "@material-ui/icons/Sort";
+import SortOutlinedIcon from "@material-ui/icons/SortOutlined";
+import AddToQueueIcon from "@material-ui/icons/AddToQueue";
+import AddToQueueOutlinedIcon from "@material-ui/icons/AddToQueueOutlined";
 
 import { INPUT_TYPE } from "../../data/types/types";
 
@@ -57,26 +63,49 @@ const ActionNode = ({
       <FormControlLabel
         control={
           <Checkbox
+            icon={<FilterListOutlinedIcon />}
+            checkedIcon={<FilterListIcon />}
+            color="primary"
             checked={filter}
             onChange={handleFilterToggle}
             name={field.db_field}
-            color="primary"
           />
         }
-        label={"Filter"}
-      ></FormControlLabel>
+        /*  label="Filter" */
+      />
       <FormControlLabel
         control={
           <Checkbox
+            icon={<SortOutlinedIcon />}
+            checkedIcon={<SortIcon />}
+            color="primary"
             checked={sort}
             onChange={handleSortToggle}
             name={field.db_field}
-            color="primary"
           />
         }
-        label={"Sort"}
-      ></FormControlLabel>
+        /*  label="Sort" */
+      />
       <FormControlLabel
+        control={
+          <Checkbox
+            checked={display}
+            icon={<AddToQueueOutlinedIcon />}
+            checkedIcon={<AddToQueueIcon />}
+            color="primary"
+            onChange={handleDisplayToggle}
+            name={field.db_field}
+          />
+        }
+        /*  label="Display" */
+      />
+    </Box>
+  );
+};
+
+export default ActionNode;
+
+/*<FormControlLabel
         control={
           <Checkbox
             checked={display}
@@ -85,10 +114,6 @@ const ActionNode = ({
             color="primary"
           />
         }
-        label={"Display"}
-      ></FormControlLabel>
-    </Box>
-  );
-};
-
-export default ActionNode;
+        //label={"Display"}
+        label={<AddToQueueIcon />}
+      ></FormControlLabel>*/

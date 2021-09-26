@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
   slidingItems: { height: "100%" },
   leftColumn: {},
-  rightColumn: {},
+  //rightColumn: { overflow: "auto", maxHeight: "50rem" },
   fab: {
     position: "fixed",
     bottom: theme.spacing(2),

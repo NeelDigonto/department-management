@@ -234,31 +234,14 @@ export default function AdminDashboard() {
             {"Faculty Book"}
           </Typography>
           {/*  </NextLink> */}
-          {/*  <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ "aria-label": "search" }}
-            />
-          </div> */}
           <IconButton
-            color="inherit"
+            color="secondary"
             onClick={() => {
               signOut();
             }}
           >
             <ExitToAppIcon />
-          </IconButton>
-          <IconButton color="inherit">
-            <Badge badgeContent={6} color="secondary">
-              <NotificationsIcon />
-            </Badge>
+            <Typography variant="h6">Sign Out</Typography>
           </IconButton>
         </Toolbar>
       </AppBar>

@@ -65,4 +65,4 @@ const ProfileFilter = ({ valueLastUpdatedRef, toFilterRef, filterRef, sortRef, d
   );
 };
 
-export default ProfileFilter;
+export default React.memo(ProfileFilter);

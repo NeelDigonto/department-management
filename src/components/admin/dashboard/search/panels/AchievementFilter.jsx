@@ -83,4 +83,4 @@ const AchievementFilter = ({
   );
 };
 
-export default AchievementFilter;
+export default React.memo(AchievementFilter);

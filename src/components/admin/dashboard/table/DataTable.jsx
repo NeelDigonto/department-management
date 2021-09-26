@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DataTable({ rows }) {
+function DataTable({ rows }) {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
@@ -112,3 +112,5 @@ export default function DataTable({ rows }) {
     </Fragment>
   );
 }
+
+export default React.memo(DataTable);

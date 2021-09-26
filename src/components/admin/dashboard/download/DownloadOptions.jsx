@@ -79,4 +79,4 @@ const DownloadOptions = ({ getFilterObject, sortRef, displayRef }) => {
   );
 };
 
-export default DownloadOptions;
+export default React.memo(DownloadOptions);
