@@ -7,6 +7,8 @@ import { getMongoClient } from "../../../src/lib/db";
 export default NextAuth({
   session: {
     jwt: true,
+    // Seconds - How long until an idle session expires and is no longer valid.
+    maxAge: 1 * 24 * 60 * 60, // 1 day
   },
   providers: [
     Providers.Credentials({
@@ -75,6 +77,7 @@ export default NextAuth({
     async session(session, token) {
       //  "session" is current session object
       //  below we set "user" param of "session" to value received from "jwt" callback
+
       session.user = token.user;
       return session;
     },
