@@ -5,7 +5,7 @@ variables:
 stages:
   - deploy
 
-deploy-api:
+deploy-website:
   image: renderbit/rsync
   stage: deploy
   script:
@@ -23,6 +23,6 @@ deploy-api:
     - ssh -t "$SSH_USER@$SSH_HOST" "cd $WORKDIR && npm run build"
     - ssh -t "$SSH_USER@$SSH_HOST" "sudo chown -R $SSH_USER:$SSH_USER $WORKDIR"
     - ssh -t "$SSH_USER@$SSH_HOST" "sudo chmod -R 0755 $WORKDIR"
-    # - ssh -t "$SSH_USER@$SSH_HOST" "cd $WORKDIR && pm2 startOrRestart pm2.json"
+    - ssh -t "$SSH_USER@$SSH_HOST" "cd $WORKDIR && pm2 start bsh-website"
   only:
     - main
