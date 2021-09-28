@@ -1,0 +1,28 @@
+variables:
+  WORKDIR: /opt/bitnami/projects/bsh-website
+  NODE_ENV: production
+
+stages:
+  - deploy
+
+deploy-api:
+  image: renderbit/rsync
+  stage: deploy
+  script:
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo "$SSH_KNOWN_HOSTS" | tr -d '\r' | tee -a ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - ssh -t "$SSH_USER@$SSH_HOST" "sudo mkdir -p $WORKDIR"
+    - ssh -t "$SSH_USER@$SSH_HOST" "sudo chown -R $SSH_USER:$SSH_USER $WORKDIR"
+    - ssh -t "$SSH_USER@$SSH_HOST" "sudo chmod -R 0755 $WORKDIR"
+    - rsync -avz --delete --exclude '.git' --exclude '.gitlab-ci.yml' --exclude 'node_modules' ./ "$SSH_USER@$SSH_HOST:$WORKDIR/"
+    - ssh -t "$SSH_USER@$SSH_HOST" "cd $WORKDIR && npm install --production"
+    - ssh -t "$SSH_USER@$SSH_HOST" "cd $WORKDIR && npm run build"
+    - ssh -t "$SSH_USER@$SSH_HOST" "sudo chown -R $SSH_USER:$SSH_USER $WORKDIR"
+    - ssh -t "$SSH_USER@$SSH_HOST" "sudo chmod -R 0755 $WORKDIR"
+    # - ssh -t "$SSH_USER@$SSH_HOST" "cd $WORKDIR && pm2 startOrRestart pm2.json"
+  only:
+    - main
