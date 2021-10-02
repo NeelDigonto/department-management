@@ -1,7 +1,12 @@
 import * as Yup from "yup";
 import VideoCallIcon from "@material-ui/icons/VideoCall";
 
-import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE, WIDTH_TYPE } from "../types/types";
+import {
+  VALUE_TYPE,
+  INPUT_TYPE,
+  DB_FIELD_TYPE,
+  WIDTH_TYPE,
+} from "../types/types";
 import Validation from "../validation/schemas";
 
 const FIELDS = [
@@ -92,7 +97,7 @@ const FIELDS = [
     input_type: INPUT_TYPE.SELECT,
     view_width: WIDTH_TYPE.MEDIUM,
     options: ["National", "International"],
-    db_field: "nat_inter_imp",
+    db_field: "coverage",
     validation: Validation.option(),
   },
   {

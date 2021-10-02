@@ -145,7 +145,7 @@ const FIELDS = [
     input_type: INPUT_TYPE.SELECT,
     view_width: WIDTH_TYPE.MEDIUM,
     options: ["National", "International"],
-    db_field: "nat_inter_imp",
+    db_field: "coverage",
     validation: Validation.option(),
   },
   {
