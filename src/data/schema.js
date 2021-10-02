@@ -58,7 +58,8 @@ const ACHIEVEMENTS = [
 const getAchievementGroupSchema = () => {
   const ACHIEVEMENTS_GROUP_SCHEMA = {};
   ACHIEVEMENTS.forEach((_achievementCategory) => {
-    ACHIEVEMENTS_GROUP_SCHEMA[_achievementCategory.SCHEMA.key] = _achievementCategory.SCHEMA;
+    ACHIEVEMENTS_GROUP_SCHEMA[_achievementCategory.SCHEMA.key] =
+      _achievementCategory.SCHEMA;
   });
   return ACHIEVEMENTS_GROUP_SCHEMA;
 };
@@ -90,7 +91,11 @@ const getEmptyUserDocument = () => {
   MASTER_SCHEMA["profile"].forEach((item) => {
     mockProfile[item.db_field] = item.value;
   });
-  let EMPTY_USER_DOCUMENT = { employeeID: "", hashedPassword: "", profile: mockProfile };
+  let EMPTY_USER_DOCUMENT = {
+    employeeID: "",
+    hashedPassword: "",
+    profile: mockProfile,
+  };
   for (let [key, value] of Object.entries(ACHIEVEMENTS_GROUP_SCHEMA)) {
     EMPTY_USER_DOCUMENT[key] = [];
   }

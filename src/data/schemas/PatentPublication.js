@@ -1,7 +1,12 @@
 import * as Yup from "yup";
 import SecurityIcon from "@material-ui/icons/Security";
 
-import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE, WIDTH_TYPE } from "../types/types";
+import {
+  VALUE_TYPE,
+  INPUT_TYPE,
+  DB_FIELD_TYPE,
+  WIDTH_TYPE,
+} from "../types/types";
 import Validation from "../validation/schemas";
 
 const FIELDS = [
@@ -16,29 +21,6 @@ const FIELDS = [
     db_field: "title",
     validation: Validation.string(),
   },
-  /*  {
-    label: "Faculty Name",
-    value: "",
-    info: "Name of the Faculty",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.TEXT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "fac_name",
-    validation: Validation.string(),
-  },
-  {
-    label: "Department",
-    value: "",
-    info: "Department",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.SELECT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    options: ["Department of Basic Science and Humanities"],
-    db_field: "department",
-    validation: Validation.option(),
-  }, */
   {
     label: "Patent Details",
     value: "",

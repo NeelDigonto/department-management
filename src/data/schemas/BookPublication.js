@@ -1,7 +1,12 @@
 import * as Yup from "yup";
 import BookIcon from "@material-ui/icons/Book";
 
-import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE, WIDTH_TYPE } from "../types/types";
+import {
+  VALUE_TYPE,
+  INPUT_TYPE,
+  DB_FIELD_TYPE,
+  WIDTH_TYPE,
+} from "../types/types";
 import Validation from "../validation/schemas";
 
 const FIELDS = [
@@ -16,7 +21,7 @@ const FIELDS = [
     db_field: "title",
     validation: Validation.string(),
   },
-  {
+  /*   {
     label: "Author's Name",
     value: "",
     info: "Author (Only name of the faculty associated with BSH, No Co-author)",
@@ -26,7 +31,7 @@ const FIELDS = [
     view_width: WIDTH_TYPE.MEDIUM,
     db_field: "name_of_auth",
     validation: Validation.string(),
-  },
+  }, */
   /*  {
     label: "Department",
     value: "",
@@ -179,7 +184,7 @@ const FIELDS = [
     validation: Validation.string(),
   },
   {
-    label: "Invited Paper",
+    label: "Invited Contribution",
     value: false,
     info: "Whether the book was an invited contribution ?",
     type: VALUE_TYPE.BOOLEAN,

@@ -1,7 +1,12 @@
 import * as Yup from "yup";
 import DomainIcon from "@material-ui/icons/Domain";
 
-import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE, WIDTH_TYPE } from "../types/types";
+import {
+  VALUE_TYPE,
+  INPUT_TYPE,
+  DB_FIELD_TYPE,
+  WIDTH_TYPE,
+} from "../types/types";
 import Validation from "../validation/schemas";
 
 const FIELDS = [
@@ -13,20 +18,9 @@ const FIELDS = [
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
     view_width: WIDTH_TYPE.LARGE,
-    db_field: "title",
+    db_field: "proj_name",
     validation: Validation.string(),
   },
-  /*  {
-    label: "Faculty Name",
-    value: "",
-    info: "Name of the Faculty",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.TEXT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "fac_name",
-    validation: Validation.string(),
-  }, */
   {
     label: "Role Of Faculty",
     value: "",
@@ -35,26 +29,17 @@ const FIELDS = [
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.SELECT,
     view_width: WIDTH_TYPE.MEDIUM,
-    options: ["Principal Investigator (PI)", "Co-Principal Investigator (Co-PI)"],
+    options: [
+      "Principal Investigator (PI)",
+      "Co-Principal Investigator (Co-PI)",
+    ],
     db_field: "fac_role",
     validation: Validation.option(),
   },
-  /* {
-    label: "Department",
-    value: "",
-    info: "Department",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.SELECT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    options: ["Department of Basic Science and Humanities"],
-    db_field: "department",
-    validation: Validation.option(),
-  }, */
   {
     label: "Co-Principal Investigator Name",
     value: "",
-    info: "Name of the Faculty",
+    info: "Name of the Co-Pi",
     type: VALUE_TYPE.STRING,
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
@@ -86,14 +71,14 @@ const FIELDS = [
   },
   {
     label: "Amount Sanctioned (in INR)",
-    value: 0,
+    value: "",
     info: "Amount Sanctioned (in INR)",
-    type: VALUE_TYPE.NUMBER,
-    input_type: INPUT_TYPE.NUMBER,
-    db_field_type: DB_FIELD_TYPE.INT32,
+    type: VALUE_TYPE.STRING,
+    input_type: INPUT_TYPE.TEXT,
+    db_field_type: DB_FIELD_TYPE.STRING,
     view_width: WIDTH_TYPE.SMALL,
     db_field: "amount_sanc",
-    validation: Validation.number(),
+    validation: Validation.string(),
   },
   {
     label: "Duration of the project",

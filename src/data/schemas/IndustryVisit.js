@@ -1,33 +1,15 @@
 import * as Yup from "yup";
 import GroupOutlinedIcon from "@material-ui/icons/GroupOutlined";
 
-import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE, WIDTH_TYPE } from "../types/types";
+import {
+  VALUE_TYPE,
+  INPUT_TYPE,
+  DB_FIELD_TYPE,
+  WIDTH_TYPE,
+} from "../types/types";
 import Validation from "../validation/schemas";
 
 const FIELDS = [
-  /* {
-    label: "Faculty Name",
-    value: "",
-    info: "Name of the Faculty",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.TEXT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "fac_name",
-    validation: Validation.string(),
-  },
-  {
-    label: "Department",
-    value: "",
-    info: "Department",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.SELECT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    options: ["Department of Basic Science and Humanities"],
-    db_field: "department",
-    validation: Validation.option(),
-  }, */
   {
     label: "Date of Visit",
     value: new Date().toISOString(),
@@ -62,14 +44,25 @@ const FIELDS = [
     validation: Validation.string(),
   },
   {
-    label: "Participants",
+    label: "Faculties Participated",
     value: 0,
-    info: "Approximate Number of Participants",
+    info: "Approximate Number of Faculty Participants",
     type: VALUE_TYPE.NUMBER,
     input_type: INPUT_TYPE.NUMBER,
     db_field_type: DB_FIELD_TYPE.INT32,
     view_width: WIDTH_TYPE.SMALL,
-    db_field: "participants",
+    db_field: "participants_fac",
+    validation: Validation.number(),
+  },
+  {
+    label: "Students Participated",
+    value: 0,
+    info: "Approximate Number of Student Participants",
+    type: VALUE_TYPE.NUMBER,
+    input_type: INPUT_TYPE.NUMBER,
+    db_field_type: DB_FIELD_TYPE.INT32,
+    view_width: WIDTH_TYPE.SMALL,
+    db_field: "participants_stud",
     validation: Validation.number(),
   },
   {
