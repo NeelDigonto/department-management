@@ -38,7 +38,7 @@ const ACHIEVEMENTS = [
   WebinarOrganized,
   WebinarAttended,
   DistinguishedLectureOrganized,
-  DistinguishedLectureAttended,
+  //DistinguishedLectureAttended,
   TrimentoringOrganized,
   AlumniTalkOrganized,
   ClubOutreachProgramsOrganized,
