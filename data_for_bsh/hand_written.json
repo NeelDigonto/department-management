@@ -1,0 +1,735 @@
+[
+  {
+    "employeeID": "Dr. Saswati Barman",
+    "profile": {
+      "name": "Dr. Saswati Barman"
+    },
+    "research-projects": [
+      {
+        "proj_name": "Computational Studies of Structure and Interface Modified Magnetic Materials for Nanomagnetic Devices",
+        "fac_role": "Principal Investigator (PI)",
+        "co_pi_name": "",
+        "sanc_date": "2018-06-29T00:00:00.000Z",
+        "comp_date": "2018-06-29T00:00:00.000Z",
+        "amount_sanc": "",
+        "proj_duration": "3 years",
+        "fund_agency_name": "DST-SERB (Core Research Grant)",
+        "type": "Government",
+        "util_cert": true,
+        "proof": {}
+      },
+      {
+        "proj_name": "Advanced Computational studies of magnetic flux closure structures",
+        "fac_role": "Principal Investigator (PI)",
+        "co_pi_name": "",
+        "sanc_date": "2018-09-13T00:00:00.000Z",
+        "comp_date": "2018-09-13T00:00:00.000Z",
+        "amount_sanc": "",
+        "proj_duration": "3 years",
+        "fund_agency_name": "West Bengal State DHESTBT",
+        "type": "Government",
+        "util_cert": true,
+        "proof": {}
+      },
+      {
+        "proj_name": "Computational studies of structure and interface modified magnetic materials for nanomagnetic devices.",
+        "fac_role": "Principal Investigator (PI)",
+        "co_pi_name": "",
+        "sanc_date": "2019-02-26T00:00:00.000Z",
+        "comp_date": "2019-02-26T00:00:00.000Z",
+        "amount_sanc": "",
+        "proj_duration": "3 years",
+        "fund_agency_name": "DST SERB",
+        "type": "Government",
+        "util_cert": false,
+        "proof": {}
+      }
+    ]
+  },
+  {
+    "employeeID": "Dr. Tina De",
+    "profile": {
+      "name": "Dr. Tina De"
+    },
+    "seminar-organized": [
+      {
+        "title": "A Seminar on Environmental Awareness",
+        "speaker_name": "Dr. Sudipto Mondal, Dr. Sumana Chatterjee",
+        "speaker_designation": "",
+        "speaker_org": "",
+        "event_start_date": "2021-06-05T00:00:0.000Z",
+        "event_end_date": "2021-06-05T00:00:00.000Z",
+        "coverage": "National",
+        "participants": 110,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1KuEIo37IwBEKr-NV-F_BhKspLtyqX0uL/view?usp=sharing"
+        }
+      }
+    ],
+    "industry-visit": [
+      {
+        "visit_date": "2019-03-01T00:00:00.000Z",
+        "industry_type": "VECC-Variable Energy Cyclotron Centre",
+        "visit_writeup": "40 students from B.Tech (1st year 2018 batch) had visited VECC-Variable Energy Cyclotron Centre on 1st March, 2019. It was organized by the department of Basic Science & Humanities of IEM, Kolkata. The students were guided by three faculty members Dr. Dr. Arun Kumar Bar, Dr. Koyel Ganguly, Dr. Tina De (Basu). Selection of the students were based on their performance in Bridge course exam conducted after the successful completion of induction cum orientation programme. Top 20 % of the performers had this chance of getting themselves exposed to high end instruments like AFM, mass spectrometer, high end computers etc.",
+        "participants_fac": 3,
+        "participants_stud": 40,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1clslVznHXojHUsx8_OEiSF3IMHB5UWF8/view?usp=sharing"
+        }
+      }
+    ],
+    "research-projects": [
+      {
+        "proj_name": "Development of a multicomponent gas-particle Navier-Stokes solver for needle free drug delivery",
+        "fac_role": "Co-Principal Investigator (Co-PI)",
+        "co_pi_name": "",
+        "sanc_date": "2018-09-13T00:00:00.000Z",
+        "comp_date": "",
+        "amount_sanc": "NA",
+        "proj_duration": "3 years",
+        "fund_agency_name": "West Bengal State DHESTBT",
+        "type": "Government",
+        "util_cert": true,
+        "proof": {}
+      }
+    ]
+  },
+  {
+    "employeeID": "Dr. Koyel Ganguly",
+    "profile": {
+      "name": "Dr. Koyel Ganguly"
+    },
+    "industry-visit": [
+      {
+        "visit_date": "2019-03-01T00:00:00.000Z",
+        "industry_type": "VECC-Variable Energy Cyclotron Centre",
+        "visit_writeup": "40 students from B.Tech (1st year 2018 batch) had visited VECC-Variable Energy Cyclotron Centre on 1st March, 2019. It was organized by the department of Basic Science & Humanities of IEM, Kolkata. The students were guided by three faculty members Dr. Dr. Arun Kumar Bar, Dr. Koyel Ganguly, Dr. Tina De (Basu). Selection of the students were based on their performance in Bridge course exam conducted after the successful completion of induction cum orientation programme. Top 20 % of the performers had this chance of getting themselves exposed to high end instruments like AFM, mass spectrometer, high end computers etc.",
+        "participants_fac": 3,
+        "participants_stud": 40,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1clslVznHXojHUsx8_OEiSF3IMHB5UWF8/view?usp=sharing"
+        }
+      }
+    ]
+  },
+  {
+    "employeeID": "Dr. Samapika Das Biswas",
+    "profile": {
+      "name": "Dr. Samapika Das Biswas"
+    },
+    "seminar-organized": [
+      {
+        "title": "IEM Foreign Distinguished Lecture: Communicating Online: Effective Virtual Communication Strategies",
+        "speaker_name": "Scott Granville",
+        "speaker_designation": "",
+        "speaker_org": "",
+        "event_start_date": "2020-05-12T00:00:0.000Z",
+        "event_end_date": "2020-05-12T00:00:00.000Z",
+        "coverage": "International",
+        "participants": 118,
+        "proof": {
+          "isLink": true,
+          "flink": "https://mail.google.com/mail/u/4/#search/scottchasingtime%40gmail.com/FMfcgxwHNMXLPVhSXtJPgbhgxSPDNrQc?projector=1&messagePartId=0.1"
+        }
+      }
+    ],
+    "patent-publications": [
+      {
+        "title": "SMART STEM LEARNING App",
+        "pat_details": "Techniques disclosed herein the idea of automated smart learning preparation on different subjects. The server system communicates with a client system to represent set of subjective study chapter and set of subjective assessment questions on a user interface. The server system receives a user acknowledgement for each transmitted study chapter and receives a user response for each transmitted assessment question and then compares the received user responses with data stored in a subjective answer database at the server system to generate an estimated proficiency score on a subject for the user. The server system produces score report card based on proficiency score.",
+        "coverage": "National",
+        "pat_app_num": "202131003591",
+        "pat_fil_date": "2021-01-18T00:00:00.000Z",
+        "pub_date": "",
+        "proof": {}
+      },
+      {
+        "title": "MY LINGO LEARNING App",
+        "pat_details": "The invention identifies with a versatile boosted instruction stage. It further identifies with a technique for fitting a learning program and to a powerful framework for giving instructive substance. Specifically, the current invention identifies with a technique, stage and framework that advances language picking up utilizing gamification and boost. The current invention identifies with a technique, stage and framework which assembles and progressively refreshes a client profile to tailor instructive substance and methodologies to draw in the client. \n The substance showed to the members is powerfully refreshed dependent on the activity taken by one of the members during the learning movement, to portray progress towards the target. The creation relates for the most part to online educational courses. All the more explicitly, the development identifies with a System and strategy for showing unknown dialects over a system.",
+        "coverage": "National",
+        "pat_app_num": "202131003586",
+        "pat_fil_date": "2021-01-18T00:00:00.000Z",
+        "pub_date": "",
+        "proof": {}
+      },
+      {
+        "title": "LOW - COST LPG CYLINDER MONITORING SYSTEM WITH GAS LEAKAGE DETECTOR",
+        "pat_details": "It is very much difficult for us to get to know that when is our LPG Cylinder going to be out of fuel or service. It is also very much difficult to detect any gas leakage in kitchen. So keeping these issues in mind we have developed a low cost LPG cylinder monitoring system with gas leakage detector. This device uses a load cell of 40kg, HX711 load cell amplifier, MQ-2 Gas sensor, Arduino Uno, LCD with I2c module, Switch, Buzzer and a 5v dc power supply.",
+        "coverage": "National",
+        "pat_app_num": "202131015751",
+        "pat_fil_date": "",
+        "pub_date": "",
+        "proof": {}
+      }
+    ]
+  },
+  {
+    "employeeID": "Dibakar Roy Choudhury",
+    "profile": {
+      "name": "Dibakar Roy Choudhury"
+    },
+    "seminar-organized": [
+      {
+        "title": "A Seminar on Environmental Awareness",
+        "speaker_name": "Dr. Sudipto Mondal, Dr. Sumana Chatterjee",
+        "speaker_designation": "",
+        "speaker_org": "",
+        "event_start_date": "2021-06-05T00:00:0.000Z",
+        "event_end_date": "2021-06-05T00:00:00.000Z",
+        "coverage": "National",
+        "participants": 110,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1KuEIo37IwBEKr-NV-F_BhKspLtyqX0uL/view?usp=sharing"
+        }
+      }
+    ],
+    "patent-publications": [
+      {
+        "title": "A multipurpose 4 in 1 Smart Electronic Mask for fighting against COVID-19 with inbuilt sanitizer sprayer, safe distance alert, body temperature reading displaying system with 3 layer protection",
+        "pat_details": "cloud computing. The objective of the present invention is to solve the problems in the prior art related to technologies of monitoring",
+        "coverage": "National",
+        "pat_app_num": "202131003589",
+        "pat_fil_date": "2021-01-01T00:00:00.000Z",
+        "pub_date": "",
+        "proof": {}
+      },
+      {
+        "title": "Anti theft wallet using LDR sensor module and buzzer",
+        "pat_details": "physically disabled person in care facilities.",
+        "coverage": "National",
+        "pat_app_num": "202131008839",
+        "pat_fil_date": "2021-02-01T00:00:00.000Z",
+        "pub_date": "",
+        "proof": {}
+      },
+      {
+        "title": "Automatic Body Temperature Sensing Gateway",
+        "pat_details": "Our automated approach to the recent COVID19 problem will not only strictly follow the COVID19 health guidelines but also minimise the risk of infection due to improper temperature measurement. Our aim is to devise a system which when senses the palm of an individual placed at the proper location will measure the body temperature from their upper wrist, following which, it will accurately show the temperature on a digital screenwhich will determine whether the individual will be allowed or not. Using an Arduino based gateway systemthat will restrict the individuals from entering the premises (those having very high temperature, exceeding 38 deg C) and on the other hand will also allow individuals having permissible temperature. Following the gate, the individual will pass through a sanitization tunnel and that person will be completely sanitized.",
+        "coverage": "National",
+        "pat_app_num": "202131015752",
+        "pat_fil_date": "2021-04-01T00:00:00.000Z",
+        "pub_date": "",
+        "proof": {}
+      }
+    ]
+  },
+  {
+    "employeeID": "Amartya Mukherjee",
+    "profile": {
+      "name": "Amartya Mukherjee"
+    },
+    "copyrights": [
+      {
+        "title": "A Simple Postprandial glucose prediction model from fasting blood glucose level",
+        "copyright_details": "Diabetes, a chronic disease, affects 422 Million people globally. Monitoring Blood Glucose Level (BGL) many times a day for the diabetics are highly required. With the rise of artificial intelligence techniques, personalized BGL prediction devices could help to minimize the number of required sample collections, enabling diabetics to feel more pleasant, and live fulfilled lives. The key purpose of BGL prediction is to reduce the number of blood sample collections required in postprandial scenario which is specifically done after a meal, enabling users to live more active lives. The current work presents the basis of a precise estimation of BGL using a robust machine learning model to be incorporated into a personalized handheld healthcare device thus enhancing the next generation of mass consumer market BGL testers for diabetics. A person’s profile is identified by comparing with known training data and a comparative study checks the outcomes among the proposed methods. The proposed solution uses the Linear Regression within a lightweight prototype hardware unit to perform initial mapping in whole training data and reports an accuracy benchmark of above 99%.",
+        "reg_no": "SW-13873/2020",
+        "coverage": "National",
+        "pub_on": "2020-11-02T00:00:00.000Z",
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1wvQ6bGQSmbeKJzLkwoTOaXJohtzvf0vk/view?usp=sharing"
+        }
+      }
+    ]
+  },
+  {
+    "employeeID": "Dr. Kakoli Dutta",
+    "profile": {
+      "name": "Dr. Kakoli Dutta"
+    },
+    "seminar-organized": [
+      {
+        "title": "A Seminar on Environmental Awareness",
+        "speaker_name": "Dr. Sudipto Mondal, Dr. Sumana Chatterjee",
+        "speaker_designation": "",
+        "speaker_org": "",
+        "event_start_date": "2021-06-05T00:00:0.000Z",
+        "event_end_date": "2021-06-05T00:00:00.000Z",
+        "coverage": "National",
+        "participants": 110,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1KuEIo37IwBEKr-NV-F_BhKspLtyqX0uL/view?usp=sharing"
+        }
+      }
+    ],
+    "industry-visit": [
+      {
+        "visit_date": "2019-04-24T00:00:00.000Z",
+        "industry_type": "TCG Lifesciences",
+        "visit_writeup": "35 students from B.Tech (1st year 2018-19 batch) have visited the high end laboratory of TCG Lifesciences (formerly known as ChemBiotech) on 22nd April, 2019. It was organized by the department of Basic Science & Humanities of IEM, Kolkata. The students were guided by two faculty members Dr. Kakoli Dutta and Dr. Ruchira Mukherjee.",
+        "participants_fac": 2,
+        "participants_stud": 35,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1clslVznHXojHUsx8_OEiSF3IMHB5UWF8/view?usp=sharing"
+        }
+      }
+    ],
+    "research-projects": [
+      {
+        "proj_name": "Wastewater treatment and energy generation: a path towards process integration for more sustainable cities",
+        "fac_role": "Principal Investigator (PI)",
+        "co_pi_name": "Dr. Barbara RUFFINO",
+        "sanc_date": "2021-04-30T00:00:00.000Z",
+        "comp_date": "",
+        "amount_sanc": "NA",
+        "proj_duration": "3 years",
+        "fund_agency_name": "DST",
+        "type": "Government",
+        "util_cert": true,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1H0tKAqoUUw5Azwoh8EBDczWZuueKtPfd/view?usp=sharing"
+        }
+      }
+    ]
+  },
+  {
+    "employeeID": "Abhishikta Bhattacharjee",
+    "profile": {
+      "name": "Abhishikta Bhattacharjee"
+    },
+    "seminar-organized": [
+      {
+        "title": "Bharat Avijaan: India's Sanitation Mission, Challenges & Progress amidst Corona Pandemic",
+        "speaker_name": "Dr. Rajarshi Banerjee",
+        "speaker_designation": "",
+        "speaker_org": "",
+        "event_start_date": "2020-04-28T00:00:0.000Z",
+        "event_end_date": "2020-04-28T00:00:00.000Z",
+        "coverage": "National",
+        "participants": 86,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1jEzPEV1n5aEY1VnWgCqRSGExkWKC3fK6/view?usp=sharing"
+        }
+      },
+      {
+        "title": "Josh Ya Hosh",
+        "speaker_name": "Prabir Sengupta",
+        "speaker_designation": "",
+        "speaker_org": "",
+        "event_start_date": "2020-08-15T00:00:0.000Z",
+        "event_end_date": "2020-08-15T00:00:00.000Z",
+        "coverage": "National",
+        "participants": 123,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1Ue8Z8Rf9BG_A9e6LKyVu5zr2cFvyXJqz/view?usp=sharing"
+        }
+      },
+      {
+        "title": "Installation talk of Rotary Club of Salt Lake Silicon Valley",
+        "speaker_name": "Sudip Mukherjee",
+        "speaker_designation": "",
+        "speaker_org": "",
+        "event_start_date": "2020-06-24T00:00:0.000Z",
+        "event_end_date": "2020-06-24T00:00:00.000Z",
+        "coverage": "National",
+        "participants": 154,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1Rtp8jScM9FIwbVSiIKnTrNxV3comWbey/view?usp=sharing"
+        }
+      },
+      {
+        "title": "Installation talk of Rotary Club of Salt Lake Silicon Valley",
+        "speaker_name": "Rakesh Bhatia",
+        "speaker_designation": "",
+        "speaker_org": "",
+        "event_start_date": "2021-06-24T00:00:0.000Z",
+        "event_end_date": "2021-06-24T00:00:00.000Z",
+        "coverage": "National",
+        "participants": 138,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1Rtp8jScM9FIwbVSiIKnTrNxV3comWbey/view?usp=sharing"
+        }
+      },
+      {
+        "title": "Installation talk of Rotary Club of Salt Lake Silicon Valley",
+        "speaker_name": "Mita Saha",
+        "speaker_designation": "",
+        "speaker_org": "",
+        "event_start_date": "2020-07-28T00:00:0.000Z",
+        "event_end_date": "2020-07-28T00:00:00.000Z",
+        "coverage": "National",
+        "participants": 78,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1Rtp8jScM9FIwbVSiIKnTrNxV3comWbey/view?usp=sharing"
+        }
+      },
+      {
+        "title": "Installation talk of Rotary Club of Salt Lake Silicon Valley",
+        "speaker_name": "Ranjana Mustuddi",
+        "speaker_designation": "",
+        "speaker_org": "",
+        "event_start_date": "2020-07-28T00:00:0.000Z",
+        "event_end_date": "2020-07-28T00:00:00.000Z",
+        "coverage": "National",
+        "participants": 95,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1Rtp8jScM9FIwbVSiIKnTrNxV3comWbey/view?usp=sharing"
+        }
+      }
+    ],
+    "webinar-organized": [
+      {
+        "title": "COTS Training Program of Rotary Club of Salt Lake Silicon Valley",
+        "speaker_name": "Rtn.Ajay Agrawal",
+        "speaker_designation": "DGE",
+        "speaker_org": "AG Ranjana Mustuddi",
+        "event_start_date": "2021-07-22T00:00:0.000Z",
+        "event_end_date": "2021-07-22T00:00:00.000Z",
+        "coverage": "International",
+        "participants": 22,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1mbh6UOrf8hOyhLddoXpVYXFgD_bX4h7g/view?usp=sharing"
+        }
+      },
+      {
+        "title": "Installation Ceremony of Rotary Club of Salt Lake Silicon Valley",
+        "speaker_name": "Rtn.Prabir Chatterjee, Hiralal Yadav, Avijit Mitra, Ranjana Mustuddi",
+        "speaker_designation": "District Governor, DGN, Rtn., Rtn., Rtn.",
+        "speaker_org": "",
+        "event_start_date": "2021-07-22T00:00:0.000Z",
+        "event_end_date": "2021-07-22T00:00:00.000Z",
+        "coverage": "International",
+        "participants": 22,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1Z9rqd0zKexxvlGYXH8KbZA06j9ms1iLZ/view?usp=sharing"
+        }
+      }
+    ]
+  },
+  {
+    "employeeID": "Prabir Kumar Das",
+    "profile": {
+      "name": "Prabir Kumar Das"
+    },
+    "seminar-organized": [
+      {
+        "title": "A Seminar on Environmental Awareness",
+        "speaker_name": "Dr. Sudipto Mondal, Dr. Sumana Chatterjee",
+        "speaker_designation": "",
+        "speaker_org": "",
+        "event_start_date": "2021-06-05T00:00:0.000Z",
+        "event_end_date": "2021-06-05T00:00:00.000Z",
+        "coverage": "National",
+        "participants": 110,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1KuEIo37IwBEKr-NV-F_BhKspLtyqX0uL/view?usp=sharing"
+        }
+      }
+    ],
+    "patent-publications": [
+      {
+        "title": "Anti theft wallet using LDR sensor module and buzzer",
+        "pat_details": "physically disabled person in care facilities.",
+        "coverage": "National",
+        "pat_app_num": "202131008839",
+        "pat_fil_date": "2021-02-01T00:00:00.000Z",
+        "pub_date": "",
+        "proof": {}
+      },
+      {
+        "title": "Automatic Body Temperature Sensing Gateway",
+        "pat_details": "Our automated approach to the recent COVID19 problem will not only strictly follow the COVID19 health guidelines but also minimise the risk of infection due to improper temperature measurement. Our aim is to devise a system which when senses the palm of an individual placed at the proper location will measure the body temperature from their upper wrist, following which, it will accurately show the temperature on a digital screenwhich will determine whether the individual will be allowed or not. Using an Arduino based gateway systemthat will restrict the individuals from entering the premises (those having very high temperature, exceeding 38 deg C) and on the other hand will also allow individuals having permissible temperature. Following the gate, the individual will pass through a sanitization tunnel and that person will be completely sanitized.",
+        "coverage": "National",
+        "pat_app_num": "202131015752",
+        "pat_fil_date": "2021-04-01T00:00:00.000Z",
+        "pub_date": "",
+        "proof": {}
+      }
+    ]
+  },
+  {
+    "employeeID": "Biswadip Basu Mallik",
+    "profile": {
+      "name": "Biswadip Basu Mallik"
+    },
+    "seminar-organized": [
+      {
+        "title": "Introduction to Machine Learning",
+        "speaker_name": "Dr. Saptarsi Goswami",
+        "speaker_designation": "Assistant Professor Comp Sc, S4Ds Executive Committee Member, ODSC Kolkata Chapter Lead",
+        "speaker_org": "Bangabasi Morning College",
+        "event_start_date": "2020-04-07T00:00:0.000Z",
+        "event_end_date": "2020-04-07T00:00:00.000Z",
+        "coverage": "National",
+        "participants": 50,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/drive/folders/1PygN-Cs5Slw2ABHoyEC-IyWleebCADQK?usp=sharing"
+        }
+      }
+    ],
+    "patent-publications": [
+      {
+        "title": "Lung Cancer Detection and Recommender System using Deep Learning",
+        "pat_details": "The Smart Lung Cancer Recommendations using Deep Learning (SLCRDL) help the doctors/patients to know the stages of the cancer as per the taken lung cancer image. The SLCRDL is designed in such a manner to predict the testing lung image cancer stage by matching with the trained image data sets with the help of appropriate Deep Learning (DL) algorithms. The huge collection of lung image data sets are used to train the SLCRDL. Then the patient’s taken lung image is inputted to the SLCRDL to know the cancer stage. By using this SLCRDL, the patient itself can know whether he/she is having cancer or not along with its stage. It gives smart safety recommendations to protect from further growth of the cancer as a precautionary basis. Also the doctors can make use of this SLCRDL to take initial decision up to a particular level.",
+        "coverage": "National",
+        "pat_app_num": "202041043972",
+        "pat_fil_date": "",
+        "pub_date": "",
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/drive/folders/1vtY2YORlAmQsfSu0y1MXkrYR-hINfpSY?usp=sharing"
+        }
+      },
+      {
+        "title": "A Machine Learning technique to support decisions along with self  study of Covid Patients",
+        "pat_details": "A machine learning technique to support decisions along with self-study of COVID, patients aim at implementing techniques to manage the database of COVID recovered patients and run a machine learning algorithm to get a self-decision and suggestion oriented system to analyze the side effects of COVID recovered patients. This invention will help the medical team to cope up with the new pandemic that is COVID-19.",
+        "coverage": "National",
+        "pat_app_num": "202141002009",
+        "pat_fil_date": "",
+        "pub_date": "",
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/drive/folders/1WxOU5ekuKRPtgJ41OmHIFXL8CQTOSOA_?usp=sharing"
+        }
+      },
+      {
+        "title": "System for monitoring Physically Disabled person in care facilities using Artificial Intelligence and Cloud Computing",
+        "pat_details": "The present invention relates to system for monitoring physically disabled person in care facilities using artificial intelligence and cloud computing. The objective of the present invention is to solve the problems in the prior art related to technologies of monitoring physically disabled person in care facilities.",
+        "coverage": "National",
+        "pat_app_num": "202141019459",
+        "pat_fil_date": "",
+        "pub_date": "",
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/drive/folders/1Kil7mRyZpjOsQYdDNfqL4eRn83NA253Y?usp=sharing"
+        }
+      },
+      {
+        "title": "Cloud based secured Data transmission using Trapdoor Encryption",
+        "pat_details": "Cloud administrations have become an amazing design to perform complex huge scope figuring errands and length a scope of IT capacities from capacity and calculation of information base and application administrations. Distributed computing has various good angles to address the fast development of financial aspects and innovative boundaries. While enlisting the subtleties, each client gets a public key and private key. Information proprietor creates set of hidden entryway keys and ABE key which are sent to the client. 3 - 4 Trapdoor keys are created and everybody is a couple of keys. At the point when worker creates one key client needs to give another pair of the keys. Any document content is covered up with any picture made stegano, the interaction steganography and shipped off the worker. Worker destegano the picture and afterward gets the other pair of the secret entryway key and checks for confirmation. After confirmation worker checks the entrance strategy for information access through ABE",
+        "coverage": "National",
+        "pat_app_num": "202141024812",
+        "pat_fil_date": "",
+        "pub_date": "",
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/drive/folders/1cd7kPYuWebnPY4DKjFBlpZ-EdUMRBmAc?usp=sharing"
+        }
+      }
+    ],
+    "alumni-talk-organized": [
+      {
+        "title": "",
+        "alumni_name": "Dr. Arpita Biswas",
+        "alumni_designation": "Postdoctoral Fellow",
+        "alumni_org": "Harvard University",
+        "event_start_date": "2021-01-25T18:30:00.000Z",
+        "event_end_date": "2021-01-25T18:30:00.000Z",
+        "coverage": "National",
+        "participants": 325,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/drive/folders/1M3nPj62C2PdczO00X96AmX3hQM3jnuYL?usp=sharing"
+        }
+      },
+      {
+        "title": "",
+        "alumni_name": "Sandipan Das",
+        "alumni_designation": "Systems Engineer",
+        "alumni_org": "Infosys",
+        "event_start_date": "2021-04-19T18:30:00.000Z",
+        "event_end_date": "2021-04-19T18:30:00.000Z",
+        "coverage": "National",
+        "participants": 344,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/drive/folders/1_0cW5l-cjhhx9A6-5YmvRHkiOH-CNAe-?usp=sharing"
+        }
+      }
+    ]
+  },
+  {
+    "employeeID": "Santanu Das",
+    "profile": {
+      "name": "Santanu Das"
+    },
+    "webinar-organized": [
+      {
+        "title": "Data Science:Future aspects",
+        "speaker_name": "Prashant Pansare",
+        "speaker_designation": "CEO",
+        "speaker_org": "Inteliment Technology, Pune, India",
+        "event_start_date": "2020-05-31T00:00:0.000Z",
+        "event_end_date": "2020-05-31T00:00:00.000Z",
+        "coverage": "National",
+        "participants": 30,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/drive/folders/1BQ-Ptfd3EIaSXyDKVFCyg6LAWM3tE0Pb?usp=sharing"
+        }
+      },
+      {
+        "title": "Introduction to Machine Learning",
+        "speaker_name": "",
+        "speaker_designation": "Senion Technical analyst",
+        "speaker_org": "Cognizant",
+        "event_start_date": "2020-08-22T00:00:0.000Z",
+        "event_end_date": "2020-08-22T00:00:00.000Z",
+        "coverage": "National",
+        "participants": 30,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/drive/folders/1BQ-Ptfd3EIaSXyDKVFCyg6LAWM3tE0Pb?usp=sharing"
+        }
+      },
+      {
+        "title": "AI:How much truth and Myth",
+        "speaker_name": "Siboli Mukherjee",
+        "speaker_designation": "",
+        "speaker_org": "Vodafone",
+        "event_start_date": "2020-08-29T00:00:0.000Z",
+        "event_end_date": "2020-05-31T00:00:00.000Z",
+        "coverage": "National",
+        "participants": 30,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/drive/folders/1BQ-Ptfd3EIaSXyDKVFCyg6LAWM3tE0Pb?usp=sharing"
+        }
+      }
+    ]
+  },
+  {
+    "employeeID": "Ruchira Mukherjee",
+    "profile": {
+      "name": "Ruchira Mukherjee"
+    },
+    "seminar-organized": [
+      {
+        "title": "A Seminar on Environmental Awareness",
+        "speaker_name": "Dr. Sudipto Mondal, Dr. Sumana Chatterjee",
+        "speaker_designation": "",
+        "speaker_org": "",
+        "event_start_date": "2021-06-05T00:00:0.000Z",
+        "event_end_date": "2021-06-05T00:00:00.000Z",
+        "coverage": "National",
+        "participants": 110,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1KuEIo37IwBEKr-NV-F_BhKspLtyqX0uL/view?usp=sharing"
+        }
+      }
+    ],
+    "industry-visit": [
+      {
+        "visit_date": "2019-04-24T00:00:00.000Z",
+        "industry_type": "TCG Lifesciences",
+        "visit_writeup": "35 students from B.Tech (1st year 2018-19 batch) have visited the high end laboratory of TCG Lifesciences (formerly known as ChemBiotech) on 22nd April, 2019. It was organized by the department of Basic Science & Humanities of IEM, Kolkata. The students were guided by two faculty members Dr. Kakoli Dutta and Dr. Ruchira Mukherjee.",
+        "participants_fac": 2,
+        "participants_stud": 35,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1clslVznHXojHUsx8_OEiSF3IMHB5UWF8/view?usp=sharing"
+        }
+      }
+    ],
+    "research-projects": [
+      {
+        "proj_name": "Sensing urban air Pollutants and its Effects on human Skin Health-A Knowledge Mining",
+        "fac_role": "Principal Investigator (PI)",
+        "co_pi_name": "Dr.Sanchita Ghosh",
+        "sanc_date": "2018-06-30T00:00:00.000Z",
+        "comp_date": "",
+        "amount_sanc": "NA",
+        "proj_duration": "3 years",
+        "fund_agency_name": "DST-SERB (Core Research Grant)",
+        "type": "Government",
+        "util_cert": true,
+        "proof": {}
+      },
+      {
+        "proj_name": "Development of a multicomponent gas-particle Navier-Stokes solver for needle free drug delivery",
+        "fac_role": "Co-Principal Investigator (Co-PI)",
+        "co_pi_name": "",
+        "sanc_date": "2018-09-13T00:00:00.000Z",
+        "comp_date": "",
+        "amount_sanc": "NA",
+        "proj_duration": "3 years",
+        "fund_agency_name": "West Bengal State DHESTBT",
+        "type": "Government",
+        "util_cert": true,
+        "proof": {}
+      }
+    ]
+  },
+  {
+    "employeeID": "Riya Barui",
+    "profile": {
+      "name": "Riya Barui"
+    },
+    "alumni-talk-organized": [
+      {
+        "title": "",
+        "alumni_name": "Sandipan Das",
+        "alumni_designation": "System Engineer",
+        "alumni_org": "Infosys Ltd",
+        "event_start_date": "2020-06-12T18:30:00.000Z",
+        "event_end_date": "2021-06-12T18:30:00.000Z",
+        "coverage": "National",
+        "participants": 300,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1wxxIXOHwczgPfQ-VvPG62OCgve2jhHEF/view?usp=sharing"
+        }
+      },
+      {
+        "title": "",
+        "alumni_name": "Manish Singh",
+        "alumni_designation": "Engineer",
+        "alumni_org": "TCS",
+        "event_start_date": "2021-01-25T18:30:00.000Z",
+        "event_end_date": "2021-01-25T18:30:00.000Z",
+        "coverage": "National",
+        "participants": 300,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1ETq7TEBPe2n-VbrHi5b8XgMxTgLYlfxF/view?usp=sharing"
+        }
+      },
+      {
+        "title": "",
+        "alumni_name": "Ashutosh Kumar Jha",
+        "alumni_designation": "Co-founder and CEO",
+        "alumni_org": "CemX",
+        "event_start_date": "2021-09-15T18:30:00.000Z",
+        "event_end_date": "2021-09-15T18:30:00.000Z",
+        "coverage": "National",
+        "participants": 250,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1OzybadA_4cLdPv7uRjYIjRjFxCv5VhI6/view?usp=sharing"
+        }
+      },
+      {
+        "title": "",
+        "alumni_name": "Pratik Singh",
+        "alumni_designation": "Software Developer",
+        "alumni_org": "TCS",
+        "event_start_date": "2020-12-18T18:30:00.000Z",
+        "event_end_date": "2020-12-18T18:30:00.000Z",
+        "coverage": "National",
+        "participants": 300,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1yCRFjmbaotecS_v_VTkKhCZyRPBdXxgm/view?usp=sharing"
+        }
+      }
+    ]
+  }
+]

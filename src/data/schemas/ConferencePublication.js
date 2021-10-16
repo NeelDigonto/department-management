@@ -1,7 +1,12 @@
 import * as Yup from "yup";
 import VideocamIcon from "@material-ui/icons/Videocam";
 
-import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE, WIDTH_TYPE } from "../types/types";
+import {
+  VALUE_TYPE,
+  INPUT_TYPE,
+  DB_FIELD_TYPE,
+  WIDTH_TYPE,
+} from "../types/types";
 import Validation from "../validation/schemas";
 
 const FIELDS = [
@@ -16,29 +21,6 @@ const FIELDS = [
     db_field: "title",
     validation: Validation.string(),
   },
-  /*   {
-    label: "Author's Name",
-    value: "",
-    info: "Author (Only name of the faculty associated with BSH, No Co-author)",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.TEXT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "name_of_auth",
-    validation: Validation.string(),
-  }, */
-  /*  {
-    label: "Department",
-    value: "",
-    info: "Department",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.SELECT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    options: ["Department of Basic Science and Humanities"],
-    db_field: "department",
-    validation: Validation.option(),
-  }, */
   {
     label: "Published on",
     value: new Date().toISOString(),
@@ -47,7 +29,7 @@ const FIELDS = [
     db_field_type: DB_FIELD_TYPE.DATE,
     input_type: INPUT_TYPE.DATE,
     view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "yop",
+    db_field: "pub_date",
     validation: Validation.date(),
   },
   {
@@ -128,6 +110,18 @@ const FIELDS = [
     validation: Validation.url(),
   },
   {
+    label: "Coverage",
+    value: "",
+    info: "National/ International",
+    type: VALUE_TYPE.STRING,
+    db_field_type: DB_FIELD_TYPE.STRING,
+    input_type: INPUT_TYPE.SELECT,
+    view_width: WIDTH_TYPE.MEDIUM,
+    options: ["National", "International"],
+    db_field: "coverage",
+    validation: Validation.option(),
+  },
+  {
     label: "Indexing",
     value: "",
     info: "Indexing of the paper",
@@ -136,7 +130,7 @@ const FIELDS = [
     input_type: INPUT_TYPE.CUSTOM_SELECT,
     view_width: WIDTH_TYPE.MEDIUM,
     options: [
-      "Scopus",
+      "SCOPUS",
       "Elsevier",
       "PubMed",
       "Google Scholar",
@@ -147,6 +141,7 @@ const FIELDS = [
       "Sci",
       "Esci",
       "Scie",
+      "Springer Confernce Proceedings",
     ],
     db_field: "indexing",
     validation: Validation.string(),
@@ -209,7 +204,7 @@ const FIELDS = [
     db_field_type: DB_FIELD_TYPE.OBJECT,
     view_width: WIDTH_TYPE.LARGE,
     input_range: "application/pdf",
-    db_field: "first_page_pb",
+    db_field: "proof",
     validation: Validation.file(),
   },
   {

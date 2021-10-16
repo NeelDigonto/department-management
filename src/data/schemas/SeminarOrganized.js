@@ -21,29 +21,6 @@ const FIELDS = [
     db_field: "title",
     validation: Validation.string(),
   },
-  /* {
-    label: "Faculty Name",
-    value: "",
-    info: "Name of the Faculty",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.TEXT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "fac_name",
-    validation: Validation.string(),
-  },
-  {
-    label: "Department",
-    value: "",
-    info: "Department",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.SELECT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    options: ["Department of Basic Science and Humanities"],
-    db_field: "department",
-    validation: Validation.option(),
-  }, */
   {
     label: "Speaker Name",
     value: "",
@@ -131,7 +108,7 @@ const FIELDS = [
     db_field_type: DB_FIELD_TYPE.OBJECT,
     view_width: WIDTH_TYPE.LARGE,
     input_range: "application/pdf",
-    db_field: "proof_of_seminar",
+    db_field: "proof",
     validation: Validation.file(),
   },
 ];

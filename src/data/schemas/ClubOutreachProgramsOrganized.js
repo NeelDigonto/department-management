@@ -1,21 +1,15 @@
 import * as Yup from "yup";
 import GroupOutlinedIcon from "@material-ui/icons/GroupOutlined";
 
-import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE, WIDTH_TYPE } from "../types/types";
+import {
+  VALUE_TYPE,
+  INPUT_TYPE,
+  DB_FIELD_TYPE,
+  WIDTH_TYPE,
+} from "../types/types";
 import Validation from "../validation/schemas";
 
 const FIELDS = [
-  {
-    label: "Entry Date",
-    value: new Date().toISOString(),
-    info: "Date of Entry",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.DATE,
-    input_type: INPUT_TYPE.DATE,
-    view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "entry_date",
-    validation: Validation.date(),
-  },
   {
     label: "Activity Name",
     value: "",
@@ -27,17 +21,6 @@ const FIELDS = [
     db_field: "activity_name",
     validation: Validation.string(),
   },
-  /*  {
-    label: "Faculty Name",
-    value: "",
-    info: "Entry Made By [Your Name]",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.TEXT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "fac_name",
-    validation: Validation.string(),
-  }, */
   {
     label: "Organizing unit/ agency/ collaborating agency",
     value: "",

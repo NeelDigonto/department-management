@@ -23,7 +23,9 @@ const getEmptyAchievementData = (achievementCategory) => {
 };
 
 export default async function handler(req, res) {
-  const buffer = fs.readFileSync(path.join(process.cwd(), "final_data.json"));
+  const buffer = fs.readFileSync(
+    path.join(process.cwd(), "data_for_bsh", "final_user_data.json")
+  );
 
   const collectionData = JSON.parse(buffer);
 

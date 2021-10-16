@@ -10,29 +10,6 @@ import {
 import Validation from "../validation/schemas";
 
 const FIELDS = [
-  /*  {
-    label: "Faculty Name",
-    value: "",
-    info: "Name of the Faculty",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.TEXT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "fac_name",
-    validation: Validation.string(),
-  },
-  {
-    label: "Department",
-    value: "",
-    info: "Department",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.SELECT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    options: ["Department of Basic Science and Humanities"],
-    db_field: "department",
-    validation: Validation.option(),
-  }, */
   {
     label: "Date ",
     value: new Date().toISOString(),
@@ -45,18 +22,6 @@ const FIELDS = [
     validation: Validation.date(),
   },
   {
-    label: "Department",
-    value: "",
-    info: "Department",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.SELECT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    options: ["Department of Basic Science and Humanities"],
-    db_field: "department",
-    validation: Validation.option(),
-  },
-  {
     label: "Collaborative Agency",
     value: "",
     info: "Collaborative Agency",
@@ -65,17 +30,6 @@ const FIELDS = [
     input_type: INPUT_TYPE.TEXT,
     view_width: WIDTH_TYPE.MEDIUM,
     db_field: "collab_agency",
-    validation: Validation.string(),
-  },
-  {
-    label: "Year",
-    value: "",
-    info: "Year",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.TEXT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "year",
     validation: Validation.string(),
   },
   {

@@ -21,17 +21,6 @@ const FIELDS = [
     db_field: "title",
     validation: Validation.string(),
   },
-  /*   {
-    label: "Faculty Name",
-    value: "",
-    info: "Name of the Faculty",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.TEXT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "fac_name",
-    validation: Validation.string(),
-  }, */
   {
     label: "Webinar Start Date",
     value: new Date().toISOString(),
@@ -54,18 +43,6 @@ const FIELDS = [
     db_field: "event_end_date",
     validation: Validation.date(),
   },
-  /*   {
-    label: "Department",
-    value: "",
-    info: "Department",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.SELECT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    options: ["Department of Basic Science and Humanities"],
-    db_field: "department",
-    validation: Validation.option(),
-  }, */
   {
     label: "Speaker Name",
     value: "",
@@ -145,17 +122,6 @@ const FIELDS = [
     db_field: "proof",
     validation: Validation.file(),
   },
-  /*   {
-    label: "Entry Date",
-    value: new Date().toISOString(),
-    info: "Date of Entry",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.DATE,
-    input_type: INPUT_TYPE.DATE,
-    view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "entry_date",
-    validation: Validation.date(),
-  }, */
 ];
 
 const SCHEMA = {

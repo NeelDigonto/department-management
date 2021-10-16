@@ -23,7 +23,9 @@ const getEmptyAchievementData = (achievementCategory) => {
 };
 
 export default async function handler(req, res) {
-  const buffer = fs.readFileSync(path.join(process.cwd(), "final_data.json"));
+  const buffer = fs.readFileSync(
+    path.join(process.cwd(), "data_for_bsh", "final_user_data.json")
+  );
 
   const collectionData = JSON.parse(buffer);
 
@@ -35,3 +37,18 @@ export default async function handler(req, res) {
 
   res.status(200).json(final_users);
 }
+
+/* export default async function handler(req, res) {
+  const buffer = fs.readFileSync(path.join(process.cwd(), "final_data.json"));
+
+  const collectionData = JSON.parse(buffer);
+
+  const finalCollectionData = collectionData.map((user) => {
+    delete user["seminar-attended"];
+    delete user["webinar-attended"];
+    return user;
+  });
+
+  res.status(200).json(finalCollectionData);
+}
+ */

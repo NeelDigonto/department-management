@@ -21,29 +21,6 @@ const FIELDS = [
     db_field: "title",
     validation: Validation.string(),
   },
-  /*   {
-    label: "Author's Name",
-    value: "",
-    info: "Author (Only name of the faculty associated with BSH, No Co-author)",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.TEXT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "name_of_auth",
-    validation: Validation.string(),
-  }, */
-  /*  {
-    label: "Department",
-    value: "",
-    info: "Department",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.SELECT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    options: ["Department of Basic Science and Humanities"],
-    db_field: "department",
-    validation: Validation.option(),
-  }, */
   {
     label: "Published on",
     value: new Date().toISOString(),
@@ -52,7 +29,7 @@ const FIELDS = [
     db_field_type: DB_FIELD_TYPE.DATE,
     input_type: INPUT_TYPE.DATE,
     view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "yop",
+    db_field: "pub_date",
     validation: Validation.date(),
   },
   {
@@ -76,7 +53,7 @@ const FIELDS = [
     view_width: WIDTH_TYPE.MEDIUM,
     db_field: "chaps_contrib",
     validation: Yup.string().when(["writ_wh_bk"], {
-      is: true,
+      is: false,
       then: Validation.string(true, 2, 2000),
       otherwise: Validation.string(false),
     }),
@@ -168,7 +145,7 @@ const FIELDS = [
     input_type: INPUT_TYPE.CUSTOM_SELECT,
     view_width: WIDTH_TYPE.MEDIUM,
     options: [
-      "Scopus",
+      "SCOPUS",
       "Elsevier",
       "PubMed",
       "Google Scholar",
@@ -219,7 +196,7 @@ const FIELDS = [
     db_field_type: DB_FIELD_TYPE.OBJECT,
     view_width: WIDTH_TYPE.LARGE,
     input_range: "application/pdf",
-    db_field: "first_page_bk",
+    db_field: "proof",
     validation: Validation.file(),
   },
 ];
