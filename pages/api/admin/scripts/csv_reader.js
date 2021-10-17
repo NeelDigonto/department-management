@@ -91,7 +91,7 @@ const filesToRead = [
         issue_no: "",
         page_no: "",
         issn_isbn: row["issn_isbn"],
-        conf_web_link: {},
+        conf_web_link: "",
         coverage:
           String(row["coverage"]).toLowerCase() === "international"
             ? "International"
@@ -105,7 +105,7 @@ const filesToRead = [
         studs_coa_involved: Number(0),
         proof: { isLink: true, flink: String(row["proof"]) },
         fin_supp: false,
-        fin_supp_details: {},
+        fin_supp_details: "",
       };
     },
   },

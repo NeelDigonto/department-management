@@ -4,8 +4,6 @@ import { Box, Typography, makeStyles } from "@material-ui/core";
 import { useUserContext } from "../../contexts/UserContext";
 import AAchievement from "./AAchievement.jsx";
 import CreateAchievement from "./CreateAchievement";
-/* import AchievementCard from "./ui/AchievementCard";
-import RecipeReviewCard from "./ui/RecipeReviewCard"; */
 
 const useStyles = makeStyles((theme) => ({
   noPubMsg: {
@@ -13,7 +11,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Achievements = ({ achievementCategory, getAchievementValidationSchema }) => {
+const Achievements = ({
+  achievementCategory,
+  getAchievementValidationSchema,
+}) => {
   const { user, setUser } = useUserContext();
   const classes = useStyles();
 
@@ -22,13 +23,15 @@ const Achievements = ({ achievementCategory, getAchievementValidationSchema }) =
       {!!user ? (
         <Fragment>
           <Box pt={1}>
-            {!!user[achievementCategory] && user[achievementCategory].length !== 0 ? (
+            {!!user[achievementCategory] &&
+            user[achievementCategory].length !== 0 ? (
               user[achievementCategory].map((achievement, index) => (
                 <AAchievement
                   key={index}
-                  /* key={achievement["id"]} */
                   achievementCategory={achievementCategory}
-                  getAchievementValidationSchema={getAchievementValidationSchema}
+                  getAchievementValidationSchema={
+                    getAchievementValidationSchema
+                  }
                   achievement={achievement}
                   index={index}
                 />
@@ -39,8 +42,6 @@ const Achievements = ({ achievementCategory, getAchievementValidationSchema }) =
               </Typography>
             )}
           </Box>
-          {/* <RecipeReviewCard />
-          <AchievementCard /> */}
           <CreateAchievement achievementCategory={achievementCategory} />
         </Fragment>
       ) : null}

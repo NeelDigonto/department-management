@@ -7,7 +7,12 @@ import { MASTER_SCHEMA } from "../../data/schema";
 import { WIDTH_TYPE } from "../../data/types/types";
 import { deleteAchievementHandler } from "./handlers";
 
-const DisplayAchievement = ({ achievementCategory, achievement, index, setIsEditing }) => {
+const DisplayAchievement = ({
+  achievementCategory,
+  achievement,
+  index,
+  setIsEditing,
+}) => {
   const { user, setUser } = useUserContext();
 
   const info_content = () => (
