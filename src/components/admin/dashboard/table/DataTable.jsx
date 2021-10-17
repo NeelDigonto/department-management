@@ -26,9 +26,27 @@ const columns = [
     format: (value) => value.toLocaleString("en-US"),
   },
   { id: "name", label: "Name", align: "center", minWidth: 100, maxWidth: 200 },
-  { id: "department", label: "Department", align: "center", minWidth: 50, maxWidth: 100 },
-  { id: "designation", label: "Designation", align: "center", minWidth: 50, maxWidth: 100 },
-  { id: "employeeID", label: "Employee\u00a0ID", align: "center", minWidth: 100, maxWidth: 200 },
+  {
+    id: "department",
+    label: "Department",
+    align: "center",
+    minWidth: 50,
+    maxWidth: 100,
+  },
+  {
+    id: "designation",
+    label: "Designation",
+    align: "center",
+    minWidth: 50,
+    maxWidth: 100,
+  },
+  {
+    id: "employeeID",
+    label: "Employee\u00a0ID",
+    align: "center",
+    minWidth: 100,
+    maxWidth: 200,
+  },
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -47,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
 function DataTable({ rows }) {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(25);
+  const [rowsPerPage, setRowsPerPage] = React.useState(50);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -69,7 +87,10 @@ function DataTable({ rows }) {
                   <TableCell
                     key={index}
                     align={column.align}
-                    style={{ minWidth: column.minWidth, maxWidth: column.maxWidth }}
+                    style={{
+                      minWidth: column.minWidth,
+                      maxWidth: column.maxWidth,
+                    }}
                     className={classes.header}
                   >
                     {column.label}

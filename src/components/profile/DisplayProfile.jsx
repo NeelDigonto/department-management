@@ -23,9 +23,23 @@ const DisplayProfile = ({ setIsEditing }) => {
   const { user, setUser } = useUserContext();
   const classes = useStyles();
 
+  const employeeID = (
+    <Box>
+      <Card variant="outlined">
+        <CardContent>
+          <Typography color="textSecondary" gutterBottom>
+            {"Employee ID"}
+          </Typography>
+          {user["employeeID"]}
+        </CardContent>
+      </Card>
+    </Box>
+  );
+
   return (
     <Fragment>
       <Box pt={4}>
+        {employeeID}
         {MASTER_SCHEMA["profile"].map((item) => (
           <Box key={item.db_field}>
             <Card variant="outlined">
