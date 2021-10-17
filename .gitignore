@@ -36,3 +36,6 @@ yarn-error.log*
 # vscode
 # I want this one
 #.vscode/
+
+#db_data
+final_user_data.json
