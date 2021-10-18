@@ -5,7 +5,7 @@ import { red } from "@mui/material/colors";
 const theme = createTheme({
   palette: {
     mode: "dark",
-    /*     primary: {
+    primary: {
       main: "#556cd6",
     },
     secondary: {
@@ -13,9 +13,9 @@ const theme = createTheme({
     },
     error: {
       main: red.A400,
-    }, */
+    },
   },
-  /* components: {
+  components: {
     MuiCssBaseline: {
       styleOverrides: {
         body: {
@@ -47,7 +47,7 @@ const theme = createTheme({
         },
       },
     },
-  }, */
+  },
 });
 
 export default theme;

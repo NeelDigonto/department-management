@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import PeopleOutlineIcon from "@material-ui/icons/PeopleOutline";
+import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 
 import {
   VALUE_TYPE,

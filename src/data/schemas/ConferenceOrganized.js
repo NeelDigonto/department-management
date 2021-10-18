@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import VideoCallIcon from "@material-ui/icons/VideoCall";
+import VideoCallIcon from "@mui/icons-material/VideoCall";
 
 import {
   VALUE_TYPE,

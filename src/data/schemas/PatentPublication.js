@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import SecurityIcon from "@material-ui/icons/Security";
+import SecurityIcon from "@mui/icons-material/Security";
 
 import {
   VALUE_TYPE,

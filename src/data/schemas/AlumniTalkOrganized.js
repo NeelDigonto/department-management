@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import EmojiPeopleOutlinedIcon from "@material-ui/icons/EmojiPeopleOutlined";
+import EmojiPeopleOutlinedIcon from "@mui/icons-material/EmojiPeopleOutlined";
 
 import {
   VALUE_TYPE,

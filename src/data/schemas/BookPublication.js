@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import BookIcon from "@material-ui/icons/Book";
+import BookIcon from "@mui/icons-material/Book";
 
 import {
   VALUE_TYPE,

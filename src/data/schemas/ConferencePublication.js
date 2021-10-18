@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import VideocamIcon from "@material-ui/icons/Videocam";
+import VideocamIcon from "@mui/icons-material/Videocam";
 
 import {
   VALUE_TYPE,

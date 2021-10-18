@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import AddIcCallIcon from "@material-ui/icons/AddIcCall";
+import AddIcCallIcon from "@mui/icons-material/AddIcCall";
 
 import {
   VALUE_TYPE,

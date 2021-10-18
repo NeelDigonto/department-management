@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import SupervisedUserCircleOutlinedIcon from "@material-ui/icons/SupervisedUserCircleOutlined";
+import SupervisedUserCircleOutlinedIcon from "@mui/icons-material/SupervisedUserCircleOutlined";
 
 import {
   VALUE_TYPE,
@@ -32,17 +32,7 @@ const FIELDS = [
     db_field: "entry_date",
     validation: Validation.date(),
   },
-  /*  {
-    label: "Faculty Name",
-    value: "",
-    info: "Name of the Faculty",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.TEXT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "fac_name",
-    validation: Validation.string(),
-  }, */
+
   {
     label: "Speaker Name",
     value: "",

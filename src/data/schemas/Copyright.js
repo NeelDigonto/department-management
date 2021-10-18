@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import CopyrightIcon from "@material-ui/icons/Copyright";
+import CopyrightIcon from "@mui/icons-material/Copyright";
 
 import {
   VALUE_TYPE,

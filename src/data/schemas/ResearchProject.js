@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import DomainIcon from "@material-ui/icons/Domain";
+import DomainIcon from "@mui/icons-material/Domain";
 
 import {
   VALUE_TYPE,

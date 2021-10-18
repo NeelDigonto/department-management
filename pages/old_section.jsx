@@ -26,7 +26,10 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import SearchIcon from "@material-ui/icons/Search";
 
 import Profile from "../src/components/profile/Profile.jsx";
-import { MainListItems, secondaryListItems } from "../src/components/sidebar/listItems.jsx";
+import {
+  MainListItems,
+  secondaryListItems,
+} from "../src/components/sidebar/MainList.jsx";
 import Achievements from "../src/components/achievement/Achievements";
 import {
   ACHIEVEMENTS_GROUP_SCHEMA,
@@ -164,7 +167,9 @@ const useStyles = makeStyles((theme) => ({
 const getHeaderName = (key) => {
   if (key === "profile") return "Profile";
   else {
-    const category = ACHIEVEMENTS.find((category) => category.SCHEMA.key === key);
+    const category = ACHIEVEMENTS.find(
+      (category) => category.SCHEMA.key === key
+    );
     if (!!category) return category.SCHEMA.diplay_name;
     else return "Unrecognized Page..oops!";
   }
@@ -194,7 +199,9 @@ export default function Dashboard() {
         <Achievements
           key={section}
           achievementCategory={section}
-          getAchievementValidationSchema={getAchievementValidationSchema(section)}
+          getAchievementValidationSchema={getAchievementValidationSchema(
+            section
+          )}
         />
       );
     } else {
@@ -205,19 +212,31 @@ export default function Dashboard() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed" className={clsx(classes.appBar, open && classes.appBarShift)}>
+      <AppBar
+        position="fixed"
+        className={clsx(classes.appBar, open && classes.appBarShift)}
+      >
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+            className={clsx(
+              classes.menuButton,
+              open && classes.menuButtonHidden
+            )}
           >
             <MenuIcon />
           </IconButton>
           {/*  <NextLink href="/"> */}
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+          <Typography
+            component="h1"
+            variant="h6"
+            color="inherit"
+            noWrap
+            className={classes.title}
+          >
             {"Faculty Book"}
           </Typography>
           {/*  </NextLink> */}
@@ -266,7 +285,9 @@ export default function Dashboard() {
           <MainListItems {...{ section }} />
         </List>
         <Divider />
-        <List>{secondaryListItems}</List>
+        <List>
+          <secondaryListItems />
+        </List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />

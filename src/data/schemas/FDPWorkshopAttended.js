@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import BuildOutlinedIcon from "@material-ui/icons/BuildOutlined";
+import BuildOutlinedIcon from "@mui/icons-material/BuildOutlined";
 
 import {
   VALUE_TYPE,

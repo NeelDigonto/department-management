@@ -1,7 +1,12 @@
 import * as Yup from "yup";
-import LocalLibraryIcon from "@material-ui/icons/LocalLibrary";
+import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 
-import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE, WIDTH_TYPE } from "../types/types";
+import {
+  VALUE_TYPE,
+  INPUT_TYPE,
+  DB_FIELD_TYPE,
+  WIDTH_TYPE,
+} from "../types/types";
 import Validation from "../validation/schemas";
 
 const FIELDS = [
