@@ -7,7 +7,7 @@ import { CssBaseline, Paper, Box, Grid, makeStyles } from "@material-ui/core";
 
 import UserLogin from "../../src/components/login/user/UserLogin";
 import AdminLogin from "../../src/components/login/admin/AdminLogin";
-import Copyright from "../../src/components/copyright/Copyright";
+import Copyright from "../src/components/copyright/Copyright";
 import IEM_FACULTIES_PHOTO from "../../public/iem_faculties.jpg";
 
 const useStyles = makeStyles((theme) => ({
@@ -25,24 +25,9 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%",
     maxHeight: "100%",
     backgroundColor:
-      theme.palette.type === "light" ? theme.palette.grey[50] : theme.palette.grey[900],
-  },
-  paper: {
-    margin: theme.spacing(8, 4),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
+      theme.palette.type === "light"
+        ? theme.palette.grey[50]
+        : theme.palette.grey[900],
   },
 }));
 
