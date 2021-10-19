@@ -1,22 +1,16 @@
 import React, { Fragment } from "react";
-import { Box, Typography, makeStyles } from "@material-ui/core";
+import { Box, Typography } from "@mui/material";
 
 import { useUserContext } from "../../contexts/UserContext";
 import AAchievement from "./AAchievement.jsx";
 import CreateAchievement from "./CreateAchievement";
-
-const useStyles = makeStyles((theme) => ({
-  noPubMsg: {
-    textAlign: "center",
-  },
-}));
+import { ACHIEVEMENTS_GROUP_SCHEMA } from "../../data/schema";
 
 const Achievements = ({
   achievementCategory,
   getAchievementValidationSchema,
 }) => {
   const { user, setUser } = useUserContext();
-  const classes = useStyles();
 
   return (
     <Fragment>
@@ -37,9 +31,13 @@ const Achievements = ({
                 />
               ))
             ) : (
-              <Typography className={classes.noPubMsg}>
-                {"No " + achievementCategory + " here, Create One!"}
-              </Typography>
+              <Fragment>
+                <Typography align="center" fontSize="1.75rem" color="primary">
+                  {"No "}
+                  {ACHIEVEMENTS_GROUP_SCHEMA[achievementCategory].icon}
+                  {` ${ACHIEVEMENTS_GROUP_SCHEMA[achievementCategory].diplay_name} here, Create One!`}
+                </Typography>
+              </Fragment>
             )}
           </Box>
           <CreateAchievement achievementCategory={achievementCategory} />

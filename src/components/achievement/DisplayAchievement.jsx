@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Grid, Box, ButtonGroup, Button } from "@material-ui/core";
+import { Grid, Box, ButtonGroup, Button } from "@mui/material";
 
 import { useUserContext } from "../../contexts/UserContext";
 import DisplayNode from "../nodes/DisplayNode";
@@ -56,7 +56,7 @@ const DisplayAchievement = ({
           </Button>
           <Button
             variant="contained"
-            color="default"
+            color="primary"
             onClick={() => {
               deleteAchievementHandler(
                 user.employeeID,

@@ -1,6 +1,5 @@
-import React from "react";
-import { Grid, Typography, Button, Link as MuiLink } from "@material-ui/core";
-import { Fragment } from "react";
+import React, { Fragment } from "react";
+import { Grid, Typography, Button, Link as MuiLink } from "@mui/material";
 import { isEmptyObject } from "../../lib/util";
 import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE } from "../../data/types/types";
 
@@ -9,7 +8,9 @@ const getTrimmedFileName = (org_fname, max_fname_len) => {
     const f_ext_ind = org_fname.lastIndexOf(".");
     const f_ext = org_fname.substring(f_ext_ind);
 
-    const new_fname = org_fname.substring(0, f_ext_ind).substring(0, max_fname_len - f_ext.length);
+    const new_fname = org_fname
+      .substring(0, f_ext_ind)
+      .substring(0, max_fname_len - f_ext.length);
     return new_fname + ".." + f_ext;
   } else {
     return org_fname;
@@ -60,7 +61,10 @@ const DisplayNode = ({ field, value }) => {
         {value !== "undefined" || value !== null ? value : null}
       </Fragment>
     );
-  else if (field.type === VALUE_TYPE.OBJECT && field.input_type === INPUT_TYPE.FILE) {
+  else if (
+    field.type === VALUE_TYPE.OBJECT &&
+    field.input_type === INPUT_TYPE.FILE
+  ) {
     outputNode = (
       <Fragment>
         <Typography color="textSecondary" gutterBottom>

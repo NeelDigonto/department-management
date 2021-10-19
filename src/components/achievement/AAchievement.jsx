@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, Box, CardContent } from "@material-ui/core";
+import { Card, Box, CardContent } from "@mui/material";
 
 import DisplayAchievement from "./DisplayAchievement.jsx";
 import EditAchievement from "./EditAchievement.jsx";
