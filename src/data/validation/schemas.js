@@ -23,10 +23,28 @@ const date = (required = true) =>
 
 const file = (required = true) =>
   required
-    ? Yup.object().shape({
-        /*    fname: Yup.string().required("File Required"),
-        fuid: Yup.string().required("File Required"), */
+    ? /* Yup.object().shape({
+        //fname: Yup.string().required("File Required"),
+        //fuid: Yup.string().required("File Required"),
         isLink: Yup.boolean(), //hmmm, kindda stupid, make it better, but no worries now ig
+      }) */
+      Yup.object({
+        isLink: Yup.boolean(),
+        flink: Yup.string().when("isLink", {
+          is: true,
+          then: Yup.string().required("File Required"),
+          otherwise: Yup.string(),
+        }),
+        fname: Yup.string().when("isLink", {
+          is: true,
+          then: Yup.string(),
+          otherwise: Yup.string().required("File Required"),
+        }),
+        fuid: Yup.string().when("isLink", {
+          is: true,
+          then: Yup.string(),
+          otherwise: Yup.string().required("File Required"),
+        }),
       })
     : Yup.object();
 

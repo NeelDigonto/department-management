@@ -1,13 +1,9 @@
 import React, { Fragment } from "react";
-import { Card, Button, /* makeStyles ,*/ Link as MuiLink } from "@mui/material";
+import { Card, Button, Link as MuiLink, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 import { isEmptyObject } from "../../lib/util";
 import stageFileUpload from "../../lib/fileUpload";
-
-/* const useStyles = makeStyles((theme) => ({
-  errorBody: { color: theme.palette.error.main },
-})); */
 
 const FileEdit = ({ formik, field, setIsUploading }) => {
   const value = formik.values[field.db_field];
@@ -82,9 +78,7 @@ const FileEdit = ({ formik, field, setIsUploading }) => {
     <Fragment>
       {fileUploadNode}
       {!!formik.errors[field.db_field] && formik.touched[field.db_field] ? (
-        <div
-        /* className={classes.errorBody} */
-        >{`${field.label} must not be empty`}</div>
+        <Typography color="error.main">{`${field.label} must not be empty`}</Typography>
       ) : null}
     </Fragment>
   );

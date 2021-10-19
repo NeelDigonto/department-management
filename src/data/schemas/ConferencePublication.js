@@ -205,7 +205,7 @@ const FIELDS = [
     view_width: WIDTH_TYPE.LARGE,
     input_range: "application/pdf",
     db_field: "proof",
-    validation: Validation.file(),
+    validation: Validation.file(true),
   },
   {
     label: "Financial Support from IEM",
