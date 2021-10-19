@@ -48,12 +48,23 @@ const FileEdit = ({ formik, field, setIsUploading }) => {
     );
   } else {
     fileUploadNode = value.isLink ? (
-      <MuiLink href={value.flink} target="_blank">
-        {value.flink}
-      </MuiLink>
+      <Fragment>
+        <Typography>{field.label}</Typography>
+        <Card>
+          <MuiLink href={value.flink} target="_blank">
+            {value.flink}
+          </MuiLink>
+          <Button
+            endIcon={<DeleteIcon />}
+            onClick={() => {
+              formik.setFieldValue(field.db_field, {});
+            }}
+          ></Button>
+        </Card>
+      </Fragment>
     ) : (
       <Fragment>
-        {field.label}
+        <Typography>{field.label}</Typography>
         <Card>
           <Button
             varient="contained"
