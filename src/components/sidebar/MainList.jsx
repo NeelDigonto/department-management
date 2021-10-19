@@ -1,6 +1,5 @@
 import React from "react";
 import NextLink from "next/link";
-//import { useTheme } from "@mui/material";
 import {
   List,
   ListItem,
@@ -11,11 +10,6 @@ import {
 import DashboardIcon from "@mui/icons-material/Dashboard";
 
 import { ACHIEVEMENTS } from "../../data/schema";
-
-/* const useStyles = makeStyles((theme) => ({
-  selectedCategory: { color: theme.palette.primary.main },
-  selectedIcon: { color: "inherit" },
-})); */
 
 export default function MainList({ section }) {
   return (

@@ -2,7 +2,6 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Formik, useFormik, Field, Form, ErrorMessage } from "formik";
 import { ReasonPhrases, StatusCodes, getReasonPhrase } from "http-status-codes";
 import {
-  makeStyles,
   Grid,
   ButtonGroup,
   Button,
@@ -11,25 +10,17 @@ import {
   CardContent,
   Backdrop,
   CircularProgress,
-} from "@material-ui/core";
+} from "@mui/material";
 
 import { useUserContext } from "../../contexts/UserContext";
 import EditNode from "../nodes/EditNode";
 import { MASTER_SCHEMA } from "../../data/schema";
 import { getValidationSchema as getProfileValidationSchema } from "../../data/schemas/Profile";
 
-const useStyles = makeStyles((theme) => ({
-  backdrop: {
-    zIndex: theme.zIndex.drawer + 1,
-    color: "#fff",
-  },
-}));
-
 const EditProfile = ({ setIsEditing }) => {
   const { user, setUser } = useUserContext();
   const [isUploading, setIsUploading] = useState(false);
   const [open, setOpen] = useState(false);
-  const classes = useStyles();
   const formik = useFormik({
     initialValues: user["profile"],
     onSubmit: (values, { setSubmitting }) => {
@@ -72,7 +63,7 @@ const EditProfile = ({ setIsEditing }) => {
   }, [isUploading, formik.isSubmitting]);
 
   const getFormNode = (
-    <form onSubmit={formik.handleSubmit} /* encType="multipart/form-data" */>
+    <form onSubmit={formik.handleSubmit}>
       <Card>
         <CardContent>
           <Grid container>
@@ -95,7 +86,10 @@ const EditProfile = ({ setIsEditing }) => {
 
   return (
     <Fragment>
-      <Backdrop className={classes.backdrop} open={open}>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+      >
         <CircularProgress color="inherit" />
       </Backdrop>
       {getFormNode}
@@ -103,12 +97,12 @@ const EditProfile = ({ setIsEditing }) => {
         <ButtonGroup fullWidth>
           <Button
             variant="contained"
-            color="default"
+            color="secondary"
             onClick={() => {
               setIsEditing(false);
             }}
           >
-            Cancel
+            {"Cancel"}
           </Button>
           <Button
             variant="contained"
@@ -117,7 +111,7 @@ const EditProfile = ({ setIsEditing }) => {
               formik.handleSubmit();
             }}
           >
-            Apply
+            {"Apply"}
           </Button>
         </ButtonGroup>
       </Box>

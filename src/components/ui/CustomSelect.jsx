@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { TextField, MenuItem } from "@material-ui/core";
+import { TextField, MenuItem } from "@mui/material";
 
 const CustomSelect = ({ formik, field }) => {
   const [selectItem, setSelectItem] = useState(
@@ -15,13 +15,26 @@ const CustomSelect = ({ formik, field }) => {
     } else {
       formik.setFieldValue(field.db_field, textValue);
     }
-  }, [selectItem, textValue, setSelectItem, setTextValue, field.db_field, formik.setFieldValue]);
+  }, [
+    selectItem,
+    textValue,
+    setSelectItem,
+    setTextValue,
+    field.db_field,
+    formik.setFieldValue,
+  ]);
 
   return (
     <Fragment>
       <TextField
-        error={!!formik.errors[field.db_field] && formik.touched[field.db_field]}
-        helperText={!!formik.errors[field.db_field] ? formik.errors[field.db_field] : field.info}
+        error={
+          !!formik.errors[field.db_field] && formik.touched[field.db_field]
+        }
+        helperText={
+          !!formik.errors[field.db_field]
+            ? formik.errors[field.db_field]
+            : field.info
+        }
         fullWidth
         select
         label={field.label}
@@ -41,8 +54,14 @@ const CustomSelect = ({ formik, field }) => {
       </TextField>
       {selectItem === "OTHER" ? (
         <TextField
-          error={!!formik.errors[field.db_field] && formik.touched[field.db_field]}
-          helperText={!!formik.errors[field.db_field] ? formik.errors[field.db_field] : field.info}
+          error={
+            !!formik.errors[field.db_field] && formik.touched[field.db_field]
+          }
+          helperText={
+            !!formik.errors[field.db_field]
+              ? formik.errors[field.db_field]
+              : field.info
+          }
           fullWidth
           variant="filled"
           label={field.label}

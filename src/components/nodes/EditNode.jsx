@@ -1,15 +1,5 @@
 import React, { Fragment } from "react";
-import {
-  TextField,
-  MenuItem,
-  FormControlLabel,
-  Checkbox,
-  Card,
-  Button,
-  FormHelperText,
-  Grid,
-  makeStyles,
-} from "@material-ui/core";
+import { TextField, MenuItem, FormControlLabel, Checkbox } from "@mui/material";
 
 import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE } from "../../data/types/types";
 import CustomSelect from "../ui/CustomSelect";
@@ -28,8 +18,14 @@ const EditNode = ({ field, formik, setIsUploading }) => {
     case INPUT_TYPE.TEXT: {
       outputNode = (
         <TextField
-          error={!!formik.errors[field.db_field] && formik.touched[field.db_field]}
-          helperText={!!formik.errors[field.db_field] ? formik.errors[field.db_field] : field.info}
+          error={
+            !!formik.errors[field.db_field] && formik.touched[field.db_field]
+          }
+          helperText={
+            !!formik.errors[field.db_field]
+              ? formik.errors[field.db_field]
+              : field.info
+          }
           fullWidth
           variant="filled"
           label={field.label}
@@ -44,8 +40,14 @@ const EditNode = ({ field, formik, setIsUploading }) => {
     case INPUT_TYPE.MULTILINE_TEXT: {
       outputNode = (
         <TextField
-          error={!!formik.errors[field.db_field] && formik.touched[field.db_field]}
-          helperText={!!formik.errors[field.db_field] ? formik.errors[field.db_field] : field.info}
+          error={
+            !!formik.errors[field.db_field] && formik.touched[field.db_field]
+          }
+          helperText={
+            !!formik.errors[field.db_field]
+              ? formik.errors[field.db_field]
+              : field.info
+          }
           fullWidth
           multiline
           minRows={2}
@@ -63,8 +65,14 @@ const EditNode = ({ field, formik, setIsUploading }) => {
     case INPUT_TYPE.NUMBER: {
       outputNode = (
         <TextField
-          error={!!formik.errors[field.db_field] && formik.touched[field.db_field]}
-          helperText={!!formik.errors[field.db_field] ? formik.errors[field.db_field] : field.info}
+          error={
+            !!formik.errors[field.db_field] && formik.touched[field.db_field]
+          }
+          helperText={
+            !!formik.errors[field.db_field]
+              ? formik.errors[field.db_field]
+              : field.info
+          }
           fullWidth
           variant="filled"
           type="number"
@@ -80,8 +88,14 @@ const EditNode = ({ field, formik, setIsUploading }) => {
     case INPUT_TYPE.DATE: {
       outputNode = (
         <TextField
-          error={!!formik.errors[field.db_field] && formik.touched[field.db_field]}
-          helperText={!!formik.errors[field.db_field] ? formik.errors[field.db_field] : field.info}
+          error={
+            !!formik.errors[field.db_field] && formik.touched[field.db_field]
+          }
+          helperText={
+            !!formik.errors[field.db_field]
+              ? formik.errors[field.db_field]
+              : field.info
+          }
           fullWidth
           key={field.db_field}
           type="date"
@@ -101,8 +115,14 @@ const EditNode = ({ field, formik, setIsUploading }) => {
       outputNode = (
         <TextField
           id={field.db_field}
-          error={!!formik.errors[field.db_field] && formik.touched[field.db_field]}
-          helperText={!!formik.errors[field.db_field] ? formik.errors[field.db_field] : field.info}
+          error={
+            !!formik.errors[field.db_field] && formik.touched[field.db_field]
+          }
+          helperText={
+            !!formik.errors[field.db_field]
+              ? formik.errors[field.db_field]
+              : field.info
+          }
           fullWidth
           select
           label={field.label}
@@ -144,8 +164,14 @@ const EditNode = ({ field, formik, setIsUploading }) => {
     case INPUT_TYPE.EMAIL: {
       outputNode = (
         <TextField
-          error={!!formik.errors[field.db_field] && formik.touched[field.db_field]}
-          helperText={!!formik.errors[field.db_field] ? formik.errors[field.db_field] : field.info}
+          error={
+            !!formik.errors[field.db_field] && formik.touched[field.db_field]
+          }
+          helperText={
+            !!formik.errors[field.db_field]
+              ? formik.errors[field.db_field]
+              : field.info
+          }
           fullWidth
           variant="filled"
           label={field.label}
@@ -162,7 +188,9 @@ const EditNode = ({ field, formik, setIsUploading }) => {
       break;
     }
     default: {
-      console.error('Unrecognized field passed to "getEditNode"' + field.input_type);
+      console.error(
+        'Unrecognized field passed to "getEditNode"' + field.input_type
+      );
       outputNode = <Fragment></Fragment>;
     }
   }
