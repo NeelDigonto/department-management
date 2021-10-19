@@ -1,5 +1,9 @@
 import React, { Fragment } from "react";
 import { TextField, MenuItem, FormControlLabel, Checkbox } from "@mui/material";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import MobileDatePicker from "@mui/lab/MobileDatePicker";
+import DateTimePicker from "@mui/lab/DateTimePicker";
 
 import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE } from "../../data/types/types";
 import CustomSelect from "../ui/CustomSelect";
@@ -87,27 +91,32 @@ const EditNode = ({ field, formik, setIsUploading }) => {
     }
     case INPUT_TYPE.DATE: {
       outputNode = (
-        <TextField
-          error={
-            !!formik.errors[field.db_field] && formik.touched[field.db_field]
-          }
-          helperText={
-            !!formik.errors[field.db_field]
-              ? formik.errors[field.db_field]
-              : field.info
-          }
-          fullWidth
-          key={field.db_field}
-          type="date"
-          label={field.label}
-          name={field.db_field}
-          onChange={(e) => {
-            console.log(e.target.value);
-            formik.setFieldValue(field.db_field, e.target.value);
-          }}
-          onBlur={formik.handleBlur}
-          value={getISO8601DateFormat(formik.values[field.db_field])}
-        />
+        <Fragment>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <MobileDatePicker
+              /*   error={
+                !!formik.errors[field.db_field] &&
+                formik.touched[field.db_field]
+              }
+              helperText={
+                !!formik.errors[field.db_field]
+                  ? formik.errors[field.db_field]
+                  : field.info
+              }
+              fullWidth */
+              label={field.label}
+              name={field.db_field}
+              /*  inputFormat="MM/dd/yyyy" */
+              value={new Date(formik.values[field.db_field])}
+              onChange={(newValue) => {
+                console.log(newValue);
+                formik.setFieldValue(field.db_field, newValue);
+              }}
+              onBlur={formik.handleBlur}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
+        </Fragment>
       );
       break;
     }

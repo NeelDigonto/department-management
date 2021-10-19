@@ -24,6 +24,7 @@ const createAchievementHandler = async (
       }
     })
     .then((result) => {
+      console.log(result);
       setUser((oldState) => {
         let newState = { ...oldState };
         // get the created one from server
@@ -37,10 +38,18 @@ const createAchievementHandler = async (
     });
 };
 
-const deleteAchievementHandler = async (employeeID, id_to_delete, setUser, achievementCategory) => {
-  fetch(`/api/user/${employeeID}/data/edit/${achievementCategory}/delete/${id_to_delete}`, {
-    method: "DELETE",
-  }).then((response) => {
+const deleteAchievementHandler = async (
+  employeeID,
+  id_to_delete,
+  setUser,
+  achievementCategory
+) => {
+  fetch(
+    `/api/user/${employeeID}/data/edit/${achievementCategory}/delete/${id_to_delete}`,
+    {
+      method: "DELETE",
+    }
+  ).then((response) => {
     if (response.status === StatusCodes.OK) {
       setUser((oldState) => {
         let newState = { ...oldState };
@@ -67,15 +76,18 @@ const editAchievementHandler = async (
   achievementCategory
 ) => {
   setSubmitting(true);
-  fetch(`/api/user/${employeeID}/data/edit/${achievementCategory}/edit/${achievement_id}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      updateObject: values,
-    }),
-  })
+  fetch(
+    `/api/user/${employeeID}/data/edit/${achievementCategory}/edit/${achievement_id}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        updateObject: values,
+      }),
+    }
+  )
     .then((response) => {
       if (response.status === StatusCodes.OK) return response.json();
       else {
@@ -98,4 +110,8 @@ const editAchievementHandler = async (
     });
 };
 
-export { createAchievementHandler, deleteAchievementHandler, editAchievementHandler };
+export {
+  createAchievementHandler,
+  deleteAchievementHandler,
+  editAchievementHandler,
+};
