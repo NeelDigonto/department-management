@@ -39,3 +39,6 @@ yarn-error.log*
 
 #db_data
 final_user_data.json
+
+#remove yarn.lock
+yarn.lock
