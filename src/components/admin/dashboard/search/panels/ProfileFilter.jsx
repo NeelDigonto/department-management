@@ -2,22 +2,28 @@ import React, { Fragment } from "react";
 import {
   Box,
   Grid,
-  Paper,
-  Card,
-  CardContent,
   Accordion,
   AccordionSummary,
   FormControlLabel,
   Checkbox,
   AccordionDetails,
   Typography,
-} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+} from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import FilterNode from "../../../../nodes/SearchNode";
-import { MASTER_SCHEMA, ACHIEVEMENTS_GROUP_SCHEMA } from "../../../../../data/schema";
+import {
+  MASTER_SCHEMA,
+  ACHIEVEMENTS_GROUP_SCHEMA,
+} from "../../../../../data/schema";
 
-const ProfileFilter = ({ valueLastUpdatedRef, toFilterRef, filterRef, sortRef, displayRef }) => {
+const ProfileFilter = ({
+  valueLastUpdatedRef,
+  toFilterRef,
+  filterRef,
+  sortRef,
+  displayRef,
+}) => {
   return (
     <Fragment>
       <Accordion>

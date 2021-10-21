@@ -32,7 +32,7 @@ const theme = createTheme({
       disabledBackground: "",
     }, */
     background: { default: colors.PersianGreen, paper: colors.Charcoal },
-    divider: colors.Charcoal,
+    divider: colors.SandyBrown,
   },
   components: {
     MuiCssBaseline: {

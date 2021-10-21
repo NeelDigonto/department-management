@@ -1,5 +1,5 @@
-import React, { Fragment, useRef, useState, useEffect, useCallback } from "react";
-import { TextField, MenuItem, Grid } from "@material-ui/core";
+import React, { Fragment, useRef } from "react";
+import { TextField, MenuItem, Grid } from "@mui/material";
 
 const NUMBER_FILTER_OPTIONS = [
   { display: "Less Than", code: "$lt" },
@@ -10,13 +10,21 @@ const NUMBER_FILTER_OPTIONS = [
   { display: "Not Equal To", code: "$ne" },
 ];
 
-const NumberQuerry = ({ field, categoryName, valueLastUpdatedRef, filterRef }) => {
+const NumberQuerry = ({
+  field,
+  categoryName,
+  valueLastUpdatedRef,
+  filterRef,
+}) => {
   const querryNumberRef = useRef(0);
   const querryOptionRef = useRef("");
 
   const handleChange = () => {
     valueLastUpdatedRef.current = new Date();
-    if (querryNumberRef.current !== undefined || querryNumberRef.current !== null)
+    if (
+      querryNumberRef.current !== undefined ||
+      querryNumberRef.current !== null
+    )
       filterRef.current[`${categoryName}.${field.db_field}`] = {
         [querryOptionRef.current]: querryNumberRef.current,
       };

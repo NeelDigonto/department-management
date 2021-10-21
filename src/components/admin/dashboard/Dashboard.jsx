@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect, useRef } from "react";
-import { Hidden, Grid, makeStyles, Box, Fab } from "@material-ui/core";
-import ListIcon from "@material-ui/icons/List";
+import { Hidden, Grid, Box, Fab } from "@mui/material";
+import ListIcon from "@mui/icons-material/List";
 
 import Search from "./search/Search";
 import DataTable from "./table/DataTable";
@@ -8,32 +8,7 @@ import DownloadOptions from "./download/DownloadOptions";
 
 const _MS = 500;
 
-const useStyles = makeStyles((theme) => ({
-  dashboardGrid: {
-    paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(4),
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(1),
-  },
-  table: {
-    paddingRight: theme.spacing(0.5),
-  },
-  searchBox: {
-    paddingLeft: theme.spacing(0.5),
-  },
-  slidingItems: { height: "100%" },
-  leftColumn: {},
-  //rightColumn: { overflow: "auto", maxHeight: "50rem" },
-  fab: {
-    position: "fixed",
-    bottom: theme.spacing(2),
-    right: /* theme.spacing(2) */ "4%",
-  },
-}));
-
 const Dashboard = () => {
-  const classes = useStyles();
-
   const toFilterRef = useRef({});
   const filterRef = useRef({});
   const sortRef = useRef({});
@@ -59,12 +34,16 @@ const Dashboard = () => {
           //stronger check if [0] is an achievement
           //for achievements
 
-          if (!filter[split_field_key[0]] || !filter[split_field_key[0]]["$elemMatch"]) {
+          if (
+            !filter[split_field_key[0]] ||
+            !filter[split_field_key[0]]["$elemMatch"]
+          ) {
             filter[split_field_key[0]] = { $elemMatch: {} };
           }
 
-          filter[split_field_key[0]]["$elemMatch"][field_key.substring(first_split_ind + 1)] =
-            filterRef.current[field_key];
+          filter[split_field_key[0]]["$elemMatch"][
+            field_key.substring(first_split_ind + 1)
+          ] = filterRef.current[field_key];
         }
       }
     });
@@ -73,7 +52,11 @@ const Dashboard = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (valueLastUpdatedRef.current.getTime() - resultLastUpdatedRef.current.getTime() >= _MS) {
+      if (
+        valueLastUpdatedRef.current.getTime() -
+          resultLastUpdatedRef.current.getTime() >=
+        _MS
+      ) {
         resultLastUpdatedRef.current = valueLastUpdatedRef.current;
 
         const filter = getFilterObject();
@@ -118,16 +101,31 @@ const Dashboard = () => {
 
   return (
     <Fragment>
-      <Grid container className={classes.dashboardGrid}>
-        <Grid item xs={12} sm={12} lg={6} className={classes.leftColumn}>
-          <Box className={classes.table}>
+      <Grid
+        container
+        /* sx={{
+          paddingTop: (theme) => theme.spacing(2),
+          paddingBottom: (theme) => theme.spacing(4),
+          paddingLeft: (theme) => theme.spacing(2),
+          paddingRight: (theme) => theme.spacing(1),
+        }} */
+      >
+        <Grid item xs={12} sm={12} lg={6}>
+          <Box sx={{ marginRight: (theme) => theme.spacing(0.5) }}>
             <DataTable rows={rows} />
           </Box>
           <DownloadOptions {...{ getFilterObject, sortRef, displayRef }} />
         </Grid>
         <Hidden only={["xs", "sm"]}>
-          <Grid item xs={false} sm={false} lg={6} elevation={6} className={classes.rightColumn}>
-            <Box className={classes.searchBox}>
+          <Grid
+            item
+            xs={false}
+            sm={false}
+            lg={6}
+            elevation={6}
+            /*    sx={{ overflow: "auto", maxHeight: "50rem" }} */
+          >
+            <Box sx={{ marginLeft: (theme) => theme.spacing(0.5) }}>
               <Search
                 {...{
                   valueLastUpdatedRef,
@@ -142,7 +140,18 @@ const Dashboard = () => {
         </Hidden>
       </Grid>
       <Hidden only={["md", "lg", "xl"]}>
-        <Fab className={classes.fab} color="primary" aria-label="add" onClick={() => {}}>
+        {/* for mobile */}
+        <Fab
+          color="primary"
+          aria-label="add"
+          /* sx={{
+            position: "fixed",
+            bottom: (theme) => theme.spacing(2),
+            // theme.spacing(2)
+            right: "4%",
+          }} */
+          onClick={() => {}}
+        >
           <ListIcon />
         </Fab>
       </Hidden>

@@ -1,12 +1,5 @@
 import React, { Fragment } from "react";
-import { v4 as uuidv4 } from "uuid";
-import { makeStyles } from "@material-ui/core/styles";
 import {
-  Card,
-  CardContent,
-  Box,
-  ButtonGroup,
-  Button,
   Paper,
   Table,
   TableBody,
@@ -15,7 +8,7 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-} from "@material-ui/core";
+} from "@mui/material";
 
 const columns = [
   {
@@ -49,21 +42,7 @@ const columns = [
   },
 ];
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-    padding: ".5rem",
-  },
-  container: {
-    maxHeight: 440,
-  },
-  header: {
-    color: theme.palette.primary.main,
-  },
-}));
-
 function DataTable({ rows }) {
-  const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(50);
 
@@ -78,8 +57,8 @@ function DataTable({ rows }) {
 
   return (
     <Fragment>
-      <Paper className={classes.root}>
-        <TableContainer className={classes.container}>
+      <Paper sx={{ width: "100%", padding: ".5rem" }}>
+        <TableContainer sx={{ maxHeight: 440 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
@@ -91,7 +70,7 @@ function DataTable({ rows }) {
                       minWidth: column.minWidth,
                       maxWidth: column.maxWidth,
                     }}
-                    className={classes.header}
+                    sx={{ color: (theme) => theme.palette.primary.main }}
                   >
                     {column.label}
                   </TableCell>

@@ -2,20 +2,20 @@ import React, { Fragment } from "react";
 import {
   Box,
   Grid,
-  Paper,
-  Card,
-  CardContent,
   Accordion,
   AccordionSummary,
   FormControlLabel,
   Checkbox,
   AccordionDetails,
   Typography,
-} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+} from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import FilterNode from "../../../../nodes/SearchNode";
-import { MASTER_SCHEMA, ACHIEVEMENTS_GROUP_SCHEMA } from "../../../../../data/schema";
+import {
+  MASTER_SCHEMA,
+  ACHIEVEMENTS_GROUP_SCHEMA,
+} from "../../../../../data/schema";
 
 const AchievementFilter = ({
   valueLastUpdatedRef,
@@ -53,24 +53,26 @@ const AchievementFilter = ({
                 <Box key={key_index} pt={2}>
                   <Box>
                     <Grid container>
-                      {ACHIEVEMENTS_GROUP_SCHEMA[key]["fields"].map((field, field_index) => (
-                        <Grid key={field_index} item md={3}>
-                          <Box px={1} py={1}>
-                            <FilterNode
-                              {...{
-                                valueLastUpdatedRef,
-                                categoryName: key,
-                                toFilterRef,
-                                filterRef,
+                      {ACHIEVEMENTS_GROUP_SCHEMA[key]["fields"].map(
+                        (field, field_index) => (
+                          <Grid key={field_index} item md={3}>
+                            <Box px={1} py={1}>
+                              <FilterNode
+                                {...{
+                                  valueLastUpdatedRef,
+                                  categoryName: key,
+                                  toFilterRef,
+                                  filterRef,
 
-                                sortRef,
-                                displayRef,
-                                field,
-                              }}
-                            />
-                          </Box>
-                        </Grid>
-                      ))}
+                                  sortRef,
+                                  displayRef,
+                                  field,
+                                }}
+                              />
+                            </Box>
+                          </Grid>
+                        )
+                      )}
                     </Grid>
                   </Box>
                 </Box>

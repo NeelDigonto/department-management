@@ -1,5 +1,11 @@
-import React, { Fragment, useRef, useState, useEffect, useCallback } from "react";
-import { TextField, MenuItem, Grid } from "@material-ui/core";
+import React, {
+  Fragment,
+  useRef,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
+import { TextField, MenuItem, Grid } from "@mui/material";
 
 const DATE_FILTER_OPTIONS = [
   { display: "Less Than", code: "$lt" },
@@ -20,11 +26,19 @@ const getDateString = (date) => {
   return date_string;
 };
 
-const DateQuerry = ({ field, categoryName, valueLastUpdatedRef, filterRef }) => {
+const DateQuerry = ({
+  field,
+  categoryName,
+  valueLastUpdatedRef,
+  filterRef,
+}) => {
   //const [selectedQuerryType, setSelectedQuerryType] = useState(DATE_FILTER_OPTIONS[0].code);
   const [querryType, setQuerryType] = useState(DATE_FILTER_OPTIONS[0].code);
   const [querryDate, setQuerryDate] = useState(new Date());
-  const [querryRangedDate, setQuerryRangedDate] = useState([new Date(), new Date()]);
+  const [querryRangedDate, setQuerryRangedDate] = useState([
+    new Date(),
+    new Date(),
+  ]);
 
   useEffect(() => {
     valueLastUpdatedRef.current = new Date();

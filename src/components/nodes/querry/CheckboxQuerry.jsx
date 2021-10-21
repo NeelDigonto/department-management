@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useRef } from "react";
+import React from "react";
 import {
   FormControlLabel,
   Checkbox,
@@ -6,18 +6,14 @@ import {
   FormGroup,
   FormHelperText,
   FormLabel,
-  makeStyles,
-} from "@material-ui/core";
+} from "@mui/material";
 
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(3),
-  },
-}));
-
-const CheckboxQuerry = ({ field, categoryName, valueLastUpdatedRef, filterRef }) => {
-  const classes = useStyles();
-
+const CheckboxQuerry = ({
+  field,
+  categoryName,
+  valueLastUpdatedRef,
+  filterRef,
+}) => {
   const handleChange = (event) => {
     valueLastUpdatedRef.current = new Date();
 
@@ -34,14 +30,18 @@ const CheckboxQuerry = ({ field, categoryName, valueLastUpdatedRef, filterRef })
       );
     } else {
       const option = event.target.name === "true" ? true : false;
-      filterRef.current[`${categoryName}.${field.db_field}`]["$in"] = filterRef.current[
-        `${categoryName}.${field.db_field}`
-      ]["$in"].filter((item) => item !== option);
+      filterRef.current[`${categoryName}.${field.db_field}`]["$in"] =
+        filterRef.current[`${categoryName}.${field.db_field}`]["$in"].filter(
+          (item) => item !== option
+        );
     }
   };
 
   return (
-    <FormControl component="fieldset" className={classes.formControl}>
+    <FormControl
+      component="fieldset"
+      sx={{ margin: (theme) => theme.spacing(3) }}
+    >
       <FormLabel component="legend">Select the options</FormLabel>
       <FormGroup>
         <FormControlLabel

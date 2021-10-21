@@ -1,5 +1,5 @@
-import React, { Fragment, useState, useEffect, useRef } from "react";
-import { Typography } from "@material-ui/core";
+import React, { Fragment, useState } from "react";
+import { Typography } from "@mui/material";
 
 import ActionNode from "./ActionNode";
 import TextQuerry from "./querry/TextQuerry";
@@ -31,49 +31,65 @@ const FilterNode = ({
   switch (field.input_type) {
     case INPUT_TYPE.TEXT: {
       filterNode = filter ? (
-        <TextQuerry {...{ field, categoryName, valueLastUpdatedRef, filterRef }} />
+        <TextQuerry
+          {...{ field, categoryName, valueLastUpdatedRef, filterRef }}
+        />
       ) : null;
       break;
     }
     case INPUT_TYPE.EMAIL: {
       filterNode = filter ? (
-        <EmailQuerry {...{ field, categoryName, valueLastUpdatedRef, filterRef }} />
+        <EmailQuerry
+          {...{ field, categoryName, valueLastUpdatedRef, filterRef }}
+        />
       ) : null;
       break;
     }
     case INPUT_TYPE.SELECT: {
       filterNode = filter ? (
-        <SelectQuerry {...{ field, categoryName, valueLastUpdatedRef, filterRef }} />
+        <SelectQuerry
+          {...{ field, categoryName, valueLastUpdatedRef, filterRef }}
+        />
       ) : null;
       break;
     }
     case INPUT_TYPE.CUSTOM_SELECT: {
       filterNode = filter ? (
-        <TextQuerry {...{ field, categoryName, valueLastUpdatedRef, filterRef }} />
+        <TextQuerry
+          {...{ field, categoryName, valueLastUpdatedRef, filterRef }}
+        />
       ) : null;
       break;
     }
     case INPUT_TYPE.DATE: {
       filterNode = filter ? (
-        <DateQuerry {...{ field, categoryName, valueLastUpdatedRef, filterRef }} />
+        <DateQuerry
+          {...{ field, categoryName, valueLastUpdatedRef, filterRef }}
+        />
       ) : null;
       break;
     }
     case INPUT_TYPE.NUMBER: {
       filterNode = filter ? (
-        <NumberQuerry {...{ field, categoryName, valueLastUpdatedRef, filterRef }} />
+        <NumberQuerry
+          {...{ field, categoryName, valueLastUpdatedRef, filterRef }}
+        />
       ) : null;
       break;
     }
     case INPUT_TYPE.CHECKBOX: {
       filterNode = filter ? (
-        <CheckboxQuerry {...{ field, categoryName, valueLastUpdatedRef, filterRef }} />
+        <CheckboxQuerry
+          {...{ field, categoryName, valueLastUpdatedRef, filterRef }}
+        />
       ) : null;
       break;
     }
     case INPUT_TYPE.FILE: {
       filterNode = filter ? (
-        <FileQuerry {...{ field, categoryName, valueLastUpdatedRef, filterRef }} />
+        <FileQuerry
+          {...{ field, categoryName, valueLastUpdatedRef, filterRef }}
+        />
       ) : null;
       break;
     }

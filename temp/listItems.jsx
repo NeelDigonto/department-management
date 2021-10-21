@@ -1,25 +1,17 @@
 import React from "react";
 import NextLink from "next/link";
-
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListSubheader from "@material-ui/core/ListSubheader";
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import PeopleIcon from "@material-ui/icons/People";
-import BarChartIcon from "@material-ui/icons/BarChart";
-import LayersIcon from "@material-ui/icons/Layers";
-import AssignmentIcon from "@material-ui/icons/Assignment";
-import AnnouncementIcon from "@material-ui/icons/Announcement";
-import SchoolIcon from "@material-ui/icons/School";
-import BookIcon from "@material-ui/icons/Book";
-import ComputerIcon from "@material-ui/icons/Computer";
-import TableChartIcon from "@material-ui/icons/TableChart";
-import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
-import AddBoxIcon from "@material-ui/icons/AddBox";
-import AddCircleIcon from "@material-ui/icons/AddCircle";
-import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
+import {
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  ListSubheader,
+} from "@mui/material";
+import AnnouncementIcon from "@mui/icons-material/Announcement";
+import TableChartIcon from "@mui/icons-material/TableChart";
+import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
 export const mainListItems = (
   <div>

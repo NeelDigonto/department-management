@@ -1,7 +1,12 @@
-import React, { Fragment, useState, useEffect, useRef } from "react";
-import { TextField } from "@material-ui/core";
+import React from "react";
+import { TextField } from "@mui/material";
 
-const FileQuerry = ({ field, categoryName, valueLastUpdatedRef, filterRef }) => {
+const FileQuerry = ({
+  field,
+  categoryName,
+  valueLastUpdatedRef,
+  filterRef,
+}) => {
   const handleChange = (event) => {
     valueLastUpdatedRef.current = new Date();
 

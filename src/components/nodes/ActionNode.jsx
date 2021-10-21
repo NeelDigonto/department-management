@@ -1,11 +1,11 @@
 import React from "react";
-import { Box, FormControlLabel, Checkbox } from "@material-ui/core";
-import FilterListIcon from "@material-ui/icons/FilterList";
-import FilterListOutlinedIcon from "@material-ui/icons/FilterListOutlined";
-import SortIcon from "@material-ui/icons/Sort";
-import SortOutlinedIcon from "@material-ui/icons/SortOutlined";
-import AddToQueueIcon from "@material-ui/icons/AddToQueue";
-import AddToQueueOutlinedIcon from "@material-ui/icons/AddToQueueOutlined";
+import { Box, FormControlLabel, Checkbox } from "@mui/material";
+import FilterListIcon from "@mui/icons-material/FilterList";
+import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
+import SortIcon from "@mui/icons-material/Sort";
+import SortOutlinedIcon from "@mui/icons-material/SortOutlined";
+import AddToQueueIcon from "@mui/icons-material/AddToQueue";
+import AddToQueueOutlinedIcon from "@mui/icons-material/AddToQueueOutlined";
 
 import { INPUT_TYPE } from "../../data/types/types";
 
@@ -30,11 +30,13 @@ const ActionNode = ({
       if (oldState) {
         if (field.input_type !== INPUT_TYPE.FILE)
           delete toFilterRef.current[`${categoryName}.${field.db_field}`];
-        else delete toFilterRef.current[`${categoryName}.${field.db_field}.fname`];
+        else
+          delete toFilterRef.current[`${categoryName}.${field.db_field}.fname`];
       } else {
         if (field.input_type !== INPUT_TYPE.FILE)
           toFilterRef.current[`${categoryName}.${field.db_field}`] = true;
-        else toFilterRef.current[`${categoryName}.${field.db_field}.fname`] = true;
+        else
+          toFilterRef.current[`${categoryName}.${field.db_field}.fname`] = true;
       }
 
       return !oldState;
@@ -52,7 +54,8 @@ const ActionNode = ({
   const handleDisplayToggle = () => {
     valueLastUpdatedRef.current = new Date();
     setDisplay((oldState) => {
-      if (oldState) delete displayRef.current[`${categoryName}.${field.db_field}`];
+      if (oldState)
+        delete displayRef.current[`${categoryName}.${field.db_field}`];
       else displayRef.current[`${categoryName}.${field.db_field}`] = 1;
       return !oldState;
     });
@@ -71,7 +74,7 @@ const ActionNode = ({
             name={field.db_field}
           />
         }
-        /*  label="Filter" */
+        label=""
       />
       <FormControlLabel
         control={
@@ -84,7 +87,7 @@ const ActionNode = ({
             name={field.db_field}
           />
         }
-        /*  label="Sort" */
+        label=""
       />
       <FormControlLabel
         control={
@@ -97,7 +100,7 @@ const ActionNode = ({
             name={field.db_field}
           />
         }
-        /*  label="Display" */
+        label=""
       />
     </Box>
   );

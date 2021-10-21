@@ -6,10 +6,8 @@ import {
   ListItemText,
   ListSubheader,
 } from "@mui/material";
-import {
-  Announcement as AnnouncementIcon,
-  TableChart as TableChartIcon,
-} from "@mui/icons-material";
+import AnnouncementIcon from "@mui/icons-material/Announcement";
+import TableChartIcon from "@mui/icons-material/TableChart";
 
 export default function SecondaryList({ section }) {
   return (
