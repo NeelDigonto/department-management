@@ -5,24 +5,30 @@ import {
   Button,
   Paper,
   Box,
-  Container,
+  Alert as MuiAlert,
   Grid,
   Typography,
-  makeStyles,
-} from "@material-ui/core";
-import { ReasonPhrases, StatusCodes, getReasonPhrase, getStatusCode } from "http-status-codes";
+} from "@mui/material";
+import { useSnackbar } from "notistack";
+import { StatusCodes } from "http-status-codes";
 
-const useStyles = makeStyles((theme) => ({
-  info_msg: { color: theme.palette.error.main, textAlign: "center", padding: "1rem" },
-}));
 const CreateUser = () => {
-  const [message, setMessage] = useState("");
-  const classes = useStyles();
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+  const snackbarAction = (key) => (
+    <Button
+      onClick={() => {
+        closeSnackbar(key);
+      }}
+    >
+      {"Dismiss"}
+    </Button>
+  );
 
   return (
     <Paper>
       <Box px={2} py={2}>
-        <h1>Add a New User</h1>
+        <Typography variant="h4">{"Add a New User"}</Typography>
         <Formik
           initialValues={{ employeeID: "", password: "", name: "" }}
           onSubmit={(values, { setSubmitting }) => {
@@ -38,9 +44,16 @@ const CreateUser = () => {
               }),
             })
               .then((response) =>
-                response.status === StatusCodes.OK || response.status === StatusCodes.CREATED
-                  ? setMessage("User Created Successfully")
-                  : setMessage("Couldn't create user")
+                response.status === StatusCodes.OK ||
+                response.status === StatusCodes.CREATED
+                  ? enqueueSnackbar("User Created Successfully", {
+                      variant: "success",
+                      action: snackbarAction,
+                    })
+                  : enqueueSnackbar("Couldn't create user", {
+                      variant: "error",
+                      action: snackbarAction,
+                    })
               )
               .then(setSubmitting(false));
           }}
@@ -56,7 +69,7 @@ const CreateUser = () => {
             /* and other goodies */
           }) => (
             <Form>
-              <Grid container>
+              <Grid container display="flex" justifyContent="space-around">
                 <Grid item sm={12} lg={6}>
                   <Box px={2} py={2}>
                     <TextField
@@ -109,7 +122,7 @@ const CreateUser = () => {
                       type="submit"
                       disabled={isSubmitting}
                     >
-                      Add User
+                      {"Add User"}
                     </Button>
                   </Box>
                 </Grid>
@@ -117,9 +130,6 @@ const CreateUser = () => {
             </Form>
           )}
         </Formik>
-        <Typography className={classes.info_msg} component="h2" variant="h5">
-          {message}
-        </Typography>
       </Box>
     </Paper>
   );

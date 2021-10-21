@@ -5,25 +5,35 @@ import {
   Button,
   Paper,
   Box,
-  Card,
-  CardContent,
+  Alert as MuiAlert,
   Grid,
   Typography,
-  makeStyles,
-} from "@material-ui/core";
-import { ReasonPhrases, StatusCodes, getReasonPhrase, getStatusCode } from "http-status-codes";
+} from "@mui/material";
+import { useSnackbar } from "notistack";
+import {
+  ReasonPhrases,
+  StatusCodes,
+  getReasonPhrase,
+  getStatusCode,
+} from "http-status-codes";
 
-const useStyles = makeStyles((theme) => ({
-  info_msg: { color: theme.palette.error.main, textAlign: "center", padding: "1rem" },
-}));
 const DeleteUser = () => {
-  const [message, setMessage] = useState("");
-  const classes = useStyles();
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+  const snackbarAction = (key) => (
+    <Button
+      onClick={() => {
+        closeSnackbar(key);
+      }}
+    >
+      {"Dismiss"}
+    </Button>
+  );
 
   return (
     <Paper>
       <Box px={2} py={2}>
-        <h1>Remove a User</h1>
+        <Typography variant="h4">{"Add a New User"}</Typography>
         <Formik
           initialValues={{ employeeID: "", password: "" }}
           onSubmit={(values, { setSubmitting }) => {
@@ -33,8 +43,14 @@ const DeleteUser = () => {
             })
               .then((response) =>
                 response.status === StatusCodes.OK
-                  ? setMessage("User Removed Successfully")
-                  : setMessage("Couldn't remove user")
+                  ? enqueueSnackbar("User Removed Successfully", {
+                      variant: "success",
+                      action: snackbarAction,
+                    })
+                  : enqueueSnackbar("Couldn't remove user", {
+                      variant: "error",
+                      action: snackbarAction,
+                    })
               )
               .then(setSubmitting(false));
           }}
@@ -50,7 +66,7 @@ const DeleteUser = () => {
             /* and other goodies */
           }) => (
             <Form>
-              <Grid container>
+              <Grid container display="flex" justifyContent="space-around">
                 <Grid item sm={12}>
                   <Box px={2} py={2}>
                     <TextField
@@ -58,7 +74,7 @@ const DeleteUser = () => {
                       variant="filled"
                       name="employeeID"
                       label="EmployeeID"
-                      autoComplete="off"
+                      autoComplete=""
                       value={values.employeeID}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -74,7 +90,7 @@ const DeleteUser = () => {
                       type="submit"
                       disabled={isSubmitting}
                     >
-                      Remove User
+                      {"Remove User"}
                     </Button>
                   </Box>
                 </Grid>
@@ -82,9 +98,6 @@ const DeleteUser = () => {
             </Form>
           )}
         </Formik>
-        <Typography className={classes.info_msg} component="h2" variant="h5">
-          {message}
-        </Typography>
       </Box>
     </Paper>
   );
