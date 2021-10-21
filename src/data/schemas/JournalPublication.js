@@ -215,6 +215,8 @@ const SCHEMA = {
   key: "journal-publications",
   icon: <LibraryBooksIcon />,
   fields: FIELDS,
+  display_title: "title",
+  display_date: "pub_date",
 };
 
 const getValidationSchema = () => {

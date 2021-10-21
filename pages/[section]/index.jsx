@@ -1,5 +1,4 @@
 import { signIn, signOut, useSession, getSession } from "next-auth/client";
-
 import React from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import { useRouter } from "next/router";
@@ -20,6 +19,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
 import MainList from "../../src/components/sidebar/MainList.jsx";
 import SecondaryList from "../../src/components/sidebar/SecondaryList.jsx";
@@ -131,9 +131,14 @@ export default function Test() {
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <Toolbar>
+        <Toolbar
+          sx={{
+            flexDirection: "row",
+            alignContent: "space-between",
+          }}
+        >
           <IconButton
-            color="inherit"
+            color="secondary"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
@@ -147,6 +152,14 @@ export default function Test() {
           <Typography variant="h6" noWrap component="div">
             {"FACULTY BOOK"}
           </Typography>
+          <IconButton
+            color="inherit"
+            onClick={() => {
+              signOut();
+            }}
+          >
+            <ExitToAppIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>

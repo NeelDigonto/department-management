@@ -1,19 +1,38 @@
 import { createTheme } from "@mui/material/styles";
-import { red } from "@mui/material/colors";
+import { red, grey } from "@mui/material/colors";
+import { color } from "@mui/system";
+
+export const colors = {
+  Charcoal: "#264653",
+  PersianGreen: "#2A9D8F",
+  OrangeYellowCrayola: "#E9C46A",
+  SandyBrown: "#F4A261",
+  BurntSienna: "#E76F51",
+};
 
 // Create a theme instance.
 const theme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#556cd6",
+      main: colors.OrangeYellowCrayola,
     },
     secondary: {
-      main: "#19857b",
+      main: colors.SandyBrown,
     },
     error: {
       main: red.A400,
     },
+    //text: { primary: "", secondary: "", disabled: "" },
+    /* action: {
+      active: "",
+      hover: "",
+      selected: "",
+      disabled: "",
+      disabledBackground: "",
+    }, */
+    background: { default: colors.PersianGreen, paper: colors.Charcoal },
+    divider: colors.Charcoal,
   },
   components: {
     MuiCssBaseline: {

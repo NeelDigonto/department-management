@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import { Card, Box, CardContent } from "@mui/material";
 
 import DisplayAchievement from "./DisplayAchievement.jsx";
 import EditAchievement from "./EditAchievement.jsx";
+import AchievementCard from "./ui/AchievementCard";
 
 const AAchievement = ({
   achievementCategory,
@@ -13,7 +14,16 @@ const AAchievement = ({
   const [isEditing, setIsEditing] = useState(false);
 
   return (
-    <Box pt={2}>
+    <Fragment>
+      <AchievementCard
+        key={index}
+        achievementCategory={achievementCategory}
+        achievement={achievement}
+        achievementIndex={index}
+        setIsEditing={setIsEditing}
+      />
+
+      {/* <Box pt={2}>
       <Card variant="outlined">
         <CardContent>
           {!isEditing ? (
@@ -34,7 +44,8 @@ const AAchievement = ({
           )}
         </CardContent>
       </Card>
-    </Box>
+    </Box> */}
+    </Fragment>
   );
 };
 
