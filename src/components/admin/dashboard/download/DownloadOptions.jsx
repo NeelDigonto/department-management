@@ -11,6 +11,11 @@ import { Box, Card, CardContent, Button, makeStyles } from "@mui/material";
 
 const DownloadOptions = ({ getFilterObject, sortRef, displayRef }) => {
   const handleWorkbookDownloadSelected = () => {
+    console.log({
+      filter: getFilterObject(),
+      sort: sortRef.current,
+      display: displayRef.current,
+    });
     fetch("/api/admin/download/selected", {
       method: "POST",
       body: JSON.stringify({
@@ -26,7 +31,7 @@ const DownloadOptions = ({ getFilterObject, sortRef, displayRef }) => {
         return response.blob();
       })
       .then((blob) => {
-        saveAs(blob, `SelectedUsers-${new Date().toString()}.xlsx`);
+        saveAs(blob, `SelectedUsers-${new Date().toISOString()}.xlsx`);
       });
   };
 
@@ -36,7 +41,7 @@ const DownloadOptions = ({ getFilterObject, sortRef, displayRef }) => {
         return response.blob();
       })
       .then((blob) => {
-        saveAs(blob, `AllUsers-${new Date().toString()}.xlsx`);
+        saveAs(blob, `AllUsers-${new Date().toISOString()}.xlsx`);
       });
   };
 
@@ -50,7 +55,7 @@ const DownloadOptions = ({ getFilterObject, sortRef, displayRef }) => {
             fullWidth
             onClick={handleWorkbookDownloadAll}
           >
-            Download All Data
+            {"Download All Data"}
           </Button>
           <Button
             variant="outlined"
@@ -58,7 +63,7 @@ const DownloadOptions = ({ getFilterObject, sortRef, displayRef }) => {
             fullWidth
             onClick={handleWorkbookDownloadSelected}
           >
-            Download Selected
+            {"Download Selected"}
           </Button>
         </CardContent>
       </Card>
