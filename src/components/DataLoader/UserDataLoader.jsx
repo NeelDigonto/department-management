@@ -15,15 +15,22 @@ const UserDataLoader = ({ children }) => {
       const employeeID = session.user.employeeID;
 
       // stops useless data fetching
-      if (!!lastSession && employeeID === lastSession.user.employeeID && forceUpdate === false)
+      if (
+        !!lastSession &&
+        employeeID === lastSession.user.employeeID &&
+        forceUpdate === false
+      )
         return;
       else setLastSession(session);
 
       // if error re request data
+
+      console.log(`/api/user/${employeeID}/data/get/full`);
       fetch(`/api/user/${employeeID}/data/get/full`)
         .then((response) => {
           if (response.status === StatusCodes.OK) return response.json();
-          else throw ` Server responded with: ${getReasonPhrase(response.status)}`;
+          else
+            throw ` Server responded with: ${getReasonPhrase(response.status)}`;
         })
         .then((result) => {
           setUser(result);

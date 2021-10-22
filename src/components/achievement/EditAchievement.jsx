@@ -22,7 +22,7 @@ const EditAchievement = ({
     initialValues: achievement,
     onSubmit: async (values, { setSubmitting }) => {
       editAchievementHandler(
-        user.employeeID,
+        user["profile"].employeeID,
         achievement.id,
         index,
         values,

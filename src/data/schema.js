@@ -80,7 +80,6 @@ const getAchievementValidationSchema = (category) => {
 };
 
 const MASTER_SCHEMA = {
-  employeeID: "",
   hashedPassword: "",
   profile: Profile.SCHEMA,
   ...ACHIEVEMENTS_GROUP_SCHEMA,
@@ -92,7 +91,6 @@ const getEmptyUserDocument = () => {
     mockProfile[item.db_field] = item.value;
   });
   let EMPTY_USER_DOCUMENT = {
-    employeeID: "",
     hashedPassword: "",
     profile: mockProfile,
   };

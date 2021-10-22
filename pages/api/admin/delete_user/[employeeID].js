@@ -1,13 +1,23 @@
 import { getSession } from "next-auth/client";
-import { ReasonPhrases, StatusCodes, getReasonPhrase, getStatusCode } from "http-status-codes";
+import {
+  ReasonPhrases,
+  StatusCodes,
+  getReasonPhrase,
+  getStatusCode,
+} from "http-status-codes";
 
 import { getMongoClient } from "../../../../src/lib/db";
 import { hashPassword } from "../../../../src/lib/auth";
-import { MASTER_SCHEMA, EMPTY_USER_DOCUMENT } from "../../../../src/data/schema";
+import {
+  MASTER_SCHEMA,
+  EMPTY_USER_DOCUMENT,
+} from "../../../../src/data/schema";
 
 export default async function handler(req, res) {
   if (req.method !== "DELETE") {
-    res.status(StatusCodes.METHOD_NOT_ALLOWED).send(ReasonPhrases.METHOD_NOT_ALLOWED);
+    res
+      .status(StatusCodes.METHOD_NOT_ALLOWED)
+      .send(ReasonPhrases.METHOD_NOT_ALLOWED);
     return;
   }
 
@@ -28,16 +38,23 @@ export default async function handler(req, res) {
 
   let deleteResult;
   try {
-    deleteResult = await usersCollection.deleteOne({ employeeID: employeeID });
+    deleteResult = await usersCollection.deleteOne({
+      "profile.employeeID": employeeID,
+    });
   } catch (err) {
     console.error(err);
     connection.close();
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(ReasonPhrases.INTERNAL_SERVER_ERROR);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .send(ReasonPhrases.INTERNAL_SERVER_ERROR);
     return;
   }
   connection.close();
 
   if (!!deleteResult && deleteResult.deletedCount === 1) {
     res.status(StatusCodes.OK).send(ReasonPhrases.OK);
-  } else res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(ReasonPhrases.INTERNAL_SERVER_ERROR);
+  } else
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .send(ReasonPhrases.INTERNAL_SERVER_ERROR);
 }

@@ -50,6 +50,8 @@ const Dashboard = () => {
     return filter;
   };
 
+  console.log(rows);
+
   useEffect(() => {
     const interval = setInterval(() => {
       if (
@@ -87,7 +89,7 @@ const Dashboard = () => {
                   name: document["profile"]["name"],
                   department: document["profile"]["department"],
                   designation: document["profile"]["designation"],
-                  employeeID: document["employeeID"],
+                  employeeID: document["profile"]["employeeID"],
                 };
               })
             )

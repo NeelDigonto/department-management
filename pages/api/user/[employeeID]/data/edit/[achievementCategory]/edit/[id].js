@@ -6,7 +6,9 @@ import { toTypedAchievements } from "../../../../../../../../src/lib/type_conver
 
 export default async function handler(req, res) {
   if (req.method !== "PATCH") {
-    res.status(StatusCodes.METHOD_NOT_ALLOWED).send(ReasonPhrases.METHOD_NOT_ALLOWED);
+    res
+      .status(StatusCodes.METHOD_NOT_ALLOWED)
+      .send(ReasonPhrases.METHOD_NOT_ALLOWED);
     return;
   }
 
@@ -16,7 +18,10 @@ export default async function handler(req, res) {
   if (!session) {
     res.status(StatusCodes.UNAUTHORIZED).send(ReasonPhrases.UNAUTHORIZED);
     return;
-  } else if (session.user.isAdmin === false && session.user.employeeID !== employeeID) {
+  } else if (
+    session.user.isAdmin === false &&
+    session.user.employeeID !== employeeID
+  ) {
     res.status(StatusCodes.FORBIDDEN).send(ReasonPhrases.FORBIDDEN);
     return;
   }
@@ -39,7 +44,7 @@ export default async function handler(req, res) {
   try {
     updateResult = await usersCollection.updateOne(
       {
-        employeeID: employeeID,
+        "profile.employeeID": employeeID,
         [`${achievementCategory}.id`]: id,
       },
       { $set: updateQuerry }
@@ -47,12 +52,17 @@ export default async function handler(req, res) {
   } catch (err) {
     console.error(err);
     connection.close();
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(ReasonPhrases.INTERNAL_SERVER_ERROR);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .send(ReasonPhrases.INTERNAL_SERVER_ERROR);
     return;
   }
   connection.close();
 
   if (!!updateResult && updateResult.modifiedCount === 1) {
     res.status(StatusCodes.OK).json({ updatedAchievement: updateObject });
-  } else res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(ReasonPhrases.INTERNAL_SERVER_ERROR);
+  } else
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .send(ReasonPhrases.INTERNAL_SERVER_ERROR);
 }

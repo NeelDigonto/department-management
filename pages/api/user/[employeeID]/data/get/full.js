@@ -5,7 +5,9 @@ import { getMongoClient } from "../../../../../../src/lib/db";
 
 export default async function handler(req, res) {
   if (req.method !== "GET") {
-    res.status(StatusCodes.METHOD_NOT_ALLOWED).send(ReasonPhrases.METHOD_NOT_ALLOWED);
+    res
+      .status(StatusCodes.METHOD_NOT_ALLOWED)
+      .send(ReasonPhrases.METHOD_NOT_ALLOWED);
     return;
   }
 
@@ -15,7 +17,10 @@ export default async function handler(req, res) {
   if (!session) {
     res.status(StatusCodes.UNAUTHORIZED).send(ReasonPhrases.UNAUTHORIZED);
     return;
-  } else if (session.user.isAdmin === false && session.user.employeeID !== employeeID) {
+  } else if (
+    session.user.isAdmin === false &&
+    session.user.employeeID !== employeeID
+  ) {
     res.status(StatusCodes.FORBIDDEN).send(ReasonPhrases.FORBIDDEN);
     return;
   }
@@ -28,12 +33,14 @@ export default async function handler(req, res) {
   let userDocument;
   try {
     userDocument = await usersCollection.findOne({
-      employeeID: employeeID,
+      "profile.employeeID": employeeID,
     });
   } catch (err) {
     console.error(err);
     connection.close();
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(ReasonPhrases.INTERNAL_SERVER_ERROR);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .send(ReasonPhrases.INTERNAL_SERVER_ERROR);
     return;
   }
 

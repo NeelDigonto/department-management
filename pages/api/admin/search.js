@@ -1,12 +1,19 @@
 import { getSession } from "next-auth/client";
-import { ReasonPhrases, StatusCodes, getReasonPhrase, getStatusCode } from "http-status-codes";
+import {
+  ReasonPhrases,
+  StatusCodes,
+  getReasonPhrase,
+  getStatusCode,
+} from "http-status-codes";
 
 import { getMongoClient } from "../../../src/lib/db";
 import { toTypedQuerry } from "../../../src/lib/type_converter";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
-    res.status(StatusCodes.METHOD_NOT_ALLOWED).send(ReasonPhrases.METHOD_NOT_ALLOWED);
+    res
+      .status(StatusCodes.METHOD_NOT_ALLOWED)
+      .send(ReasonPhrases.METHOD_NOT_ALLOWED);
     return;
   }
 
@@ -30,7 +37,9 @@ export default async function handler(req, res) {
     toTypedQuerry(filter);
   } catch (err) {
     console.error(err);
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(ReasonPhrases.INTERNAL_SERVER_ERROR);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .send(ReasonPhrases.INTERNAL_SERVER_ERROR);
     return;
   }
 
@@ -41,7 +50,7 @@ export default async function handler(req, res) {
     {
       $project: {
         _id: 0,
-        employeeID: 1,
+        "profile.employeeID": 1,
         "profile.name": 1,
         "profile.department": 1,
         "profile.designation": 1,
@@ -54,7 +63,9 @@ export default async function handler(req, res) {
     payload = await usersCollection.aggregate(pipeline).toArray();
   } catch (err) {
     console.error(err);
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(ReasonPhrases.INTERNAL_SERVER_ERROR);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .send(ReasonPhrases.INTERNAL_SERVER_ERROR);
     connection.close();
     return;
   }

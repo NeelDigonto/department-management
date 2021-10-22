@@ -25,7 +25,7 @@ const CreateAchievement = ({ achievementCategory }) => {
         disabled={isCreatingAchievement}
         onClick={() => {
           createAchievementHandler(
-            user.employeeID,
+            user["profile"]["employeeID"],
             setUser,
             setIsCreatingAchievement,
             achievementCategory

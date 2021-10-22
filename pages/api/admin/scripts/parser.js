@@ -344,23 +344,20 @@ export default async function handler(req, res) {
       csv_data.forEach((row, index) => {
         let result = collectionData.find(
           (user) =>
-            user.employeeID === row["Author"] &&
+            user["profile"]["employeeID"] === row["Author"] &&
             user.profile.name === row["Author"]
         );
         if (result === undefined)
           collectionData.push({
-            employeeID: row["Author"],
             profile: {
+              employeeID: row["Author"],
               name: row["Author"],
             },
           });
 
-        if (row["Author"] === "Dr. Soumyadipta Pal") {
-          console.log("Dr. Soumyadipta Pal");
-        }
         result = collectionData.findIndex(
           (user) =>
-            user.employeeID === row["Author"] &&
+            user["profile"]["employeeID"] === row["Author"] &&
             user.profile.name === row["Author"]
         );
 

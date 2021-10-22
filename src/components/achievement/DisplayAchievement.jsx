@@ -59,7 +59,7 @@ const DisplayAchievement = ({
             color="primary"
             onClick={() => {
               deleteAchievementHandler(
-                user.employeeID,
+                user["profile"].employeeID,
                 achievement.id,
                 setUser,
                 achievementCategory

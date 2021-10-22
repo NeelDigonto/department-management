@@ -18,18 +18,26 @@ export default NextAuth({
 
         if (credentials.isAdmin === false || credentials.isAdmin === "false") {
           //dont know why next-auth makes the boolean a string
-          const usersCollection = connection.db("users").collection("faculties");
+          const usersCollection = connection
+            .db("users")
+            .collection("faculties");
 
-          const user = await usersCollection.findOne({
-            employeeID: credentials.employeeID,
-          });
+          const user = await usersCollection.findOne(
+            {
+              "profile.employeeID": credentials.employeeID,
+            },
+            { projection: { profile: 1 } }
+          );
 
           if (!user) {
             connection.close();
             throw new Error("No user found!");
           }
 
-          const isValid = await verifyPassword(credentials.password, user.hashedPassword);
+          const isValid = await verifyPassword(
+            credentials.password,
+            user.hashedPassword
+          );
 
           if (!isValid) {
             connection.close();
@@ -38,8 +46,12 @@ export default NextAuth({
           }
 
           connection.close();
-          return { employeeID: user.employeeID, isAdmin: false };
-        } else if (credentials.isAdmin === true || credentials.isAdmin === "true") {
+
+          return { employeeID: user["profile"].employeeID, isAdmin: false };
+        } else if (
+          credentials.isAdmin === true ||
+          credentials.isAdmin === "true"
+        ) {
           const usersCollection = connection.db("users").collection("admins");
 
           const admin = await usersCollection.findOne({
@@ -51,7 +63,10 @@ export default NextAuth({
             throw new Error("No such admin found!");
           }
 
-          const isValid = await verifyPassword(credentials.password, admin.hashedPassword);
+          const isValid = await verifyPassword(
+            credentials.password,
+            admin.hashedPassword
+          );
 
           if (!isValid) {
             connection.close();

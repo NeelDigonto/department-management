@@ -1,5 +1,10 @@
 import { getSession } from "next-auth/client";
-import { ReasonPhrases, StatusCodes, getReasonPhrase, getStatusCode } from "http-status-codes";
+import {
+  ReasonPhrases,
+  StatusCodes,
+  getReasonPhrase,
+  getStatusCode,
+} from "http-status-codes";
 import * as ExcelJS from "exceljs";
 import contentDisposition from "content-disposition";
 import { Readable } from "stream";
@@ -30,7 +35,9 @@ const getColumnWidth = (view_width) => {
 
 export default async function handler(req, res) {
   if (req.method !== "GET") {
-    res.status(StatusCodes.METHOD_NOT_ALLOWED).send(ReasonPhrases.METHOD_NOT_ALLOWED);
+    res
+      .status(StatusCodes.METHOD_NOT_ALLOWED)
+      .send(ReasonPhrases.METHOD_NOT_ALLOWED);
     return;
   }
 
@@ -76,7 +83,11 @@ export default async function handler(req, res) {
 
     const setupHeaders = () => {
       let ws_columns_hot = [
-        { header: "ID's", key: "id", width: collectionData[0]["employeeID"].length + 3 },
+        {
+          header: "ID's",
+          key: "id",
+          width: collectionData[0]["profile"]["employeeID"].length + 3,
+        },
         {
           header: "Profile",
           key: "profile",
@@ -95,8 +106,14 @@ export default async function handler(req, res) {
       mergeUptoCell.column += MASTER_SCHEMA["profile"].length - 1;
       worksheet.mergeCells(`B1:${mergeUptoCell.getString()}`);
 
-      worksheet.getCell("A1").alignment = { horizontal: "center", vertical: "middle" };
-      worksheet.getCell("B1").alignment = { horizontal: "center", vertical: "middle" };
+      worksheet.getCell("A1").alignment = {
+        horizontal: "center",
+        vertical: "middle",
+      };
+      worksheet.getCell("B1").alignment = {
+        horizontal: "center",
+        vertical: "middle",
+      };
 
       const iter_cell = new Cell("B", 2);
       MASTER_SCHEMA["profile"].forEach((field, index) => {
@@ -110,7 +127,8 @@ export default async function handler(req, res) {
     const setupDataRows = () => {
       const employeeID_cell = new Cell("A", 3); //A3
       for (let userNo = 0; userNo < collectionData.length; ++userNo) {
-        worksheet.getCell(employeeID_cell.getString()).value = collectionData[userNo]["employeeID"];
+        worksheet.getCell(employeeID_cell.getString()).value =
+          collectionData[userNo]["profile"]["employeeID"];
 
         const employeeField_cell = new Cell("B", 3 + userNo);
         MASTER_SCHEMA["profile"].forEach((field, index) => {
@@ -144,25 +162,40 @@ export default async function handler(req, res) {
           {
             header: display_name,
             key: achievement_key,
-            width: getColumnWidth(MASTER_SCHEMA[achievement_key]["fields"][0].view_width),
+            width: getColumnWidth(
+              MASTER_SCHEMA[achievement_key]["fields"][0].view_width
+            ),
           },
         ];
 
-        for (let i = 1; i < MASTER_SCHEMA[achievement_key]["fields"].length; ++i) {
+        for (
+          let i = 1;
+          i < MASTER_SCHEMA[achievement_key]["fields"].length;
+          ++i
+        ) {
           ws_columns_hot.push({
-            width: getColumnWidth(MASTER_SCHEMA[achievement_key]["fields"][i].view_width),
+            width: getColumnWidth(
+              MASTER_SCHEMA[achievement_key]["fields"][i].view_width
+            ),
           });
         }
         worksheet.columns = ws_columns_hot;
 
         const mergeUptoCell = new Cell("B", 1);
-        mergeUptoCell.column += MASTER_SCHEMA[achievement_key]["fields"].length - 1;
+        mergeUptoCell.column +=
+          MASTER_SCHEMA[achievement_key]["fields"].length - 1;
 
         worksheet.mergeCells(`B1:${mergeUptoCell.getString()}`);
         worksheet.mergeCells("A1:A2");
 
-        worksheet.getCell("A1").alignment = { horizontal: "center", vertical: "middle" };
-        worksheet.getCell("B1").alignment = { horizontal: "center", vertical: "middle" };
+        worksheet.getCell("A1").alignment = {
+          horizontal: "center",
+          vertical: "middle",
+        };
+        worksheet.getCell("B1").alignment = {
+          horizontal: "center",
+          vertical: "middle",
+        };
 
         const iter_cell = new Cell("B", 2);
         MASTER_SCHEMA[achievement_key]["fields"].forEach((field, index) => {
@@ -179,9 +212,15 @@ export default async function handler(req, res) {
         let rowsConsumedByAllUsers = 0;
 
         for (let userNo = 0; userNo < collectionData.length; ++userNo) {
-          const employeeID_cell = worksheet.getCell(employeeID_iter_cell.getString());
-          employeeID_cell.value = collectionData[userNo]["employeeID"];
-          employeeID_cell.alignment = { horizontal: "center", vertical: "middle" };
+          const employeeID_cell = worksheet.getCell(
+            employeeID_iter_cell.getString()
+          );
+          employeeID_cell.value =
+            collectionData[userNo]["profile"]["employeeID"];
+          employeeID_cell.alignment = {
+            horizontal: "center",
+            vertical: "middle",
+          };
 
           if (collectionData[userNo][achievement_key].length !== 0) {
             console.log(
@@ -190,24 +229,37 @@ export default async function handler(req, res) {
                 achievement_key +
                 " | " +
                 `A${3 + rowsConsumedByAllUsers}:A${
-                  3 + rowsConsumedByAllUsers + collectionData[userNo][achievement_key].length - 1
+                  3 +
+                  rowsConsumedByAllUsers +
+                  collectionData[userNo][achievement_key].length -
+                  1
                 }`
             );
 
             worksheet.mergeCells(
               `A${3 + rowsConsumedByAllUsers}:A${
-                3 + rowsConsumedByAllUsers + collectionData[userNo][achievement_key].length - 1
+                3 +
+                rowsConsumedByAllUsers +
+                collectionData[userNo][achievement_key].length -
+                1
               }`
             );
           }
 
-          for (let pubNo = 0; pubNo < collectionData[userNo][achievement_key].length; ++pubNo) {
+          for (
+            let pubNo = 0;
+            pubNo < collectionData[userNo][achievement_key].length;
+            ++pubNo
+          ) {
             let colStart = "B";
             MASTER_SCHEMA[achievement_key]["fields"].forEach((field, index) => {
               const colCode = colStart.charCodeAt(0) + index;
               const colId = String.fromCharCode(colCode);
-              const cell = worksheet.getCell(`${colId}${3 + rowsConsumedByAllUsers}`);
-              const value = collectionData[userNo][achievement_key][pubNo][field.db_field];
+              const cell = worksheet.getCell(
+                `${colId}${3 + rowsConsumedByAllUsers}`
+              );
+              const value =
+                collectionData[userNo][achievement_key][pubNo][field.db_field];
               if (field.input_type !== "file") {
                 cell.value = !!value ? value : null;
               } else {
@@ -225,23 +277,36 @@ export default async function handler(req, res) {
                     cell.value = {
                       //put an env variable for this
                       text: value.fname,
-                      hyperlink: "https://faculty-book.vercel.app/api/file/get/" + value.fuid,
-                      tooltip: "https://faculty-book.vercel.app/api/file/get/" + value.fuid,
+                      hyperlink:
+                        "https://faculty-book.vercel.app/api/file/get/" +
+                        value.fuid,
+                      tooltip:
+                        "https://faculty-book.vercel.app/api/file/get/" +
+                        value.fuid,
                     };
                 }
               }
-              cell.alignment = { horizontal: "center", vertical: "middle", wrapText: true };
+              cell.alignment = {
+                horizontal: "center",
+                vertical: "middle",
+                wrapText: true,
+              };
             });
 
             rowsConsumedByAllUsers += 1;
           }
 
-          rowsConsumedByPrevUser = collectionData[userNo][achievement_key].length;
+          rowsConsumedByPrevUser =
+            collectionData[userNo][achievement_key].length;
 
           employeeID_iter_cell.row += rowsConsumedByPrevUser;
         }
 
-        for (let currentRow = 3; currentRow < 3 + rowsConsumedByAllUsers; ++currentRow) {
+        for (
+          let currentRow = 3;
+          currentRow < 3 + rowsConsumedByAllUsers;
+          ++currentRow
+        ) {
           worksheet.getRow(currentRow).height = rowHeight;
         }
       };

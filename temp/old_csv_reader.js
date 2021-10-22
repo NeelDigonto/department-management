@@ -112,12 +112,14 @@ export default async function handler(req, res) {
 
           if (
             collectionData.find(
-              (user) => user.employeeID === row["faculty_name"]
+              (user) => user["profile"].employeeID === row["faculty_name"]
             ) === undefined
           ) {
             collectionData.push({
-              employeeID: row["faculty_name"],
-              profile: { name: row["faculty_name"] },
+              profile: {
+                employeeID: row["faculty_name"],
+                name: row["faculty_name"],
+              },
               "seminar-attended": [],
               "webinar-attended": [],
             });
@@ -125,7 +127,7 @@ export default async function handler(req, res) {
 
           if (row["type"] === "Seminar") {
             collectionData
-              .find((user) => user.employeeID === row["faculty_name"])
+              .find((user) => user === row["faculty_name"])
               ["seminar-attended"].push({
                 title: row["title"],
                 event_start_date,
@@ -140,7 +142,9 @@ export default async function handler(req, res) {
               });
           } else if (row["type"] === "Webinar") {
             collectionData
-              .find((user) => user.employeeID === row["faculty_name"])
+              .find(
+                (user) => user["profile"].employeeID === row["faculty_name"]
+              )
               ["webinar-attended"].push({
                 title: row["title"],
                 event_start_date,

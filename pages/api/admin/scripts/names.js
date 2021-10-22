@@ -32,7 +32,7 @@ export default async function handler(req, res) {
   let final_users = [];
 
   final_users = collectionData.map((user) => {
-    return user["employeeID"];
+    return user["profile"]["employeeID"];
   });
 
   res.status(200).json(final_users);

@@ -8,7 +8,9 @@ import { getTypedDocument } from "../../../../src/lib/type_converter";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
-    res.status(StatusCodes.METHOD_NOT_ALLOWED).send(ReasonPhrases.METHOD_NOT_ALLOWED);
+    res
+      .status(StatusCodes.METHOD_NOT_ALLOWED)
+      .send(ReasonPhrases.METHOD_NOT_ALLOWED);
     return;
   }
 
@@ -32,10 +34,10 @@ export default async function handler(req, res) {
 
   let emptyUserDocument = {
     ...EMPTY_USER_DOCUMENT,
-    employeeID: employeeID,
     hashedPassword: await hashPassword(password),
   };
 
+  emptyUserDocument["profile"]["employeeID"] = employeeID;
   emptyUserDocument["profile"]["name"] = name;
 
   let insertResult;
@@ -44,12 +46,17 @@ export default async function handler(req, res) {
   } catch (err) {
     console.error(err);
     connection.close();
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(ReasonPhrases.INTERNAL_SERVER_ERROR);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .send(ReasonPhrases.INTERNAL_SERVER_ERROR);
     return;
   }
   connection.close();
 
   if (!!insertResult && insertResult.insertedCount === 1) {
     res.status(StatusCodes.CREATED).send(ReasonPhrases.CREATED);
-  } else res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(ReasonPhrases.INTERNAL_SERVER_ERROR);
+  } else
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .send(ReasonPhrases.INTERNAL_SERVER_ERROR);
 }

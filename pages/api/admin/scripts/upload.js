@@ -37,10 +37,11 @@ export default async function handler(req, res) {
 
       let emptyUserDocument = {
         ...EMPTY_USER_DOCUMENT,
-        employeeID: user["employeeID"],
         hashedPassword: await hashPassword("123"),
       };
 
+      emptyUserDocument["profile"]["employeeID"] =
+        user["profile"]["employeeID"];
       emptyUserDocument["profile"]["name"] = user["profile"]["name"];
 
       ACHIEVEMENTS.forEach((achievement) => {

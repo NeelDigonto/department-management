@@ -200,7 +200,7 @@ function getWorkBook(collectionData, display) {
           collectionData.forEach((elem, userNo) => {
             //write employeeID
             worksheet.getCell(employeeID_cell.getString()).value =
-              collectionData[userNo]["employeeID"];
+              collectionData[userNo]["profile"]["employeeID"];
             worksheet.getCell(employeeID_cell.getString()).alignment = {
               horizontal: "center",
               vertical: "middle",

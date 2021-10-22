@@ -1,7 +1,7 @@
 [
   {
-    "employeeID": "Dr. Saswati Barman",
     "profile": {
+      "employeeID": "Dr. Saswati Barman",
       "name": "Dr. Saswati Barman"
     },
     "research-projects": [
@@ -47,8 +47,8 @@
     ]
   },
   {
-    "employeeID": "Dr. Tina De",
     "profile": {
+      "employeeID": "Dr. Tina De",
       "name": "Dr. Tina De"
     },
     "seminar-organized": [
@@ -97,8 +97,8 @@
     ]
   },
   {
-    "employeeID": "Dr. Koyel Ganguly",
     "profile": {
+      "employeeID": "Dr. Koyel Ganguly",
       "name": "Dr. Koyel Ganguly"
     },
     "industry-visit": [
@@ -116,8 +116,8 @@
     ]
   },
   {
-    "employeeID": "Dr. Samapika Das Biswas",
     "profile": {
+      "employeeID": "Dr. Samapika Das Biswas",
       "name": "Dr. Samapika Das Biswas"
     },
     "seminar-organized": [
@@ -167,8 +167,8 @@
     ]
   },
   {
-    "employeeID": "Dibakar Roy Choudhury",
     "profile": {
+      "employeeID": "Dibakar Roy Choudhury",
       "name": "Dibakar Roy Choudhury"
     },
     "seminar-organized": [
@@ -218,8 +218,8 @@
     ]
   },
   {
-    "employeeID": "Amartya Mukherjee",
     "profile": {
+      "employeeID": "Amartya Mukherjee",
       "name": "Amartya Mukherjee"
     },
     "copyrights": [
@@ -237,8 +237,8 @@
     ]
   },
   {
-    "employeeID": "Dr. Kakoli Dutta",
     "profile": {
+      "employeeID": "Dr. Kakoli Dutta",
       "name": "Dr. Kakoli Dutta"
     },
     "seminar-organized": [
@@ -290,8 +290,8 @@
     ]
   },
   {
-    "employeeID": "Abhishikta Bhattacharjee",
     "profile": {
+      "employeeID": "Abhishikta Bhattacharjee",
       "name": "Abhishikta Bhattacharjee"
     },
     "seminar-organized": [
@@ -412,8 +412,8 @@
     ]
   },
   {
-    "employeeID": "Prabir Kumar Das",
     "profile": {
+      "employeeID": "Prabir Kumar Das",
       "name": "Prabir Kumar Das"
     },
     "seminar-organized": [
@@ -454,8 +454,8 @@
     ]
   },
   {
-    "employeeID": "Biswadip Basu Mallik",
     "profile": {
+      "employeeID": "Biswadip Basu Mallik",
       "name": "Biswadip Basu Mallik"
     },
     "seminar-organized": [
@@ -556,8 +556,8 @@
     ]
   },
   {
-    "employeeID": "Santanu Das",
     "profile": {
+      "employeeID": "Santanu Das",
       "name": "Santanu Das"
     },
     "webinar-organized": [
@@ -606,8 +606,8 @@
     ]
   },
   {
-    "employeeID": "Ruchira Mukherjee",
     "profile": {
+      "employeeID": "Ruchira Mukherjee",
       "name": "Ruchira Mukherjee"
     },
     "seminar-organized": [
@@ -669,8 +669,8 @@
     ]
   },
   {
-    "employeeID": "Riya Barui",
     "profile": {
+      "employeeID": "Riya Barui",
       "name": "Riya Barui"
     },
     "alumni-talk-organized": [

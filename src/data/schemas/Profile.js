@@ -9,6 +9,17 @@ import Validation from "../validation/schemas";
 
 const FIELDS = [
   {
+    label: "Employee ID",
+    value: "",
+    info: "Your Employee ID",
+    type: VALUE_TYPE.STRING,
+    input_type: INPUT_TYPE.TEXT,
+    db_field_type: DB_FIELD_TYPE.STRING,
+    view_width: WIDTH_TYPE.MEDIUM,
+    db_field: "employeeID",
+    validation: Validation.string(),
+  },
+  {
     label: "Full Name",
     value: "",
     info: "Your full name",

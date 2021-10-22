@@ -1,17 +1,27 @@
 import contentDisposition from "content-disposition";
 import { Readable } from "stream";
 import { getSession } from "next-auth/client";
-import { ReasonPhrases, StatusCodes, getReasonPhrase, getStatusCode } from "http-status-codes";
+import {
+  ReasonPhrases,
+  StatusCodes,
+  getReasonPhrase,
+  getStatusCode,
+} from "http-status-codes";
 
 import { getMongoClient } from "../../../../src/lib/db";
-import { MASTER_SCHEMA, ACHIEVEMENTS_GROUP_SCHEMA } from "../../../../src/data/schema";
+import {
+  MASTER_SCHEMA,
+  ACHIEVEMENTS_GROUP_SCHEMA,
+} from "../../../../src/data/schema";
 import { toTypedQuerry } from "../../../../src/lib/type_converter";
 
 import { getWorkBookBuffer } from "../../../../src/lib/workbook";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
-    res.status(StatusCodes.METHOD_NOT_ALLOWED).send(ReasonPhrases.METHOD_NOT_ALLOWED);
+    res
+      .status(StatusCodes.METHOD_NOT_ALLOWED)
+      .send(ReasonPhrases.METHOD_NOT_ALLOWED);
     return;
   }
 
@@ -35,18 +45,24 @@ export default async function handler(req, res) {
     toTypedQuerry(filter);
   } catch (err) {
     console.error(err);
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(ReasonPhrases.INTERNAL_SERVER_ERROR);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .send(ReasonPhrases.INTERNAL_SERVER_ERROR);
     connection.close();
     return;
   }
 
-  let projectionFilter = { profile: 1, employeeID: 1 };
+  let projectionFilter = { profile: 1 };
 
   Object.keys(ACHIEVEMENTS_GROUP_SCHEMA).forEach((category) => {
     if (!!filter[category]) {
       // setup
       projectionFilter[category] = {
-        $filter: { input: `$${category}`, as: "achievement", cond: { $and: [] } },
+        $filter: {
+          input: `$${category}`,
+          as: "achievement",
+          cond: { $and: [] },
+        },
       };
 
       for (let [key, value] of Object.entries(filter[category]["$elemMatch"])) {
@@ -107,7 +123,7 @@ export default async function handler(req, res) {
     {
       $project: projectionFilter,
     },
-    { $project: { _id: 0, employeeID: 1, ...display } },
+    { $project: { _id: 0, ...display } },
   ];
 
   let payload;
@@ -115,7 +131,9 @@ export default async function handler(req, res) {
     payload = await usersCollection.aggregate(pipeline).toArray();
   } catch (err) {
     console.error(err);
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(ReasonPhrases.INTERNAL_SERVER_ERROR);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .send(ReasonPhrases.INTERNAL_SERVER_ERROR);
     connection.close();
     return;
   }
@@ -126,7 +144,9 @@ export default async function handler(req, res) {
     workbookBuffer = await getWorkBookBuffer(payload, display);
   } catch (err) {
     console.error(err);
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(ReasonPhrases.INTERNAL_SERVER_ERROR);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .send(ReasonPhrases.INTERNAL_SERVER_ERROR);
     return;
   }
 
