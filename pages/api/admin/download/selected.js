@@ -75,41 +75,16 @@ export default async function handler(req, res) {
             },
           });
         }
-        if (!!value["$in"]) {
-          projectionFilter[category]["$filter"]["cond"]["$and"].push({
-            $in: [`$$achievement.${key}`, value["$in"]],
-          });
-        }
-        if (!!value["$lt"]) {
-          projectionFilter[category]["$filter"]["cond"]["$and"].push({
-            $gte: [`$$achievement.${key}`, value["$lt"]],
-          });
-        }
-        if (!!value["$lte"]) {
-          projectionFilter[category]["$filter"]["cond"]["$and"].push({
-            $gte: [`$$achievement.${key}`, value["$lte"]],
-          });
-        }
-        if (!!value["$gt"]) {
-          projectionFilter[category]["$filter"]["cond"]["$and"].push({
-            $gte: [`$$achievement.${key}`, value["$gt"]],
-          });
-        }
-        if (!!value["$gte"]) {
-          projectionFilter[category]["$filter"]["cond"]["$and"].push({
-            $gte: [`$$achievement.${key}`, value["$gte"]],
-          });
-        }
-        if (!!value["$eq"]) {
-          projectionFilter[category]["$filter"]["cond"]["$and"].push({
-            $gte: [`$$achievement.${key}`, value["$eq"]],
-          });
-        }
-        if (!!value["$ne"]) {
-          projectionFilter[category]["$filter"]["cond"]["$and"].push({
-            $gte: [`$$achievement.${key}`, value["$ne"]],
-          });
-        }
+
+        ["$lt", "$lte", "$gt", "$gte", "$eq", "$ne", "$in"].forEach(
+          (operator) => {
+            if (!!value[operator]) {
+              projectionFilter[category]["$filter"]["cond"]["$and"].push({
+                [operator]: [`$$achievement.${key}`, value[operator]],
+              });
+            }
+          }
+        );
       }
     } else {
       projectionFilter[category] = 1;
@@ -120,10 +95,10 @@ export default async function handler(req, res) {
     {
       $match: filter,
     },
+    { $project: { _id: 0, ...display } },
     {
       $project: projectionFilter,
     },
-    { $project: { _id: 0, ...display } },
   ];
 
   let payload;
