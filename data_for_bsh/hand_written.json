@@ -6,7 +6,7 @@
     },
     "research-projects": [
       {
-        "proj_name": "Computational Studies of Structure and Interface Modified Magnetic Materials for Nanomagnetic Devices",
+        "title": "Computational Studies of Structure and Interface Modified Magnetic Materials for Nanomagnetic Devices",
         "fac_role": "Principal Investigator (PI)",
         "co_pi_name": "",
         "sanc_date": "2018-06-29T00:00:00.000Z",
@@ -82,7 +82,7 @@
     ],
     "research-projects": [
       {
-        "proj_name": "Development of a multicomponent gas-particle Navier-Stokes solver for needle free drug delivery",
+        "title": "Development of a multicomponent gas-particle Navier-Stokes solver for needle free drug delivery",
         "fac_role": "Co-Principal Investigator (Co-PI)",
         "co_pi_name": "",
         "sanc_date": "2018-09-13T00:00:00.000Z",
@@ -272,7 +272,7 @@
     ],
     "research-projects": [
       {
-        "proj_name": "Wastewater treatment and energy generation: a path towards process integration for more sustainable cities",
+        "title": "Wastewater treatment and energy generation: a path towards process integration for more sustainable cities",
         "fac_role": "Principal Investigator (PI)",
         "co_pi_name": "Dr. Barbara RUFFINO",
         "sanc_date": "2021-04-30T00:00:00.000Z",
@@ -641,7 +641,7 @@
     ],
     "research-projects": [
       {
-        "proj_name": "Sensing urban air Pollutants and its Effects on human Skin Health-A Knowledge Mining",
+        "title": "Sensing urban air Pollutants and its Effects on human Skin Health-A Knowledge Mining",
         "fac_role": "Principal Investigator (PI)",
         "co_pi_name": "Dr.Sanchita Ghosh",
         "sanc_date": "2018-06-30T00:00:00.000Z",

@@ -87,6 +87,8 @@ const SCHEMA = {
   diplay_name: "Copyright",
   icon: <CopyrightIcon />,
   fields: FIELDS,
+  display_title: "title",
+  display_date: "pub_date",
 };
 
 const getValidationSchema = () => {

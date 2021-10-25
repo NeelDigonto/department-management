@@ -242,6 +242,8 @@ const SCHEMA = {
   key: "conference-publications",
   icon: <VideocamIcon />,
   fields: FIELDS,
+  display_title: "title",
+  display_date: "pub_date",
 };
 
 const getValidationSchema = () => {

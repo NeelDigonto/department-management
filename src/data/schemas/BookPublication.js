@@ -208,6 +208,8 @@ const SCHEMA = {
   diplay_name: "Book Publication",
   icon: <BookIcon />,
   fields: FIELDS,
+  display_title: "title",
+  display_date: "pub_date",
 };
 
 const getValidationSchema = () => {

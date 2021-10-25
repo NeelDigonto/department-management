@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Grid, Typography, Button, Link as MuiLink } from "@mui/material";
+import { Grid, Box, Typography, Button, Link as MuiLink } from "@mui/material";
 import { isEmptyObject } from "../../lib/util";
 import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE } from "../../data/types/types";
 
@@ -25,10 +25,12 @@ const DisplayNode = ({ field, value }) => {
     outputNode = (
       /*       <Grid item xs={12} lg={6} key={field.db_field}> */
       <Fragment>
-        <Typography color="textSecondary" gutterBottom>
+        <Typography color="text.secondary" gutterBottom>
           {label}
         </Typography>
-        {!!value && value ? "Yes" : "No"}
+        <Typography color="text.primary" gutterBottom>
+          {!!value && value ? "Yes" : "No"}
+        </Typography>
       </Fragment>
     );
   else if (field.type === VALUE_TYPE.STRING)
@@ -39,7 +41,9 @@ const DisplayNode = ({ field, value }) => {
           <Typography color="textSecondary" gutterBottom>
             {label}
           </Typography>
-          {!!date ? date.toDateString() : "Invalid Date"}
+          <Typography color="text.primary" gutterBottom>
+            {!!date ? date.toDateString() : "Invalid Date"}
+          </Typography>
         </Fragment>
       );
     } else {
@@ -48,17 +52,29 @@ const DisplayNode = ({ field, value }) => {
           <Typography color="textSecondary" gutterBottom>
             {label}
           </Typography>
-          {!!value ? value : null}
+          <Typography
+            color="text.primary"
+            gutterBottom
+            sx={{
+              display: "block",
+              overflowWrap: "break-word",
+              maxWidth: "100%",
+            }}
+          >
+            {!!value ? value : null}
+          </Typography>
         </Fragment>
       );
     }
   else if (field.type === VALUE_TYPE.NUMBER)
     outputNode = (
       <Fragment>
-        <Typography color="textSecondary" gutterBottom>
+        <Typography color="text.secondary" gutterBottom>
           {label}
         </Typography>
-        {value !== "undefined" || value !== null ? value : null}
+        <Typography color="text.primary" gutterBottom>
+          {value !== "undefined" || value !== null ? value : null}
+        </Typography>
       </Fragment>
     );
   else if (
@@ -72,7 +88,9 @@ const DisplayNode = ({ field, value }) => {
         </Typography>
         {!isEmptyObject(value) ? (
           value.isLink ? (
-            value.flink
+            <MuiLink href={value.flink} target="_blank">
+              {value.flink}
+            </MuiLink>
           ) : (
             <MuiLink href={"/api/file/get/" + value.fuid} target="_blank">
               {value.fname}
@@ -88,8 +106,3 @@ const DisplayNode = ({ field, value }) => {
 };
 
 export default DisplayNode;
-
-/*
-onClick={() => {
-  window.open("/api/file/get/" + value.fuid, "_blank");
-}}*/

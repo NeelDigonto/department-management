@@ -144,6 +144,8 @@ const SCHEMA = {
   key: "fdp-workshop-organized",
   icon: <BuildIcon />,
   fields: FIELDS,
+  display_title: "title",
+  display_date: "event_start_date",
 };
 
 const getValidationSchema = () => {

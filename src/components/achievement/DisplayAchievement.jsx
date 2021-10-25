@@ -1,75 +1,79 @@
 import React, { Fragment } from "react";
-import { Grid, Box, ButtonGroup, Button } from "@mui/material";
+import { Grid, Box, ButtonGroup, Button, IconButton } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 import { useUserContext } from "../../contexts/UserContext";
 import DisplayNode from "../nodes/DisplayNode";
 import { MASTER_SCHEMA } from "../../data/schema";
 import { WIDTH_TYPE } from "../../data/types/types";
 import { deleteAchievementHandler } from "./handlers";
+import AchievementCard from "./AchievementCard";
 
 const DisplayAchievement = ({
   achievementCategory,
   achievement,
   index,
   setIsEditing,
+  expanded,
+  setExpanded,
 }) => {
   const { user, setUser } = useUserContext();
-
-  const info_content = () => (
-    <Fragment>
-      {MASTER_SCHEMA[achievementCategory]["fields"].map((field, index) => {
-        const value = achievement[field.db_field];
-        let media_queries = {};
-        if (!field.view_width) {
-          media_queries = { xs: 12, lg: 6 };
-        } else if (field.view_width === WIDTH_TYPE.SMALL) {
-          media_queries = { xs: 6, lg: 6 };
-        } else if (field.view_width === WIDTH_TYPE.MEDIUM) {
-          media_queries = { xs: 6, lg: 6 };
-        } else if (field.view_width === WIDTH_TYPE.LARGE) {
-          media_queries = { xs: 6, lg: 6 };
-        }
-
-        return (
-          <Grid item {...media_queries} key={field.db_field}>
-            <DisplayNode field={field} value={value}></DisplayNode>
-          </Grid>
-        );
-      })}
-    </Fragment>
-  );
-
   return (
     <Fragment>
-      <Grid container>{info_content()}</Grid>
-      <Box pt={2}>
-        <ButtonGroup fullWidth aria-label="edit button group">
-          <Button
-            fullWidth
-            variant="contained"
-            color="secondary"
-            onClick={() => {
-              setIsEditing((oldState) => !oldState);
-            }}
-          >
-            {"Edit"}
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => {
-              deleteAchievementHandler(
-                user["profile"].employeeID,
-                achievement.id,
-                setUser,
-                achievementCategory
-              );
-            }}
-          >
-            {"Delete"}
-          </Button>
-        </ButtonGroup>
-      </Box>
+      <AchievementCard
+        achievement={achievement}
+        achievementIndex={index}
+        achievementCategory={achievementCategory}
+        setIsEditing={setIsEditing}
+        {...{ expanded, setExpanded }}
+        cardActions={
+          <Fragment>
+            <IconButton
+              aria-label="edit"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsEditing(true);
+              }}
+            >
+              <EditIcon />
+            </IconButton>
+            <IconButton
+              aria-label="delete"
+              onClick={(e) => {
+                e.stopPropagation();
+                deleteAchievementHandler(
+                  user["profile"].employeeID,
+                  achievement.id,
+                  setUser,
+                  achievementCategory
+                );
+              }}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </Fragment>
+        }
+        cardContent={
+          <Grid container>
+            {MASTER_SCHEMA[achievementCategory]["fields"].map(
+              (field, index) => {
+                const value = achievement[field.db_field];
+
+                return (
+                  <Grid
+                    item
+                    {...{ xs: 12, sm: 12, md: 12, lg: 6 }}
+                    key={field.db_field}
+                  >
+                    <DisplayNode field={field} value={value}></DisplayNode>
+                  </Grid>
+                );
+              }
+            )}
+          </Grid>
+        }
+      />
     </Fragment>
   );
 };

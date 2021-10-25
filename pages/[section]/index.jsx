@@ -177,7 +177,7 @@ export default function Test() {
         <Divider />
         <SecondaryList />
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 2 }}>
         <DrawerHeader />
         {memoizedMainViewComponents}
         <Copyright sx={{ mt: 10 }} />

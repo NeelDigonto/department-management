@@ -87,6 +87,8 @@ const SCHEMA = {
   key: "collaborations",
   icon: <GroupOutlinedIcon />,
   fields: FIELDS,
+  display_title: "colab_agency",
+  display_date: "date",
 };
 
 const getValidationSchema = () => {

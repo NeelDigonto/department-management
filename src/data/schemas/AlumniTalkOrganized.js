@@ -120,6 +120,8 @@ const SCHEMA = {
   key: "alumni-talk-organized",
   icon: <EmojiPeopleOutlinedIcon />,
   fields: FIELDS,
+  display_title: "title",
+  display_date: "event_start_date",
 };
 
 const getValidationSchema = () => {

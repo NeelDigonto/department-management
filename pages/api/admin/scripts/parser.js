@@ -213,7 +213,7 @@ const filesToRead = [
     key: "invited-lecture",
     mapper: (row) => {
       return {
-        event_title: row["event_title"],
+        title: row["event_title"],
         event_type: row["event_type"],
         lecture_title: row["lecture_title"],
         org_inst: row["org_inst"],

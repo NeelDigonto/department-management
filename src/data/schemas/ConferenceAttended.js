@@ -121,6 +121,8 @@ const SCHEMA = {
   key: "conference-attended",
   icon: <VideoCallOutlinedIcon />,
   fields: FIELDS,
+  display_title: "title",
+  display_date: "event_start_date",
 };
 
 const getValidationSchema = () => {

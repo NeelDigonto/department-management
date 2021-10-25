@@ -86,6 +86,8 @@ const SCHEMA = {
   key: "mou-signed-bsh",
   icon: <VideoCallOutlinedIcon />,
   fields: FIELDS,
+  display_title: "entity_name",
+  display_date: "sign_date",
 };
 
 const getValidationSchema = () => {

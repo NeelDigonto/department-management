@@ -18,7 +18,7 @@ const FIELDS = [
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
     view_width: WIDTH_TYPE.LARGE,
-    db_field: "event_title",
+    db_field: "title",
     validation: Validation.string(),
   },
   {
@@ -121,6 +121,8 @@ const SCHEMA = {
   key: "invited-lecture",
   icon: <AddIcCallIcon />,
   fields: FIELDS,
+  display_title: "title",
+  display_date: "event_start_date",
 };
 
 const getValidationSchema = () => {

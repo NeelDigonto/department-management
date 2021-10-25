@@ -10,18 +10,6 @@ import {
 import Validation from "../validation/schemas";
 
 const FIELDS = [
-  /* {
-    label: "Department",
-    value: "",
-    info: "Department",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.STRING,
-    input_type: INPUT_TYPE.SELECT,
-    view_width: WIDTH_TYPE.MEDIUM,
-    options: ["Department of Basic Science and Humanities"],
-    db_field: "department",
-    validation: Validation.option(),
-  }, */
   {
     label: "Project Start Date",
     value: new Date().toISOString(),
@@ -109,6 +97,8 @@ const SCHEMA = {
   key: "bsh-project-competitions",
   icon: <BarChartIcon />,
   fields: FIELDS,
+  display_title: "proj_name",
+  display_date: "event_start_date",
 };
 
 const getValidationSchema = () => {

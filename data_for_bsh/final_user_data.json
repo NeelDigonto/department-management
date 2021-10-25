@@ -6,7 +6,7 @@
     },
     "research-projects": [
       {
-        "proj_name": "Computational Studies of Structure and Interface Modified Magnetic Materials for Nanomagnetic Devices",
+        "title": "Computational Studies of Structure and Interface Modified Magnetic Materials for Nanomagnetic Devices",
         "fac_role": "Principal Investigator (PI)",
         "co_pi_name": "",
         "sanc_date": "2018-06-29T00:00:00.000Z",
@@ -754,7 +754,7 @@
     ],
     "research-projects": [
       {
-        "proj_name": "Development of a multicomponent gas-particle Navier-Stokes solver for needle free drug delivery",
+        "title": "Development of a multicomponent gas-particle Navier-Stokes solver for needle free drug delivery",
         "fac_role": "Co-Principal Investigator (Co-PI)",
         "co_pi_name": "",
         "sanc_date": "2018-09-13T00:00:00.000Z",
@@ -2048,7 +2048,7 @@
     ],
     "invited-lecture": [
       {
-        "event_title": "Stress Management",
+        "title": "Stress Management",
         "event_type": "Webinar",
         "lecture_title": "Effect of stress on work-life (Occupational Stress)",
         "org_inst": "Administrative Training Institute",
@@ -2062,7 +2062,7 @@
         }
       },
       {
-        "event_title": "Communicative Competence in English",
+        "title": "Communicative Competence in English",
         "event_type": "Webinar",
         "lecture_title": "Communicative Competence in English",
         "org_inst": "S. S. Maniyar Law College, Jalgaon",
@@ -2076,7 +2076,7 @@
         }
       },
       {
-        "event_title": "Councelling",
+        "title": "Councelling",
         "event_type": "Webinar",
         "lecture_title": "Carrier Councelling",
         "org_inst": "College Dekho",
@@ -2090,7 +2090,7 @@
         }
       },
       {
-        "event_title": "Cyber Security",
+        "title": "Cyber Security",
         "event_type": "Webinar",
         "lecture_title": "Cyber Security",
         "org_inst": "PRSI Kolkta Chapter",
@@ -2104,7 +2104,7 @@
         }
       },
       {
-        "event_title": "R-Plus Interview",
+        "title": "R-Plus Interview",
         "event_type": "Live Telecast",
         "lecture_title": "R-Plus Interview",
         "org_inst": "R-Plus",
@@ -2118,7 +2118,7 @@
         }
       },
       {
-        "event_title": "Virangana",
+        "title": "Virangana",
         "event_type": "Workshop",
         "lecture_title": "Enhancing Mental Stamina",
         "org_inst": "Rotary Sadar",
@@ -2132,7 +2132,7 @@
         }
       },
       {
-        "event_title": "Virangana",
+        "title": "Virangana",
         "event_type": "Workshop",
         "lecture_title": "Enhancing Mental Stamina",
         "org_inst": "Rorat Club of Calcutta Mid Town",
@@ -2146,7 +2146,7 @@
         }
       },
       {
-        "event_title": "Virangana",
+        "title": "Virangana",
         "event_type": "Workshop",
         "lecture_title": "Enhancing Mental Stamina",
         "org_inst": "Calcutta Harmony",
@@ -2160,7 +2160,7 @@
         }
       },
       {
-        "event_title": "Virangana",
+        "title": "Virangana",
         "event_type": "Workshop",
         "lecture_title": "Enhancing Mental Stamina",
         "org_inst": "Rotary Club of Calcutta Kakurgachi",
@@ -2174,7 +2174,7 @@
         }
       },
       {
-        "event_title": "Virangana",
+        "title": "Virangana",
         "event_type": "Workshop",
         "lecture_title": "Enhancing Mental Stamina",
         "org_inst": "Rotary Club of Calcutta South Circle",
@@ -2921,7 +2921,7 @@
     ],
     "research-projects": [
       {
-        "proj_name": "Wastewater treatment and energy generation: a path towards process integration for more sustainable cities",
+        "title": "Wastewater treatment and energy generation: a path towards process integration for more sustainable cities",
         "fac_role": "Principal Investigator (PI)",
         "co_pi_name": "Dr. Barbara RUFFINO",
         "sanc_date": "2021-04-30T00:00:00.000Z",
@@ -3333,7 +3333,7 @@
     ],
     "invited-lecture": [
       {
-        "event_title": "World Environment Day",
+        "title": "World Environment Day",
         "event_type": "Webinar",
         "lecture_title": "Biocomputing",
         "org_inst": "Silver Point School",
@@ -3344,38 +3344,6 @@
         "proof": {
           "isLink": true,
           "flink": "https://drive.google.com/file/d/11_og9Y9Mubwb34tNw9AAQLsqY_7O21On/view?usp=sharing"
-        }
-      }
-    ],
-    "seminar-attended": [
-      {
-        "title": "Seminar on �Chemistry & its Relevance in Environmental Biology, CREB",
-        "event_start_date": "2018-06-19T18:30:00.000Z",
-        "event_end_date": "2018-06-19T18:30:00.000Z",
-        "speaker_name": "Dr. Sanjeev Ganguly",
-        "speaker_designation": "",
-        "speaker_org": "",
-        "org_inst": "",
-        "coverage": "National",
-        "participants": 100,
-        "proof": {
-          "isLink": true,
-          "flink": "https://drive.google.com/file/d/1acgIVXS2jyzJ4hGNCY0KytkbrHQUxbw3/view?usp=sharing"
-        }
-      },
-      {
-        "title": "National seminar on Carbon capture and Utilization Technology",
-        "event_start_date": "2017-07-05T18:30:00.000Z",
-        "event_end_date": "2017-07-05T18:30:00.000Z",
-        "speaker_name": "NA",
-        "speaker_designation": "",
-        "speaker_org": "",
-        "org_inst": "",
-        "coverage": "National",
-        "participants": 100,
-        "proof": {
-          "isLink": true,
-          "flink": "https://drive.google.com/file/d/1-3Pm5KXM1UZ3WUzvOznckFWRPuGz4zjk/view?usp=sharing"
         }
       }
     ],
@@ -3434,6 +3402,38 @@
         "proof": {
           "isLink": true,
           "flink": "https://drive.google.com/file/d/1aE_JhnBRZM71jPNN6AjWjyYeJ7ErLhJO/view?usp=sharing"
+        }
+      }
+    ],
+    "seminar-attended": [
+      {
+        "title": "Seminar on �Chemistry & its Relevance in Environmental Biology, CREB",
+        "event_start_date": "2018-06-19T18:30:00.000Z",
+        "event_end_date": "2018-06-19T18:30:00.000Z",
+        "speaker_name": "Dr. Sanjeev Ganguly",
+        "speaker_designation": "",
+        "speaker_org": "",
+        "org_inst": "",
+        "coverage": "National",
+        "participants": 100,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1acgIVXS2jyzJ4hGNCY0KytkbrHQUxbw3/view?usp=sharing"
+        }
+      },
+      {
+        "title": "National seminar on Carbon capture and Utilization Technology",
+        "event_start_date": "2017-07-05T18:30:00.000Z",
+        "event_end_date": "2017-07-05T18:30:00.000Z",
+        "speaker_name": "NA",
+        "speaker_designation": "",
+        "speaker_org": "",
+        "org_inst": "",
+        "coverage": "National",
+        "participants": 100,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1-3Pm5KXM1UZ3WUzvOznckFWRPuGz4zjk/view?usp=sharing"
         }
       }
     ]
@@ -3944,6 +3944,22 @@
         }
       }
     ],
+    "webinar-attended": [
+      {
+        "event_start_date": "2020-09-22T18:30:00.000Z",
+        "event_end_date": "2020-09-22T18:30:00.000Z",
+        "speaker_name": "Dr. Rachel Freeman",
+        "speaker_designation": "UCL Energy Institute",
+        "speaker_org": "UK",
+        "org_inst": "",
+        "coverage": "International",
+        "participants": 100,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1YyPPsVvUGQlfh8F9IGMg_KqMQOyTIIjm/view?usp=sharing"
+        }
+      }
+    ],
     "seminar-attended": [
       {
         "title": "One Day Seminar on Pandemic Losses: Ways to Overcome",
@@ -3958,22 +3974,6 @@
         "proof": {
           "isLink": true,
           "flink": "https://drive.google.com/file/d/1or3rrbkN9feLlGYm2miXyLB4pzrA2Hfr/view?usp=sharing"
-        }
-      }
-    ],
-    "webinar-attended": [
-      {
-        "event_start_date": "2020-09-22T18:30:00.000Z",
-        "event_end_date": "2020-09-22T18:30:00.000Z",
-        "speaker_name": "Dr. Rachel Freeman",
-        "speaker_designation": "UCL Energy Institute",
-        "speaker_org": "UK",
-        "org_inst": "",
-        "coverage": "International",
-        "participants": 100,
-        "proof": {
-          "isLink": true,
-          "flink": "https://drive.google.com/file/d/1YyPPsVvUGQlfh8F9IGMg_KqMQOyTIIjm/view?usp=sharing"
         }
       }
     ]
@@ -10316,7 +10316,7 @@
     ],
     "research-projects": [
       {
-        "proj_name": "Sensing urban air Pollutants and its Effects on human Skin Health-A Knowledge Mining",
+        "title": "Sensing urban air Pollutants and its Effects on human Skin Health-A Knowledge Mining",
         "fac_role": "Principal Investigator (PI)",
         "co_pi_name": "Dr.Sanchita Ghosh",
         "sanc_date": "2018-06-30T00:00:00.000Z",
@@ -13947,23 +13947,6 @@
         }
       }
     ],
-    "seminar-attended": [
-      {
-        "title": "Online seminar on Go Green ",
-        "event_start_date": "2021-06-04T18:30:00.000Z",
-        "event_end_date": "2021-06-04T18:30:00.000Z",
-        "speaker_name": "BSH",
-        "speaker_designation": "IEM",
-        "speaker_org": "Kolkata",
-        "org_inst": "",
-        "coverage": "National",
-        "participants": 100,
-        "proof": {
-          "isLink": true,
-          "flink": "https://drive.google.com/file/d/19Asvg0HS-Y7Z9FAKnqR8bD6ePvrTUe5Y/view?usp=sharing"
-        }
-      }
-    ],
     "webinar-attended": [
       {
         "event_start_date": "2020-06-25T18:30:00.000Z",
@@ -14089,6 +14072,23 @@
         "proof": {
           "isLink": true,
           "flink": "https://drive.google.com/file/d/1QESnL9olu5hsMUlSW7R2M4GBuuRWV3t-/view?usp=sharing"
+        }
+      }
+    ],
+    "seminar-attended": [
+      {
+        "title": "Online seminar on Go Green ",
+        "event_start_date": "2021-06-04T18:30:00.000Z",
+        "event_end_date": "2021-06-04T18:30:00.000Z",
+        "speaker_name": "BSH",
+        "speaker_designation": "IEM",
+        "speaker_org": "Kolkata",
+        "org_inst": "",
+        "coverage": "National",
+        "participants": 100,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/19Asvg0HS-Y7Z9FAKnqR8bD6ePvrTUe5Y/view?usp=sharing"
         }
       }
     ]
@@ -18480,7 +18480,7 @@
     ],
     "invited-lecture": [
       {
-        "event_title": "Discrete Mathematics & its Applications",
+        "title": "Discrete Mathematics & its Applications",
         "event_type": "Series of Invited talks (10 Lectures)",
         "lecture_title": "Topic on Discrete Mathematics",
         "org_inst": "Department of Computer Science, Ramakrishna Mission Rcsidential College, Narendrapur",
@@ -18494,7 +18494,7 @@
         }
       },
       {
-        "event_title": "Randomised Algorithm",
+        "title": "Randomised Algorithm",
         "event_type": "Invited Talk",
         "lecture_title": "\"Introduction to Radomized Algorithms\"",
         "org_inst": "Ramakrishna Mission Vivekananda Educational and Research Institute, Belur",
@@ -18508,7 +18508,7 @@
         }
       },
       {
-        "event_title": "Graph coloring",
+        "title": "Graph coloring",
         "event_type": "Invited Talk",
         "lecture_title": "\"Give me a graph and I will color it\"",
         "org_inst": "Ramakrishna Mission Vivekananda Educational and Research Institute, Belur",
@@ -18522,7 +18522,7 @@
         }
       },
       {
-        "event_title": "Applications of Graph Homomorphisms",
+        "title": "Applications of Graph Homomorphisms",
         "event_type": "Invited Talk, Indo-French project under IFCAM (MA/IFCAM/18/39)",
         "lecture_title": "\"Distance constrained graph labeling\"",
         "org_inst": "Ramakrishna Mission Vivekananda Educational and Research Institute, Belur",
@@ -18536,7 +18536,7 @@
         }
       },
       {
-        "event_title": "Indo-Italian Pre-Conference School on Algorithms & Combinatorics",
+        "title": "Indo-Italian Pre-Conference School on Algorithms & Combinatorics",
         "event_type": "Pre-Conference school of the conference CALDAM 2019",
         "lecture_title": "\"Distance constrained graph labeling\"",
         "org_inst": "Indian Institute of Technology, Kharagpur",
@@ -18550,7 +18550,7 @@
         }
       },
       {
-        "event_title": "Graph Optimisation",
+        "title": "Graph Optimisation",
         "event_type": "Seminar",
         "lecture_title": "\"Distance constrained graph labeling\"",
         "org_inst": "University Of Bordeaux, France",
@@ -18564,7 +18564,7 @@
         }
       },
       {
-        "event_title": "Recent Trends in Computer Science",
+        "title": "Recent Trends in Computer Science",
         "event_type": "Webinar",
         "lecture_title": "\"Randomised algorithm an Introduction\"",
         "org_inst": "Department of Computer Science, Maheshtala College, Kolkata",
@@ -18578,7 +18578,7 @@
         }
       },
       {
-        "event_title": "Recent Trends in Computer Science & Application",
+        "title": "Recent Trends in Computer Science & Application",
         "event_type": "Webinar",
         "lecture_title": "\"Randomised algorithm an Introduction\"",
         "org_inst": "Department of Computer Science, Raja Narendra Lal Khan Women�s College (Autonomous), Midnapore",
@@ -18592,7 +18592,7 @@
         }
       },
       {
-        "event_title": "Theoretical Computer Science & Applications",
+        "title": "Theoretical Computer Science & Applications",
         "event_type": "Webinar",
         "lecture_title": "\"Brussels Sprouts to Euler\"",
         "org_inst": "Department of Computer Science, Ramakrishna Mission Rcsidential College, Narendrapur",
@@ -18606,7 +18606,7 @@
         }
       },
       {
-        "event_title": "Radio k-coloring and related topics",
+        "title": "Radio k-coloring and related topics",
         "event_type": "Series of Lectures (5 Lectures)",
         "lecture_title": "\"Radio labeling of some graph classes\"",
         "org_inst": "Department of Mathematics, Indian Institute of Technology Dharwad, Karnataka",
@@ -18922,98 +18922,6 @@
         }
       }
     ],
-    "seminar-attended": [
-      {
-        "title": "IEMSC - 21 (Maths)",
-        "event_start_date": "2021-02-03T18:30:00.000Z",
-        "event_end_date": "2021-02-05T18:30:00.000Z",
-        "speaker_name": "Javed Mashregi",
-        "speaker_designation": "University Laval,Quebec,QC, canada of IEM SESSION iv of IEMSC-21",
-        "speaker_org": "TOPIC OF TALK: THE HIDDEN COMPONENT IN SIGNAL APPROXIMATION",
-        "org_inst": "",
-        "coverage": "International",
-        "participants": 100,
-        "proof": {
-          "isLink": true,
-          "flink": "https://drive.google.com/file/d/1vh-qBk1t4s-P20OByt6SsU3YdgHsUs8r/view?usp=sharing, https://drive.google.com/file/d/1wJ3b65k2tdp5vrwB_k7wU8UeFbRZ81dd/view?usp=sharing"
-        }
-      },
-      {
-        "title": "CTMSE -21",
-        "event_start_date": "2021-03-10T18:30:00.000Z",
-        "event_end_date": "2021-03-12T18:30:00.000Z",
-        "speaker_name": "Y.Otsni",
-        "speaker_designation": "ISSP,University of Tokyo and RIKEN,JAPAN. Oskar Igles,University of Barcclona",
-        "speaker_org": "Spain",
-        "org_inst": "",
-        "coverage": "International",
-        "participants": 100,
-        "proof": {
-          "isLink": true,
-          "flink": "https://drive.google.com/file/d/1w-jDrQgIF3YZIk1aNCeP2XtaL94sYQac/view?usp=sharing"
-        }
-      },
-      {
-        "title": "IEMPHYS 2021",
-        "event_start_date": "2021-03-31T18:30:00.000Z",
-        "event_end_date": "2021-04-02T18:30:00.000Z",
-        "speaker_name": "Talked of Dr. Panagiotis Fragkos",
-        "speaker_designation": "E3,MODELLING",
-        "speaker_org": "ATHENS[iemphys-21:Technical Session 4: invited talks}",
-        "org_inst": "",
-        "coverage": "International",
-        "participants": 100,
-        "proof": {
-          "isLink": true,
-          "flink": "https://drive.google.com/file/d/1I4Wr2ivd5LBYkThmzNGz5sN3Vo9QNbDs/view?usp=sharing"
-        }
-      },
-      {
-        "title": "Green building and sustainable development goals",
-        "event_start_date": "2021-08-10T18:30:00.000Z",
-        "event_end_date": "2021-08-10T18:30:00.000Z",
-        "speaker_name": "1.Kapil Menghrani 2. Shubhabrata Rath",
-        "speaker_designation": "",
-        "speaker_org": "",
-        "org_inst": "",
-        "coverage": "National",
-        "participants": 100,
-        "proof": {
-          "isLink": true,
-          "flink": "https://drive.google.com/file/d/16WQTj1Xh1t2KAj8vUqM2Eq9236AEskm_/view?usp=drivesdk,https://drive.google.com/file/d/16ZXEg0cNuBvCeXTw7jvfBhz3L09kzUHN/view?usp=drivesdk"
-        }
-      },
-      {
-        "title": "Rethinking Tradiional Economy:Green Manufacturing",
-        "event_start_date": "2021-08-16T18:30:00.000Z",
-        "event_end_date": "2021-08-16T18:30:00.000Z",
-        "speaker_name": "Dr. Farshid Pahlevani",
-        "speaker_designation": "",
-        "speaker_org": "",
-        "org_inst": "",
-        "coverage": "International",
-        "participants": 100,
-        "proof": {
-          "isLink": true,
-          "flink": "https://drive.google.com/file/d/1E-NblFW-uaC9qjf3pcCkr_a5bcNCtolS/view?usp=sharing"
-        }
-      },
-      {
-        "title": "\"Patent and it's Role in Research & Innovation\"",
-        "event_start_date": "2021-08-16T18:30:00.000Z",
-        "event_end_date": "2021-08-16T18:30:00.000Z",
-        "speaker_name": "Dr. Debabrata SAMANTA",
-        "speaker_designation": "",
-        "speaker_org": "",
-        "org_inst": "",
-        "coverage": "National",
-        "participants": 100,
-        "proof": {
-          "isLink": true,
-          "flink": "https://drive.google.com/file/d/19_zRvX9B5G-K1u_ehHCZ_mXgaaRSF5cf/view?usp=sharing"
-        }
-      }
-    ],
     "webinar-attended": [
       {
         "event_start_date": "2021-06-28T18:30:00.000Z",
@@ -19265,6 +19173,98 @@
         "proof": {
           "isLink": true,
           "flink": "https://drive.google.com/file/d/1ZboyPun4up4j55DkrtoQX25Z4gjnBuQC/view?usp=sharing"
+        }
+      }
+    ],
+    "seminar-attended": [
+      {
+        "title": "IEMSC - 21 (Maths)",
+        "event_start_date": "2021-02-03T18:30:00.000Z",
+        "event_end_date": "2021-02-05T18:30:00.000Z",
+        "speaker_name": "Javed Mashregi",
+        "speaker_designation": "University Laval,Quebec,QC, canada of IEM SESSION iv of IEMSC-21",
+        "speaker_org": "TOPIC OF TALK: THE HIDDEN COMPONENT IN SIGNAL APPROXIMATION",
+        "org_inst": "",
+        "coverage": "International",
+        "participants": 100,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1vh-qBk1t4s-P20OByt6SsU3YdgHsUs8r/view?usp=sharing, https://drive.google.com/file/d/1wJ3b65k2tdp5vrwB_k7wU8UeFbRZ81dd/view?usp=sharing"
+        }
+      },
+      {
+        "title": "CTMSE -21",
+        "event_start_date": "2021-03-10T18:30:00.000Z",
+        "event_end_date": "2021-03-12T18:30:00.000Z",
+        "speaker_name": "Y.Otsni",
+        "speaker_designation": "ISSP,University of Tokyo and RIKEN,JAPAN. Oskar Igles,University of Barcclona",
+        "speaker_org": "Spain",
+        "org_inst": "",
+        "coverage": "International",
+        "participants": 100,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1w-jDrQgIF3YZIk1aNCeP2XtaL94sYQac/view?usp=sharing"
+        }
+      },
+      {
+        "title": "IEMPHYS 2021",
+        "event_start_date": "2021-03-31T18:30:00.000Z",
+        "event_end_date": "2021-04-02T18:30:00.000Z",
+        "speaker_name": "Talked of Dr. Panagiotis Fragkos",
+        "speaker_designation": "E3,MODELLING",
+        "speaker_org": "ATHENS[iemphys-21:Technical Session 4: invited talks}",
+        "org_inst": "",
+        "coverage": "International",
+        "participants": 100,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1I4Wr2ivd5LBYkThmzNGz5sN3Vo9QNbDs/view?usp=sharing"
+        }
+      },
+      {
+        "title": "Green building and sustainable development goals",
+        "event_start_date": "2021-08-10T18:30:00.000Z",
+        "event_end_date": "2021-08-10T18:30:00.000Z",
+        "speaker_name": "1.Kapil Menghrani 2. Shubhabrata Rath",
+        "speaker_designation": "",
+        "speaker_org": "",
+        "org_inst": "",
+        "coverage": "National",
+        "participants": 100,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/16WQTj1Xh1t2KAj8vUqM2Eq9236AEskm_/view?usp=drivesdk,https://drive.google.com/file/d/16ZXEg0cNuBvCeXTw7jvfBhz3L09kzUHN/view?usp=drivesdk"
+        }
+      },
+      {
+        "title": "Rethinking Tradiional Economy:Green Manufacturing",
+        "event_start_date": "2021-08-16T18:30:00.000Z",
+        "event_end_date": "2021-08-16T18:30:00.000Z",
+        "speaker_name": "Dr. Farshid Pahlevani",
+        "speaker_designation": "",
+        "speaker_org": "",
+        "org_inst": "",
+        "coverage": "International",
+        "participants": 100,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1E-NblFW-uaC9qjf3pcCkr_a5bcNCtolS/view?usp=sharing"
+        }
+      },
+      {
+        "title": "\"Patent and it's Role in Research & Innovation\"",
+        "event_start_date": "2021-08-16T18:30:00.000Z",
+        "event_end_date": "2021-08-16T18:30:00.000Z",
+        "speaker_name": "Dr. Debabrata SAMANTA",
+        "speaker_designation": "",
+        "speaker_org": "",
+        "org_inst": "",
+        "coverage": "National",
+        "participants": 100,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/19_zRvX9B5G-K1u_ehHCZ_mXgaaRSF5cf/view?usp=sharing"
         }
       }
     ]
@@ -24080,158 +24080,6 @@
         }
       }
     ],
-    "seminar-attended": [
-      {
-        "title": "Various aspects of Multicomponent Reactions",
-        "event_start_date": "2021-05-31T18:30:00.000Z",
-        "event_end_date": "2021-05-31T18:30:00.000Z",
-        "speaker_name": "Dr. Anamika Khaskel",
-        "speaker_designation": "Associate Professor",
-        "speaker_org": "Dept.of BSH",
-        "org_inst": "",
-        "coverage": "National",
-        "participants": 100,
-        "proof": {
-          "isLink": true,
-          "flink": "https://drive.google.com/file/d/1Vvb_mSo3V2wIEJEYzVGGjSQltXinMxcw/view?usp=sharing"
-        }
-      },
-      {
-        "title": "Art of Sleeping",
-        "event_start_date": "2021-06-01T18:30:00.000Z",
-        "event_end_date": "2021-06-01T18:30:00.000Z",
-        "speaker_name": "Prof. Partha Pratim Bakshi",
-        "speaker_designation": "",
-        "speaker_org": "Proctor & HOD of BHM Department",
-        "org_inst": "",
-        "coverage": "National",
-        "participants": 100,
-        "proof": {
-          "isLink": true,
-          "flink": "https://drive.google.com/file/d/1bys_HDoDSH7nfMHZSwGUlDr5GmWALtLI/view?usp=sharing"
-        }
-      },
-      {
-        "title": "Introduction of Entrepreneurship",
-        "event_start_date": "2021-06-02T18:30:00.000Z",
-        "event_end_date": "2021-06-02T18:30:00.000Z",
-        "speaker_name": "Mr. Raja Sarkar",
-        "speaker_designation": "",
-        "speaker_org": "Manager Corporate Relation",
-        "org_inst": "",
-        "coverage": "National",
-        "participants": 100,
-        "proof": {
-          "isLink": true,
-          "flink": "https://drive.google.com/file/d/13kISRqd0lrEkf7xNww31zlqflOcPVudM/view?usp=sharing"
-        }
-      },
-      {
-        "title": "INTRODUCTION TO WATER RESOURCES ENGINEERING",
-        "event_start_date": "2021-06-03T18:30:00.000Z",
-        "event_end_date": "2021-06-03T18:30:00.000Z",
-        "speaker_name": "Dr. Umesh Kumar Das",
-        "speaker_designation": "Assistant Professor",
-        "speaker_org": "Dept.of Civil",
-        "org_inst": "",
-        "coverage": "National",
-        "participants": 100,
-        "proof": {
-          "isLink": true,
-          "flink": "https://drive.google.com/file/d/1gsF0PcZQVLbMNC1rcL0My5nBJnWmwuFZ/view?usp=sharing"
-        }
-      },
-      {
-        "title": "Basics of Matlab",
-        "event_start_date": "2021-06-06T18:30:00.000Z",
-        "event_end_date": "2021-06-06T18:30:00.000Z",
-        "speaker_name": "Dr. Vishal Kumar Pandey",
-        "speaker_designation": "",
-        "speaker_org": "Associate Professor Department of ECE",
-        "org_inst": "",
-        "coverage": "National",
-        "participants": 100,
-        "proof": {
-          "isLink": true,
-          "flink": "https://drive.google.com/file/d/1wWLZOSqyP1gqT7xthNquk80PFidwpZ9W/view?usp=sharing"
-        }
-      },
-      {
-        "title": "DEMAND SIDE MANAGEMENT",
-        "event_start_date": "2021-06-07T18:30:00.000Z",
-        "event_end_date": "2021-06-07T18:30:00.000Z",
-        "speaker_name": "Dr. Ankit Kumar Sharma",
-        "speaker_designation": "Associate Professor",
-        "speaker_org": "Dept. of EE",
-        "org_inst": "",
-        "coverage": "National",
-        "participants": 100,
-        "proof": {
-          "isLink": true,
-          "flink": "https://drive.google.com/file/d/1WLTPWBbg_lurBIkQ9ueEoLz3P4qvizDY/view?usp=sharing"
-        }
-      },
-      {
-        "title": "English for Science Students",
-        "event_start_date": "2021-06-08T18:30:00.000Z",
-        "event_end_date": "2021-06-08T18:30:00.000Z",
-        "speaker_name": "Prof. Neha Meena",
-        "speaker_designation": "Assistant Professor",
-        "speaker_org": "Dept. of BSH",
-        "org_inst": "",
-        "coverage": "National",
-        "participants": 100,
-        "proof": {
-          "isLink": true,
-          "flink": "https://drive.google.com/file/d/1WLTPWBbg_lurBIkQ9ueEoLz3P4qvizDY/view?usp=sharing"
-        }
-      },
-      {
-        "title": "Design Philosophy of Earthquake Resistant",
-        "event_start_date": "2021-06-09T18:30:00.000Z",
-        "event_end_date": "2021-06-09T18:30:00.000Z",
-        "speaker_name": "Prof. Paulami Das Choudhury",
-        "speaker_designation": "Asst Professor",
-        "speaker_org": "Dept.of Civil",
-        "org_inst": "",
-        "coverage": "National",
-        "participants": 100,
-        "proof": {
-          "isLink": true,
-          "flink": "https://drive.google.com/file/d/1aRtjsPcEiH2ChFEFlEpy1orvS8JLEj5t/view?usp=sharing"
-        }
-      },
-      {
-        "title": "Case study on Blow Hole",
-        "event_start_date": "2021-06-10T18:30:00.000Z",
-        "event_end_date": "2021-06-10T18:30:00.000Z",
-        "speaker_name": "Prof. Sasthi Charan Hens",
-        "speaker_designation": "Assistant Professor",
-        "speaker_org": "Dept.of ME",
-        "org_inst": "",
-        "coverage": "National",
-        "participants": 100,
-        "proof": {
-          "isLink": true,
-          "flink": "https://drive.google.com/file/d/1v7jWvKkwKx4ld2tOn87sGfQYjt7U4gYY/view?usp=sharing"
-        }
-      },
-      {
-        "title": "Technology Behind Essential Appurtenances",
-        "event_start_date": "2021-06-14T18:30:00.000Z",
-        "event_end_date": "2021-06-14T18:30:00.000Z",
-        "speaker_name": "Prof. Sumit Paul",
-        "speaker_designation": "Assistant Professor",
-        "speaker_org": "Dept.of ME",
-        "org_inst": "",
-        "coverage": "National",
-        "participants": 100,
-        "proof": {
-          "isLink": true,
-          "flink": "https://drive.google.com/file/d/1TdZSdJ6qvea_UJu-zPoeJC1B-NLgy4rE/view?usp=sharing"
-        }
-      }
-    ],
     "webinar-attended": [
       {
         "event_start_date": "2021-06-15T18:30:00.000Z",
@@ -24399,6 +24247,158 @@
         "proof": {
           "isLink": true,
           "flink": "https://drive.google.com/file/d/1nVhf6kgL8NfqRmYymqpbku9dQNgy6Qge/view?usp=sharing"
+        }
+      }
+    ],
+    "seminar-attended": [
+      {
+        "title": "Various aspects of Multicomponent Reactions",
+        "event_start_date": "2021-05-31T18:30:00.000Z",
+        "event_end_date": "2021-05-31T18:30:00.000Z",
+        "speaker_name": "Dr. Anamika Khaskel",
+        "speaker_designation": "Associate Professor",
+        "speaker_org": "Dept.of BSH",
+        "org_inst": "",
+        "coverage": "National",
+        "participants": 100,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1Vvb_mSo3V2wIEJEYzVGGjSQltXinMxcw/view?usp=sharing"
+        }
+      },
+      {
+        "title": "Art of Sleeping",
+        "event_start_date": "2021-06-01T18:30:00.000Z",
+        "event_end_date": "2021-06-01T18:30:00.000Z",
+        "speaker_name": "Prof. Partha Pratim Bakshi",
+        "speaker_designation": "",
+        "speaker_org": "Proctor & HOD of BHM Department",
+        "org_inst": "",
+        "coverage": "National",
+        "participants": 100,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1bys_HDoDSH7nfMHZSwGUlDr5GmWALtLI/view?usp=sharing"
+        }
+      },
+      {
+        "title": "Introduction of Entrepreneurship",
+        "event_start_date": "2021-06-02T18:30:00.000Z",
+        "event_end_date": "2021-06-02T18:30:00.000Z",
+        "speaker_name": "Mr. Raja Sarkar",
+        "speaker_designation": "",
+        "speaker_org": "Manager Corporate Relation",
+        "org_inst": "",
+        "coverage": "National",
+        "participants": 100,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/13kISRqd0lrEkf7xNww31zlqflOcPVudM/view?usp=sharing"
+        }
+      },
+      {
+        "title": "INTRODUCTION TO WATER RESOURCES ENGINEERING",
+        "event_start_date": "2021-06-03T18:30:00.000Z",
+        "event_end_date": "2021-06-03T18:30:00.000Z",
+        "speaker_name": "Dr. Umesh Kumar Das",
+        "speaker_designation": "Assistant Professor",
+        "speaker_org": "Dept.of Civil",
+        "org_inst": "",
+        "coverage": "National",
+        "participants": 100,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1gsF0PcZQVLbMNC1rcL0My5nBJnWmwuFZ/view?usp=sharing"
+        }
+      },
+      {
+        "title": "Basics of Matlab",
+        "event_start_date": "2021-06-06T18:30:00.000Z",
+        "event_end_date": "2021-06-06T18:30:00.000Z",
+        "speaker_name": "Dr. Vishal Kumar Pandey",
+        "speaker_designation": "",
+        "speaker_org": "Associate Professor Department of ECE",
+        "org_inst": "",
+        "coverage": "National",
+        "participants": 100,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1wWLZOSqyP1gqT7xthNquk80PFidwpZ9W/view?usp=sharing"
+        }
+      },
+      {
+        "title": "DEMAND SIDE MANAGEMENT",
+        "event_start_date": "2021-06-07T18:30:00.000Z",
+        "event_end_date": "2021-06-07T18:30:00.000Z",
+        "speaker_name": "Dr. Ankit Kumar Sharma",
+        "speaker_designation": "Associate Professor",
+        "speaker_org": "Dept. of EE",
+        "org_inst": "",
+        "coverage": "National",
+        "participants": 100,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1WLTPWBbg_lurBIkQ9ueEoLz3P4qvizDY/view?usp=sharing"
+        }
+      },
+      {
+        "title": "English for Science Students",
+        "event_start_date": "2021-06-08T18:30:00.000Z",
+        "event_end_date": "2021-06-08T18:30:00.000Z",
+        "speaker_name": "Prof. Neha Meena",
+        "speaker_designation": "Assistant Professor",
+        "speaker_org": "Dept. of BSH",
+        "org_inst": "",
+        "coverage": "National",
+        "participants": 100,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1WLTPWBbg_lurBIkQ9ueEoLz3P4qvizDY/view?usp=sharing"
+        }
+      },
+      {
+        "title": "Design Philosophy of Earthquake Resistant",
+        "event_start_date": "2021-06-09T18:30:00.000Z",
+        "event_end_date": "2021-06-09T18:30:00.000Z",
+        "speaker_name": "Prof. Paulami Das Choudhury",
+        "speaker_designation": "Asst Professor",
+        "speaker_org": "Dept.of Civil",
+        "org_inst": "",
+        "coverage": "National",
+        "participants": 100,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1aRtjsPcEiH2ChFEFlEpy1orvS8JLEj5t/view?usp=sharing"
+        }
+      },
+      {
+        "title": "Case study on Blow Hole",
+        "event_start_date": "2021-06-10T18:30:00.000Z",
+        "event_end_date": "2021-06-10T18:30:00.000Z",
+        "speaker_name": "Prof. Sasthi Charan Hens",
+        "speaker_designation": "Assistant Professor",
+        "speaker_org": "Dept.of ME",
+        "org_inst": "",
+        "coverage": "National",
+        "participants": 100,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1v7jWvKkwKx4ld2tOn87sGfQYjt7U4gYY/view?usp=sharing"
+        }
+      },
+      {
+        "title": "Technology Behind Essential Appurtenances",
+        "event_start_date": "2021-06-14T18:30:00.000Z",
+        "event_end_date": "2021-06-14T18:30:00.000Z",
+        "speaker_name": "Prof. Sumit Paul",
+        "speaker_designation": "Assistant Professor",
+        "speaker_org": "Dept.of ME",
+        "org_inst": "",
+        "coverage": "National",
+        "participants": 100,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1TdZSdJ6qvea_UJu-zPoeJC1B-NLgy4rE/view?usp=sharing"
         }
       }
     ]
@@ -25053,23 +25053,6 @@
         }
       }
     ],
-    "seminar-attended": [
-      {
-        "title": "Lecture on Printing Techniques for 3D Printing",
-        "event_start_date": "2018-04-20T18:30:00.000Z",
-        "event_end_date": "2018-04-20T18:30:00.000Z",
-        "speaker_name": "Mr. Nilay Ghua",
-        "speaker_designation": "RHS Engineering, Mr. Sanjib Bhattacharya",
-        "speaker_org": "Adroitech",
-        "org_inst": "",
-        "coverage": "National",
-        "participants": 100,
-        "proof": {
-          "isLink": true,
-          "flink": "https://drive.google.com/file/d/1bQaUbwB1nhqZn2EdRQmXJte18312VJ1M/view?usp=sharing"
-        }
-      }
-    ],
     "webinar-attended": [
       {
         "event_start_date": "2021-03-18T18:30:00.000Z",
@@ -25125,6 +25108,23 @@
         "proof": {
           "isLink": true,
           "flink": "https://drive.google.com/file/d/1qYFmf7DqIFANYwKLPlP-DPASKSvRQIzt/view?usp=sharing"
+        }
+      }
+    ],
+    "seminar-attended": [
+      {
+        "title": "Lecture on Printing Techniques for 3D Printing",
+        "event_start_date": "2018-04-20T18:30:00.000Z",
+        "event_end_date": "2018-04-20T18:30:00.000Z",
+        "speaker_name": "Mr. Nilay Ghua",
+        "speaker_designation": "RHS Engineering, Mr. Sanjib Bhattacharya",
+        "speaker_org": "Adroitech",
+        "org_inst": "",
+        "coverage": "National",
+        "participants": 100,
+        "proof": {
+          "isLink": true,
+          "flink": "https://drive.google.com/file/d/1bQaUbwB1nhqZn2EdRQmXJte18312VJ1M/view?usp=sharing"
         }
       }
     ]

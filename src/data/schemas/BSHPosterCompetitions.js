@@ -75,6 +75,8 @@ const SCHEMA = {
   key: "bsh-poster-competitions",
   icon: <ArtTrackIcon />,
   fields: FIELDS,
+  display_title: "subject",
+  display_date: "event_start_date",
 };
 
 const getValidationSchema = () => {

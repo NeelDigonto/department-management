@@ -1,11 +1,21 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { useFormik } from "formik";
-import { Button, Grid, Box, Backdrop, CircularProgress } from "@mui/material";
+import {
+  Button,
+  Grid,
+  Box,
+  Backdrop,
+  CircularProgress,
+  IconButton,
+} from "@mui/material";
 
 import { MASTER_SCHEMA } from "../../data/schema";
 import { useUserContext } from "../../contexts/UserContext";
 import EditNode from "../nodes/EditNode";
 import { editAchievementHandler } from "./handlers";
+import AchievementCard from "./AchievementCard";
+import CheckIcon from "@mui/icons-material/Check";
+import CancelIcon from "@mui/icons-material/Cancel";
 
 const EditAchievement = ({
   achievementCategory,
@@ -13,6 +23,8 @@ const EditAchievement = ({
   achievement,
   index,
   setIsEditing,
+  expanded,
+  setExpanded,
 }) => {
   const { user, setUser } = useUserContext();
   const [isUploading, setIsUploading] = useState(false);
@@ -40,7 +52,7 @@ const EditAchievement = ({
     else setOpen(false);
   }, [isUploading, formik.isSubmitting]);
 
-  const getFormNode = (
+  const formNode = (
     <form onSubmit={formik.handleSubmit}>
       <Grid container>
         {MASTER_SCHEMA[achievementCategory]["fields"].map((field) => (
@@ -59,43 +71,46 @@ const EditAchievement = ({
   );
 
   return (
-    <Fragment>
-      <Backdrop
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={open}
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop>
-      {getFormNode}
-      <Box pt={2}>
-        <Grid container>
-          <Grid item xs={6}>
-            <Button
-              variant="contained"
-              color="primary"
-              fullWidth
-              onClick={() => {
-                setIsEditing(false);
-              }}
-            >
-              {"Cancel"}
-            </Button>
-          </Grid>
-          <Grid item xs={6}>
-            <Button
-              variant="contained"
-              color="secondary"
-              fullWidth
-              onClick={() => {
-                formik.handleSubmit();
-              }}
-            >
-              {"Save"}
-            </Button>
-          </Grid>
-        </Grid>
-      </Box>
-    </Fragment>
+    <AchievementCard
+      achievement={achievement}
+      achievementIndex={index}
+      achievementCategory={achievementCategory}
+      setIsEditing={setIsEditing}
+      {...{ expanded, setExpanded }}
+      cardActions={
+        <Fragment>
+          <IconButton
+            aria-label="cancel"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsEditing(false);
+            }}
+          >
+            <CancelIcon />
+          </IconButton>
+          <IconButton
+            aria-label="apply-changes"
+            onClick={(e) => {
+              e.stopPropagation();
+              formik.handleSubmit();
+            }}
+          >
+            <CheckIcon />
+          </IconButton>
+        </Fragment>
+      }
+      cardContent={
+        <Fragment>
+          <Backdrop
+            sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={open}
+          >
+            <CircularProgress color="inherit" />
+          </Backdrop>
+          {formNode}
+        </Fragment>
+      }
+    />
   );
 };
 

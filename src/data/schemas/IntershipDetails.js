@@ -85,7 +85,7 @@ const FIELDS = [
     db_field_type: DB_FIELD_TYPE.DATE,
     input_type: INPUT_TYPE.DATE,
     view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "intern_start_date",
+    db_field: "event_start_date",
     validation: Validation.date(),
   },
   {
@@ -96,7 +96,7 @@ const FIELDS = [
     db_field_type: DB_FIELD_TYPE.DATE,
     input_type: INPUT_TYPE.DATE,
     view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "intern_end_date",
+    db_field: "event_end_date",
     validation: Validation.date(),
   },
   {
@@ -142,6 +142,8 @@ const SCHEMA = {
   key: "intership-details",
   icon: <LocalLibraryIcon />,
   fields: FIELDS,
+  display_title: "title",
+  display_date: "event_start_date",
 };
 
 const getValidationSchema = () => {

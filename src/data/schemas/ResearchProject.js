@@ -18,7 +18,7 @@ const FIELDS = [
     db_field_type: DB_FIELD_TYPE.STRING,
     input_type: INPUT_TYPE.TEXT,
     view_width: WIDTH_TYPE.LARGE,
-    db_field: "proj_name",
+    db_field: "title",
     validation: Validation.string(),
   },
   {
@@ -146,6 +146,8 @@ const SCHEMA = {
   key: "research-projects",
   icon: <DomainIcon />,
   fields: FIELDS,
+  display_title: "title",
+  display_date: "sanc_date",
 };
 
 const getValidationSchema = () => {

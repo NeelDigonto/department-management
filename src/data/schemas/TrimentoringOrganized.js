@@ -22,17 +22,6 @@ const FIELDS = [
     validation: Validation.string(),
   },
   {
-    label: "Entry Date",
-    value: new Date().toISOString(),
-    info: "Date of Entry",
-    type: VALUE_TYPE.STRING,
-    db_field_type: DB_FIELD_TYPE.DATE,
-    input_type: INPUT_TYPE.DATE,
-    view_width: WIDTH_TYPE.MEDIUM,
-    db_field: "entry_date",
-    validation: Validation.date(),
-  },
-  {
     label: "Speaker Name",
     value: "",
     info: "Name of the Speaker",
@@ -131,6 +120,8 @@ const SCHEMA = {
   key: "trimentoring-organized",
   icon: <GroupOutlinedIcon />,
   fields: FIELDS,
+  display_title: "title",
+  display_date: "event_start_date",
 };
 
 const getValidationSchema = () => {

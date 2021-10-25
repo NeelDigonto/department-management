@@ -86,6 +86,8 @@ const SCHEMA = {
   key: "industry-visit",
   icon: <GroupOutlinedIcon />,
   fields: FIELDS,
+  display_title: "industry_type",
+  display_date: "visit_date",
 };
 
 const getValidationSchema = () => {

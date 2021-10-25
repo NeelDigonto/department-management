@@ -98,6 +98,8 @@ const SCHEMA = {
   key: "patent-publications",
   icon: <SecurityIcon />,
   fields: FIELDS,
+  display_title: "title",
+  display_date: "pat_fil_date",
 };
 
 const getValidationSchema = () => {

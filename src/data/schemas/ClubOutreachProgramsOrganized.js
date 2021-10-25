@@ -97,6 +97,8 @@ const SCHEMA = {
   key: "club-outreach-programs-organized",
   icon: <GroupOutlinedIcon />,
   fields: FIELDS,
+  display_title: "activity_name",
+  display_date: "event_start_date",
 };
 
 const getValidationSchema = () => {
