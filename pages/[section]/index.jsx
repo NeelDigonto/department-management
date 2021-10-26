@@ -31,6 +31,7 @@ import {
   ACHIEVEMENTS,
 } from "../../src/data/schema.js";
 import Copyright from "../../src/components/copyright/Copyright";
+import ChangePassword from "../../src/components/password/ChangePassword.jsx";
 
 const drawerWidth = 240;
 
@@ -115,6 +116,7 @@ export default function Test() {
 
   const memoizedMainViewComponents = React.useMemo(() => {
     if (section === "profile") return <Profile />;
+    if (section === "change-password") return <ChangePassword />;
     else if (!!ACHIEVEMENTS_GROUP_SCHEMA[section])
       return (
         <Achievements

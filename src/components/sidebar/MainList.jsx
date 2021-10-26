@@ -8,6 +8,7 @@ import {
   ListSubheader,
 } from "@mui/material";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import VpnKeyIcon from "@mui/icons-material/VpnKey";
 
 import { ACHIEVEMENTS } from "../../data/schema";
 
@@ -25,6 +26,19 @@ export default function MainList({ section }) {
             <DashboardIcon />
           </ListItemIcon>
           <ListItemText primary={"Profile"} />
+        </ListItem>
+      </NextLink>
+      <NextLink href={`/change-password`}>
+        <ListItem
+          button
+          sx={{
+            color: section === "change-password" ? "primary.main" : "inherit",
+          }}
+        >
+          <ListItemIcon sx={{ color: "inherit" }}>
+            <VpnKeyIcon />
+          </ListItemIcon>
+          <ListItemText primary={"Password"} />
         </ListItem>
       </NextLink>
       {ACHIEVEMENTS.map((_category, index) => (

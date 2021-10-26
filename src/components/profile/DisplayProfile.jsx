@@ -4,6 +4,7 @@ import EditIcon from "@mui/icons-material/Edit";
 
 import { useUserContext } from "../../contexts/UserContext";
 import { MASTER_SCHEMA } from "../../data/schema";
+import { INPUT_TYPE } from "../../data/types/types";
 
 const DisplayProfile = ({ setIsEditing }) => {
   const { user, setUser } = useUserContext();
@@ -12,16 +13,16 @@ const DisplayProfile = ({ setIsEditing }) => {
     <Fragment>
       <Box pt={4}>
         {MASTER_SCHEMA["profile"].map((item) => (
-          <Box key={item.db_field}>
-            <Card variant="outlined">
-              <CardContent>
-                <Typography color="textSecondary" gutterBottom>
-                  {item.label}
-                </Typography>
-                {user["profile"][item.db_field]}
-              </CardContent>
-            </Card>
-          </Box>
+          <Card variant="outlined" key={item.db_field}>
+            <CardContent>
+              <Typography color="text.secondary" gutterBottom>
+                {item.label}
+              </Typography>
+              {item.input_type !== INPUT_TYPE.DATE
+                ? user["profile"][item.db_field]
+                : new Date(user["profile"][item.db_field]).toDateString()}
+            </CardContent>
+          </Card>
         ))}
       </Box>
       <Box
