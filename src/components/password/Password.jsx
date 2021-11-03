@@ -12,7 +12,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 const Password = ({
   value,
   onChange,
-  autoComplete = "true",
+  autoComplete = "off",
   label = "Password",
   name,
   onBlur,

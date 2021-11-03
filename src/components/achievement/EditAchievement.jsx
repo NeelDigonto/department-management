@@ -8,14 +8,14 @@ import {
   CircularProgress,
   IconButton,
 } from "@mui/material";
+import CheckIcon from "@mui/icons-material/Check";
+import CancelIcon from "@mui/icons-material/Cancel";
 
 import { MASTER_SCHEMA } from "../../data/schema";
 import { useUserContext } from "../../contexts/UserContext";
 import EditNode from "../nodes/EditNode";
 import { editAchievementHandler } from "./handlers";
 import AchievementCard from "./AchievementCard";
-import CheckIcon from "@mui/icons-material/Check";
-import CancelIcon from "@mui/icons-material/Cancel";
 
 const EditAchievement = ({
   achievementCategory,

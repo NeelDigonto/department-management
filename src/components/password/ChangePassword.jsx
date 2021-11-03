@@ -19,10 +19,12 @@ import { StatusCodes } from "http-status-codes";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
+import { useUserContext } from "../../contexts/UserContext";
 import Password from "./Password";
 
 const CreateUser = () => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { user, setUser } = useUserContext();
 
   const snackbarAction = (key) => (
     <Button
@@ -36,129 +38,103 @@ const CreateUser = () => {
 
   return (
     <Paper sx={{ m: 2 }}>
-      <Box px={2} py={2}>
-        <Typography variant="h4">{"Change Password"}</Typography>
-        <Formik
-          initialValues={{
-            oldPassword: "",
-            newPassword: "",
-            newPasswordRepeat: "",
-          }}
-          onSubmit={(values, { setSubmitting }) => {
-            setSubmitting(true);
-            /* fetch(`/api/admin/create_user/${values.employeeID}`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                password: values.password,
-                name: values.name,
-              }),
-            })
-              .then((response) =>
-                response.status === StatusCodes.OK ||
-                response.status === StatusCodes.CREATED
-                  ? enqueueSnackbar("User Created Successfully", {
-                      variant: "success",
-                      action: snackbarAction,
-                    })
-                  : enqueueSnackbar("Couldn't create user", {
-                      variant: "error",
-                      action: snackbarAction,
-                    })
-              ) 
-              .then(setSubmitting(false));*/
-            setSubmitting(false);
-          }}
-        >
-          {({
-            values,
-            errors,
-            touched,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            isSubmitting,
-            /* and other goodies */
-          }) => (
-            <Form>
-              <Grid container display="flex" justifyContent="space-around">
-                <Password
-                  /*                   variant="filled" */
-                  name="oldPassword"
-                  label="Old Password"
-                  autoComplete="off"
-                  value={values.oldPassword}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                <Password
-                  /*                   variant="filled" */
-                  name="newPassword"
-                  label="New Password"
-                  autoComplete="off"
-                  value={values.newPassword}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                <Password
-                  /*                   variant="filled" */
-                  name="newPasswordRepeat"
-                  label="New Password Repeat"
-                  autoComplete="off"
-                  value={values.newPasswordRepeat}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                {/*                 <Grid item sm={12} lg={6}>
+      {!!user ? (
+        <Box px={2} py={2}>
+          <Typography variant="h4">{"Change Password"}</Typography>
+          <Formik
+            initialValues={{
+              oldPassword: "",
+              newPassword: "",
+              newPasswordRepeat: "",
+            }}
+            onSubmit={(values, { setSubmitting }) => {
+              setSubmitting(true);
+              fetch(
+                `/api/user/${user["profile"]["employeeID"]}/data/edit/password/change`,
+                {
+                  method: "PATCH",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    oldPassword: values.oldPassword,
+                    newPassword: values.newPassword,
+                  }),
+                }
+              )
+                .then((response) =>
+                  response.status === StatusCodes.OK ||
+                  response.status === StatusCodes.CREATED
+                    ? enqueueSnackbar("Password Changed Successfully", {
+                        variant: "success",
+                        action: snackbarAction,
+                      })
+                    : enqueueSnackbar("Couldn't Change Password", {
+                        variant: "error",
+                        action: snackbarAction,
+                      })
+                )
+                .then(setSubmitting(false));
+              setSubmitting(false);
+            }}
+          >
+            {({
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              isSubmitting,
+              /* and other goodies */
+            }) => (
+              <Form>
+                <Grid container display="flex" justifyContent="space-around">
                   <Box px={2} py={2}>
-                    <TextField
-                      fullWidth
+                    <Password
                       variant="filled"
-                      name="employeeID"
-                      label="EmployeeID"
+                      name="oldPassword"
+                      label="Old Password"
                       autoComplete="off"
-                      value={values.employeeID}
+                      value={values.oldPassword}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                    ></TextField>
+                    />
+                    <Password
+                      variant="filled"
+                      name="newPassword"
+                      label="New Password"
+                      autoComplete="off"
+                      value={values.newPassword}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    <Password
+                      variant="filled"
+                      name="newPasswordRepeat"
+                      label="New Password Repeat"
+                      autoComplete="off"
+                      value={values.newPasswordRepeat}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
                   </Box>
                 </Grid>
-                <Grid item sm={12} lg={6}>
-                  <Box px={2} py={2}>
-                    <TextField
-                      fullWidth
-                      variant="filled"
-                      name="name"
-                      label="Name"
-                      autoComplete="off"
-                      value={values.name}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    ></TextField>
-                  </Box>
-                </Grid>
-                <Grid item sm={12} lg={6}>
-                  <Box px={2} py={2}>
-                    <TextField
-                      variant="filled"
-                      fullWidth
-                      name="password"
-                      type="password"
-                      label="Password"
-                      autoComplete="new-password"
-                      value={values.password}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    ></TextField>
-                  </Box>
-                </Grid> */}
-              </Grid>
-            </Form>
-          )}
-        </Formik>
-      </Box>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  disabled={isSubmitting}
+                  onClick={handleSubmit}
+                >
+                  {"Submit"}
+                </Button>
+              </Form>
+            )}
+          </Formik>
+        </Box>
+      ) : null}
     </Paper>
   );
 };
