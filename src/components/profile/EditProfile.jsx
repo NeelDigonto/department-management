@@ -25,15 +25,18 @@ const EditProfile = ({ setIsEditing }) => {
     initialValues: user["profile"],
     onSubmit: (values, { setSubmitting }) => {
       setSubmitting(true);
-      fetch(`api/user/${user.employeeID}/data/edit/profile/edit`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          newProfile: values,
-        }),
-      })
+      fetch(
+        `api/user/${user["profile"]["employeeID"]}/data/edit/profile/edit`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            newProfile: values,
+          }),
+        }
+      )
         .then((response) => {
           if (response.status === StatusCodes.OK) {
             return response.json();
