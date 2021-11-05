@@ -22,14 +22,19 @@ const DisplayAchievement = ({
   return (
     <Fragment>
       <AchievementCard
-        achievement={achievement}
-        achievementIndex={index}
-        achievementCategory={achievementCategory}
-        setIsEditing={setIsEditing}
-        {...{ expanded, setExpanded }}
+        {...{
+          achievementIndex: index,
+          achievement,
+          achievementCategory,
+          setIsEditing,
+          expanded,
+          setExpanded,
+        }}
         cardActions={
           <Fragment>
             <IconButton
+              sx={{ pl: "1rem", pr: "1rem" }}
+              color="primary"
               aria-label="edit"
               onClick={(e) => {
                 e.stopPropagation();
@@ -40,6 +45,7 @@ const DisplayAchievement = ({
             </IconButton>
             <IconButton
               aria-label="delete"
+              color="primary"
               onClick={(e) => {
                 e.stopPropagation();
                 deleteAchievementHandler(

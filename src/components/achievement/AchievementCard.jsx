@@ -61,7 +61,10 @@ export default function AchievementCard({
         }
         action={
           <Fragment>
-            <IconButton aria-label="settings">
+            <IconButton
+              aria-label="settings"
+              onClick={(e) => e.stopPropagation()}
+            >
               <MoreVertIcon />
             </IconButton>
           </Fragment>
