@@ -14,7 +14,10 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import { MASTER_SCHEMA } from "../../data/schema";
 import { useUserContext } from "../../contexts/UserContext";
 import EditNode from "../nodes/EditNode";
-import { editAchievementHandler } from "./handlers";
+import {
+  createAchievementFinalizeHandler,
+  editAchievementHandler,
+} from "./handlers";
 import AchievementCard from "./AchievementCard";
 
 const EditAchievement = ({
@@ -25,6 +28,7 @@ const EditAchievement = ({
   setIsEditing,
   expanded,
   setExpanded,
+  setIsCreatingAchievement,
 }) => {
   const { user, setUser } = useUserContext();
   const [isUploading, setIsUploading] = useState(false);
@@ -33,16 +37,29 @@ const EditAchievement = ({
   const formik = useFormik({
     initialValues: achievement,
     onSubmit: async (values, { setSubmitting }) => {
-      editAchievementHandler(
-        user["profile"].employeeID,
-        achievement.id,
-        index,
-        values,
-        { setSubmitting },
-        setUser,
-        setIsEditing,
-        achievementCategory
-      );
+      if (achievement.isHotNew) {
+        createAchievementFinalizeHandler({
+          employeeID: user["profile"].employeeID,
+          index,
+          values,
+          setSubmitting,
+          setIsCreatingAchievement,
+          setUser,
+          setIsEditing,
+          achievementCategory,
+        });
+      } else {
+        editAchievementHandler(
+          user["profile"].employeeID,
+          achievement.id,
+          index,
+          values,
+          { setSubmitting },
+          setUser,
+          setIsEditing,
+          achievementCategory
+        );
+      }
     },
     validationSchema: getAchievementValidationSchema(),
   });
@@ -83,7 +100,22 @@ const EditAchievement = ({
             aria-label="cancel"
             onClick={(e) => {
               e.stopPropagation();
-              setIsEditing(false);
+              if (achievement.isHotNew) {
+                setIsCreatingAchievement(false);
+                setIsEditing(false);
+
+                setUser((oldState) => {
+                  let newState = { ...oldState };
+                  if (newState[achievementCategory].length >= index) {
+                    newState[achievementCategory].splice(index, 1);
+                  }
+
+                  return newState;
+                });
+                setIsEditing(false);
+              } else {
+                setIsEditing(false);
+              }
             }}
           >
             <CancelIcon />

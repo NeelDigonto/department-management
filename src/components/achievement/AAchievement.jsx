@@ -8,30 +8,42 @@ import AchievementCard from "./AchievementCard";
 const AAchievement = ({
   achievementCategory,
   getAchievementValidationSchema,
+  setIsCreatingAchievement,
   achievement,
   index,
 }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [expanded, setExpanded] = React.useState(false);
+  const [isEditing, setIsEditing] = useState(() =>
+    achievement.isHotNew ? true : false
+  );
+  const [expanded, setExpanded] = React.useState(() =>
+    achievement.isHotNew ? true : false
+  );
 
   return (
     <Fragment>
       {!isEditing ? (
         <DisplayAchievement
-          achievementCategory={achievementCategory}
-          achievement={achievement}
-          index={index}
-          setIsEditing={setIsEditing}
-          {...{ expanded, setExpanded }}
+          {...{
+            achievementCategory,
+            achievement,
+            index,
+            setIsEditing,
+            expanded,
+            setExpanded,
+          }}
         />
       ) : (
         <EditAchievement
-          achievementCategory={achievementCategory}
-          getAchievementValidationSchema={getAchievementValidationSchema}
-          achievement={achievement}
-          index={index}
-          setIsEditing={setIsEditing}
-          {...{ expanded, setExpanded }}
+          {...{
+            achievementCategory,
+            getAchievementValidationSchema,
+            achievement,
+            index,
+            setIsEditing,
+            setIsCreatingAchievement,
+            expanded,
+            setExpanded,
+          }}
         />
       )}
     </Fragment>

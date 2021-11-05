@@ -1,19 +1,65 @@
 import { StatusCodes, getReasonPhrase } from "http-status-codes";
+import { v4 as uuidv4 } from "uuid";
 
-const createAchievementHandler = async (
+import { MASTER_SCHEMA } from "../../../src/data/schema.js";
+
+const getEmptyAchievementData = (achievementCategory) => {
+  let emptyAchievementData = {};
+  MASTER_SCHEMA[achievementCategory]["fields"].forEach((field) => {
+    emptyAchievementData[field.db_field] = field.value;
+  });
+  emptyAchievementData["id"] = uuidv4();
+  emptyAchievementData["last_modified"] = new Date().toISOString();
+  return emptyAchievementData;
+};
+
+const hotCreateAchievementHandler = async (
   employeeID,
   setUser,
   setIsCreatingAchievement,
   achievementCategory
 ) => {
   setIsCreatingAchievement(true);
+
+  setUser((oldState) => {
+    let newState = { ...oldState };
+    // get the created one from server
+    if (!!newState[achievementCategory])
+      newState[achievementCategory].push({
+        ...getEmptyAchievementData(achievementCategory),
+        isHotNew: true,
+      });
+    else
+      newState[achievementCategory] = [
+        {
+          ...getEmptyAchievementData(achievementCategory),
+          isHotNew: true,
+        },
+      ];
+
+    return newState;
+  });
+};
+
+const createAchievementFinalizeHandler = async ({
+  employeeID,
+  index,
+  values,
+  setSubmitting,
+  setIsCreatingAchievement,
+  setUser,
+  setIsEditing,
+  achievementCategory,
+}) => {
+  delete values.isHotNew;
+  setSubmitting(true);
   fetch(`/api/user/${employeeID}/data/edit/${achievementCategory}/create`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      newObject: null,
+      newObject: values,
     }),
   })
     .then((response) => {
@@ -24,18 +70,25 @@ const createAchievementHandler = async (
       }
     })
     .then((result) => {
-      console.log(result);
       setUser((oldState) => {
         let newState = { ...oldState };
+        if (newState[achievementCategory].length >= index) {
+          newState[achievementCategory].splice(index, 1);
+        }
         // get the created one from server
         if (!!newState[achievementCategory])
           newState[achievementCategory].push(result.createdAchievement);
         else newState[achievementCategory] = [result.createdAchievement];
 
         setIsCreatingAchievement(false);
+
         return newState;
       });
+
+      setIsEditing(false);
+      setIsCreatingAchievement(false);
     });
+  setSubmitting(false);
 };
 
 const deleteAchievementHandler = async (
@@ -98,20 +151,17 @@ const editAchievementHandler = async (
     .then((result) => {
       setUser((oldState) => {
         let newState = { ...oldState };
-        /* newState[achievementCategory][index] = {
-          ...newState[achievementCategory][index],
-          ...result.updatedAchievement,
-        }; */
         newState[achievementCategory][index] = result.updatedAchievement;
         return newState;
       });
-      setSubmitting(false);
+      setSubmitting(false); //formik one
       setIsEditing(false);
     });
 };
 
 export {
-  createAchievementHandler,
+  hotCreateAchievementHandler,
+  createAchievementFinalizeHandler,
   deleteAchievementHandler,
   editAchievementHandler,
 };

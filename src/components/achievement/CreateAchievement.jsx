@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { Fab, Box } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
-import { createAchievementHandler } from "./handlers";
+import { hotCreateAchievementHandler } from "./handlers";
 import { useUserContext } from "../../contexts/UserContext";
 
-const CreateAchievement = ({ achievementCategory }) => {
+const CreateAchievement = ({
+  achievementCategory,
+  isCreatingAchievement,
+  setIsCreatingAchievement,
+}) => {
   const { user, setUser } = useUserContext();
-
-  const [isCreatingAchievement, setIsCreatingAchievement] = useState(false);
 
   return (
     <Box
@@ -24,7 +26,7 @@ const CreateAchievement = ({ achievementCategory }) => {
         aria-label="add"
         disabled={isCreatingAchievement}
         onClick={() => {
-          createAchievementHandler(
+          hotCreateAchievementHandler(
             user["profile"]["employeeID"],
             setUser,
             setIsCreatingAchievement,

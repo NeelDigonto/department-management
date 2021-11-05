@@ -11,6 +11,8 @@ const Achievements = ({
   getAchievementValidationSchema,
 }) => {
   const { user, setUser } = useUserContext();
+  const [isCreatingAchievement, setIsCreatingAchievement] =
+    React.useState(false);
 
   return (
     <Fragment>
@@ -28,12 +30,13 @@ const Achievements = ({
               {user[achievementCategory].map((achievement, index) => (
                 <AAchievement
                   key={index}
-                  achievementCategory={achievementCategory}
-                  getAchievementValidationSchema={
-                    getAchievementValidationSchema
-                  }
-                  achievement={achievement}
-                  index={index}
+                  {...{
+                    achievementCategory,
+                    getAchievementValidationSchema,
+                    setIsCreatingAchievement,
+                    achievement,
+                    index,
+                  }}
                 />
               ))}
             </Box>
@@ -46,8 +49,13 @@ const Achievements = ({
               </Typography>
             </Box>
           )}
-
-          <CreateAchievement achievementCategory={achievementCategory} />
+          <CreateAchievement
+            {...{
+              achievementCategory,
+              isCreatingAchievement,
+              setIsCreatingAchievement,
+            }}
+          />
         </Fragment>
       ) : null}
     </Fragment>
