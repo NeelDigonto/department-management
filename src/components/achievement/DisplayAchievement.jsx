@@ -1,5 +1,16 @@
 import React, { Fragment } from "react";
-import { Grid, Box, ButtonGroup, Button, IconButton } from "@mui/material";
+import {
+  Grid,
+  Box,
+  ButtonGroup,
+  Button,
+  IconButton,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  DialogContentText,
+} from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -48,6 +59,28 @@ const DisplayAchievement = ({
               color="primary"
               onClick={(e) => {
                 e.stopPropagation();
+
+                /*  <Dialog
+                  open={open}
+                  TransitionComponent={Transition}
+                  keepMounted
+                  onClose={handleClose}
+                  aria-describedby="alert-dialog-slide-description"
+                >
+                  <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+                  <DialogContent>
+                    <DialogContentText id="alert-dialog-slide-description">
+                      Let Google help apps determine location. This means
+                      sending anonymous location data to Google, even when no
+                      apps are running.
+                    </DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button onClick={handleClose}>Disagree</Button>
+                    <Button onClick={handleClose}>Agree</Button>
+                  </DialogActions>
+                </Dialog>; */
+
                 deleteAchievementHandler(
                   user["profile"].employeeID,
                   achievement.id,
