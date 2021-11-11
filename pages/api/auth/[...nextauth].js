@@ -26,7 +26,7 @@ export default NextAuth({
             {
               "profile.employeeID": credentials.employeeID,
             },
-            { projection: { profile: 1, hashedPassword: 1 } }
+            { profile: 1, hashedPassword: 1 }
           );
 
           if (!user) {

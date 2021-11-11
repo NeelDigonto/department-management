@@ -5,6 +5,7 @@ import ListIcon from "@mui/icons-material/List";
 import Search from "./search/Search";
 import DataTable from "./table/DataTable";
 import DownloadOptions from "./download/DownloadOptions";
+import RemoveStaleFiles from "./RemoveStaleFiles";
 
 const _MS = 500;
 
@@ -117,6 +118,7 @@ const Dashboard = () => {
             <DataTable rows={rows} />
           </Box>
           <DownloadOptions {...{ getFilterObject, sortRef, displayRef }} />
+          <RemoveStaleFiles />
         </Grid>
         <Hidden only={["xs", "sm"]}>
           <Grid

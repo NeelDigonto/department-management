@@ -188,7 +188,7 @@ export default function Test() {
       <Box component="main" sx={{ flexGrow: 1, px: 1, py: 2 }}>
         <DrawerHeader />
         {memoizedMainViewComponents}
-        <Copyright sx={{ mt: 10 }} />
+        {/*        <Copyright sx={{ mt: 10 }} /> */}
       </Box>
     </Box>
   );
