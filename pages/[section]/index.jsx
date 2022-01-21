@@ -21,17 +21,16 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
-import MainList from "../../src/components/sidebar/MainList.jsx";
-import SecondaryList from "../../src/components/sidebar/SecondaryList.jsx";
-import Profile from "../../src/components/profile/Profile.jsx";
+import MainList from "../../src/components/sidebar/MainList";
+import SecondaryList from "../../src/components/sidebar/SecondaryList";
+import Profile from "../../src/components/profile/Profile";
 import Achievements from "../../src/components/achievement/Achievements";
 import {
-  ACHIEVEMENTS_GROUP_SCHEMA,
+  ACHIEVEMENTS_SCHEMA_MAP,
   getAchievementValidationSchema,
-  ACHIEVEMENTS,
-} from "../../src/data/schema.js";
+} from "../../src/data/schema";
 import Copyright from "../../src/components/copyright/Copyright";
-import ChangePassword from "../../src/components/password/ChangePassword.jsx";
+import ChangePassword from "../../src/components/password/ChangePassword";
 
 const drawerWidth = 240;
 
@@ -117,7 +116,7 @@ export default function Test() {
   const memoizedMainViewComponents = React.useMemo(() => {
     if (section === "profile") return <Profile />;
     if (section === "change-password") return <ChangePassword />;
-    else if (!!ACHIEVEMENTS_GROUP_SCHEMA[section])
+    else if (ACHIEVEMENTS_SCHEMA_MAP.has(section))
       return (
         <Achievements
           key={section}

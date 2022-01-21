@@ -1,7 +1,7 @@
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { getSession } from "next-auth/client";
 
-import { getMongoClient } from "../../../../../../../../src/lib/db.js";
+import { getMongoClient } from "../../../../../../../../src/lib/db";
 
 export default async function handler(req, res) {
   if (req.method !== "DELETE") {

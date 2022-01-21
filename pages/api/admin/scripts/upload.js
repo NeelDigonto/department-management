@@ -4,13 +4,15 @@ import { ReasonPhrases, StatusCodes } from "http-status-codes";
 
 import { v4 as uuidv4 } from "uuid";
 
-import { getMongoClient } from "../../../../src/lib/db.js";
+import { getMongoClient } from "../../../../src/lib/db";
 import { hashPassword } from "../../../../src/lib/auth";
 import { getEmptyUserDocument } from "../../../../src/data/schema";
-import { toTypedAchievements } from "../../../../src/lib/type_converter";
-import { getTypedDocument } from "../../../../src/lib/type_converter";
-import { MASTER_SCHEMA } from "../../../../src/data/schema.js";
-import { ACHIEVEMENTS } from "../../../../src/data/schema.js";
+import {
+  toTypedAchievements,
+  getTypedDocument,
+} from "../../../../src/lib/type_converter";
+import { MASTER_SCHEMA } from "../../../../src/data/schema";
+import { ACHIEVEMENTS } from "../../../../src/data/schema";
 
 const getEmptyAchievementData = (achievementCategory) => {
   let emptyAchievementData = {};

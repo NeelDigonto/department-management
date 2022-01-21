@@ -18,7 +18,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
-import MainList from "../../../src/components/admin/sidebar/MainList.jsx";
+import MainList from "../../../src/components/admin/sidebar/MainList";
 import SecondaryList from "../../../src/components/admin/sidebar/SecondaryList";
 import Dashboard from "../../../src/components/admin/dashboard/Dashboard";
 import CreateUser from "../../../src/components/admin/createUser/CreateUser";

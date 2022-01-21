@@ -1,10 +1,5 @@
 import { getSession } from "next-auth/client";
-import {
-  ReasonPhrases,
-  StatusCodes,
-  getReasonPhrase,
-  getStatusCode,
-} from "http-status-codes";
+import { ReasonPhrases, StatusCodes } from "http-status-codes";
 
 import { getMongoClient } from "../../../src/lib/db";
 import { toTypedQuerry } from "../../../src/lib/type_converter";
@@ -15,6 +10,7 @@ export default async function handler(req, res) {
       .status(StatusCodes.METHOD_NOT_ALLOWED)
       .send(ReasonPhrases.METHOD_NOT_ALLOWED);
     return;
+    w;
   }
 
   const session = await getSession({ req });

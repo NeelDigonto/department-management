@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState, useMemo } from "react";
 import { signIn, signOut, useSession, getSession } from "next-auth/client";
 import { ReasonPhrases, StatusCodes, getReasonPhrase } from "http-status-codes";
 
-import { useUserContext } from "../../contexts/UserContext.jsx";
+import { useUserContext } from "../../contexts/UserContext";
 
 const UserDataLoader = ({ children }) => {
   const [session, loading] = useSession();

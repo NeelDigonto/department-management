@@ -1,7 +1,7 @@
 import { StatusCodes, getReasonPhrase } from "http-status-codes";
 import { v4 as uuidv4 } from "uuid";
 
-import { MASTER_SCHEMA } from "../../../src/data/schema.js";
+import { MASTER_SCHEMA } from "../../../src/data/schema";
 
 const getEmptyAchievementData = (achievementCategory) => {
   let emptyAchievementData = {};

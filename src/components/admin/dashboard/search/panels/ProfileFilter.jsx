@@ -12,10 +12,7 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import FilterNode from "../../../../nodes/SearchNode";
-import {
-  MASTER_SCHEMA,
-  ACHIEVEMENTS_GROUP_SCHEMA,
-} from "../../../../../data/schema";
+import { MASTER_SCHEMA } from "../../../../../data/schema";
 
 const ProfileFilter = ({
   valueLastUpdatedRef,
@@ -48,7 +45,7 @@ const ProfileFilter = ({
         <AccordionDetails>
           <Box>
             <Grid container>
-              {MASTER_SCHEMA["profile"].map((field, index) => (
+              {MASTER_SCHEMA.profile.map((field, index) => (
                 <Grid key={index} item md={3}>
                   <Box px={1} py={1}>
                     <FilterNode

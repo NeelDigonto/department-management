@@ -3,10 +3,7 @@ import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { getSession } from "next-auth/client";
 
 import { getMongoClient } from "../../../src/lib/db";
-import {
-  MASTER_SCHEMA,
-  ACHIEVEMENTS_GROUP_SCHEMA,
-} from "../../../src/data/schema";
+import { ACHIEVEMENTS_SCHEMA_MAP } from "../../../src/data/schema";
 import { INPUT_TYPE } from "../../../src/data/types/types";
 import { isEmptyObject } from "../../../src/lib/util";
 import { deleteFile } from "../../../src/lib/aws-wrapper";
@@ -14,14 +11,14 @@ import { deleteFile } from "../../../src/lib/aws-wrapper";
 const getCurrentFiles = (rawData) => {
   const fileSchemas = {};
 
-  Object.values(ACHIEVEMENTS_GROUP_SCHEMA).forEach((category) => {
+  for (const [key, category] of ACHIEVEMENTS_SCHEMA_MAP) {
     const file_fields = [];
-    category["fields"].forEach((field) => {
+    category.fields.forEach((field) => {
       if (field.input_type === INPUT_TYPE.FILE)
         file_fields.push(field.db_field);
     });
     fileSchemas[category.key] = file_fields;
-  });
+  }
 
   const currentFiles = [];
 
