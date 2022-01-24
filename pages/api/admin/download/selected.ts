@@ -7,11 +7,9 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import * as util from "../../../../src/lib/util";
 import { getMongoClient } from "../../../../src/lib/db";
-import * as Workbook from "../../../../src/lib/workbook2/workbook";
+import * as Workbook from "../../../../src/lib/workbook/workbook";
 import { ACHIEVEMENTS_SCHEMA_MAP } from "../../../../src/data/schema";
 import { toTypedQuerry } from "../../../../src/lib/type_converter";
-
-import { getWorkBookBuffer } from "../../../../src/lib/workbook2/workbook";
 
 export default async function handler(
   req: NextApiRequest,

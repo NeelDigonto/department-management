@@ -11,12 +11,11 @@ import {
   toTypedAchievements,
   getTypedDocument,
 } from "../../../../src/lib/type_converter";
-import { MASTER_SCHEMA } from "../../../../src/data/schema";
 import { ACHIEVEMENTS_SCHEMA_MAP } from "../../../../src/data/schema";
 
 const getEmptyAchievementData = (achievementCategory) => {
   let emptyAchievementData = {};
-  MASTER_SCHEMA[achievementCategory]["fields"].forEach((field) => {
+  ACHIEVEMENTS_SCHEMA_MAP.get(achievementCategory).fields.forEach((field) => {
     emptyAchievementData[field.db_field] = field.value;
   });
   emptyAchievementData["id"] = uuidv4();

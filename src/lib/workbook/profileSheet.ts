@@ -1,5 +1,5 @@
 import * as ExcelJS from "exceljs";
-import * as Constants from "../../lib/Constants";
+import * as Constants from "../Constants";
 import { MASTER_SCHEMA } from "../../data/schema";
 import { getColumnWidth } from "./util";
 import Cell from "../Cell";

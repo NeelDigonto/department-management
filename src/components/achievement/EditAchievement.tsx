@@ -11,7 +11,7 @@ import {
 import CheckIcon from "@mui/icons-material/Check";
 import CancelIcon from "@mui/icons-material/Cancel";
 
-import { MASTER_SCHEMA } from "../../data/schema";
+import { ACHIEVEMENTS_SCHEMA_MAP } from "../../data/schema";
 import { useUserContext } from "../../contexts/UserContext";
 import EditNode from "../nodes/EditNode";
 import {
@@ -83,17 +83,19 @@ const EditAchievement = ({
   const formNode = (
     <form onSubmit={formik.handleSubmit}>
       <Grid container>
-        {MASTER_SCHEMA[achievementCategory]["fields"].map((field) => (
-          <Grid item xs={12} md={6} key={field.db_field}>
-            <Box px={0.5} py={0.5}>
-              <EditNode
-                field={field}
-                formik={formik}
-                setIsUploading={setIsUploading}
-              ></EditNode>
-            </Box>
-          </Grid>
-        ))}
+        {ACHIEVEMENTS_SCHEMA_MAP.get(achievementCategory).fields.map(
+          (field) => (
+            <Grid item xs={12} md={6} key={field.db_field}>
+              <Box px={0.5} py={0.5}>
+                <EditNode
+                  field={field}
+                  formik={formik}
+                  setIsUploading={setIsUploading}
+                ></EditNode>
+              </Box>
+            </Grid>
+          )
+        )}
       </Grid>
     </form>
   );

@@ -8,10 +8,6 @@ import {
 
 import { getMongoClient } from "../../../../src/lib/db";
 import { hashPassword } from "../../../../src/lib/auth";
-import {
-  MASTER_SCHEMA,
-  EMPTY_USER_DOCUMENT,
-} from "../../../../src/data/schema";
 
 export default async function handler(req, res) {
   if (req.method !== "DELETE") {

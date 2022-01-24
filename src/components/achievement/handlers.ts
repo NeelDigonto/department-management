@@ -1,24 +1,13 @@
 import { StatusCodes, getReasonPhrase } from "http-status-codes";
-import { v4 as uuidv4 } from "uuid";
 
-import { MASTER_SCHEMA } from "../../../src/data/schema";
+import { getEmptyAchievementData } from "../../../src/data/schema";
 
-const getEmptyAchievementData = (achievementCategory) => {
-  let emptyAchievementData = {};
-  MASTER_SCHEMA[achievementCategory]["fields"].forEach((field) => {
-    emptyAchievementData[field.db_field] = field.value;
-  });
-  emptyAchievementData["id"] = uuidv4();
-  emptyAchievementData["last_modified"] = new Date().toISOString();
-  return emptyAchievementData;
-};
-
-const hotCreateAchievementHandler = async (
-  employeeID,
+async function hotCreateAchievementHandler(
+  employeeID: string,
   setUser,
   setIsCreatingAchievement,
-  achievementCategory
-) => {
+  achievementCategory: string
+) {
   setIsCreatingAchievement(true);
 
   setUser((oldState) => {
@@ -39,9 +28,9 @@ const hotCreateAchievementHandler = async (
 
     return newState;
   });
-};
+}
 
-const createAchievementFinalizeHandler = async ({
+async function createAchievementFinalizeHandler({
   employeeID,
   index,
   values,
@@ -50,7 +39,7 @@ const createAchievementFinalizeHandler = async ({
   setUser,
   setIsEditing,
   achievementCategory,
-}) => {
+}) {
   delete values.isHotNew;
   setSubmitting(true);
   fetch(`/api/user/${employeeID}/data/edit/${achievementCategory}/create`, {
@@ -89,14 +78,14 @@ const createAchievementFinalizeHandler = async ({
       setIsCreatingAchievement(false);
     });
   setSubmitting(false);
-};
+}
 
-const deleteAchievementHandler = async (
+async function deleteAchievementHandler(
   employeeID,
   id_to_delete,
   setUser,
   achievementCategory
-) => {
+) {
   fetch(
     `/api/user/${employeeID}/data/edit/${achievementCategory}/delete/${id_to_delete}`,
     {
@@ -116,9 +105,9 @@ const deleteAchievementHandler = async (
       throw `Server responded with: ${getReasonPhrase(response.status)}`;
     }
   });
-};
+}
 
-const editAchievementHandler = async (
+async function editAchievementHandler(
   employeeID,
   achievement_id,
   index,
@@ -127,7 +116,7 @@ const editAchievementHandler = async (
   setUser,
   setIsEditing,
   achievementCategory
-) => {
+) {
   setSubmitting(true);
   fetch(
     `/api/user/${employeeID}/data/edit/${achievementCategory}/edit/${achievement_id}`,
@@ -157,7 +146,7 @@ const editAchievementHandler = async (
       setSubmitting(false); //formik one
       setIsEditing(false);
     });
-};
+}
 
 export {
   hotCreateAchievementHandler,

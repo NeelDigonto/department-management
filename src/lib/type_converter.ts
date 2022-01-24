@@ -31,9 +31,9 @@ function toTypedProfile(_json: Object) {
 function toTypedAchievements(_json: any, achievementCategory: string) {
   _json.forEach((achievement, index) => {
     for (let [key, value] of Object.entries(achievement)) {
-      const field_schema = MASTER_SCHEMA[achievementCategory]["fields"].find(
-        (field) => field.db_field === key
-      );
+      const field_schema = ACHIEVEMENTS_SCHEMA_MAP.get(
+        achievementCategory
+      ).fields.find((field) => field.db_field === key);
       if (!!field_schema && field_schema.db_field_type === DB_FIELD_TYPE.DATE) {
         _json[index][key] = new Date(value as string);
       }

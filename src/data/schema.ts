@@ -26,6 +26,8 @@ import * as BSHProjectCompetitions from "./schemas/BSHProjectCompetitions";
 import * as BSHPosterCompetitions from "./schemas/BSHPosterCompetitions";
 import * as IntershipDetails from "./schemas/IntershipDetails";
 
+import { v4 as uuidv4 } from "uuid";
+
 import { FieldType, SchemaType } from "./schemas/types";
 
 const ACHIEVEMENTS = [
@@ -100,7 +102,6 @@ const MASTER_SCHEMA = {
   hashedPassword: "",
   profile: Profile.SCHEMA,
   //...ACHIEVEMENTS_GROUP_SCHEMA,
-  ...ACHIEVEMENTS_SCHEMA_MAP, //ERROR: ig
 };
 
 function getEmptyUserDocument() {
@@ -121,6 +122,16 @@ function getEmptyUserDocument() {
   return EMPTY_USER_DOCUMENT;
 }
 
+function getEmptyAchievementData(achievementCategory: string) {
+  let emptyAchievementData = {};
+  ACHIEVEMENTS_SCHEMA_MAP.get(achievementCategory).fields.forEach((field) => {
+    emptyAchievementData[field.db_field] = field.value;
+  });
+  emptyAchievementData["id"] = uuidv4();
+  emptyAchievementData["last_modified"] = new Date().toISOString();
+  return emptyAchievementData;
+}
+
 export {
   ACHIEVEMENTS,
   ACHIEVEMENTS_SCHEMA_MAP,
@@ -128,5 +139,6 @@ export {
   USER_ACHIEVEMENTS_SCHEMA_MAP,
   MASTER_SCHEMA,
   getEmptyUserDocument,
+  getEmptyAchievementData,
   getAchievementValidationSchema,
 };

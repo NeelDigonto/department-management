@@ -39,56 +39,36 @@ const DisplayAchievement = ({
           setExpanded,
         }}
         cardActions={
-          <Fragment>
-            <IconButton
-              sx={{ pl: "1rem", pr: "1rem" }}
-              color="primary"
-              aria-label="edit"
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsEditing(true);
-              }}
-            >
-              <EditIcon />
-            </IconButton>
-            <IconButton
-              aria-label="delete"
-              color="primary"
-              onClick={(e) => {
-                e.stopPropagation();
-
-                /*  <Dialog
-                  open={open}
-                  TransitionComponent={Transition}
-                  keepMounted
-                  onClose={handleClose}
-                  aria-describedby="alert-dialog-slide-description"
-                >
-                  <DialogTitle>{"Use Google's location service?"}</DialogTitle>
-                  <DialogContent>
-                    <DialogContentText id="alert-dialog-slide-description">
-                      Let Google help apps determine location. This means
-                      sending anonymous location data to Google, even when no
-                      apps are running.
-                    </DialogContentText>
-                  </DialogContent>
-                  <DialogActions>
-                    <Button onClick={handleClose}>Disagree</Button>
-                    <Button onClick={handleClose}>Agree</Button>
-                  </DialogActions>
-                </Dialog>; */
-
-                deleteAchievementHandler(
-                  user["profile"].employeeID,
-                  achievement.id,
-                  setUser,
-                  achievementCategory
-                );
-              }}
-            >
-              <DeleteIcon />
-            </IconButton>
-          </Fragment>
+          !ACHIEVEMENTS_SCHEMA_MAP.get(achievementCategory).isCentral ? (
+            <Fragment>
+              <IconButton
+                sx={{ pl: "1rem", pr: "1rem" }}
+                color="primary"
+                aria-label="edit"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsEditing(true);
+                }}
+              >
+                <EditIcon />
+              </IconButton>
+              <IconButton
+                aria-label="delete"
+                color="primary"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  deleteAchievementHandler(
+                    user["profile"].employeeID,
+                    achievement.id,
+                    setUser,
+                    achievementCategory
+                  );
+                }}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </Fragment>
+          ) : null
         }
         cardContent={
           <Grid container>
