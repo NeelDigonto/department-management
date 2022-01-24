@@ -124,6 +124,8 @@ function getEmptyUserDocument() {
 export {
   ACHIEVEMENTS,
   ACHIEVEMENTS_SCHEMA_MAP,
+  CENTRAL_ACHIEVEMENTS_SCHEMA_MAP,
+  USER_ACHIEVEMENTS_SCHEMA_MAP,
   MASTER_SCHEMA,
   getEmptyUserDocument,
   getAchievementValidationSchema,

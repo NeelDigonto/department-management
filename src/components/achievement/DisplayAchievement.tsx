@@ -5,7 +5,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 import { useUserContext } from "../../contexts/UserContext";
 import DisplayNode from "../nodes/DisplayNode";
-import { MASTER_SCHEMA } from "../../data/schema";
+import { ACHIEVEMENTS_SCHEMA_MAP } from "../../data/schema";
 import { deleteAchievementHandler } from "./handlers";
 import AchievementCard from "./AchievementCard";
 
@@ -92,7 +92,7 @@ const DisplayAchievement = ({
         }
         cardContent={
           <Grid container>
-            {MASTER_SCHEMA[achievementCategory]["fields"].map(
+            {ACHIEVEMENTS_SCHEMA_MAP.get(achievementCategory).fields.map(
               (field, index) => {
                 const value = achievement[field.db_field];
 

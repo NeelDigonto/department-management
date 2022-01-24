@@ -2,8 +2,6 @@ import csvParser from "csv-parser";
 import fs from "fs";
 import path from "path";
 
-import { ACHIEVEMENTS } from "../../../../src/data/schema";
-
 const getDate = (rawString) => {
   let delimiter = "";
   if (rawString.includes(",")) {

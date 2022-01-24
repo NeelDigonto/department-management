@@ -12,7 +12,7 @@ import {
   getTypedDocument,
 } from "../../../../src/lib/type_converter";
 import { MASTER_SCHEMA } from "../../../../src/data/schema";
-import { ACHIEVEMENTS } from "../../../../src/data/schema";
+import { ACHIEVEMENTS_SCHEMA_MAP } from "../../../../src/data/schema";
 
 const getEmptyAchievementData = (achievementCategory) => {
   let emptyAchievementData = {};
@@ -46,8 +46,8 @@ export default async function handler(req, res) {
         user["profile"]["employeeID"];
       emptyUserDocument["profile"]["name"] = user["profile"]["name"];
 
-      ACHIEVEMENTS.forEach((achievement) => {
-        const achievementCategory = achievement.SCHEMA.key;
+      ACHIEVEMENTS_SCHEMA_MAP.forEach((_schema) => {
+        const achievementCategory = _schema.key;
 
         if (!!user[achievementCategory]) {
           user[achievementCategory].forEach((entry) => {

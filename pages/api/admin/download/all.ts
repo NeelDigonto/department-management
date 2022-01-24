@@ -5,9 +5,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import * as util from "../../../../src/lib/util";
 import { getMongoClient } from "../../../../src/lib/db";
-import { MASTER_SCHEMA, ACHIEVEMENTS } from "../../../../src/data/schema";
 import * as Workbook from "../../../../src/lib/workbook2/workbook";
-import * as Constants from "../../../../src/lib/Constants";
 import all_t from "./all_t.json";
 
 export default async function handler(

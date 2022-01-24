@@ -16,9 +16,9 @@ import { styled } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-import { MASTER_SCHEMA } from "../../data/schema";
+import { ACHIEVEMENTS_SCHEMA_MAP } from "../../data/schema";
 
-const ExpandMore = styled((props) => {
+const ExpandMore = styled((props: any) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
 })(({ theme, expand }) => ({
@@ -74,9 +74,15 @@ export default function AchievementCard({
             </IconButton>
           </React.Fragment>
         }
-        title={achievement[MASTER_SCHEMA[achievementCategory].display_title]}
+        title={
+          achievement[
+            ACHIEVEMENTS_SCHEMA_MAP.get(achievementCategory).display_title
+          ]
+        }
         subheader={new Date(
-          achievement[MASTER_SCHEMA[achievementCategory].display_date]
+          achievement[
+            ACHIEVEMENTS_SCHEMA_MAP.get(achievementCategory).display_date
+          ]
         ).toDateString()}
         onClick={() => {
           setExpanded((state) => !state);
