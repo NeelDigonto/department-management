@@ -16,23 +16,23 @@ export default async function handler(
 ) {
   if (!util.assertRequestMethod(req, res, util.MethodType.GET)) return;
 
-  //const session = await getSession({ req });
-  //if (!util.assertIsAdmin(session, res)) return;
+  const session = await getSession({ req });
+  if (!util.assertIsAdmin(session, res)) return;
 
   let collectionData: any;
 
-  /*   const client = await getMongoClient();
+  const client = await getMongoClient();
   const connection = await client.connect();
   const usersCollection = connection.db("users").collection("faculties");
 
-
-   try {
+  try {
     collectionData = await usersCollection.find().toArray();
   } catch (err) {
     console.error(err);
   }
-  connection.close();  */
-  collectionData = all_t;
+  connection.close();
+
+  //collectionData = all_t;
 
   let workbookBuffer: ExcelJS.Buffer;
   try {
@@ -52,5 +52,4 @@ export default async function handler(
   }
 
   await Workbook.streamFile(workbookBuffer, res);
-  //res.send(collectionData);
 }
