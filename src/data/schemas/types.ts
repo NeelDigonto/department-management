@@ -30,4 +30,5 @@ export interface SchemaType {
   fields: FieldType[];
   display_title: string;
   display_date: string;
+  isCentral: boolean;
 }

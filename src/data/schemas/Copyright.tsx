@@ -90,6 +90,7 @@ const SCHEMA: SchemaType = {
   fields: FIELDS,
   display_title: "title",
   display_date: "pub_date",
+  isCentral: false,
 };
 
 function getValidationSchema() {

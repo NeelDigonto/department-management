@@ -89,6 +89,7 @@ const SCHEMA: SchemaType = {
   fields: FIELDS,
   display_title: "entity_name",
   display_date: "sign_date",
+  isCentral: true,
 };
 
 function getValidationSchema() {

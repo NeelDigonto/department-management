@@ -89,6 +89,7 @@ const SCHEMA: SchemaType = {
   fields: FIELDS,
   display_title: "industry_type",
   display_date: "visit_date",
+  isCentral: false,
 };
 
 function getValidationSchema() {

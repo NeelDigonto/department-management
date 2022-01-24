@@ -78,6 +78,7 @@ const SCHEMA: SchemaType = {
   fields: FIELDS,
   display_title: "subject",
   display_date: "event_start_date",
+  isCentral: true,
 };
 
 function getValidationSchema() {

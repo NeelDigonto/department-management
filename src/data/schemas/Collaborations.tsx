@@ -90,6 +90,7 @@ const SCHEMA: SchemaType = {
   fields: FIELDS,
   display_title: "colab_agency",
   display_date: "date",
+  isCentral: false,
 };
 
 function getValidationSchema() {

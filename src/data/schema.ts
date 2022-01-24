@@ -69,8 +69,6 @@ function getAchievementSchemaMap(): Map<string, SchemaType> {
   return ACHIEVEMENTS_SCHEMA_MAP;
 }
 
-const ACHIEVEMENTS_SCHEMA_MAP = getAchievementSchemaMap();
-
 function getAchievementValidationSchema(category: string) {
   const result = ACHIEVEMENTS.find(
     (_achievementCategory) => _achievementCategory.SCHEMA.key === category
@@ -83,6 +81,20 @@ function getAchievementValidationSchema(category: string) {
     return () => {};
   }
 }
+
+const ACHIEVEMENTS_SCHEMA_MAP: Map<string, SchemaType> =
+  getAchievementSchemaMap();
+
+const CENTRAL_ACHIEVEMENTS_SCHEMA_MAP: Map<string, SchemaType> = new Map(
+  Array.from(ACHIEVEMENTS_SCHEMA_MAP).filter(
+    ([key, schema]) => schema.isCentral
+  )
+);
+const USER_ACHIEVEMENTS_SCHEMA_MAP: Map<string, SchemaType> = new Map(
+  Array.from(ACHIEVEMENTS_SCHEMA_MAP).filter(
+    ([key, schema]) => !schema.isCentral
+  )
+);
 
 const MASTER_SCHEMA = {
   hashedPassword: "",
