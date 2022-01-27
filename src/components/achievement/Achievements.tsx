@@ -9,16 +9,17 @@ import { ACHIEVEMENTS_SCHEMA_MAP } from "../../data/schema";
 interface AchievementsProps {
   achievementCategory: string;
   getAchievementValidationSchema: any;
+  isAdmin: boolean;
 }
 
 const Achievements = ({
   achievementCategory,
   getAchievementValidationSchema,
+  isAdmin,
 }: AchievementsProps) => {
   const { user, setUser } = useUserContext();
   const [isCreatingAchievement, setIsCreatingAchievement] =
     React.useState<boolean>(false);
-
   return (
     <React.Fragment>
       {!!user ? (
@@ -37,6 +38,7 @@ const Achievements = ({
                   <AAchievement
                     key={index}
                     {...{
+                      isAdmin,
                       achievementCategory,
                       getAchievementValidationSchema,
                       setIsCreatingAchievement,
@@ -58,15 +60,16 @@ const Achievements = ({
               </Typography>
             </Box>
           )}
-          <CreateAchievement
-            {...{
-              achievementCategory,
-              isCreatingAchievement,
-              setIsCreatingAchievement,
-            }}
-          />
         </React.Fragment>
       ) : null}
+      <CreateAchievement
+        {...{
+          isAdmin,
+          achievementCategory,
+          isCreatingAchievement,
+          setIsCreatingAchievement,
+        }}
+      />
     </React.Fragment>
   );
 };

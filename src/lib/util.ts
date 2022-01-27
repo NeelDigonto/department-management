@@ -1,5 +1,7 @@
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { Session } from "next-auth";
+import * as Constants from "../lib/Constants";
 
 function isEmptyObject(obj: any): boolean {
   return !!obj && Object.keys(obj).length === 0 && obj.constructor === Object;
@@ -26,6 +28,7 @@ enum MethodType {
   GET = "GET",
   POST = "POST",
   DELETE = "DELETE",
+  PATCH = "PATCH",
 }
 
 function assertRequestMethod(
@@ -39,6 +42,34 @@ function assertRequestMethod(
       .send(ReasonPhrases.METHOD_NOT_ALLOWED);
     return false;
   }
+  return true;
+}
+
+function assertIsAuthorized(
+  _session: Session,
+  _res: NextApiResponse,
+  employeeID?: string
+): boolean {
+  if (!_session) {
+    console.log();
+    _res.status(StatusCodes.UNAUTHORIZED).send(ReasonPhrases.UNAUTHORIZED);
+    return false;
+  }
+
+  if (
+    !!employeeID &&
+    !_session.user.isAdmin &&
+    (_session.user.employeeID !== employeeID ||
+      employeeID === Constants.CENTRAL_EMPLOYEE_ID)
+  ) {
+    _res.status(StatusCodes.FORBIDDEN).send(ReasonPhrases.FORBIDDEN);
+    return false;
+  }
+
+  return true;
+}
+
+function assertHasEditAccess(): boolean {
   return true;
 }
 
@@ -80,4 +111,5 @@ export {
   MethodType,
   assertIsAdmin,
   assertTry,
+  assertIsAuthorized,
 };

@@ -11,7 +11,7 @@ import {
   TableChart as TableChartIcon,
 } from "@mui/icons-material";
 
-export default function SecondaryList({ section }) {
+export default function SecondaryList({ section }: { section: string }) {
   return (
     <List>
       <ListSubheader inset>General</ListSubheader>

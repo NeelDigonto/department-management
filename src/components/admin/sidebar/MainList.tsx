@@ -12,7 +12,7 @@ import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
-export default function MainList({ section }) {
+export default function MainList({ section }: { section: string }) {
   return (
     <List>
       <NextLink href={"/admin/dashboard"}>

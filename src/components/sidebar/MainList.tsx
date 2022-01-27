@@ -12,7 +12,7 @@ import VpnKeyIcon from "@mui/icons-material/VpnKey";
 
 import { ACHIEVEMENTS_SCHEMA_MAP } from "../../data/schema";
 
-export default function MainList({ section }) {
+export default function MainList({ section }: { section: string }) {
   return (
     <List>
       <NextLink href={`/profile`}>

@@ -1,42 +1,19 @@
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { getSession } from "next-auth/client";
-import { v4 as uuidv4 } from "uuid";
 
+import * as Constants from "../../../../../../../src/lib/Constants";
 import { getMongoClient } from "../../../../../../../src/lib/db";
 import { toTypedAchievements } from "../../../../../../../src/lib/type_converter";
-import { ACHIEVEMENTS_SCHEMA_MAP } from "../../../../../../../src/data/schema";
-
-const getEmptyAchievementData = (achievementCategory) => {
-  let emptyAchievementData = {};
-  ACHIEVEMENTS_SCHEMA_MAP.get(achievementCategory).fields.forEach((field) => {
-    emptyAchievementData[field.db_field] = field.value;
-  });
-  emptyAchievementData["id"] = uuidv4();
-  emptyAchievementData["last_modified"] = new Date().toISOString();
-  return emptyAchievementData;
-};
+import { getEmptyAchievementData } from "../../../../../../../src/data/schema";
+import * as util from "../../../../../../../src/lib/util";
 
 export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    res
-      .status(StatusCodes.METHOD_NOT_ALLOWED)
-      .send(ReasonPhrases.METHOD_NOT_ALLOWED);
-    return;
-  }
+  if (!util.assertRequestMethod(req, res, util.MethodType.POST)) return;
 
   const { employeeID, achievementCategory } = req.query;
 
   const session = await getSession({ req });
-  if (!session) {
-    res.status(StatusCodes.UNAUTHORIZED).send(ReasonPhrases.UNAUTHORIZED);
-    return;
-  } else if (
-    session.user.isAdmin === false &&
-    session.user.employeeID !== employeeID
-  ) {
-    res.status(StatusCodes.FORBIDDEN).send(ReasonPhrases.FORBIDDEN);
-    return;
-  }
+  if (!util.assertIsAuthorized(session, res)) return;
 
   const emptyAchievementData = req.body["newObject"]
     ? req.body["newObject"]
@@ -48,8 +25,11 @@ export default async function handler(req, res) {
   const client = await getMongoClient();
   const connection = await client.connect();
 
-  const usersCollection = connection.db("users").collection("faculties");
+  const usersCollection = connection
+    .db("users")
+    .collection(Constants.FACULTY_COLLECTION_NAME);
 
+  //put more checks
   let updateResult;
   try {
     updateResult = await usersCollection.updateOne(

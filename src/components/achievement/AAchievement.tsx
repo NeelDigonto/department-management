@@ -9,6 +9,7 @@ interface AAchievementProps {
   setIsCreatingAchievement: React.Dispatch<React.SetStateAction<boolean>>;
   achievement: any;
   index: number;
+  isAdmin: boolean;
 }
 
 const AAchievement = ({
@@ -17,6 +18,7 @@ const AAchievement = ({
   setIsCreatingAchievement,
   achievement,
   index,
+  isAdmin,
 }: AAchievementProps) => {
   const [isEditing, setIsEditing] = React.useState(() =>
     achievement.isHotNew ? true : false
@@ -30,6 +32,7 @@ const AAchievement = ({
       {!isEditing ? (
         <DisplayAchievement
           {...{
+            isAdmin,
             achievementCategory,
             achievement,
             index,

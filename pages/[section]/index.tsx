@@ -1,5 +1,5 @@
 import { signIn, signOut, useSession, getSession } from "next-auth/client";
-import React, { Fragment } from "react";
+import React from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import { useRouter } from "next/router";
 import {
@@ -7,23 +7,30 @@ import {
   Drawer as MuiDrawer,
   AppBar as MuiAppBar,
   Toolbar,
+  List,
   CssBaseline,
   Typography,
   Divider,
   IconButton,
-  Container,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
-import MainList from "../../../src/components/admin/sidebar/MainList";
-import SecondaryList from "../../../src/components/admin/sidebar/SecondaryList";
-import Dashboard from "../../../src/components/admin/dashboard/Dashboard";
-import CreateUser from "../../../src/components/admin/createUser/CreateUser";
-import DeleteUser from "../../../src/components/admin/deleteUser/DeleteUser";
-import Copyright from "../../../src/components/copyright/Copyright";
+import MainList from "../../src/components/sidebar/MainList";
+import SecondaryList from "../../src/components/sidebar/SecondaryList";
+import Profile from "../../src/components/profile/Profile";
+import Achievements from "../../src/components/achievement/Achievements";
+import {
+  ACHIEVEMENTS_SCHEMA_MAP,
+  getAchievementValidationSchema,
+} from "../../src/data/schema";
+import Copyright from "../../src/components/copyright/Copyright";
+import ChangePassword from "../../src/components/password/ChangePassword";
 
 const drawerWidth = 240;
 
@@ -58,7 +65,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
+  shouldForwardProp: (prop: any) => prop !== "open",
 })(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(["width", "margin"], {
@@ -76,7 +83,7 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open",
+  shouldForwardProp: (prop: any) => prop !== "open",
 })(({ theme, open }) => ({
   width: drawerWidth,
   flexShrink: 0,
@@ -94,7 +101,7 @@ const Drawer = styled(MuiDrawer, {
 
 export default function Test() {
   const router = useRouter();
-  const { section } = router.query;
+  const { section }: { section: string } = router.query;
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -107,32 +114,18 @@ export default function Test() {
   };
 
   const memoizedMainViewComponents = React.useMemo(() => {
-    switch (section) {
-      case "dashboard": {
-        return (
-          <Fragment>
-            <Dashboard />
-          </Fragment>
-        );
-      }
-      case "create-user": {
-        return (
-          <Container maxWidth="lg">
-            <CreateUser />
-          </Container>
-        );
-      }
-      case "delete-user": {
-        return (
-          <Container maxWidth="lg">
-            <DeleteUser />
-          </Container>
-        );
-      }
-      default: {
-        return null;
-      }
-    }
+    if (section === "profile") return <Profile />;
+    if (section === "change-password") return <ChangePassword />;
+    if (ACHIEVEMENTS_SCHEMA_MAP.has(section))
+      return (
+        <Achievements
+          key={section}
+          achievementCategory={section}
+          getAchievementValidationSchema={getAchievementValidationSchema(
+            section
+          )}
+        />
+      );
   }, [section]);
 
   return (
@@ -183,12 +176,12 @@ export default function Test() {
         <Divider />
         <MainList {...{ section }} />
         <Divider />
-        <SecondaryList />
+        <SecondaryList section={undefined} />
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, px: 1, py: 2 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 2 }}>
         <DrawerHeader />
         {memoizedMainViewComponents}
-        {/*        <Copyright sx={{ mt: 10 }} /> */}
+        <Copyright sx={{ mt: 10 }} />
       </Box>
     </Box>
   );

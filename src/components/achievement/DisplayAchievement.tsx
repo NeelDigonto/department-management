@@ -16,6 +16,7 @@ interface DisplayAchievementProps {
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
   expanded: boolean;
   setExpanded: React.Dispatch<React.SetStateAction<boolean>>;
+  isAdmin: boolean;
 }
 
 const DisplayAchievement = ({
@@ -25,6 +26,7 @@ const DisplayAchievement = ({
   setIsEditing,
   expanded,
   setExpanded,
+  isAdmin,
 }: DisplayAchievementProps) => {
   const { user, setUser } = useUserContext();
   return (
@@ -39,7 +41,8 @@ const DisplayAchievement = ({
           setExpanded,
         }}
         cardActions={
-          !ACHIEVEMENTS_SCHEMA_MAP.get(achievementCategory).isCentral ? (
+          !isAdmin &&
+          ACHIEVEMENTS_SCHEMA_MAP.get(achievementCategory).isCentral ? null : (
             <Fragment>
               <IconButton
                 sx={{ pl: "1rem", pr: "1rem" }}
@@ -68,7 +71,7 @@ const DisplayAchievement = ({
                 <DeleteIcon />
               </IconButton>
             </Fragment>
-          ) : null
+          )
         }
         cardContent={
           <Grid container>

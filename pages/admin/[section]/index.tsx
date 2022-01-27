@@ -1,5 +1,5 @@
 import { signIn, signOut, useSession, getSession } from "next-auth/client";
-import React from "react";
+import React, { Fragment } from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import { useRouter } from "next/router";
 import {
@@ -7,30 +7,28 @@ import {
   Drawer as MuiDrawer,
   AppBar as MuiAppBar,
   Toolbar,
-  List,
   CssBaseline,
   Typography,
   Divider,
   IconButton,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
+  Container,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
-import MainList from "../../src/components/sidebar/MainList";
-import SecondaryList from "../../src/components/sidebar/SecondaryList";
-import Profile from "../../src/components/profile/Profile";
-import Achievements from "../../src/components/achievement/Achievements";
+import MainList from "../../../src/components/admin/sidebar/MainList";
+import SecondaryList from "../../../src/components/admin/sidebar/SecondaryList";
+import Dashboard from "../../../src/components/admin/dashboard/Dashboard";
+import CreateUser from "../../../src/components/admin/createUser/CreateUser";
+import DeleteUser from "../../../src/components/admin/deleteUser/DeleteUser";
+import Copyright from "../../../src/components/copyright/Copyright";
 import {
-  ACHIEVEMENTS_SCHEMA_MAP,
+  CENTRAL_ACHIEVEMENTS_SCHEMA_MAP,
   getAchievementValidationSchema,
-} from "../../src/data/schema";
-import Copyright from "../../src/components/copyright/Copyright";
-import ChangePassword from "../../src/components/password/ChangePassword";
+} from "../../../src/data/schema";
+import Achievements from "../../../src/components/achievement/Achievements";
 
 const drawerWidth = 240;
 
@@ -101,7 +99,7 @@ const Drawer = styled(MuiDrawer, {
 
 export default function Test() {
   const router = useRouter();
-  const { section } = router.query;
+  const { section }: { section: string } = router.query;
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -114,9 +112,21 @@ export default function Test() {
   };
 
   const memoizedMainViewComponents = React.useMemo(() => {
-    if (section === "profile") return <Profile />;
-    if (section === "change-password") return <ChangePassword />;
-    else if (ACHIEVEMENTS_SCHEMA_MAP.has(section))
+    if (section === "dashboard") return <Dashboard />;
+    if (section === "create-user")
+      return (
+        <Container maxWidth="lg">
+          <CreateUser />
+        </Container>
+      );
+    if (section === "delete-user")
+      return (
+        <Container maxWidth="lg">
+          <DeleteUser />
+        </Container>
+      );
+
+    if (CENTRAL_ACHIEVEMENTS_SCHEMA_MAP.has(section))
       return (
         <Achievements
           key={section}
@@ -124,6 +134,7 @@ export default function Test() {
           getAchievementValidationSchema={getAchievementValidationSchema(
             section
           )}
+          isAdmin={true}
         />
       );
   }, [section]);
@@ -176,12 +187,12 @@ export default function Test() {
         <Divider />
         <MainList {...{ section }} />
         <Divider />
-        <SecondaryList />
+        <SecondaryList section={section} />
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 2 }}>
+      <Box component="main" sx={{ flexGrow: 1, px: 1, py: 2 }}>
         <DrawerHeader />
         {memoizedMainViewComponents}
-        <Copyright sx={{ mt: 10 }} />
+        {/*        <Copyright sx={{ mt: 10 }} /> */}
       </Box>
     </Box>
   );
