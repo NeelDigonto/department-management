@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { signIn, signOut, useSession, getSession } from "next-auth/client";
 import React, { Fragment } from "react";
 import { styled, useTheme } from "@mui/material/styles";
@@ -12,6 +13,7 @@ import {
   Divider,
   IconButton,
   Container,
+  AppBarProps as MuiAppBarProps,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -30,7 +32,11 @@ import {
 } from "../../../src/data/schema";
 import Achievements from "../../../src/components/achievement/Achievements";
 
-const drawerWidth = 240;
+const drawerWidth: number = 240;
+
+interface AppBarProps extends MuiAppBarProps {
+  open?: boolean;
+}
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -64,7 +70,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
+})<AppBarProps>(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
@@ -99,7 +105,7 @@ const Drawer = styled(MuiDrawer, {
 
 export default function Test() {
   const router = useRouter();
-  const { section }: { section: string } = router.query;
+  const section: string = router.query.section as string;
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
