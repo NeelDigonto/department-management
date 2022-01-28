@@ -6,7 +6,11 @@ import { useUserContext } from "../../contexts/UserContext";
 import { MASTER_SCHEMA } from "../../data/schema";
 import { INPUT_TYPE } from "../../data/types/types";
 
-const DisplayProfile = ({ setIsEditing }) => {
+interface DisplayProfileProps {
+  setIsEditing: any;
+}
+
+const DisplayProfile = ({ setIsEditing }: DisplayProfileProps) => {
   const { user, setUser } = useUserContext();
 
   return (

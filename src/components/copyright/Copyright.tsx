@@ -1,6 +1,6 @@
 import { Link as MuiLink, Typography, Box } from "@mui/material";
 
-function Copyright(props) {
+function Copyright(props: any) {
   return (
     <Typography
       variant="body2"

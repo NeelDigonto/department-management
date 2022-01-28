@@ -1,30 +1,22 @@
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { getSession } from "next-auth/client";
+import type { NextApiRequest, NextApiResponse } from "next";
 
+import * as util from "../../../../../../../src/lib/util";
 import { getMongoClient } from "../../../../../../../src/lib/db";
 import { toTypedProfile } from "../../../../../../../src/lib/type_converter";
+import { Session } from "next-auth";
 
-export default async function handler(req, res) {
-  if (req.method !== "PATCH") {
-    res
-      .status(StatusCodes.METHOD_NOT_ALLOWED)
-      .send(ReasonPhrases.METHOD_NOT_ALLOWED);
-    return;
-  }
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  if (!util.assertRequestMethod(req, res, util.MethodType.PATCH)) return;
 
   const { employeeID } = req.query;
 
-  const session = await getSession({ req });
-  if (!session) {
-    res.status(StatusCodes.UNAUTHORIZED).send(ReasonPhrases.UNAUTHORIZED);
-    return;
-  } else if (
-    session.user.isAdmin === false &&
-    session.user.employeeID !== req.query.employeeID
-  ) {
-    res.status(StatusCodes.FORBIDDEN).send(ReasonPhrases.FORBIDDEN);
-    return;
-  }
+  const session: Session = await getSession({ req });
+  if (!util.assertIsAuthorized(session, res)) return;
 
   const { newProfile } = req.body;
 

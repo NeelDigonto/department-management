@@ -17,7 +17,11 @@ import EditNode from "../nodes/EditNode";
 import { MASTER_SCHEMA } from "../../data/schema";
 import { getValidationSchema as getProfileValidationSchema } from "../../data/schemas/Profile";
 
-const EditProfile = ({ setIsEditing }) => {
+interface EditProfileProps {
+  setIsEditing: any;
+}
+
+const EditProfile = ({ setIsEditing }: EditProfileProps) => {
   const { user, setUser } = useUserContext();
   const [isUploading, setIsUploading] = useState(false);
   const [open, setOpen] = useState(false);

@@ -1,26 +1,19 @@
 import { getSession } from "next-auth/client";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 import { getMongoClient } from "../../../src/lib/db";
 import { toTypedQuerry } from "../../../src/lib/type_converter";
+import * as util from "../../../src/lib/util";
 
-export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    res
-      .status(StatusCodes.METHOD_NOT_ALLOWED)
-      .send(ReasonPhrases.METHOD_NOT_ALLOWED);
-    return;
-    w;
-  }
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  if (!util.assertRequestMethod(req, res, util.MethodType.POST)) return;
 
   const session = await getSession({ req });
-  if (!session) {
-    res.status(StatusCodes.UNAUTHORIZED).send(ReasonPhrases.UNAUTHORIZED);
-    return;
-  } else if (session.user.isAdmin !== true) {
-    res.status(StatusCodes.FORBIDDEN).send(ReasonPhrases.FORBIDDEN);
-    return;
-  }
+  if (!util.assertIsAdmin(session, res)) return;
 
   const client = await getMongoClient();
   const connection = await client.connect();

@@ -74,7 +74,7 @@ const CreateUser = () => {
                         action: snackbarAction,
                       })
                 )
-                .then(setSubmitting(false));
+                .then(() => setSubmitting(false));
               setSubmitting(false);
             }}
           >
@@ -92,7 +92,6 @@ const CreateUser = () => {
                 <Grid container display="flex" justifyContent="space-around">
                   <Box px={2} py={2}>
                     <Password
-                      variant="filled"
                       name="oldPassword"
                       label="Old Password"
                       autoComplete="off"
@@ -101,7 +100,6 @@ const CreateUser = () => {
                       onBlur={handleBlur}
                     />
                     <Password
-                      variant="filled"
                       name="newPassword"
                       label="New Password"
                       autoComplete="off"
@@ -110,7 +108,6 @@ const CreateUser = () => {
                       onBlur={handleBlur}
                     />
                     <Password
-                      variant="filled"
                       name="newPasswordRepeat"
                       label="New Password Repeat"
                       autoComplete="off"
@@ -126,7 +123,7 @@ const CreateUser = () => {
                   color="primary"
                   type="submit"
                   disabled={isSubmitting}
-                  onClick={handleSubmit}
+                  onClick={() => handleSubmit()}
                 >
                   {"Submit"}
                 </Button>

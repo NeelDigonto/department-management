@@ -2,7 +2,9 @@ import Busboy from "busboy";
 import { v4 as uuidv4 } from "uuid";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { getSession } from "next-auth/client";
+import type { NextApiRequest, NextApiResponse } from "next";
 
+import * as util from "../../../src/lib/util";
 import { uploadFileStream } from "../../../src/lib/aws-wrapper";
 import { getMongoClient } from "../../../src/lib/db";
 
@@ -12,24 +14,19 @@ export const config = {
   },
 };
 
-export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    res
-      .status(StatusCodes.METHOD_NOT_ALLOWED)
-      .send(ReasonPhrases.METHOD_NOT_ALLOWED);
-    return;
-  }
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  if (!util.assertRequestMethod(req, res, util.MethodType.POST)) return;
 
   const session = await getSession({ req });
-  if (!session) {
-    res.status(StatusCodes.UNAUTHORIZED).send(ReasonPhrases.UNAUTHORIZED);
-    return;
-  }
+  if (!util.assertIsAuthorized(session, res)) return;
   // anyone can create a file
 
   const fuid = uuidv4();
 
-  await new Promise(function (resolve, reject) {
+  await new Promise<void>(function (_resolve, _reject) {
     var busboy = new Busboy({ headers: req.headers });
     busboy.on(
       "file",
@@ -51,7 +48,7 @@ export default async function handler(req, res) {
 
       connection.close();
 
-      resolve();
+      _resolve();
     });
 
     try {

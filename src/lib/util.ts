@@ -1,5 +1,7 @@
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { ACHIEVEMENTS_SCHEMA_MAP } from "../data/schema";
+import { INPUT_TYPE } from "../data/types/types";
 import { Session } from "next-auth";
 import * as Constants from "../lib/Constants";
 
@@ -104,6 +106,60 @@ function assertTry(
   return true;
 }
 
+function getCurrentFiles(_rawData: any): string[] {
+  const fileSchemas: Map<string, string[]> = new Map<string, string[]>();
+
+  ACHIEVEMENTS_SCHEMA_MAP.forEach((category) => {
+    const file_fields: string[] = [];
+    category.fields.forEach((field) => {
+      if (field.input_type === INPUT_TYPE.FILE)
+        file_fields.push(field.db_field);
+    });
+    fileSchemas.set(category.key, file_fields);
+  });
+
+  const currentFiles: string[] = [];
+
+  _rawData.forEach((user: any) => {
+    fileSchemas.forEach((file_fields, achievementCategory) => {
+      if (!!user[achievementCategory]) {
+        file_fields.forEach((file_field) => {
+          user[achievementCategory].forEach((achievement) => {
+            if (
+              !!achievement[file_field] &&
+              !isEmptyObject(achievement[file_field])
+            ) {
+              const item = achievement[file_field];
+              if (item.isLink === false) {
+                currentFiles.push(item.fuid);
+              }
+            }
+          });
+        });
+      }
+    });
+  });
+
+  return currentFiles;
+}
+
+function getFilesToRemove(
+  allSavedFiles: string[],
+  currentRequiredFiles: string[]
+): string[] {
+  const currentRequiredFilesHash = {};
+  currentRequiredFiles.forEach(
+    (fuid) => (currentRequiredFilesHash[fuid] = true)
+  );
+  const filesToRemove: string[] = [];
+
+  allSavedFiles.forEach((fuid) => {
+    if (!currentRequiredFilesHash[fuid]) filesToRemove.push(fuid);
+  });
+
+  return filesToRemove;
+}
+
 export {
   isEmptyObject,
   isValidDate,
@@ -112,4 +168,6 @@ export {
   assertIsAdmin,
   assertTry,
   assertIsAuthorized,
+  getCurrentFiles,
+  getFilesToRemove,
 };

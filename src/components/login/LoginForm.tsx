@@ -12,7 +12,11 @@ import { useRouter } from "next/router";
 import { signIn } from "next-auth/client";
 import { useSnackbar } from "notistack";
 
-const LoginForm = ({ loginType }) => {
+interface LoginFormProps {
+  loginType: string;
+}
+
+const LoginForm = ({ loginType }: LoginFormProps) => {
   const router = useRouter();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
@@ -152,7 +156,9 @@ const LoginForm = ({ loginType }) => {
               sx={{ mt: 3, mb: 2 }}
               color="primary"
               disabled={isSubmitting}
-              onClick={handleSubmit}
+              onClick={() => {
+                handleSubmit();
+              }}
             >
               {"Sign In"}
             </Button>
