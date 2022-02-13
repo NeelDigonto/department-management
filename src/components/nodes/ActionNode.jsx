@@ -5,7 +5,7 @@ import SortIcon from "@mui/icons-material/Sort";
 import AddToQueueIcon from "@mui/icons-material/AddToQueue";
 import PrintIcon from "@mui/icons-material/Print";
 
-import { INPUT_TYPE } from "../../data/types/types";
+import { INPUT_TYPE } from "@data/types/types";
 
 const ActionNode = ({
   field,

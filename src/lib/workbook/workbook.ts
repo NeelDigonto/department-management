@@ -6,8 +6,8 @@ import { Readable } from "stream";
 import { getStandardWorkBook, getColumnWidth, rowHeight } from "./util";
 import { setupProfileSheet } from "./profileSheet";
 import { setupAchievementSheets } from "./achievementSheets";
-import { ACHIEVEMENTS_SCHEMA_MAP } from "../../data/schema";
-import { SchemaType, FieldType } from "../../data/schemas/types";
+import { ACHIEVEMENTS_SCHEMA_MAP } from "@data/schema";
+import { SchemaType, FieldType } from "@data/schemas/types";
 
 enum WorkbookType {
   All,

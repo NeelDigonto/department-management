@@ -4,9 +4,9 @@ import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { getSession } from "next-auth/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import * as util from "../../../src/lib/util";
-import { uploadFileStream } from "../../../src/lib/aws-wrapper";
-import { getMongoClient } from "../../../src/lib/db";
+import * as util from "@lib/util";
+import { uploadFileStream } from "@lib/aws-wrapper";
+import { getMongoClient } from "@lib/db";
 
 export const config = {
   api: {

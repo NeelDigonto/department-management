@@ -2,12 +2,9 @@ import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { getSession } from "next-auth/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import * as util from "../../../../../../../src/lib/util";
-import { getMongoClient } from "../../../../../../../src/lib/db";
-import {
-  hashPassword,
-  verifyPassword,
-} from "../../../../../../../src/lib/auth";
+import * as util from "@lib/util";
+import { getMongoClient } from "@lib/db";
+import { hashPassword, verifyPassword } from "@lib/auth";
 
 export default async function handler(
   req: NextApiRequest,

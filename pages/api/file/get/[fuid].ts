@@ -1,11 +1,8 @@
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import {
-  downloadFileStream,
-  getFileHead,
-} from "../../../../src/lib/aws-wrapper";
-import * as util from "../../../../src/lib/util";
+import { downloadFileStream, getFileHead } from "@lib/aws-wrapper";
+import * as util from "@lib/util";
 
 export default async function handler(
   req: NextApiRequest,

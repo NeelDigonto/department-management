@@ -23,16 +23,16 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
-import MainList from "../../src/components/sidebar/MainList";
-import SecondaryList from "../../src/components/sidebar/SecondaryList";
-import Profile from "../../src/components/profile/Profile";
-import Achievements from "../../src/components/achievement/Achievements";
+import MainList from "@components/sidebar/MainList";
+import SecondaryList from "@components/sidebar/SecondaryList";
+import Profile from "@components/profile/Profile";
+import Achievements from "@components/achievement/Achievements";
 import {
   ACHIEVEMENTS_SCHEMA_MAP,
   getAchievementValidationSchema,
-} from "../../src/data/schema";
-import Copyright from "../../src/components/copyright/Copyright";
-import ChangePassword from "../../src/components/password/ChangePassword";
+} from "@data/schema";
+import Copyright from "@components/copyright/Copyright";
+import ChangePassword from "@components/password/ChangePassword";
 
 const drawerWidth: number = 240;
 

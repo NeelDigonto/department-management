@@ -16,7 +16,7 @@ import { styled } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-import { ACHIEVEMENTS_SCHEMA_MAP } from "../../data/schema";
+import { ACHIEVEMENTS_SCHEMA_MAP } from "@data/schema";
 
 const ExpandMore = styled((props: any) => {
   const { expand, ...other } = props;

@@ -19,7 +19,7 @@ import { StatusCodes } from "http-status-codes";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
-import { useUserContext } from "../../contexts/UserContext";
+import { useUserContext } from "@contexts/UserContext";
 import Password from "./Password";
 
 const CreateUser = () => {

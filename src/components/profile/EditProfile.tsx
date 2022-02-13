@@ -12,10 +12,10 @@ import {
   CircularProgress,
 } from "@mui/material";
 
-import { useUserContext } from "../../contexts/UserContext";
-import EditNode from "../nodes/EditNode";
-import { MASTER_SCHEMA } from "../../data/schema";
-import { getValidationSchema as getProfileValidationSchema } from "../../data/schemas/Profile";
+import { useUserContext } from "@contexts/UserContext";
+import EditNode from "@components/nodes/EditNode";
+import { MASTER_SCHEMA } from "@data/schema";
+import { getValidationSchema as getProfileValidationSchema } from "@data/schemas/Profile";
 
 interface EditProfileProps {
   setIsEditing: any;

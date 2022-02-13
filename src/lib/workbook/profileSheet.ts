@@ -1,9 +1,9 @@
 import * as ExcelJS from "exceljs";
-import * as Constants from "../Constants";
-import { MASTER_SCHEMA } from "../../data/schema";
+import * as Constants from "@lib/Constants";
+import { MASTER_SCHEMA } from "@data/schema";
 import { getColumnWidth } from "./util";
-import Cell from "../Cell";
-import { FieldType } from "../../data/schemas/types";
+import Cell from "@lib/Cell";
+import { FieldType } from "@data/schemas/types";
 
 function setupHeaders(_worksheet: ExcelJS.Worksheet): void {
   let ws_columns_hot: Partial<ExcelJS.Column>[] = [

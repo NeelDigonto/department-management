@@ -1,6 +1,6 @@
 import * as ExcelJS from "exceljs";
-import * as Constants from "../Constants";
-import { DB_FIELD_TYPE, VALUE_TYPE, INPUT_TYPE } from "../../data/types/types";
+import * as Constants from "@lib/Constants";
+import { DB_FIELD_TYPE, VALUE_TYPE, INPUT_TYPE } from "@data/types/types";
 
 function getFormatedValue(
   _value: any,

@@ -3,8 +3,8 @@ import {
   INPUT_TYPE,
   VALUE_TYPE,
   WIDTH_TYPE,
-} from "../types/types";
-//import * as Validation from "../validation/schemas";
+} from "@data/types/types";
+//import * as Validation from "@data/validation/schemas";
 
 export interface FieldType {
   label: string;

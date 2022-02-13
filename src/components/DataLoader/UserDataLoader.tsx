@@ -1,9 +1,9 @@
 import React, { Fragment, useEffect, useState, useMemo } from "react";
 import { signIn, signOut, useSession, getSession } from "next-auth/client";
 import { ReasonPhrases, StatusCodes, getReasonPhrase } from "http-status-codes";
-import * as Constants from "../../lib/Constants";
+import * as Constants from "@lib/Constants";
 
-import { useUserContext } from "../../contexts/UserContext";
+import { useUserContext } from "@contexts/UserContext";
 
 const UserDataLoader = ({ children }) => {
   const [session, loading] = useSession();

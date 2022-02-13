@@ -2,9 +2,9 @@ import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { getSession } from "next-auth/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import * as util from "../../../../../../../src/lib/util";
-import { getMongoClient } from "../../../../../../../src/lib/db";
-import { toTypedProfile } from "../../../../../../../src/lib/type_converter";
+import * as util from "@lib/util";
+import { getMongoClient } from "@lib/db";
+import { toTypedProfile } from "@lib/type_converter";
 import { Session } from "next-auth";
 
 export default async function handler(

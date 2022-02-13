@@ -1,9 +1,9 @@
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { getSession } from "next-auth/client";
 
-import * as Constants from "../../../../../../../../src/lib/Constants";
-import { getMongoClient } from "../../../../../../../../src/lib/db";
-import * as util from "../../../../../../../../src/lib/util";
+import * as Constants from "@lib/Constants";
+import { getMongoClient } from "@lib/db";
+import * as util from "@lib/util";
 
 export default async function handler(req, res) {
   if (!util.assertRequestMethod(req, res, util.MethodType.DELETE)) return;

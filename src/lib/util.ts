@@ -1,9 +1,9 @@
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { ACHIEVEMENTS_SCHEMA_MAP } from "../data/schema";
-import { INPUT_TYPE } from "../data/types/types";
+import { ACHIEVEMENTS_SCHEMA_MAP } from "@data/schema";
+import { INPUT_TYPE } from "@data/types/types";
 import { Session } from "next-auth";
-import * as Constants from "../lib/Constants";
+import * as Constants from "@lib/Constants";
 
 function isEmptyObject(obj: any): boolean {
   return !!obj && Object.keys(obj).length === 0 && obj.constructor === Object;

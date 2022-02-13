@@ -20,19 +20,19 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
-import MainList from "../../../src/components/admin/sidebar/MainList";
-import SecondaryList from "../../../src/components/admin/sidebar/SecondaryList";
-import TertiaryList from "../../../src/components/admin/sidebar/SecondaryList";
-import Dashboard from "../../../src/components/admin/dashboard/Dashboard";
-import CreateUser from "../../../src/components/admin/createUser/CreateUser";
-import DeleteUser from "../../../src/components/admin/deleteUser/DeleteUser";
-import Copyright from "../../../src/components/copyright/Copyright";
+import MainList from "@components/admin/sidebar/MainList";
+import SecondaryList from "@components/admin/sidebar/SecondaryList";
+import TertiaryList from "@components/admin/sidebar/SecondaryList";
+import Dashboard from "@components/admin/dashboard/Dashboard";
+import CreateUser from "@components/admin/createUser/CreateUser";
+import DeleteUser from "@components/admin/deleteUser/DeleteUser";
+import Copyright from "@components/copyright/Copyright";
 import {
   CENTRAL_ACHIEVEMENTS_SCHEMA_MAP,
   getAchievementValidationSchema,
-} from "../../../src/data/schema";
-import Achievements from "../../../src/components/achievement/Achievements";
-import GraphBoard from "../../../src/components/admin/graph/GraphBoard";
+} from "@data/schema";
+import Achievements from "@components/achievement/Achievements";
+import GraphBoard from "@components/admin/graph/GraphBoard";
 
 const drawerWidth: number = 240;
 

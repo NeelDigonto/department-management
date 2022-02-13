@@ -9,10 +9,10 @@ import { SnackbarProvider } from "notistack";
 import { Slide } from "@mui/material";
 import { AppProps } from "next/app";
 
-import theme from "../src/themes/theme";
-import { UserContextProvider } from "../src/contexts/UserContext";
-import UserDataLoader from "../src/components/DataLoader/UserDataLoader";
-import createEmotionCache from "../src/createEmotionCache";
+import theme from "@themes/theme";
+import { UserContextProvider } from "@contexts/UserContext";
+import UserDataLoader from "@components/DataLoader/UserDataLoader";
+import createEmotionCache from "@src/createEmotionCache";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();

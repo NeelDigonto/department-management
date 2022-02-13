@@ -1,10 +1,10 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 
-import { useUserContext } from "../../contexts/UserContext";
+import { useUserContext } from "@contexts/UserContext";
 import AAchievement from "./AAchievement";
 import CreateAchievement from "./CreateAchievement";
-import { ACHIEVEMENTS_SCHEMA_MAP } from "../../data/schema";
+import { ACHIEVEMENTS_SCHEMA_MAP } from "@data/schema";
 
 interface AchievementsProps {
   achievementCategory: string;

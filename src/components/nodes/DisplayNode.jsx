@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Grid, Box, Typography, Button, Link as MuiLink } from "@mui/material";
-import { isEmptyObject } from "../../lib/util";
-import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE } from "../../data/types/types";
+import { isEmptyObject } from "@lib/util";
+import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE } from "@data/types/types";
 
 const getTrimmedFileName = (org_fname, max_fname_len) => {
   if (org_fname.length > max_fname_len) {

@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     path.join(process.cwd(), "data_for_bsh", "final_user_data.json")
   );
 
-  const collectionData = JSON.parse(buffer);
+  const collectionData = JSON.parse(buffer.toString());
 
   let final_users = [];
 

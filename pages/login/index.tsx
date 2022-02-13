@@ -13,9 +13,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Head from "next/head";
 import Image from "next/image";
 
-import Copyright from "../../src/components/copyright/Copyright";
-import LoginForm from "../../src/components/login/LoginForm";
-import IEM_FACULTIES_PHOTO from "../../public/iem_faculties.jpg";
+import Copyright from "@components/copyright/Copyright";
+import LoginForm from "@components/login/LoginForm";
+import IEM_FACULTIES_PHOTO from "./public/iem_faculties.jpg";
 
 export default function SignInSide() {
   const [loginType, setLoginType] = useState("faculty");

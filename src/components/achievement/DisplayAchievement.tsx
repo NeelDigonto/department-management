@@ -3,9 +3,9 @@ import { Grid, IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-import { useUserContext } from "../../contexts/UserContext";
-import DisplayNode from "../nodes/DisplayNode";
-import { ACHIEVEMENTS_SCHEMA_MAP } from "../../data/schema";
+import { useUserContext } from "@contexts/UserContext";
+import DisplayNode from "@components/nodes/DisplayNode";
+import { ACHIEVEMENTS_SCHEMA_MAP } from "@data/schema";
 import { deleteAchievementHandler } from "./handlers";
 import AchievementCard from "./AchievementCard";
 

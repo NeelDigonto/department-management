@@ -11,8 +11,8 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-import FilterNode from "../../../../nodes/SearchNode";
-import { ACHIEVEMENTS_SCHEMA_MAP } from "../../../../../data/schema";
+import FilterNode from "@components/nodes/SearchNode";
+import { ACHIEVEMENTS_SCHEMA_MAP } from "@data/schema";
 
 const AchievementFilter = ({
   valueLastUpdatedRef,

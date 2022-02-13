@@ -11,9 +11,9 @@ import {
 import CheckIcon from "@mui/icons-material/Check";
 import CancelIcon from "@mui/icons-material/Cancel";
 
-import { ACHIEVEMENTS_SCHEMA_MAP } from "../../data/schema";
-import { useUserContext } from "../../contexts/UserContext";
-import EditNode from "../nodes/EditNode";
+import { ACHIEVEMENTS_SCHEMA_MAP } from "@data/schema";
+import { useUserContext } from "@contexts/UserContext";
+import EditNode from "@components/nodes/EditNode";
 import {
   createAchievementFinalizeHandler,
   editAchievementHandler,

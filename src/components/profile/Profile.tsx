@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 
 import DisplayProfile from "./DisplayProfile";
 import EditProfile from "./EditProfile";
-import { useUserContext } from "../../contexts/UserContext";
+import { useUserContext } from "@contexts/UserContext";
 
 const Profile = () => {
   const { user, setUser } = useUserContext();

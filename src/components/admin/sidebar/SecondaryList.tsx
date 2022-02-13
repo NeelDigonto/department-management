@@ -8,7 +8,7 @@ import {
   ListSubheader,
 } from "@mui/material";
 
-import { CENTRAL_ACHIEVEMENTS_SCHEMA_MAP } from "../../../data/schema";
+import { CENTRAL_ACHIEVEMENTS_SCHEMA_MAP } from "@data/schema";
 
 export default function SecondaryList({ section }: { section: string }) {
   return (

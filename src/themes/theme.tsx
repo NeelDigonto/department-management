@@ -2,7 +2,7 @@ import { createTheme } from "@mui/material/styles";
 import { red, grey } from "@mui/material/colors";
 import { color } from "@mui/system";
 import type {} from "@mui/lab/themeAugmentation";
-import { COLORS } from "../lib/Constants";
+import { COLORS } from "@lib/Constants";
 
 // Create a theme instance.
 const theme = createTheme({

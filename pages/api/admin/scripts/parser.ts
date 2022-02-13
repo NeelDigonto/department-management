@@ -60,7 +60,7 @@ const getSpeakerDetails = (raw_string) => {
 const readFile = async (file_path) => {
   let csv_data = [];
 
-  await new Promise((resolve, reject) => {
+  await new Promise<void>((resolve, reject) => {
     const parser = csvParser()
       .on("data", (data) => {
         csv_data.push(data);
@@ -333,7 +333,9 @@ export default async function handler(req, res) {
     "hand_written.json"
   );
 
-  let collectionData = JSON.parse(fs.readFileSync(hadnwrittenFilePath));
+  let collectionData = JSON.parse(
+    fs.readFileSync(hadnwrittenFilePath).toString()
+  );
 
   Promise.all(
     filesToRead.map(async (file) => {

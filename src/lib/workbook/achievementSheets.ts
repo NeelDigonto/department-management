@@ -1,8 +1,8 @@
 import * as ExcelJS from "exceljs";
-import { MASTER_SCHEMA, ACHIEVEMENTS_SCHEMA_MAP } from "../../data/schema";
+import { MASTER_SCHEMA, ACHIEVEMENTS_SCHEMA_MAP } from "@data/schema";
 import { getColumnWidth } from "./util";
-import Cell from "../Cell";
-import { FieldType, SchemaType } from "../../data/schemas/types";
+import Cell from "@lib/Cell";
+import { FieldType, SchemaType } from "@data/schemas/types";
 import { getFormatedValue } from "./lib";
 
 function setupAchievementHeaders(

@@ -1,9 +1,9 @@
 import { Decimal128 } from "mongodb";
 import kindOf from "kind-of";
 
-import { MASTER_SCHEMA, ACHIEVEMENTS_SCHEMA_MAP } from "../data/schema";
-import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE } from "../data/types/types";
-import { FieldType, SchemaType } from "../data/schemas/types";
+import { MASTER_SCHEMA, ACHIEVEMENTS_SCHEMA_MAP } from "@data/schema";
+import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE } from "@data/types/types";
+import { FieldType, SchemaType } from "@data/schemas/types";
 import { isEmptyObject } from "./util";
 
 function getTypedDocument(_json: Object): Object {

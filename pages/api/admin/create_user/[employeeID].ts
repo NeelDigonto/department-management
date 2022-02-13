@@ -2,11 +2,11 @@ import { getSession } from "next-auth/client";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import * as util from "../../../../src/lib/util";
-import { getMongoClient } from "../../../../src/lib/db";
-import { hashPassword } from "../../../../src/lib/auth";
-import { getEmptyUserDocument } from "../../../../src/data/schema";
-import { getTypedDocument } from "../../../../src/lib/type_converter";
+import * as util from "@lib/util";
+import { getMongoClient } from "@lib/db";
+import { hashPassword } from "@lib/auth";
+import { getEmptyUserDocument } from "@data/schema";
+import { getTypedDocument } from "@lib/type_converter";
 
 export default async function handler(req, res) {
   if (!util.assertRequestMethod(req, res, util.MethodType.POST)) return;

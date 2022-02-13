@@ -4,8 +4,8 @@ import {
   INPUT_TYPE,
   DB_FIELD_TYPE,
   WIDTH_TYPE,
-} from "../types/types";
-import * as Validation from "../validation/schemas";
+} from "@data/types/types";
+import * as Validation from "@data/validation/schemas";
 import { FieldType } from "./types";
 
 const FIELDS: FieldType[] = [

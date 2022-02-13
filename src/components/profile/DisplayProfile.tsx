@@ -2,9 +2,9 @@ import React, { Fragment } from "react";
 import { Card, Box, CardContent, Grid, Typography, Fab } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 
-import { useUserContext } from "../../contexts/UserContext";
-import { MASTER_SCHEMA } from "../../data/schema";
-import { INPUT_TYPE } from "../../data/types/types";
+import { useUserContext } from "@contexts/UserContext";
+import { MASTER_SCHEMA } from "@data/schema";
+import { INPUT_TYPE } from "@data/types/types";
 
 interface DisplayProfileProps {
   setIsEditing: any;

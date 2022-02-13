@@ -10,7 +10,7 @@ import NumberQuerry from "./querry/NumberQuerry";
 import CheckboxQuerry from "./querry/CheckboxQuerry";
 import FileQuerry from "./querry/FileQuerry";
 
-import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE } from "../../data/types/types";
+import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE } from "@data/types/types";
 
 const FilterNode = ({
   field,

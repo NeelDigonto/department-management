@@ -3,9 +3,9 @@ import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { getSession } from "next-auth/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import * as util from "../../../src/lib/util";
-import { getMongoClient } from "../../../src/lib/db";
-import { deleteFile } from "../../../src/lib/aws-wrapper";
+import * as util from "@lib/util";
+import { getMongoClient } from "@lib/db";
+import { deleteFile } from "@lib/aws-wrapper";
 
 export default async function handler(
   req: NextApiRequest,

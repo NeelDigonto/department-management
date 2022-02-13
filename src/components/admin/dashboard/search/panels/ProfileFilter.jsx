@@ -11,8 +11,8 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-import FilterNode from "../../../../nodes/SearchNode";
-import { MASTER_SCHEMA } from "../../../../../data/schema";
+import FilterNode from "@components/nodes/SearchNode";
+import { MASTER_SCHEMA } from "@data/schema";
 
 const ProfileFilter = ({
   valueLastUpdatedRef,

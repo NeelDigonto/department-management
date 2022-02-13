@@ -2,8 +2,8 @@ import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { getSession } from "next-auth/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { deleteFile } from "../../../../src/lib/aws-wrapper";
-import * as util from "../../../../src/lib/util";
+import { deleteFile } from "@lib/aws-wrapper";
+import * as util from "@lib/util";
 
 export default async function handler(
   req: NextApiRequest,

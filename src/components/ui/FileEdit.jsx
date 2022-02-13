@@ -2,8 +2,8 @@ import React, { Fragment } from "react";
 import { Card, Button, Link as MuiLink, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-import { isEmptyObject } from "../../lib/util";
-import stageFileUpload from "../../lib/fileUpload";
+import { isEmptyObject } from "@lib/util";
+import stageFileUpload from "@lib/fileUpload";
 
 const FileEdit = ({ formik, field, setIsUploading }) => {
   const value = formik.values[field.db_field];

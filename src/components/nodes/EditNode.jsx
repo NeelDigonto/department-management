@@ -5,10 +5,10 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import MobileDatePicker from "@mui/lab/MobileDatePicker";
 import DateTimePicker from "@mui/lab/DateTimePicker";
 
-import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE } from "../../data/types/types";
-import CustomSelect from "../ui/CustomSelect";
-import FileEdit from "../ui/FileEdit";
-import { isValidDate } from "../../lib/util";
+import { VALUE_TYPE, INPUT_TYPE, DB_FIELD_TYPE } from "@data/types/types";
+import CustomSelect from "@components/ui/CustomSelect";
+import FileEdit from "@components/ui/FileEdit";
+import { isValidDate } from "@lib/util";
 
 const getISO8601DateFormat = (dateIsoString) => {
   const date = new Date(dateIsoString);

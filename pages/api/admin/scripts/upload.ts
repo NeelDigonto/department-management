@@ -4,14 +4,11 @@ import { ReasonPhrases, StatusCodes } from "http-status-codes";
 
 import { v4 as uuidv4 } from "uuid";
 
-import { getMongoClient } from "../../../../src/lib/db";
-import { hashPassword } from "../../../../src/lib/auth";
-import { getEmptyUserDocument } from "../../../../src/data/schema";
-import {
-  toTypedAchievements,
-  getTypedDocument,
-} from "../../../../src/lib/type_converter";
-import { ACHIEVEMENTS_SCHEMA_MAP } from "../../../../src/data/schema";
+import { getMongoClient } from "@lib/db";
+import { hashPassword } from "@lib/auth";
+import { getEmptyUserDocument } from "@data/schema";
+import { toTypedAchievements, getTypedDocument } from "@lib/type_converter";
+import { ACHIEVEMENTS_SCHEMA_MAP } from "@data/schema";
 
 const getEmptyAchievementData = (achievementCategory) => {
   let emptyAchievementData = {};
@@ -28,7 +25,7 @@ export default async function handler(req, res) {
     path.join(process.cwd(), "data_for_bsh", "final_user_data.json")
   );
 
-  const collectionData = JSON.parse(buffer);
+  const collectionData = JSON.parse(buffer.toString());
 
   let final_users = [];
 

@@ -5,9 +5,9 @@ import {
   INPUT_TYPE,
   DB_FIELD_TYPE,
   WIDTH_TYPE,
-} from "../../data/types/types";
-import Cell from "../Cell";
-import * as Constants from "../Constants";
+} from "@data/types/types";
+import Cell from "@lib/Cell";
+import * as Constants from "@lib/Constants";
 
 function getStandardWorkBook(): ExcelJS.Workbook {
   const workbook: ExcelJS.Workbook = new ExcelJS.Workbook();

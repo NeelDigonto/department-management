@@ -3,8 +3,8 @@ import { Fab, Box } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
 import { hotCreateAchievementHandler } from "./handlers";
-import { useUserContext } from "../../contexts/UserContext";
-import { ACHIEVEMENTS_SCHEMA_MAP } from "../../data/schema";
+import { useUserContext } from "@contexts/UserContext";
+import { ACHIEVEMENTS_SCHEMA_MAP } from "@data/schema";
 
 interface CreateAchievementProps {
   achievementCategory: string;

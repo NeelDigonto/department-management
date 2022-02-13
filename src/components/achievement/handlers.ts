@@ -1,6 +1,6 @@
 import { StatusCodes, getReasonPhrase } from "http-status-codes";
 
-import { getEmptyAchievementData } from "../../../src/data/schema";
+import { getEmptyAchievementData } from "@data/schema";
 
 async function hotCreateAchievementHandler(
   employeeID: string,
