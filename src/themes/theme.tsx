@@ -2,24 +2,17 @@ import { createTheme } from "@mui/material/styles";
 import { red, grey } from "@mui/material/colors";
 import { color } from "@mui/system";
 import type {} from "@mui/lab/themeAugmentation";
-
-export const colors = {
-  Charcoal: "#264653",
-  PersianGreen: "#2A9D8F",
-  OrangeYellowCrayola: "#E9C46A",
-  SandyBrown: "#F4A261",
-  BurntSienna: "#E76F51",
-};
+import { COLORS } from "../lib/Constants";
 
 // Create a theme instance.
 const theme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: colors.OrangeYellowCrayola,
+      main: COLORS.OrangeYellowCrayola,
     },
     secondary: {
-      main: colors.SandyBrown,
+      main: COLORS.SandyBrown,
     },
     error: {
       main: red.A400,
@@ -32,8 +25,8 @@ const theme = createTheme({
       disabled: "",
       disabledBackground: "",
     }, */
-    background: { default: colors.PersianGreen, paper: colors.Charcoal },
-    divider: colors.SandyBrown,
+    background: { default: COLORS.PersianGreen, paper: COLORS.Charcoal },
+    divider: COLORS.SandyBrown,
   },
   components: {
     MuiCssBaseline: {

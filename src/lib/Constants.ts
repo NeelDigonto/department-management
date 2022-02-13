@@ -9,3 +9,22 @@ export const CENTRAL_EMPLOYEE_PASSWORD: string = "none";
 export const FACULTY_COLLECTION_NAME: string = "faculties";
 
 export const RESERVED_EMPLOYEE_NAMES: string[] = [CENTRAL_EMPLOYEE_ID];
+
+export const COLORS = {
+  Charcoal: "#264653",
+  PersianGreen: "#2A9D8F",
+  OrangeYellowCrayola: "#E9C46A",
+  SandyBrown: "#F4A261",
+  BurntSienna: "#E76F51",
+};
+
+export default {
+  APP_NAME,
+  APP_SITE_BASE_URL,
+  PROFILE_SHEET_NAME,
+  CENTRAL_EMPLOYEE_ID,
+  CENTRAL_EMPLOYEE_PASSWORD,
+  FACULTY_COLLECTION_NAME,
+  RESERVED_EMPLOYEE_NAMES,
+  COLORS,
+};

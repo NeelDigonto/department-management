@@ -11,6 +11,7 @@ import {
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import TimelineIcon from "@mui/icons-material/Timeline";
 
 export default function MainList({ section }: { section: string }) {
   return (
@@ -52,6 +53,19 @@ export default function MainList({ section }: { section: string }) {
             <RemoveCircleIcon />
           </ListItemIcon>
           <ListItemText primary="Delete User" />
+        </ListItem>
+      </NextLink>
+      <NextLink href={"/admin/graph"}>
+        <ListItem
+          button
+          sx={{
+            color: section === "graph" ? "primary.main" : "inherit",
+          }}
+        >
+          <ListItemIcon sx={{ color: "inherit" }}>
+            <TimelineIcon />
+          </ListItemIcon>
+          <ListItemText primary="Graph" />
         </ListItem>
       </NextLink>
     </List>

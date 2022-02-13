@@ -22,6 +22,7 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
 import MainList from "../../../src/components/admin/sidebar/MainList";
 import SecondaryList from "../../../src/components/admin/sidebar/SecondaryList";
+import TertiaryList from "../../../src/components/admin/sidebar/SecondaryList";
 import Dashboard from "../../../src/components/admin/dashboard/Dashboard";
 import CreateUser from "../../../src/components/admin/createUser/CreateUser";
 import DeleteUser from "../../../src/components/admin/deleteUser/DeleteUser";
@@ -31,6 +32,7 @@ import {
   getAchievementValidationSchema,
 } from "../../../src/data/schema";
 import Achievements from "../../../src/components/achievement/Achievements";
+import GraphBoard from "../../../src/components/admin/graph/GraphBoard";
 
 const drawerWidth: number = 240;
 
@@ -131,6 +133,8 @@ export default function Test() {
           <DeleteUser />
         </Container>
       );
+
+    if (section === "graph") return <GraphBoard />;
 
     if (CENTRAL_ACHIEVEMENTS_SCHEMA_MAP.has(section))
       return (

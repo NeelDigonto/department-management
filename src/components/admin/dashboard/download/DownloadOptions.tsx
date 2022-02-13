@@ -110,7 +110,7 @@ const DownloadOptions = ({
             fullWidth
             onClick={handleWorkbookDownloadAll}
           >
-            {"Download All Data"}
+            {"Download All (EXCEL)"}
           </Button>
           <Button
             variant="outlined"
@@ -118,7 +118,25 @@ const DownloadOptions = ({
             fullWidth
             onClick={handleWorkbookDownloadSelected}
           >
-            {"Download Selected"}
+            {"Download Selected (EXCEL)"}
+          </Button>
+        </CardContent>
+        <CardContent>
+          <Button
+            variant="outlined"
+            color="primary"
+            fullWidth
+            onClick={handleWorkbookDownloadAll}
+          >
+            {"Download All (WORD)"}
+          </Button>
+          <Button
+            variant="outlined"
+            color="primary"
+            fullWidth
+            onClick={handleWorkbookDownloadSelected}
+          >
+            {"Download Selected (WORD)"}
           </Button>
         </CardContent>
       </Card>
