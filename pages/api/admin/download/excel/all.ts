@@ -5,8 +5,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import * as util from "@lib/util";
 import { getMongoClient } from "@lib/db";
-import * as Workbook from "@lib/workbook/workbook";
-import all_t from "./all_t.json";
+import * as Workbook from "@lib/workbook/excel/workbook";
+import all_t from "../all_t.json";
 
 export default async function handler(
   req: NextApiRequest,
@@ -35,9 +35,8 @@ export default async function handler(
   let workbookBuffer: ExcelJS.Buffer;
   try {
     const workbook: ExcelJS.Workbook = Workbook.getWorkBook(
-      Workbook.WorkbookType.All,
       collectionData,
-      false,
+      "all",
       {}
     );
     workbookBuffer = await Workbook.getWorkBookBuffer(workbook);

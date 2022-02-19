@@ -160,6 +160,59 @@ function getFilesToRemove(
   return filesToRemove;
 }
 
+function generateDisplayWithProfile(display: Object) {
+  const display_with_profile = { ...display };
+  Object.entries(display).forEach(([_key, _entry]) => {
+    if (String(_key).startsWith("profile")) delete display_with_profile[_key];
+  });
+  display_with_profile["profile"] = 1;
+
+  return display_with_profile;
+}
+
+function generateProjectionFilter(display: Object, filter: Object) {
+  let projectionFilter = { profile: 1 };
+
+  ACHIEVEMENTS_SCHEMA_MAP.forEach((_, category: string) => {
+    if (!!filter[category]) {
+      // setup
+      projectionFilter[category] = {
+        $filter: {
+          input: `$${category}`,
+          as: "achievement",
+          cond: { $and: [] },
+        },
+      };
+
+      for (let [key, value] of Object.entries(filter[category]["$elemMatch"])) {
+        if (!!value["$regex"]) {
+          projectionFilter[category]["$filter"]["cond"]["$and"].push({
+            $regexMatch: {
+              input: `$$achievement.${key}`,
+              regex: value["$regex"],
+              options: value["$options"],
+            },
+          });
+        }
+
+        ["$lt", "$lte", "$gt", "$gte", "$eq", "$ne", "$in"].forEach(
+          (operator) => {
+            if (!!value[operator]) {
+              projectionFilter[category]["$filter"]["cond"]["$and"].push({
+                [operator]: [`$$achievement.${key}`, value[operator]],
+              });
+            }
+          }
+        );
+      }
+    } else {
+      projectionFilter[category] = 1;
+    }
+  });
+
+  return projectionFilter;
+}
+
 export {
   isEmptyObject,
   isValidDate,
@@ -170,4 +223,6 @@ export {
   assertIsAuthorized,
   getCurrentFiles,
   getFilesToRemove,
+  generateDisplayWithProfile,
+  generateProjectionFilter,
 };

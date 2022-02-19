@@ -3,38 +3,28 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import contentDisposition from "content-disposition";
 import { Readable } from "stream";
 
-import { getStandardWorkBook, getColumnWidth, rowHeight } from "./util";
+import {
+  getStandardWorkBook,
+  getColumnWidth,
+  rowHeight,
+  setupAllDisplayObject,
+} from "../util";
 import { setupProfileSheet } from "./profileSheet";
 import { setupAchievementSheets } from "./achievementSheets";
 import { ACHIEVEMENTS_SCHEMA_MAP } from "@data/schema";
 import { SchemaType, FieldType } from "@data/schemas/types";
 
-enum WorkbookType {
-  All,
-  Selected,
-}
-
 function getWorkBook(
-  _workbookType: WorkbookType,
   _collectionData: any,
-  _isOnlySelected: any = true,
-  _display: Object = {}
+  _type: "selected" | "all" = "selected",
+  _display: Object
 ): ExcelJS.Workbook {
   const workbook: ExcelJS.Workbook = getStandardWorkBook();
 
-  if (!_isOnlySelected) {
-    _display = { "profile.name": 1 };
-
-    ACHIEVEMENTS_SCHEMA_MAP.forEach((_schema: SchemaType) => {
-      _schema.fields.forEach(
-        (_field: FieldType) =>
-          (_display[`${_schema.key}.${_field.db_field}`] = 1)
-      );
-    });
-  }
+  const display: Object = setupAllDisplayObject(_display, _type);
 
   setupProfileSheet(workbook, _collectionData);
-  setupAchievementSheets(workbook, _collectionData, _display);
+  setupAchievementSheets(workbook, _collectionData, display);
 
   return workbook;
 }
@@ -74,4 +64,4 @@ async function streamFile(
   });
 }
 
-export { getWorkBook, getWorkBookBuffer, WorkbookType, streamFile };
+export { getWorkBook, getWorkBookBuffer, streamFile };

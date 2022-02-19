@@ -23,6 +23,8 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
+import Constants from "@src/lib/Constants";
+
 import MainList from "@components/sidebar/MainList";
 import SecondaryList from "@components/sidebar/SecondaryList";
 import Profile from "@components/profile/Profile";
@@ -158,8 +160,8 @@ export default function Test() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            {"FACULTY BOOK"}
+          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+            {Constants.APP_NAME}
           </Typography>
           <IconButton
             color="inherit"

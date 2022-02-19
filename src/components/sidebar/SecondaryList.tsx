@@ -13,7 +13,8 @@ import {
 
 export default function SecondaryList({ section }: { section: string }) {
   return (
-    <List>
+    <></>
+    /*     <List>
       <ListSubheader inset>General</ListSubheader>
       <ListItem button>
         <ListItemIcon>
@@ -27,6 +28,6 @@ export default function SecondaryList({ section }: { section: string }) {
         </ListItemIcon>
         <ListItemText primary="Routine" />
       </ListItem>
-    </List>
+    </List> */
   );
 }

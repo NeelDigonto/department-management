@@ -1,9 +1,9 @@
 import * as ExcelJS from "exceljs";
 import { MASTER_SCHEMA, ACHIEVEMENTS_SCHEMA_MAP } from "@data/schema";
-import { getColumnWidth } from "./util";
+import { getColumnWidth, getDbFdMaps } from "../util";
 import Cell from "@lib/Cell";
 import { FieldType, SchemaType } from "@data/schemas/types";
-import { getFormatedValue } from "./lib";
+import { getExcelFormatedValue } from "../util";
 
 function setupAchievementHeaders(
   _worksheet: ExcelJS.Worksheet,
@@ -123,34 +123,6 @@ function setupAchievementDataRows(
       });
     }
   }
-}
-
-function getDbFdMaps(
-  _key: string,
-  _display: Object
-): [Map<string, FieldType>, Map<string, FieldType>] {
-  // count profile fields
-  const prof_db_fld_pr: Map<string, FieldType> = new Map<string, FieldType>();
-  const achv_db_fld_pr: Map<string, FieldType> = new Map<string, FieldType>();
-  const achv_schema = ACHIEVEMENTS_SCHEMA_MAP.get(_key);
-
-  MASTER_SCHEMA.profile.forEach((_field, _index) => {
-    const db_field_name: string = _field.db_field;
-
-    if (!!_display[`profile.${db_field_name}`]) {
-      prof_db_fld_pr.set(db_field_name, _field);
-    }
-  });
-
-  achv_schema.fields.forEach((_field, _index) => {
-    const db_field_name: string = _field.db_field;
-
-    if (!!_display[`${achv_schema.key}.${db_field_name}`]) {
-      achv_db_fld_pr.set(db_field_name, _field);
-    }
-  });
-
-  return [prof_db_fld_pr, achv_db_fld_pr];
 }
 
 function setupAchievementSheet(

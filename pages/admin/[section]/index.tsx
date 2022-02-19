@@ -1,4 +1,4 @@
-// @ts-nocheck
+//@ts-nocheck
 import { signIn, signOut, useSession, getSession } from "next-auth/client";
 import React, { Fragment } from "react";
 import { styled, useTheme } from "@mui/material/styles";
@@ -14,6 +14,8 @@ import {
   IconButton,
   Container,
   AppBarProps as MuiAppBarProps,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -33,6 +35,8 @@ import {
 } from "@data/schema";
 import Achievements from "@components/achievement/Achievements";
 import GraphBoard from "@components/admin/graph/GraphBoard";
+import Constants from "@src/lib/Constants";
+import { AccountCircle } from "@mui/icons-material";
 
 const drawerWidth: number = 240;
 
@@ -156,7 +160,8 @@ export default function Test() {
         <Toolbar
           sx={{
             flexDirection: "row",
-            alignContent: "space-between",
+            //justifyContent:"space-between",
+            //alignContent: "space-between",
           }}
         >
           <IconButton
@@ -171,9 +176,10 @@ export default function Test() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            {"FACULTY BOOK"}
+          <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}>
+            {Constants.APP_NAME.toUpperCase()}
           </Typography>
+
           <IconButton
             color="inherit"
             onClick={() => {

@@ -32,6 +32,7 @@
     "formik": "^2.2.9",
     "http-status-codes": "^2.1.4",
     "kind-of": "^6.0.3",
+    "mime": "^3.0.0",
     "mongodb": "^3.6.10",
     "next": "12",
     "next-auth": "^3.27.3",
@@ -43,6 +44,7 @@
     "recharts": "^2.1.8",
     "styled-components": "^5.3.0",
     "uuid": "^8.3.2",
+    "winston": "^3.6.0",
     "yup": "^0.32.9"
   },
   "devDependencies": {
@@ -50,6 +52,7 @@
     "@emotion/eslint-plugin": "^11.5.0",
     "@types/bcryptjs": "^2.4.2",
     "@types/content-disposition": "^0.5.4",
+    "@types/mime": "^2.0.3",
     "@types/mongodb": "^4.0.7",
     "@types/node": "^17.0.0",
     "@types/react": "^17.0.37",

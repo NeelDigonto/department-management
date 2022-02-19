@@ -54,7 +54,7 @@ const DownloadOptions = ({
       sort: sortRef.current,
       display: displayRef.current,
     });
-    fetch("/api/admin/download/selected", {
+    fetch("/api/admin/download/excel/selected", {
       method: "POST",
       body: JSON.stringify({
         filter: getFilterObject(),
@@ -85,7 +85,7 @@ const DownloadOptions = ({
   };
 
   const handleWorkbookDownloadAll = () => {
-    fetch("/api/admin/download/all")
+    fetch("/api/admin/download/excel/all")
       .then((response) => {
         if (
           response.status === StatusCodes.OK ||
@@ -106,7 +106,7 @@ const DownloadOptions = ({
       sort: sortRef.current,
       display: displayRef.current,
     });
-    fetch("/api/admin/download/selected", {
+    fetch("/api/admin/download/word/selected", {
       method: "POST",
       body: JSON.stringify({
         filter: getFilterObject(),
@@ -128,7 +128,7 @@ const DownloadOptions = ({
         }
       })
       .then((blob) => {
-        saveAs(blob, `SelectedUsers-${new Date().toISOString()}.xlsx`);
+        saveAs(blob, `SelectedUsers-${new Date().toISOString()}.docx`);
         enqueueSnackbar(`Succesfully excel file`, {
           variant: "success",
           action: snackbarAction,
@@ -137,7 +137,7 @@ const DownloadOptions = ({
   };
 
   const handleDocxDownloadAll = () => {
-    fetch("/api/admin/download/all")
+    fetch("/api/admin/download/word/all")
       .then((response) => {
         if (
           response.status === StatusCodes.OK ||
@@ -148,7 +148,7 @@ const DownloadOptions = ({
         }
       })
       .then((blob) => {
-        saveAs(blob, `AllUsers-${new Date().toISOString()}.xlsx`);
+        saveAs(blob, `AllUsers-${new Date().toISOString()}.docx`);
       });
   };
 
