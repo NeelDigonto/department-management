@@ -34,6 +34,8 @@ export default async function handler(req, res) {
   } finally {
   }
 
+  console.log(userDocument.profile);
+
   // branch
   if (employeeID === Constants.CENTRAL_EMPLOYEE_ID) {
     connection.close();
@@ -58,6 +60,7 @@ export default async function handler(req, res) {
     delete userDocument["hashedPassword"];
     delete userDocument["_id"];
     delete centralDocument["_id"];
+    delete centralDocument["profile"];
 
     res.status(StatusCodes.OK).json({ ...userDocument, ...centralDocument });
   }
