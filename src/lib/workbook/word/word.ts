@@ -13,18 +13,18 @@ import { getSections } from "./helper";
 
 //       "seminar-attended"
 
-function getWorkBooks(
-  _workbookType: WorkbookType,
+/* function getWordFiles(
   _collectionData: any,
   _type: "selected" | "all",
   _display: Object
 ) {
-  ACHIEVEMENTS_SCHEMA_MAP.map((_value: SchemaType, _key: string) => {
-    getWorkBook(_workbook, _collectionData, _key, _display);
+  const results;
+  ACHIEVEMENTS_SCHEMA_MAP.forEach((_value: SchemaType, _key: string) => {
+    results = getWorkBook(_collectionData, _key, _display);
   });
-}
+} */
 
-function getWorkBook(
+function getWordFile(
   _collectionData: any,
   _type: "selected" | "all",
   _display: Object,
@@ -81,4 +81,4 @@ async function streamFile(
   });
 }
 
-export { getWorkBook, getWorkBookBuffer, WorkbookType, streamFile };
+export { getWordFile, getWorkBookBuffer, streamFile };

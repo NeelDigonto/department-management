@@ -65,10 +65,11 @@ export default async function handler(
 
   let workbookBuffer: Buffer;
   try {
-    const workbook: Document = word.getWorkBook(
+    const workbook: Document = word.getWordFile(
       collectionData,
       "selected",
-      display
+      display,
+      "seminar-attended"
     );
     workbookBuffer = await word.getWorkBookBuffer(workbook);
   } catch (err) {

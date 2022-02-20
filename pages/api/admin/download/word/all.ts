@@ -20,7 +20,12 @@ export default async function handler(
   let collectionData = all_t;
   let workbookBuffer: Buffer;
   try {
-    const workbook: Document = word.getWorkBook(collectionData, "all", {});
+    const workbook: Document = word.getWordFile(
+      collectionData,
+      "all",
+      {},
+      "seminar-attended"
+    );
     workbookBuffer = await word.getWorkBookBuffer(workbook);
   } catch (err) {
     console.error(err);

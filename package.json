@@ -50,6 +50,7 @@
   "devDependencies": {
     "@emotion/babel-plugin": "^11.3.0",
     "@emotion/eslint-plugin": "^11.5.0",
+    "@types/archiver": "^5.3.1",
     "@types/bcryptjs": "^2.4.2",
     "@types/content-disposition": "^0.5.4",
     "@types/mime": "^2.0.3",
