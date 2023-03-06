@@ -24,7 +24,7 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://bsh.iem.edu.in)
+[![FACULTY BOOK Screen Shot][product-screenshot]](https://bsh.iem.edu.in)
 
 This a dedicated College ERP web app, sepcially tailored for use in IEM Kolkata.
 
@@ -83,6 +83,19 @@ Please use yarn to install deps and nto npm or pnpm, etc.
 <!-- USAGE EXAMPLES -->
 
 ## Usage
+
+<h3>App LOGIN</h3>
+<img src="assets/APP_LOGIN.jpg"/>
+<br/>
+<h3>ADMIN DASHBOARD</h3>
+<img src="assets/ADMIN_DASHBOARD.jpg"/>
+<br/>
+<h3>FACULTY PROFILE</h3>
+<img src="assets/FACULTY_PROFILE.jpg"/>
+<br/>
+<h3>FACULTY ACHIEVEMENT</h3>
+<img src="assets/FACULTY_ACHIEVEMENT.jpg"/>
+<br/>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
