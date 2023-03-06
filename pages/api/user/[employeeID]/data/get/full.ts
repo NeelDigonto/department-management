@@ -57,6 +57,8 @@ export default async function handler(req, res) {
       connection.close();
     }
 
+    console.log(userDocument._id, centralDocument._id);
+
     delete userDocument["hashedPassword"];
     delete userDocument["_id"];
     delete centralDocument["_id"];
@@ -65,3 +67,4 @@ export default async function handler(req, res) {
     res.status(StatusCodes.OK).json({ ...userDocument, ...centralDocument });
   }
 }
+
